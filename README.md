@@ -5,7 +5,7 @@ It is meant to document real builds, experiments, notes, and lessons from workin
 
 The core idea is:
 
-Build it. Break it. Back it up. Learn why.
+Build it. Back it up. Break it. Fix it.
 
 This repository currently contains the coming-soon homepage for LaunchShell. The site is a plain static website with no framework, build system, backend, or package manager.
 
