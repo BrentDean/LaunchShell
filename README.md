@@ -27,7 +27,7 @@ The site is currently a coming-soon homepage. As it grows, it will collect proje
 | Area | Focus |
 | --- | --- |
 | ![This site](assets/this-site.svg) | LaunchShell itself: static site work, GitHub workflow, and Cloudflare Pages deployment. |
-| ![VPS server](assets/vps-server.svg) | VPS web servers, Linux administration, DNS, HTTPS, services, and logs. |
+| ![VPS server](assets/vps-checklist-hero-small.png) | VPS web servers, Linux administration, DNS, HTTPS, services, and logs. |
 | ![Seed app](assets/seed-app.svg) | Small personal web apps that solve real tracking and planning problems. |
 | ![Raspberry Pi](assets/raspberry-pi.svg) | Raspberry Pi labs, networking, sensors, services, and local hardware projects. |
 | ![8-bit CPU](assets/eight-bit-cpu.svg) | Electronics and low-level computing projects. |
