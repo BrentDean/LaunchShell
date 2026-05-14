@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/launchshell-logo-horizontal.svg" alt="LaunchShell" width="420">
+  <img src="assets/launchshell-logo-horizontal.png" alt="LaunchShell" width="420">
 </p>
 
 <p align="center">
