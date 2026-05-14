@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+  <rect width="1200" height="760" fill="#061226"/>
+  <g opacity="0.22" stroke="#1263ff" stroke-width="3"><path d="M120 120H1080M120 220H1080M120 320H1080M120 420H1080M120 520H1080M120 620H1080M180 80V680M330 80V680M480 80V680M630 80V680M780 80V680M930 80V680"/></g>
+  <rect x="190" y="115" width="820" height="530" rx="28" fill="#0c1b36" stroke="#335986" stroke-width="4"/>
+  <rect x="310" y="205" width="580" height="260" rx="18" fill="#10294d" stroke="#5b86c9" stroke-width="4"/>
+  <text x="366" y="310" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="72" font-weight="900" fill="#8fb7ff">00001000</text>
+  <text x="430" y="390" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="48" font-weight="900" fill="#12c995">8-BIT CPU</text>
+  <g fill="#1263ff"><circle cx="250" cy="172" r="12"/><circle cx="950" cy="172" r="12"/><circle cx="250" cy="588" r="12"/><circle cx="950" cy="588" r="12"/></g>
+  <g stroke="#12c995" stroke-width="8" stroke-linecap="round"><path d="M140 250h120"/><path d="M140 330h120"/><path d="M940 250h120"/><path d="M940 330h120"/><path d="M420 90v92"/><path d="M500 90v92"/><path d="M700 470v110"/><path d="M780 470v110"/></g>
+  <text x="160" y="704" font-family="system-ui, sans-serif" font-size="40" font-weight="900" fill="#fff">Binary • Registers • Clock Signals • Debugging</text>
+</svg>

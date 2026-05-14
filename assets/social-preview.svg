@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#061226"/>
+  <circle cx="1020" cy="120" r="270" fill="#1263ff" opacity="0.22"/>
+  <circle cx="160" cy="520" r="250" fill="#12c995" opacity="0.14"/>
+  <text x="90" y="180" font-family="system-ui, sans-serif" font-size="56" font-weight="900" fill="#fff">LaunchShell</text>
+  <text x="90" y="310" font-family="system-ui, sans-serif" font-size="82" font-weight="900" letter-spacing="-4" fill="#fff">Build it. Break it.</text>
+  <text x="90" y="400" font-family="system-ui, sans-serif" font-size="82" font-weight="900" letter-spacing="-4" fill="#8fb7ff">Back it up.</text>
+  <text x="90" y="492" font-family="system-ui, sans-serif" font-size="32" fill="#c9d6e7">Student-built project guides for Linux, cloud, electronics, and cybersecurity.</text>
+</svg>

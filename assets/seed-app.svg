@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#eef4ff"/><stop offset="1" stop-color="#dff8ee"/></linearGradient></defs>
+  <rect width="1200" height="760" fill="url(#g)"/>
+  <rect x="120" y="90" width="960" height="580" rx="30" fill="#fff" stroke="#d9e4f1" stroke-width="4"/>
+  <rect x="120" y="90" width="960" height="78" rx="30" fill="#061226"/>
+  <circle cx="170" cy="130" r="11" fill="#ff5f57"/><circle cx="207" cy="130" r="11" fill="#ffbd2e"/><circle cx="244" cy="130" r="11" fill="#28c840"/>
+  <rect x="184" y="230" width="285" height="350" rx="22" fill="#f7f9fc" stroke="#dbe5f1" stroke-width="3"/>
+  <circle cx="326" cy="340" r="76" fill="#12c995" opacity="0.18"/>
+  <path d="M326 410 C254 357 303 257 326 232 C349 257 398 357 326 410 Z" fill="#12c995"/>
+  <path d="M326 410 C330 355 334 302 326 232" stroke="#061226" stroke-width="5" fill="none" opacity="0.45"/>
+  <rect x="520" y="230" width="500" height="34" rx="17" fill="#061226" opacity="0.92"/>
+  <rect x="520" y="294" width="410" height="18" rx="9" fill="#6b7a90" opacity="0.55"/>
+  <rect x="520" y="334" width="470" height="18" rx="9" fill="#6b7a90" opacity="0.4"/>
+  <rect x="520" y="410" width="160" height="54" rx="14" fill="#1263ff"/>
+  <rect x="704" y="410" width="160" height="54" rx="14" fill="#eef4ff" stroke="#b9cbe6" stroke-width="3"/>
+  <text x="184" y="625" font-family="system-ui, sans-serif" font-size="46" font-weight="900" fill="#061226">Seed App</text>
+  <text x="520" y="580" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="28" fill="#1263ff">flask • json • git • nginx • systemd</text>
+</svg>

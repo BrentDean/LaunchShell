@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+  <rect width="1200" height="760" fill="#061226"/>
+  <rect x="105" y="92" width="990" height="576" rx="28" fill="#0c1b36" stroke="#243d68" stroke-width="4"/>
+  <rect x="105" y="92" width="990" height="64" rx="28" fill="#101f3a"/>
+  <circle cx="148" cy="124" r="9" fill="#ff5f57"/><circle cx="178" cy="124" r="9" fill="#ffbd2e"/><circle cx="208" cy="124" r="9" fill="#28c840"/>
+  <rect x="145" y="190" width="225" height="430" rx="14" fill="#071527"/>
+  <rect x="410" y="190" width="610" height="430" rx="14" fill="#071527"/>
+  <g font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="26">
+    <text x="175" y="242" fill="#8fb7ff">launchshell-site</text>
+    <text x="195" y="292" fill="#d7e7ff">index.html</text>
+    <text x="195" y="335" fill="#d7e7ff">assets/</text>
+    <text x="195" y="378" fill="#d7e7ff">README.md</text>
+    <text x="440" y="248" fill="#12c995">$ git status</text>
+    <text x="440" y="300" fill="#d7e7ff">On branch main</text>
+    <text x="440" y="350" fill="#d7e7ff">Changes to be committed:</text>
+    <text x="480" y="402" fill="#8fb7ff">new file: index.html</text>
+    <text x="480" y="454" fill="#8fb7ff">new file: assets/logo.svg</text>
+    <text x="440" y="545" fill="#12c995">$ make it, break it, document it</text>
+  </g>
+  <text x="105" y="724" font-family="system-ui, sans-serif" font-size="38" font-weight="900" fill="#fff">GitHub Codespaces Workflow</text>
+</svg>

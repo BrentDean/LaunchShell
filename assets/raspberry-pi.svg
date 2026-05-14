@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+  <rect width="1200" height="760" fill="#eef4ff"/>
+  <rect x="210" y="155" width="780" height="450" rx="36" fill="#0f8f68" stroke="#075c46" stroke-width="8"/>
+  <g fill="#0b6249"><rect x="275" y="220" width="140" height="90" rx="12"/><rect x="275" y="360" width="140" height="90" rx="12"/><rect x="785" y="218" width="150" height="110" rx="12"/><rect x="785" y="370" width="150" height="110" rx="12"/></g>
+  <rect x="494" y="250" width="210" height="190" rx="20" fill="#061226"/>
+  <g fill="#12c995"><circle cx="535" cy="290" r="8"/><circle cx="575" cy="290" r="8"/><circle cx="615" cy="290" r="8"/><circle cx="655" cy="290" r="8"/><circle cx="535" cy="330" r="8"/><circle cx="575" cy="330" r="8"/><circle cx="615" cy="330" r="8"/><circle cx="655" cy="330" r="8"/></g>
+  <g fill="#d9b44a"><rect x="270" y="145" width="340" height="28" rx="8"/><rect x="270" y="587" width="340" height="28" rx="8"/></g>
+  <path d="M705 346c90-10 92-146 8-146" fill="none" stroke="#1263ff" stroke-width="14" stroke-linecap="round"/>
+  <text x="210" y="690" font-family="system-ui, sans-serif" font-size="46" font-weight="900" fill="#061226">Raspberry Pi Labs</text>
+  <text x="210" y="730" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="26" fill="#5f6f82">ssh • linux • networking • sensors • services</text>
+</svg>

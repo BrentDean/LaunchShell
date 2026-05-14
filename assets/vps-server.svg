@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+  <rect width="1200" height="760" fill="#f7f9fc"/>
+  <rect x="178" y="145" width="844" height="470" rx="30" fill="#061226"/>
+  <g transform="translate(250 210)">
+    <rect width="700" height="74" rx="12" fill="#10294d" stroke="#315a92" stroke-width="3"/>
+    <rect y="110" width="700" height="74" rx="12" fill="#10294d" stroke="#315a92" stroke-width="3"/>
+    <rect y="220" width="700" height="74" rx="12" fill="#10294d" stroke="#315a92" stroke-width="3"/>
+    <g fill="#12c995"><circle cx="45" cy="37" r="10"/><circle cx="45" cy="147" r="10"/><circle cx="45" cy="257" r="10"/></g>
+    <g fill="#8fb7ff"><rect x="90" y="28" width="220" height="18" rx="9"/><rect x="90" y="138" width="290" height="18" rx="9"/><rect x="90" y="248" width="255" height="18" rx="9"/></g>
+    <g fill="#243d68"><rect x="520" y="23" width="110" height="28" rx="8"/><rect x="520" y="133" width="110" height="28" rx="8"/><rect x="520" y="243" width="110" height="28" rx="8"/></g>
+  </g>
+  <text x="230" y="665" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="30" fill="#1263ff">ssh • nginx • gunicorn • dns • https • logs</text>
+  <text x="230" y="710" font-family="system-ui, sans-serif" font-size="40" font-weight="900" fill="#061226">VPS Web Server</text>
+</svg>
