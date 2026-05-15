@@ -107,13 +107,6 @@
       font-weight: 900;
     }
 
-    .split {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr);
-      gap: 20px;
-      align-items: start;
-    }
-
     .panel,
     .timeline-card {
       background: white;
@@ -151,37 +144,6 @@
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     }
 
-    .simple-table {
-      width: 100%;
-      border-collapse: collapse;
-      overflow: hidden;
-      border-radius: 18px;
-      background: white;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
-    }
-
-    .simple-table th,
-    .simple-table td {
-      padding: 15px 16px;
-      border-bottom: 1px solid var(--border);
-      text-align: left;
-      vertical-align: top;
-    }
-
-    .simple-table th {
-      background: var(--soft);
-      color: var(--text);
-    }
-
-    .simple-table td {
-      color: var(--muted);
-    }
-
-    .simple-table tr:last-child td {
-      border-bottom: 0;
-    }
-
     .flow {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -197,23 +159,9 @@
       min-height: 170px;
     }
 
-    .flow-step span {
-      display: inline-flex;
-      margin-bottom: 10px;
-      color: var(--blue);
-      font-weight: 900;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    }
-
     .flow-step h3 {
       margin: 0 0 8px;
       font-size: 1.06rem;
-    }
-
-    .flow-step p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.95rem;
     }
 
     .quote-card {
