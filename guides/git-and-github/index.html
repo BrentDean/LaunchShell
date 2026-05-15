@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LaunchShell | Why Git and GitHub Are Awesome</title>
+  <meta
+    name="description"
+    content="A beginner-friendly LaunchShell guide explaining Git, version control, GitHub, safe project sharing, rollback, branches, commits, and why students should use Git for every coding class."
+  />
+
+  <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+
+  <style>
+    .guide-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.85fr);
+      gap: 46px;
+      align-items: center;
+      padding: 56px 0 54px;
+    }
+
+    .guide-visual {
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: white;
+      box-shadow: var(--shadow);
+    }
+
+    .guide-visual-inner {
+      min-height: 430px;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+      background:
+        radial-gradient(circle at 20% 15%, rgba(18, 99, 255, 0.16), transparent 18rem),
+        radial-gradient(circle at 80% 70%, rgba(18, 201, 149, 0.14), transparent 18rem),
+        #ffffff;
+    }
+
+    .git-stack {
+      width: min(100%, 430px);
+      display: grid;
+      gap: 12px;
+    }
+
+    .git-layer {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: white;
+      padding: 16px 18px;
+      box-shadow: 0 14px 34px rgba(6, 18, 38, 0.08);
+    }
+
+    .git-layer.dark {
+      background: var(--dark);
+      color: white;
+      border-color: var(--dark);
+    }
+
+    .git-layer strong {
+      display: block;
+      font-size: 1.02rem;
+      margin-bottom: 3px;
+    }
+
+    .git-layer span {
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .git-layer.dark span {
+      color: #c9d6e7;
+    }
+
+    .guide-note {
+      margin-top: 22px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: var(--soft);
+      border: 1px solid #cfe0ff;
+      color: var(--muted);
+    }
+
+    .guide-note strong {
+      color: var(--text);
+    }
+
+    .warning-note {
+      margin-top: 20px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: #fff7e8;
+      border: 1px solid #ffd89a;
+      color: var(--muted);
+    }
+
+    .warning-note strong {
+      color: var(--text);
+    }
+
+    .action-item {
+      margin-top: 20px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: var(--green-soft);
+      border: 1px solid #c5f2e5;
+      color: var(--muted);
+    }
+
+    .action-item strong {
+      color: var(--text);
+    }
+
+    .action-item a,
+    .docs-list a {
+      color: var(--blue-dark);
+      font-weight: 900;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .panel {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .panel h3 {
+      margin-top: 0;
+      font-size: 1.25rem;
+    }
+
+    .panel p {
+      color: var(--muted);
+    }
+
+    .simple-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 18px;
+      background: white;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .simple-table th,
+    .simple-table td {
+      padding: 15px 16px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .simple-table th {
+      background: var(--soft);
+      color: var(--text);
+    }
+
+    .simple-table td {
+      color: var(--muted);
+    }
+
+    .simple-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .simple-table strong {
+      color: var(--text);
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .flow.three {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .flow-step {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 12px 34px rgba(6, 18, 38, 0.06);
+      min-height: 180px;
+    }
+
+    .flow-step span {
+      display: inline-flex;
+      margin-bottom: 10px;
+      color: var(--blue);
+      font-weight: 900;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .flow-step h3 {
+      margin: 0 0 8px;
+      font-size: 1.08rem;
+    }
+
+    .flow-step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .code-card {
+      background: var(--dark);
+      color: white;
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      overflow-x: auto;
+    }
+
+    .code-card pre {
+      margin: 0;
+      color: #d8e6ff;
+      line-height: 1.55;
+      font-size: 0.95rem;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-weight: 900;
+      color: var(--text);
+    }
+
+    .code-card code,
+    .lab-box code {
+      color: #d8e6ff;
+    }
+
+    .term-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .term-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      min-height: 100%;
+    }
+
+    .term-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.18rem;
+    }
+
+    .term-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .lab-box {
+      background: var(--dark);
+      color: white;
+      border-radius: 22px;
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .lab-box p {
+      color: #c9d6e7;
+    }
+
+    .lab-box ol,
+    .lab-box ul {
+      color: #c9d6e7;
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    .lab-box li {
+      margin-bottom: 8px;
+    }
+
+    .checklist {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .checklist li {
+      margin: 0;
+      padding: 13px 15px;
+      border-radius: 14px;
+      background: var(--soft);
+      color: var(--muted);
+      border: 1px solid #cfe0ff;
+    }
+
+    .checklist strong {
+      color: var(--text);
+    }
+
+    @media (max-width: 1020px) {
+      .guide-hero,
+      .split {
+        grid-template-columns: 1fr;
+      }
+
+      .flow,
+      .flow.three,
+      .term-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .guide-visual-inner {
+        min-height: 320px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .simple-table,
+      .simple-table thead,
+      .simple-table tbody,
+      .simple-table th,
+      .simple-table td,
+      .simple-table tr {
+        display: block;
+      }
+
+      .simple-table thead {
+        display: none;
+      }
+
+      .simple-table tr {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .simple-table tr:last-child {
+        border-bottom: 0;
+      }
+
+      .simple-table td {
+        border-bottom: 0;
+        padding: 12px 16px;
+      }
+
+      .simple-table td:nth-child(1)::before {
+        content: "Concept";
+        display: block;
+        font-weight: 900;
+        color: var(--text);
+        margin-bottom: 3px;
+      }
+
+      .simple-table td:nth-child(2)::before {
+        content: "Plain English";
+        display: block;
+        font-weight: 900;
+        color: var(--text);
+        margin-bottom: 3px;
+      }
+
+      .simple-table td:nth-child(3)::before {
+        content: "Why it matters";
+        display: block;
+        font-weight: 900;
+        color: var(--text);
+        margin-bottom: 3px;
+      }
+    }
+  </style>
+</head>
+
+<body class="resources-page" id="top">
+  <header>
+    <a href="../../" aria-label="LaunchShell home">
+      <img src="../../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../../projects/">Projects</a>
+      <a href="../../guides/">Guides</a>
+      <a href="../../resources/">Resources</a>
+      <a href="#first-lab" class="status">First Git Lab</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="guide-hero">
+      <div>
+        <div class="eyebrow">Git • GitHub • Version Control • Project Safety</div>
+        <h1>Git is your project time machine.</h1>
+
+        <p>
+          Git is a tool that saves the history of your project. It lets you try new things, break code,
+          compare changes, and roll back when something does not work.
+        </p>
+
+        <p>
+          GitHub is the website and developer community where people store, share, and collaborate on code.
+          It can host public portfolio projects or private work-in-progress repos.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href="#why-it-matters">Why it matters</a>
+          <a class="button" href="#first-lab">Try the first lab</a>
+        </div>
+
+        <div class="guide-note">
+          <strong>Simple version:</strong> Git lets you experiment without fear. GitHub lets you store and share the finished version when it is ready.
+        </div>
+      </div>
+
+      <div class="guide-visual">
+        <div class="guide-visual-inner" aria-label="Git workflow diagram">
+          <div class="git-stack">
+            <div class="git-layer">
+              <strong>Try an idea</strong>
+              <span>Edit code, make files, change layouts, test commands</span>
+            </div>
+            <div class="git-layer">
+              <strong>Commit a snapshot</strong>
+              <span>Save the working version with a message</span>
+            </div>
+            <div class="git-layer dark">
+              <strong>Break safely</strong>
+              <span>Experiment, compare, branch, and roll back</span>
+            </div>
+            <div class="git-layer">
+              <strong>Push to GitHub</strong>
+              <span>Store, share, collaborate, and build a portfolio</span>
+            </div>
+          </div>
+        </div>
+        <div class="caption">
+          Version control changes the way you learn because mistakes stop being permanent.
+        </div>
+      </div>
+    </section>
+
+    <section id="why-it-matters">
+      <h2>Why Git is awesome</h2>
+      <p class="section-intro">
+        Before Git, a lot of people saved projects like this:
+        <code>final</code>, <code>final2</code>, <code>final-real</code>, <code>final-real-fixed</code>.
+        Git is the better version of that.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag">Rollback</span>
+          <h3>When it breaks, go back</h3>
+          <p>
+            If a change ruins your project, Git can show what changed and help you return to an earlier working version.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Experiment</span>
+          <h3>Try things without fear</h3>
+          <p>
+            New layout? New function? Different config? Try it on a branch. If it fails, throw it away.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Memory</span>
+          <h3>It records your thinking</h3>
+          <p>
+            Good commit messages tell the story of how a project was built, fixed, cleaned up, and improved.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Git vs GitHub</h2>
+      <p class="section-intro">
+        These are related, but they are not the same thing.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Concept</th>
+            <th>Plain English</th>
+            <th>Why it matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Git</strong></td>
+            <td>The version control tool on your computer or in Codespaces.</td>
+            <td>Tracks changes, commits snapshots, creates branches, and lets you roll back.</td>
+          </tr>
+          <tr>
+            <td><strong>GitHub</strong></td>
+            <td>A Microsoft-owned website and platform for storing and sharing Git repositories.</td>
+            <td>Lets you back up code online, collaborate, use Codespaces, build portfolios, and share projects.</td>
+          </tr>
+          <tr>
+            <td><strong>Repository</strong></td>
+            <td>A project folder with Git history.</td>
+            <td>A repo can hold code, notes, images, configs, docs, assignments, and project files.</td>
+          </tr>
+          <tr>
+            <td><strong>Commit</strong></td>
+            <td>A saved snapshot of your project.</td>
+            <td>Each commit should represent one meaningful change.</td>
+          </tr>
+          <tr>
+            <td><strong>Branch</strong></td>
+            <td>A separate line of work.</td>
+            <td>Use branches to try new ideas without damaging the main version.</td>
+          </tr>
+          <tr>
+            <td><strong>Push</strong></td>
+            <td>Upload your commits to GitHub.</td>
+            <td>This backs up your work and lets other people see it if the repo is public.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>How Git fits the LaunchShell method</h2>
+      <p class="section-intro">
+        Git is the tool that makes “try new things” safer.
+      </p>
+
+      <div class="method">
+        <div class="method-step">
+          <span>01</span>
+          <h3>Build it</h3>
+          <p>Write code, create files, make configs, and get something working.</p>
+        </div>
+
+        <div class="method-step">
+          <span>02</span>
+          <h3>Back it up</h3>
+          <p>Commit a working version before you make risky changes.</p>
+        </div>
+
+        <div class="method-step">
+          <span>03</span>
+          <h3>Break it safely</h3>
+          <p>Use branches to test ideas without damaging the main version.</p>
+        </div>
+
+        <div class="method-step">
+          <span>04</span>
+          <h3>Rebuild better</h3>
+          <p>Keep the good changes, throw away the bad ones, and document what happened.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>The basic Git loop</h2>
+      <p class="section-intro">
+        Most beginner Git work follows the same pattern.
+      </p>
+
+      <div class="flow">
+        <article class="flow-step">
+          <span>01</span>
+          <h3>Check status</h3>
+          <p>See what files changed before saving anything.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>02</span>
+          <h3>Add files</h3>
+          <p>Choose which changes should go into the next snapshot.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>03</span>
+          <h3>Commit</h3>
+          <p>Save a snapshot with a short message explaining the change.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>04</span>
+          <h3>Push</h3>
+          <p>Upload the saved work to GitHub.</p>
+        </article>
+      </div>
+
+      <div class="code-card" style="margin-top: 20px;">
+<pre><code>git status
+git add .
+git commit -m "Add first project page"
+git push</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>The commands that change everything</h2>
+      <p class="section-intro">
+        These are enough to start using Git for class projects.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Command</th>
+            <th>Plain English</th>
+            <th>Use it when</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>git status</code></td>
+            <td>Show what changed.</td>
+            <td>Run this constantly. It tells you what Git sees.</td>
+          </tr>
+          <tr>
+            <td><code>git diff</code></td>
+            <td>Show the actual line-by-line changes.</td>
+            <td>Use before committing so you know what you are saving.</td>
+          </tr>
+          <tr>
+            <td><code>git add file</code></td>
+            <td>Stage a file for the next commit.</td>
+            <td>Use when you want to save a specific file.</td>
+          </tr>
+          <tr>
+            <td><code>git add .</code></td>
+            <td>Stage everything in the current folder.</td>
+            <td>Useful for simple beginner projects, but review with <code>git status</code> first.</td>
+          </tr>
+          <tr>
+            <td><code>git commit -m "message"</code></td>
+            <td>Save a snapshot.</td>
+            <td>Use after a meaningful change works.</td>
+          </tr>
+          <tr>
+            <td><code>git log --oneline</code></td>
+            <td>Show commit history.</td>
+            <td>Use to see your project timeline.</td>
+          </tr>
+          <tr>
+            <td><code>git switch -c experiment</code></td>
+            <td>Create and switch to a new branch.</td>
+            <td>Use before trying a risky idea.</td>
+          </tr>
+          <tr>
+            <td><code>git restore file</code></td>
+            <td>Throw away unsaved changes to one file.</td>
+            <td>Use when you changed a file and want the last committed version back.</td>
+          </tr>
+          <tr>
+            <td><code>git push</code></td>
+            <td>Upload commits to GitHub.</td>
+            <td>Use to back up your work online.</td>
+          </tr>
+          <tr>
+            <td><code>git pull</code></td>
+            <td>Download the latest changes.</td>
+            <td>Use before working if the GitHub copy may be newer.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Why GitHub matters</h2>
+      <p class="section-intro">
+        GitHub is not just storage. It is a public technical notebook, a collaboration tool, and a project portfolio.
+      </p>
+
+      <div class="term-grid">
+        <article class="term-card">
+          <span class="tag">Backup</span>
+          <h3>Your code is not only on one laptop</h3>
+          <p>
+            If your computer dies, your GitHub repos can still hold the project history.
+          </p>
+        </article>
+
+        <article class="term-card">
+          <span class="tag green">Portfolio</span>
+          <h3>Show what you can actually build</h3>
+          <p>
+            A clean public repo can prove you can write code, document work, use Git, and finish projects.
+          </p>
+        </article>
+
+        <article class="term-card">
+          <span class="tag">Community</span>
+          <h3>Learn from real projects</h3>
+          <p>
+            You can read open-source code, file issues, contribute fixes, and see how professional projects are organized.
+          </p>
+        </article>
+
+        <article class="term-card">
+          <span class="tag">Codespaces</span>
+          <h3>Code without installing everything</h3>
+          <p>
+            GitHub Codespaces can give you a Linux-based coding environment in the browser.
+          </p>
+        </article>
+
+        <article class="term-card">
+          <span class="tag green">Class workflow</span>
+          <h3>One repo per class</h3>
+          <p>
+            Create repos for Java, Python, C++, databases, and web projects so every class has a clean workspace.
+          </p>
+        </article>
+
+        <article class="term-card">
+          <span class="tag">Documentation</span>
+          <h3>READMEs explain your work</h3>
+          <p>
+            A good README can turn a pile of code into a project someone else can understand.
+          </p>
+        </article>
+      </div>
+
+      <div class="action-item">
+        <strong>Related guide:</strong> New to browser-based coding? Read the
+        <a href="../github-codespace/">GitHub Codespaces Guide</a>.
+      </div>
+    </section>
+
+    <section>
+      <h2>Public vs private repos</h2>
+      <p class="section-intro">
+        This rule keeps things simple.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag">Private</span>
+          <h3>Keep work in progress private</h3>
+          <p>
+            Use private repos while you are still figuring things out, doing class assignments,
+            storing rough notes, or working with files that might contain sensitive information.
+          </p>
+          <ul class="checklist">
+            <li><strong>Class assignments:</strong> usually private unless the instructor says otherwise.</li>
+            <li><strong>Rough projects:</strong> private until cleaned up.</li>
+            <li><strong>Anything with config files:</strong> private until secrets are removed.</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <span class="tag green">Public</span>
+          <h3>Share finished portfolio projects</h3>
+          <p>
+            Make a repo public when it is cleaned, documented, and safe to show.
+            Public projects can help with resumes, internships, clubs, and interviews.
+          </p>
+          <ul class="checklist">
+            <li><strong>README:</strong> explain what the project does.</li>
+            <li><strong>Screenshots:</strong> show the result.</li>
+            <li><strong>No secrets:</strong> remove keys, passwords, tokens, and personal data.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="warning-note">
+        <strong>Important:</strong> If you accidentally commit a password, API key, SSH private key, database URL,
+        personal address, or real server secret, deleting the line in a later commit is not enough.
+        Git history may still contain it. Treat leaked secrets as compromised and rotate them.
+      </div>
+    </section>
+
+    <section>
+      <h2>What not to put on GitHub</h2>
+      <p class="section-intro">
+        GitHub is useful, but it is very easy to accidentally publish things you should not publish.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag">Secrets</span>
+          <h3>No keys, passwords, or tokens</h3>
+          <p>
+            Do not commit <code>.env</code> files, API keys, SSH private keys, database passwords, or cloud credentials.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Class rules</span>
+          <h3>Be careful with assignments</h3>
+          <p>
+            Some instructors do not want assignment solutions public. Keep coursework private unless sharing is allowed.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Personal data</span>
+          <h3>Sanitize before sharing</h3>
+          <p>
+            Remove real IP addresses, usernames, emails, customer data, private notes, logs, and screenshots with sensitive info.
+          </p>
+        </article>
+      </div>
+
+      <div class="code-card" style="margin-top: 20px;">
+<pre><code># Example .gitignore entries
+.env
+*.pem
+*.key
+secrets/
+config.local.json
+__pycache__/
+.venv/
+node_modules/</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>My class workflow</h2>
+      <p class="section-intro">
+        This is a practical student workflow.
+      </p>
+
+      <div class="lab-box">
+        <p><strong>Goal:</strong> set up one GitHub repo and Codespace for every class that gives code files.</p>
+        <ul>
+          <li>Create a repo for Java, Python, C++, database, web, or networking code.</li>
+          <li>Open a Codespace for that repo during class.</li>
+          <li>Use the built-in Linux terminal to run code and practice commands.</li>
+          <li>Commit working changes after each class or project milestone.</li>
+          <li>Push changes so the repo is backed up.</li>
+          <li>Keep class repos private unless the instructor says public sharing is okay.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="first-lab">
+      <h2>First Git lab</h2>
+      <p class="section-intro">
+        This is the smallest useful Git practice lab.
+      </p>
+
+      <div class="lab-box">
+        <p><strong>Goal:</strong> create a tiny project, commit it, break it, and restore it.</p>
+        <ol>
+          <li>Create a new folder called <code>git-practice</code>.</li>
+          <li>Run <code>git init</code>.</li>
+          <li>Create a file called <code>notes.txt</code>.</li>
+          <li>Add one sentence and commit it.</li>
+          <li>Edit the file and intentionally mess it up.</li>
+          <li>Run <code>git diff</code> to see the damage.</li>
+          <li>Run <code>git restore notes.txt</code> to roll back the uncommitted change.</li>
+        </ol>
+      </div>
+
+      <div class="code-card" style="margin-top: 20px;">
+<pre><code>mkdir git-practice
+cd git-practice
+git init
+
+echo "Git lets me save project history." > notes.txt
+git status
+git add notes.txt
+git commit -m "Add first note"
+
+echo "broken change" >> notes.txt
+git diff
+git restore notes.txt
+cat notes.txt</code></pre>
+      </div>
+
+      <div class="action-item">
+        <strong>New to the terminal?</strong> Start with the
+        <a href="../linux-terminal-intro/">Linux Terminal Intro Guide</a>
+        before running these commands.
+      </div>
+    </section>
+
+    <section>
+      <h2>Better commit messages</h2>
+      <p class="section-intro">
+        A commit message should say what changed. It does not need to be fancy.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag">Weak</span>
+          <h3>Messages that do not help later</h3>
+          <ul class="checklist">
+            <li><strong>update</strong></li>
+            <li><strong>stuff</strong></li>
+            <li><strong>fixed things</strong></li>
+            <li><strong>asdf</strong></li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <span class="tag green">Better</span>
+          <h3>Messages that explain the project history</h3>
+          <ul class="checklist">
+            <li><strong>Add login page</strong></li>
+            <li><strong>Fix broken image paths</strong></li>
+            <li><strong>Create seed tray JSON template</strong></li>
+            <li><strong>Update README with setup steps</strong></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>When Git can change your life</h2>
+      <p class="section-intro">
+        Git is not just for professional software developers. It changes how you work.
+      </p>
+
+      <div class="flow three">
+        <article class="flow-step">
+          <span>01</span>
+          <h3>You stop being afraid</h3>
+          <p>Trying something new is less scary when rollback exists.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>02</span>
+          <h3>You become organized</h3>
+          <p>Every class, project, and experiment can have a clean history.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>03</span>
+          <h3>You build proof</h3>
+          <p>A good public repo shows real skill better than just saying you know something.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="docs">
+      <h2>Friendly resources</h2>
+      <p class="section-intro">
+        These are the official and beginner-friendly links I would keep nearby.
+      </p>
+
+      <div class="grid docs-list">
+        <article class="card">
+          <span class="tag green">Git basics</span>
+          <h3>Git documentation</h3>
+          <p>
+            Official Git book section explaining version control and why it exists.
+          </p>
+          <p><a href="https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control" rel="noopener">Read about version control</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">GitHub basics</span>
+          <h3>GitHub Git guide</h3>
+          <p>
+            GitHub’s beginner explanation of Git, history, commits, and collaboration.
+          </p>
+          <p><a href="https://docs.github.com/en/get-started/using-git/about-git" rel="noopener">Read GitHub’s Git guide</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Repositories</span>
+          <h3>About GitHub repos</h3>
+          <p>
+            Official GitHub page explaining repositories and public/private visibility.
+          </p>
+          <p><a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/about-repositories" rel="noopener">Read about repositories</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Secrets</span>
+          <h3>Removing sensitive data</h3>
+          <p>
+            Official GitHub guidance for when sensitive data was committed.
+          </p>
+          <p><a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository" rel="noopener">Read sensitive data guidance</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Practice</span>
+          <h3>GitHub Skills</h3>
+          <p>
+            Hands-on GitHub practice courses for issues, pull requests, pages, and more.
+          </p>
+          <p><a href="https://skills.github.com/" rel="noopener">Open GitHub Skills</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Browser coding</span>
+          <h3>Codespaces guide</h3>
+          <p>
+            Use GitHub Codespaces to practice Git and terminal commands without installing a compiler.
+          </p>
+          <p><a href="../github-codespace/">Read the Codespaces guide</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Final idea</h2>
+      <div class="callout">
+        <p>
+          Git makes experimentation safer. GitHub makes finished work easier to store, share, and show.
+          Keep rough work private, sanitize before publishing, and use public repos as proof that you can build real things.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© 2026 LaunchShell</div>
+    <div>Student-built project guides for Linux, cloud, electronics, and cybersecurity.</div>
+  </footer>
+</body>
+</html>
