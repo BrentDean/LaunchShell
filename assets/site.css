@@ -475,8 +475,8 @@ footer {
       display: grid;
       grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.85fr);
       gap: 46px;
-      align-items: center;
-      padding: 56px 0 54px;
+      align-items: start;
+      padding: 28px 0 54px;
     }
 
     .visual-card {

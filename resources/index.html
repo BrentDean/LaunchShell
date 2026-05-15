@@ -7,7 +7,7 @@
   <title>Student Resources | LaunchShell</title>
   <meta
     name="description"
-    content="Free and low-cost tools students can use to build real projects, learn cloud computing, practice web development, and document technical work."
+    content="Free and low-cost tools students can use to build real projects, learn cloud computing, practice web development, explore cybersecurity, and document technical work."
   />
 
   <link rel="icon" href="../assets/launchshell-logo-icon.png" type="image/png" />
@@ -15,7 +15,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.launchshell.org/resources/" />
   <meta property="og:title" content="Student Resources | LaunchShell" />
-  <meta property="og:description" content="Free tools students can use to build real projects." />
+  <meta property="og:description" content="Free and low-cost tools students can use to build real projects." />
   <meta property="og:image" content="https://www.launchshell.org/assets/social-preview.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -43,11 +43,12 @@
   <main>
     <section class="hero">
       <div class="eyebrow">Student resources</div>
-      <h1>Free tools students can use to build real projects.</h1>
+      <h1>Free and low-cost tools students can use to build real projects.</h1>
 
       <p>
-        The goal is not just to collect free accounts. The goal is to use student credits and developer tools to build,
-        back up, break safely, fix, and document real technical work.
+        The goal is not just to collect free accounts. The goal is to use student credits,
+        free tiers, developer tools, and outside learning platforms to build, back up,
+        break safely, fix, and document real technical work.
       </p>
 
       <div class="hero-actions">
@@ -55,6 +56,7 @@
           GitHub Student Developer Pack
         </a>
         <a class="button" href="#used-here">What I used</a>
+        <a class="button" href="#launchshell-guides">LaunchShell guides</a>
         <a class="button" href="#explore-next">What to explore next</a>
       </div>
     </section>
@@ -62,8 +64,8 @@
     <section id="used-here">
       <h2>What I actually used</h2>
       <p class="section-intro">
-        These are the tools most directly useful for building a student project site, documenting work,
-        and learning real development workflows.
+        These are the tools I personally used while building LaunchShell, managing servers,
+        practicing cybersecurity, running class workflows, and documenting technical projects.
       </p>
 
       <div class="grid">
@@ -71,8 +73,8 @@
           <span class="tag">Version control</span>
           <h3>GitHub</h3>
           <p>
-            Why we like it: GitHub teaches version control, commits, branches, pull requests, project history,
-            and public documentation.
+            Why we like it: GitHub teaches version control, commits, branches, project history,
+            public documentation, private work-in-progress repos, and portfolio building.
           </p>
           <span class="mini-title">Projects to build</span>
           <ul>
@@ -84,32 +86,19 @@
         </article>
 
         <article class="card">
-          <span class="tag">Hosting</span>
-          <h3>GitHub Pages</h3>
-          <p>
-            Why we like it: It hosts static websites directly from a repository, which makes deployment simple and visible.
-          </p>
-          <span class="mini-title">Projects to build</span>
-          <ul>
-            <li>Portfolio website</li>
-            <li>Project documentation site</li>
-            <li>Student club homepage</li>
-            <li>How-to guide archive</li>
-          </ul>
-        </article>
-
-        <article class="card">
           <span class="tag">Cloud coding</span>
           <h3>GitHub Codespaces</h3>
           <p>
-            Why we like it: It gives students a browser-based coding environment without needing a perfect local setup.
+            Why we like it: Codespaces gives students a Linux-based browser coding environment
+            without needing to install a compiler, database tools, or a perfect local setup first.
           </p>
+          <a class="button" href="../guides/github-codespace/">Read the Codespaces guide</a>
           <span class="mini-title">Projects to build</span>
           <ul>
-            <li>Python practice lab</li>
-            <li>Web development sandbox</li>
-            <li>Database class workspace</li>
-            <li>Linux command practice repo</li>
+            <li>Python class workspace</li>
+            <li>C++ practice repo</li>
+            <li>Java assignment repo</li>
+            <li>Database class lab</li>
           </ul>
         </article>
 
@@ -117,7 +106,8 @@
           <span class="tag">AI assistant</span>
           <h3>GitHub Copilot Student</h3>
           <p>
-            Why we like it: Copilot can help explain code, suggest syntax, debug small mistakes, and speed up repetitive coding.
+            Why we like it: Copilot can help explain code, suggest syntax, debug small mistakes,
+            and speed up repetitive coding when students still read, test, and understand the result.
           </p>
           <span class="mini-title">Projects to build</span>
           <ul>
@@ -132,8 +122,8 @@
           <span class="tag">Editor</span>
           <h3>Visual Studio Code</h3>
           <p>
-            Why we like it: VS Code is practical, common, extensible, and works well with Git, SSH, Python,
-            web development, and Markdown.
+            Why we like it: VS Code is practical, common, extensible, and works well with Git,
+            SSH, Python, web development, Markdown, and class projects.
           </p>
           <span class="mini-title">Projects to build</span>
           <ul>
@@ -145,18 +135,160 @@
         </article>
 
         <article class="card">
-          <span class="tag">Domains</span>
-          <h3>Student domain offers</h3>
+          <span class="tag">Hosting, DNS, and security</span>
+          <h3>Cloudflare</h3>
           <p>
-            Why we like it: A real domain teaches DNS, HTTPS, hosting, redirects, and how professional websites are connected.
+            Why we like it: Cloudflare is useful for domains, DNS, Pages hosting, proxying,
+            security rules, access control, and edge Workers. It turns a student site into a real web project.
+          </p>
+          <a class="button" href="../guides/cloudflare/">Read the Cloudflare guide</a>
+          <span class="mini-title">Projects to build</span>
+          <ul>
+            <li>Static project site with Cloudflare Pages</li>
+            <li>Custom domain with DNS records</li>
+            <li>Protected admin or demo page</li>
+            <li>Simple Cloudflare Worker experiment</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag">Cloud server</span>
+          <h3>AWS</h3>
+          <p>
+            Why we like it: AWS gives students a real cloud server path for learning public IPs,
+            EC2, SSH, security groups, Linux, budgets, and cloud cost awareness.
+          </p>
+          <a class="button" href="../guides/aws-free-vps/">Read the AWS VPS setup</a>
+          <span class="mini-title">Projects to build</span>
+          <ul>
+            <li>Disposable Linux cloud server</li>
+            <li>Basic Nginx or Apache web page</li>
+            <li>SSH key login practice</li>
+            <li>Cloud billing and cleanup checklist</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag">SSH client</span>
+          <h3>Termius</h3>
+          <p>
+            Why we like it: Termius makes SSH easier to manage across devices and helps students
+            practice remote Linux administration without constantly retyping server details.
           </p>
           <span class="mini-title">Projects to build</span>
           <ul>
-            <li>Portfolio domain</li>
-            <li>Project landing page</li>
-            <li>Club or event website</li>
-            <li>Documentation portal</li>
+            <li>SSH into a VPS</li>
+            <li>Manage a home lab server</li>
+            <li>Document SSH key setup</li>
+            <li>Practice remote Linux commands</li>
           </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag">Cybersecurity training</span>
+          <h3>Hack The Box Academy</h3>
+          <p>
+            Why we like it: Hack The Box Academy gives structured cybersecurity lessons and labs.
+            It is useful when students want guided practice instead of random hacking videos.
+          </p>
+          <span class="mini-title">Projects to build</span>
+          <ul>
+            <li>Linux fundamentals notes</li>
+            <li>Networking fundamentals practice</li>
+            <li>Web security learning path</li>
+            <li>Safe cybersecurity lab journal</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="launchshell-guides">
+      <h2>LaunchShell guides</h2>
+      <p class="section-intro">
+        These are not outside resources. These are LaunchShell-written guides that explain how to use the tools,
+        build projects, and understand the concepts behind them.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag green">Start here</span>
+          <h3>Linux Terminal Intro</h3>
+          <p>
+            Learn basic terminal commands, files, folders, package installs, and why the command line is useful.
+          </p>
+          <a class="button" href="../guides/linux-terminal-intro/">Read the terminal guide</a>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Concept</span>
+          <h3>What Is a VM?</h3>
+          <p>
+            Learn what virtual machines are, why snapshots matter, and how VMs help students practice safely.
+          </p>
+          <a class="button" href="../guides/what-is-a-vm/">Read the VM guide</a>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Cloud</span>
+          <h3>AWS Free VPS Setup</h3>
+          <p>
+            Learn how to create a small disposable cloud server with a public IP, SSH access, and a cleanup plan.
+          </p>
+          <a class="button" href="../guides/aws-free-vps/">Read the AWS guide</a>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Cloudflare</span>
+          <h3>Cloudflare Pages Guide</h3>
+          <p>
+            Learn how Cloudflare Pages, DNS, proxying, security features, access control, and Workers fit together.
+          </p>
+          <a class="button" href="../guides/cloudflare/">Read the Cloudflare guide</a>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Git</span>
+          <h3>Git and GitHub</h3>
+          <p>
+            Learn why version control is a project time machine and how GitHub helps students store and share code safely.
+          </p>
+          <a class="button" href="../guides/git-and-github/">Read the Git guide</a>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Codespaces</span>
+          <h3>GitHub Codespaces</h3>
+          <p>
+            Learn how to use a browser-based Linux coding environment for Python, Java, C++, databases, and terminal practice.
+          </p>
+          <a class="button" href="../guides/github-codespace/">Read the Codespaces guide</a>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Cybersecurity</span>
+          <h3>What Is Hacking?</h3>
+          <p>
+            Learn the older meaning of hacker, the builder mindset, safe breaking, and modern penetration testing.
+          </p>
+          <a class="button" href="../guides/what-is-hacking/">Read the hacking guide</a>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Projects</span>
+          <h3>Build a Flask JSON App</h3>
+          <p>
+            Learn how to turn a cheap server into a simple personal web app using Flask, JSON files, Gunicorn, and systemd.
+          </p>
+          <a class="button" href="../projects/cheap-server-web-app/">Read the app guide</a>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Careers</span>
+          <h3>Certification Roadmap</h3>
+          <p>
+            Learn which certifications are useful for networking, Linux, cloud, cybersecurity, and beginner IT paths.
+          </p>
+          <a class="button" href="../guides/certification/">Read the cert guide</a>
         </article>
       </div>
     </section>
@@ -164,16 +296,33 @@
     <section id="explore-next">
       <h2>What students should explore next</h2>
       <p class="section-intro">
-        These tools are useful once students want to move beyond a static site and start learning servers, cloud,
-        databases, monitoring, security habits, and production-style workflows.
+        These are outside tools and platforms worth exploring after the basics. Use them to build real projects,
+        not just collect free accounts.
       </p>
 
       <div class="grid">
         <article class="card">
+          <span class="tag green">Static hosting</span>
+          <h3>GitHub Pages</h3>
+          <p>
+            Why we like it: GitHub Pages hosts static websites directly from a repository.
+            It is a simple first publishing step before moving to Cloudflare Pages or a VPS.
+          </p>
+          <span class="mini-title">Projects to build</span>
+          <ul>
+            <li>Portfolio website</li>
+            <li>Project documentation site</li>
+            <li>Student club homepage</li>
+            <li>How-to guide archive</li>
+          </ul>
+        </article>
+
+        <article class="card">
           <span class="tag green">Cloud server</span>
           <h3>DigitalOcean credit</h3>
           <p>
-            Why we like it: A VPS is one of the best ways to learn Linux, SSH, firewalls, web servers, deployment, and backups.
+            Why we like it: A VPS is one of the best ways to learn Linux, SSH, firewalls, web servers,
+            deployment, backups, and server troubleshooting.
           </p>
           <span class="mini-title">Projects to build</span>
           <ul>
@@ -185,28 +334,11 @@
         </article>
 
         <article class="card">
-          <span class="tag green">Cloud server</span>
-          <h3>AWS student/free setup</h3>
-          <p>
-            Why we like it: AWS gives students a real cloud server path for learning SSH, security groups,
-            public IPs, web servers, and cost awareness.
-          </p>
-          <a class="button" href="../guides/aws-free-vps/">Read the AWS VPS setup</a>
-          <span class="mini-title">Projects to build</span>
-          <ul>
-            <li>Disposable cloud server</li>
-            <li>Basic Apache web page</li>
-            <li>SSH key login practice</li>
-            <li>Free-tier budget checklist</li>
-          </ul>
-        </article>
-
-        <article class="card">
           <span class="tag green">Cloud platform</span>
           <h3>Microsoft Azure credit</h3>
           <p>
-            Why we like it: Azure helps students learn cloud services beyond a single server, including app hosting,
-            databases, identity, and monitoring.
+            Why we like it: Azure helps students learn cloud services beyond a single server,
+            including app hosting, databases, identity, and monitoring.
           </p>
           <span class="mini-title">Projects to build</span>
           <ul>
@@ -221,7 +353,8 @@
           <span class="tag green">Database</span>
           <h3>MongoDB Atlas</h3>
           <p>
-            Why we like it: Hosted databases let students build real app backends without maintaining database infrastructure first.
+            Why we like it: Hosted databases let students build real app backends without maintaining
+            database infrastructure first.
           </p>
           <span class="mini-title">Projects to build</span>
           <ul>
@@ -233,59 +366,11 @@
         </article>
 
         <article class="card">
-          <span class="tag green">SSH</span>
-          <h3>Termius</h3>
-          <p>
-            Why we like it: Termius makes SSH easier to manage across devices and helps students practice remote server administration.
-          </p>
-          <span class="mini-title">Projects to build</span>
-          <ul>
-            <li>SSH into a VPS</li>
-            <li>Manage a home lab server</li>
-            <li>Document SSH key setup</li>
-            <li>Practice remote Linux commands</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <span class="tag green">Linux basics</span>
-          <h3>Linux terminal intro</h3>
-          <p>
-            Why we like it: A small command-line foundation makes SSH, cloud servers, package installs,
-            logs, and troubleshooting much less intimidating.
-          </p>
-          <a class="button" href="../guides/linux-terminal-intro/">Read the terminal guide</a>
-          <span class="mini-title">Projects to build</span>
-          <ul>
-            <li>Rename files safely</li>
-            <li>Install starter tools with apt</li>
-            <li>Search a project folder</li>
-            <li>Run a tiny local web server</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <span class="tag green">VM basics</span>
-          <h3>What is a VM?</h3>
-          <p>
-            Why we like it: Virtual machines give students a safe practice computer for Linux,
-            snapshots, small networks, and beginner cybersecurity labs.
-          </p>
-          <a class="button" href="../guides/what-is-a-vm/">Read the VM guide</a>
-          <span class="mini-title">Projects to build</span>
-          <ul>
-            <li>Install Ubuntu in a VM</li>
-            <li>Take and restore snapshots</li>
-            <li>Build a two-VM network</li>
-            <li>Practice web server setup safely</li>
-          </ul>
-        </article>
-
-        <article class="card">
           <span class="tag green">Monitoring</span>
           <h3>Datadog, New Relic, and Sentry</h3>
           <p>
-            Why we like it: These tools teach logs, errors, uptime, performance, alerts, and how production systems are watched.
+            Why we like it: These tools teach logs, errors, uptime, performance, alerts,
+            and how production systems are watched.
           </p>
           <span class="mini-title">Projects to build</span>
           <ul>
@@ -300,7 +385,8 @@
           <span class="tag green">Security habits</span>
           <h3>1Password or Dashlane</h3>
           <p>
-            Why we like it: Password managers teach better credential handling, stronger passwords, and safer project secret storage.
+            Why we like it: Password managers teach better credential handling, stronger passwords,
+            and safer project secret storage.
           </p>
           <span class="mini-title">Projects to build</span>
           <ul>
@@ -315,8 +401,8 @@
           <span class="tag green">Learning</span>
           <h3>FrontendMasters, Scrimba, Educative, and Boot.dev</h3>
           <p>
-            Why we like it: Structured courses help students fill gaps in web development, backend development, Python,
-            JavaScript, and DevOps.
+            Why we like it: Structured courses help students fill gaps in web development,
+            backend development, Python, JavaScript, and DevOps.
           </p>
           <span class="mini-title">Projects to build</span>
           <ul>
@@ -328,10 +414,43 @@
         </article>
 
         <article class="card">
+          <span class="tag green">Cybersecurity training</span>
+          <h3>TryHackMe</h3>
+          <p>
+            Why we like it: TryHackMe gives guided cybersecurity rooms and beginner-friendly labs
+            for students who want structured practice.
+          </p>
+          <span class="mini-title">Projects to build</span>
+          <ul>
+            <li>Linux security notes</li>
+            <li>Networking lab journal</li>
+            <li>Beginner SOC practice log</li>
+            <li>Safe CTF learning path</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Networking</span>
+          <h3>Cisco Networking Academy</h3>
+          <p>
+            Why we like it: Cisco NetAcad is useful for networking fundamentals, packet tracing,
+            IP addressing, switching, routing, and certification prep.
+          </p>
+          <span class="mini-title">Projects to build</span>
+          <ul>
+            <li>Subnetting practice notes</li>
+            <li>Packet Tracer topology</li>
+            <li>Small office network design</li>
+            <li>CCNA study lab</li>
+          </ul>
+        </article>
+
+        <article class="card">
           <span class="tag green">Auth/backend</span>
           <h3>Clerk and Appwrite</h3>
           <p>
-            Why we like it: These tools help students add login, users, storage, and backend features without building every system from scratch.
+            Why we like it: These tools help students add login, users, storage, and backend features
+            without building every system from scratch.
           </p>
           <span class="mini-title">Projects to build</span>
           <ul>
@@ -346,7 +465,8 @@
           <span class="tag green">Testing</span>
           <h3>BrowserStack, LambdaTest, and Polypane</h3>
           <p>
-            Why we like it: They teach students that a website should work across browsers, screen sizes, and devices.
+            Why we like it: They teach students that a website should work across browsers,
+            screen sizes, and devices.
           </p>
           <span class="mini-title">Projects to build</span>
           <ul>
@@ -361,7 +481,8 @@
           <span class="tag green">IoT</span>
           <h3>Arduino Cloud and Adafruit IO</h3>
           <p>
-            Why we like it: These tools connect software with real sensors, dashboards, devices, and electronics projects.
+            Why we like it: These tools connect software with real sensors, dashboards, devices,
+            and electronics projects.
           </p>
           <span class="mini-title">Projects to build</span>
           <ul>
@@ -376,7 +497,8 @@
           <span class="tag green">Cloud lab</span>
           <h3>LocalStack</h3>
           <p>
-            Why we like it: LocalStack lets students emulate AWS-style services locally, which helps them learn cloud patterns safely.
+            Why we like it: LocalStack lets students emulate AWS-style services locally,
+            which helps them learn cloud patterns safely.
           </p>
           <span class="mini-title">Projects to build</span>
           <ul>
@@ -391,7 +513,8 @@
           <span class="tag green">Secrets</span>
           <h3>Doppler</h3>
           <p>
-            Why we like it: Doppler teaches environment variables, API keys, and why secrets should not be hardcoded into projects.
+            Why we like it: Doppler teaches environment variables, API keys, and why secrets
+            should not be hardcoded into projects.
           </p>
           <span class="mini-title">Projects to build</span>
           <ul>
@@ -407,32 +530,32 @@
     <section>
       <h2>Suggested student project path</h2>
       <p class="section-intro">
-        A simple order for turning free tools into real experience.
+        A simple order for turning free and low-cost tools into real experience.
       </p>
 
       <div class="path">
         <div class="path-row">
           <div class="level">Beginner</div>
           <div>Build a personal portfolio site</div>
-          <div class="tools">GitHub, VS Code, GitHub Pages</div>
+          <div class="tools">GitHub, VS Code, GitHub Pages or Cloudflare Pages</div>
         </div>
 
         <div class="path-row">
           <div class="level">Beginner</div>
-          <div><a href="../guides/linux-terminal-intro/">Learn the Linux terminal basics</a></div>
-          <div class="tools">Linux, apt, SSH, command-line tools</div>
+          <div>Create one repo per coding class</div>
+          <div class="tools">GitHub, Codespaces, Git, Markdown</div>
         </div>
 
         <div class="path-row">
           <div class="level">Beginner</div>
-          <div><a href="../guides/what-is-a-vm/">Learn what a VM is</a></div>
-          <div class="tools">VirtualBox, snapshots, lab machines, VM networking</div>
+          <div>Practice remote server access</div>
+          <div class="tools">Termius, SSH keys, Linux, AWS or DigitalOcean</div>
         </div>
 
         <div class="path-row">
           <div class="level">Intermediate</div>
-          <div><a href="../projects/cheap-server-web-app/">Build and deploy a simple Flask JSON app</a></div>
-          <div class="tools">AWS, DigitalOcean, SSH, Linux, Flask or Node</div>
+          <div>Build and deploy a simple Flask JSON app</div>
+          <div class="tools">AWS, DigitalOcean, SSH, Linux, Flask, Gunicorn, Apache or Nginx</div>
         </div>
 
         <div class="path-row">
@@ -444,19 +567,25 @@
         <div class="path-row">
           <div class="level">Intermediate</div>
           <div>Add login or user accounts</div>
-          <div class="tools">Clerk, Appwrite</div>
+          <div class="tools">Clerk, Appwrite, Cloudflare Access</div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">Intermediate</div>
+          <div>Practice guided cybersecurity labs</div>
+          <div class="tools">Hack The Box Academy, TryHackMe, Linux, networking notes</div>
         </div>
 
         <div class="path-row">
           <div class="level">Advanced</div>
           <div>Monitor and secure the live project</div>
-          <div class="tools">Datadog, New Relic, Sentry, SSH keys, HTTPS</div>
+          <div class="tools">Cloudflare, Datadog, New Relic, Sentry, SSH keys, HTTPS</div>
         </div>
 
         <div class="path-row">
           <div class="level">Advanced</div>
           <div>Build an IoT or cloud lab</div>
-          <div class="tools">Arduino Cloud, Adafruit IO, LocalStack, Azure</div>
+          <div class="tools">Arduino Cloud, Adafruit IO, LocalStack, AWS, Azure</div>
         </div>
       </div>
 
