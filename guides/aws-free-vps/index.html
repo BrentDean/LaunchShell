@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LaunchShell | Free AWS Cloud VPS Setup</title>
+  <meta
+    name="description"
+    content="A beginner-friendly LaunchShell guide showing how I set up a simple disposable AWS cloud server with a public IP, SSH access, and a basic web server."
+  />
+
+  <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+
+  <style>
+    .guide-note {
+      margin-top: 22px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: var(--soft);
+      border: 1px solid #cfe0ff;
+      color: var(--muted);
+    }
+
+    .guide-note strong {
+      color: var(--text);
+    }
+
+    .quick-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .step-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: var(--blue);
+      color: white;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .step-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .step-card p {
+      margin: 0 0 12px;
+      color: var(--muted);
+    }
+
+    pre {
+      margin: 14px 0 0;
+      padding: 16px;
+      overflow-x: auto;
+      border-radius: 14px;
+      background: #061226;
+      color: #d8e6ff;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .beginner-help {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: var(--soft);
+      border: 1px solid #cfe0ff;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .beginner-help strong {
+      color: var(--text);
+    }
+
+    .beginner-help a,
+    .inline-link {
+      color: var(--blue-dark);
+      font-weight: 800;
+    }
+
+    .docs-list a {
+      color: var(--blue-dark);
+      font-weight: 800;
+    }
+
+    .simple-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 18px;
+      background: white;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .simple-table th,
+    .simple-table td {
+      padding: 15px 16px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .simple-table th {
+      background: var(--soft);
+      color: var(--text);
+    }
+
+    .simple-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    @media (max-width: 920px) {
+      .quick-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body class="resources-page">
+  <header>
+    <a href="../../" aria-label="LaunchShell home">
+      <img src="../../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../../projects/">Projects</a>
+      <a href="../../#method">Method</a>
+      <a href="../../#tools">Tools</a>
+      <a href="../linux-terminal-intro/">Linux Terminal</a>
+      <a href="../../resources/">Resources</a>
+      <a href="#docs" class="status">AWS Docs</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">AWS Free Tier • EC2 • SSH • Public IP</div>
+      <h1>So you want a cloud server?</h1>
+
+      <p>
+        It is not as hard as it sounds. Here is how I set up a small AWS cloud server for free using student/free-tier resources.
+      </p>
+
+      <p>
+        The goal was simple: get a disposable Linux VM, give it a public IP address, SSH into it, run a basic web server, and delete it when I was done.
+      </p>
+
+      <div class="hero-actions">
+        <a class="button primary" href="#steps">Start the checklist</a>
+        <a class="button" href="#docs">Official AWS docs</a>
+      </div>
+
+      <div class="guide-note">
+        <strong>Important:</strong> I treated this as a throwaway learning server. Free does not mean I can ignore billing. I set a budget alert first, used one small VM, avoided extra paid resources, and cleaned everything up when I finished.
+      </div>
+    </section>
+
+    <section>
+      <h2>What I was trying to build</h2>
+      <p class="section-intro">
+        I did not need a complicated cloud setup. I just wanted the basic building blocks of a real public server.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag">Public IP</span>
+          <h3>A server reachable from the internet</h3>
+          <p>
+            The public IP is what lets me SSH into the VM and load a test web page from a browser.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Linux VM</span>
+          <h3>A disposable Ubuntu machine</h3>
+          <p>
+            I used a small EC2 instance like a VPS. If I broke it, I could delete it and make another one.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Free / Student</span>
+          <h3>Use free resources first</h3>
+          <p>
+            I checked AWS Educate, AWS Academy, and AWS Free Tier before launching anything serious.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>The simple version</h2>
+      <p class="section-intro">
+        This is the whole process without the extra details.
+      </p>
+
+      <div class="path">
+        <div class="path-row">
+          <div class="level">01</div>
+          <div><strong>Use student/free resources.</strong></div>
+          <div class="tools">Check AWS Educate, AWS Academy, and AWS Free Tier.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">02</div>
+          <div><strong>Protect the AWS account.</strong></div>
+          <div class="tools">Turn on MFA and set a budget alert before creating resources.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">03</div>
+          <div><strong>Launch one small EC2 instance.</strong></div>
+          <div class="tools">Use Ubuntu Server and a free-tier/credit-friendly instance size.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">04</div>
+          <div><strong>Add an SSH key.</strong></div>
+          <div class="tools">Download the key, lock down permissions, and keep it private.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">05</div>
+          <div><strong>Allow only the ports I need.</strong></div>
+          <div class="tools">SSH from my IP only, then HTTP/HTTPS if I am testing a website.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">06</div>
+          <div><strong>SSH in, update, and test.</strong></div>
+          <div class="tools">Install Nginx, enable UFW, load the public IP in a browser.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">07</div>
+          <div><strong>Delete it when done.</strong></div>
+          <div class="tools">Terminate the instance and check for leftover volumes, snapshots, and IPs.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="steps">
+      <h2>Step-by-step checklist</h2>
+      <p class="section-intro">
+        This is the version I would follow while actually doing it.
+      </p>
+
+      <div class="quick-list">
+        <article class="step-card">
+          <div class="step-number">1</div>
+          <h3>I checked AWS student options</h3>
+          <p>
+            First, I checked AWS Educate with my school email. Then I checked whether my school had AWS Academy or Learner Lab access.
+          </p>
+          <p>
+            If I can practice in a student lab first, I should do that before creating real cloud resources.
+          </p>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">2</div>
+          <h3>I created an AWS Free Tier account</h3>
+          <p>
+            For the real public VM, I used AWS Free Tier. I checked the current Free Tier page first because AWS pricing and credits can change.
+          </p>
+          <p>
+            I did not assume everything was free forever. I used it as a small test environment.
+          </p>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">3</div>
+          <h3>I turned on MFA and billing alerts</h3>
+          <p>
+            Before launching anything, I protected the AWS account and created a budget alert.
+          </p>
+          <p>
+            This was my safety net in case I clicked the wrong thing or forgot something was running.
+          </p>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">4</div>
+          <h3>I launched one EC2 instance</h3>
+          <p>
+            In the AWS Console, I went to EC2 and launched one small Ubuntu Server instance.
+          </p>
+          <ul>
+            <li>Name: <code>student-disposable-vps</code></li>
+            <li>OS: Ubuntu Server</li>
+            <li>Size: a small free-tier/credit-friendly instance</li>
+            <li>Storage: small default root disk</li>
+          </ul>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">5</div>
+          <h3>I created an SSH key</h3>
+          <p>
+            AWS gave me a <code>.pem</code> file. That file is my private key, so I moved it into my SSH folder and locked it down.
+          </p>
+<pre><code>mkdir -p ~/.ssh
+mv ~/Downloads/student-vps-key.pem ~/.ssh/
+chmod 400 ~/.ssh/student-vps-key.pem</code></pre>
+          <div class="beginner-help">
+            <strong>Does this look foreign?</strong>
+            Start with the <a href="../linux-terminal-intro/">Linux terminal guide</a>, then read
+            <a href="../linux-terminal-intro/#ssh">how SSH becomes your portal to the server</a>.
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">6</div>
+          <h3>I opened only the firewall rules I needed</h3>
+          <p>
+            In the AWS security group, I allowed SSH only from my IP. I allowed HTTP and HTTPS only because I wanted to test a web page.
+          </p>
+          <ul>
+            <li>SSH: port <code>22</code>, source: my IP only</li>
+            <li>HTTP: port <code>80</code>, source: anywhere</li>
+            <li>HTTPS: port <code>443</code>, source: anywhere</li>
+          </ul>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">7</div>
+          <h3>I connected with SSH</h3>
+          <p>
+            After the instance was running, I copied its public IP and connected from my computer.
+            SSH is the encrypted terminal tunnel into a headless server.
+            <a class="inline-link" href="../linux-terminal-intro/#ssh">Start here if SSH is new.</a>
+          </p>
+<pre><code>ssh -i ~/.ssh/student-vps-key.pem ubuntu@YOUR_PUBLIC_IP</code></pre>
+          <div class="beginner-help">
+            <strong>Does this look foreign?</strong>
+            Read the <a href="../linux-terminal-intro/#ssh">SSH guide</a> first. It explains the encrypted tunnel,
+            keys, and headless server control.
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">8</div>
+          <h3>I updated Linux and installed basic tools</h3>
+          <p>
+            Once I was inside the VM, I updated packages and installed a small web stack.
+          </p>
+<pre><code>sudo apt update
+sudo apt -y upgrade
+sudo apt install -y nginx ufw fail2ban curl git htop</code></pre>
+          <div class="beginner-help">
+            <strong>Does this look foreign?</strong>
+            The <a href="../linux-terminal-intro/">Linux terminal guide</a> explains <code>sudo</code>,
+            <code>apt</code>, and why commands are the normal way to control a server.
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">9</div>
+          <h3>I enabled Nginx</h3>
+          <p>
+            Nginx gave me a simple web server so I could test the public IP in a browser.
+          </p>
+<pre><code>sudo systemctl enable --now nginx
+systemctl status nginx --no-pager</code></pre>
+          <div class="beginner-help">
+            <strong>Does this look foreign?</strong>
+            Start with the <a href="../linux-terminal-intro/">terminal guide</a> before learning services.
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">10</div>
+          <h3>I enabled the Linux firewall</h3>
+          <p>
+            AWS has its own firewall, but I also enabled UFW inside Ubuntu.
+          </p>
+<pre><code>sudo ufw allow OpenSSH
+sudo ufw allow 'Nginx Full'
+sudo ufw --force enable
+sudo ufw status verbose</code></pre>
+          <div class="beginner-help">
+            <strong>Does this look foreign?</strong>
+            Read the <a href="../linux-terminal-intro/#ssh">SSH guide</a> so port <code>22</code> and
+            remote login make sense before changing firewall rules.
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">11</div>
+          <h3>I replaced the default web page</h3>
+          <p>
+            I made a tiny test page so I knew I was seeing my server and not just a default screen.
+          </p>
+<pre><code>echo '&lt;h1&gt;Hello from my AWS cloud server&lt;/h1&gt;' | sudo tee /var/www/html/index.html
+curl http://localhost</code></pre>
+          <div class="beginner-help">
+            <strong>Does this look foreign?</strong>
+            The <a href="../linux-terminal-intro/">terminal guide</a> explains pipes, command output,
+            and running quick checks from the shell.
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">12</div>
+          <h3>I deleted the VM when I was done</h3>
+          <p>
+            For a disposable VM, cleanup is part of the lab. I terminated the instance and checked for leftovers.
+          </p>
+          <ul>
+            <li>EC2 → Instances → terminate the instance</li>
+            <li>EC2 → Volumes → delete unattached volumes</li>
+            <li>EC2 → Snapshots → delete snapshots I do not need</li>
+            <li>EC2 → Elastic IPs → release unused Elastic IPs</li>
+            <li>Billing → Bills → check the current month</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>What I avoided</h2>
+      <p class="section-intro">
+        The goal was a simple disposable VM, not a full production cloud architecture.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Thing</th>
+            <th>Why I avoided it at first</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Elastic IP</td>
+            <td>I did not need a permanent public IP for a throwaway VM.</td>
+          </tr>
+          <tr>
+            <td>Load balancer</td>
+            <td>Too much for one tiny test server.</td>
+          </tr>
+          <tr>
+            <td>NAT gateway</td>
+            <td>Useful in real cloud networks, but not needed for this beginner setup.</td>
+          </tr>
+          <tr>
+            <td>Extra EBS volumes</td>
+            <td>More storage means more things to forget and clean up later.</td>
+          </tr>
+          <tr>
+            <td>Multiple regions</td>
+            <td>Easy to lose track of resources. I stayed in one region.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="docs">
+      <h2>Official docs I used</h2>
+      <p class="section-intro">
+        This is the simple reading list. These are the links I would keep open while doing the setup.
+      </p>
+
+      <div class="grid docs-list">
+        <article class="card">
+          <span class="tag green">Free / Student</span>
+          <h3>Free AWS access</h3>
+          <ul>
+            <li><a href="https://aws.amazon.com/free/" rel="noopener">AWS Free Tier</a></li>
+            <li><a href="https://aws.amazon.com/free/free-tier-faqs/" rel="noopener">AWS Free Tier FAQ</a></li>
+            <li><a href="https://aws.amazon.com/education/awseducate/" rel="noopener">AWS Educate</a></li>
+            <li><a href="https://aws.amazon.com/training/awsacademy/" rel="noopener">AWS Academy</a></li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag">EC2 Setup</span>
+          <h3>VM and SSH basics</h3>
+          <ul>
+            <li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html" rel="noopener">Get started with Amazon EC2</a></li>
+            <li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html" rel="noopener">EC2 key pairs</a></li>
+            <li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connect-to-linux-instance.html" rel="noopener">Connect to a Linux instance</a></li>
+            <li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html" rel="noopener">EC2 security groups</a></li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag">Cost Safety</span>
+          <h3>Billing and cleanup</h3>
+          <ul>
+            <li><a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/tracking-free-tier-usage.html" rel="noopener">Track Free Tier usage</a></li>
+            <li><a href="https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html" rel="noopener">AWS Budgets</a></li>
+            <li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html" rel="noopener">EC2 public IP addressing</a></li>
+            <li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/root-user-best-practices.html" rel="noopener">Root user best practices</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Final result</h2>
+      <div class="callout">
+        <p>
+          I ended up with a small public Linux server I could SSH into, update, firewall, test with Nginx, and delete. That is enough to learn the real basics: public IPs, SSH keys, security groups, Linux firewalls, services, logs, and cloud billing hygiene.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© 2026 LaunchShell</div>
+    <div>Student-built project guides for Linux, cloud, electronics, and cybersecurity.</div>
+  </footer>
+</body>
+</html>

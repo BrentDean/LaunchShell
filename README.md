@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/launchshell-logo-horizontal.png" alt="LaunchShell" width="420">
+  <img src="assets/launchshell-logo-horizontial.png" alt="LaunchShell" width="420">
 </p>
 
 <p align="center">
@@ -26,12 +26,12 @@ The site is currently a coming-soon homepage. As it grows, it will collect proje
 
 | Area | Focus |
 | --- | --- |
-| ![This site](assets/this-site.svg) | LaunchShell itself: static site work, GitHub workflow, and Cloudflare Pages deployment. |
-| ![VPS server](assets/vps-checklist-hero-small.png) | VPS web servers, Linux administration, DNS, HTTPS, services, and logs. |
-| ![Seed app](assets/seed-app.svg) | Small personal web apps that solve real tracking and planning problems. |
-| ![Raspberry Pi](assets/raspberry-pi.svg) | Raspberry Pi labs, networking, sensors, services, and local hardware projects. |
-| ![8-bit CPU](assets/eight-bit-cpu.svg) | Electronics and low-level computing projects. |
-| ![Codespaces](assets/codespaces.svg) | GitHub Codespaces and repeatable development environments. |
+| <img src="assets/this-site.svg" alt="This site" width="140"> | LaunchShell itself: static site work, GitHub workflow, and Cloudflare Pages deployment. |
+| <img src="assets/vps-checklist-hero-small.png" alt="VPS server" width="140"> | VPS web servers, Linux administration, DNS, HTTPS, services, and logs. |
+| <img src="assets/seed-app.svg" alt="Seed app" width="140"> | Small personal web apps that solve real tracking and planning problems. |
+| <img src="assets/raspberry-pi.svg" alt="Raspberry Pi" width="140"> | Raspberry Pi labs, networking, sensors, services, and local hardware projects. |
+| <img src="assets/eight-bit-cpu.svg" alt="8-bit CPU" width="140"> | Electronics and low-level computing projects. |
+| <img src="assets/codespaces.svg" alt="Codespaces" width="140"> | GitHub Codespaces and repeatable development environments. |
 
 ## Current Status
 
@@ -42,7 +42,8 @@ Coming-soon homepage.
 This is intentionally simple static web work:
 
 - `index.html`
-- local SVG assets in `assets/`
+- shared CSS in `assets/site.css`
+- local image assets in `assets/`
 - no framework
 - no build tools
 - no backend

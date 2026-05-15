@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LaunchShell | Linux Terminal Intro</title>
+  <meta
+    name="description"
+    content="A beginner-friendly LaunchShell guide to the Linux terminal, apt install, simple commands, open-source tools, and practical command-line wins."
+  />
+
+  <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+
+  <style>
+    .guide-note {
+      margin-top: 22px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: var(--soft);
+      border: 1px solid #cfe0ff;
+      color: var(--muted);
+    }
+
+    .guide-note strong {
+      color: var(--text);
+    }
+
+    .terminal-card {
+      background: #061226;
+      color: #d8e6ff;
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .terminal-card p {
+      color: #c9d6e7;
+      margin: 0 0 14px;
+    }
+
+    .terminal-card strong {
+      color: #ffffff;
+    }
+
+    .prompt {
+      display: block;
+      margin-top: 10px;
+      color: #8fb7ff;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-weight: 800;
+    }
+
+    .quick-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .step-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: var(--blue);
+      color: white;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .step-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .step-card p {
+      margin: 0 0 12px;
+      color: var(--muted);
+    }
+
+    pre {
+      margin: 14px 0 0;
+      padding: 16px;
+      overflow-x: auto;
+      border-radius: 14px;
+      background: #061226;
+      color: #d8e6ff;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .command-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 18px;
+      background: white;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .command-table th,
+    .command-table td {
+      padding: 15px 16px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .command-table th {
+      background: var(--soft);
+      color: var(--text);
+    }
+
+    .command-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .docs-list a,
+    .inline-link {
+      color: var(--blue-dark);
+      font-weight: 800;
+    }
+
+    .safe-box {
+      margin-top: 24px;
+      background: white;
+      border: 1px solid var(--border);
+      border-left: 6px solid var(--green);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .safe-box h3 {
+      margin-top: 0;
+    }
+
+    .safe-box p {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .mini {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .mini strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .mini span {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .guide-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      background: white;
+    }
+
+    .image-expand {
+      width: 100%;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: zoom-in;
+      text-align: left;
+    }
+
+    .image-expand:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 4px;
+      border-radius: 18px;
+    }
+
+    .image-hint {
+      display: block;
+      margin-top: 8px;
+      color: var(--blue-dark);
+      font-size: 0.92rem;
+      font-weight: 800;
+    }
+
+    .image-dialog {
+      width: min(96vw, 1180px);
+      max-height: 94vh;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: white;
+      box-shadow: var(--shadow);
+    }
+
+    .image-dialog::backdrop {
+      background: rgba(6, 18, 38, 0.72);
+    }
+
+    .image-dialog img {
+      width: 100%;
+      height: auto;
+      max-height: 82vh;
+      object-fit: contain;
+      display: block;
+    }
+
+    .image-dialog form {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 12px;
+    }
+
+    .ssh-list {
+      grid-template-columns: 1fr;
+    }
+
+    @media (max-width: 920px) {
+      .quick-list,
+      .mini-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body class="resources-page">
+  <header>
+    <a href="../../" aria-label="LaunchShell home">
+      <img src="../../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../../projects/">Projects</a>
+      <a href="../../#method">Method</a>
+      <a href="../../#tools">Tools</a>
+      <a href="../aws-free-vps/">AWS VPS</a>
+      <a href="../../resources/">Resources</a>
+      <a href="#resources" class="status">Beginner Links</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">Linux &bull; Terminal &bull; Open Source &bull; APT</div>
+      <h1>New to Linux? Start here.</h1>
+
+      <p>
+        The terminal looks intimidating at first, but the idea is simple: it is a text box where you ask the computer to do a job.
+      </p>
+
+      <p>
+        Want to rename every <code>.mp3</code> file in a folder, install PDF tools, check a server, find a file, or update Linux? The terminal is usually the fastest way to do it.
+      </p>
+
+      <div class="hero-actions">
+        <a class="button primary" href="#first-commands">Start with commands</a>
+        <a class="button" href="#apt">Why apt is useful</a>
+      </div>
+
+      <div class="guide-note">
+        <strong>Goal:</strong> This guide is not about memorizing every Linux command. The goal is to get comfortable enough to copy, read, modify, and safely run basic commands.
+      </div>
+    </section>
+
+    <section>
+      <h2>Why the terminal is worth learning</h2>
+      <p class="section-intro">
+        The terminal is useful because it turns repetitive computer work into one command. Once you understand the pattern, Linux starts to feel less like a mystery and more like a toolbox.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag">Files</span>
+          <h3>Rename, move, and organize fast</h3>
+          <p>
+            Instead of clicking through hundreds of files, I can rename, sort, copy, or search them with a command.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Open Source</span>
+          <h3>Install real tools with apt</h3>
+          <p>
+            On Ubuntu and Debian-based Linux, <code>apt install</code> feels like an open-source app store for terminal tools.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Servers</span>
+          <h3>Control cloud machines</h3>
+          <p>
+            Most cloud servers do not have a desktop. SSH and the terminal are how I update them, check logs, and fix problems.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Things that make the terminal feel useful</h2>
+      <p class="section-intro">
+        These are the kinds of small wins that make the terminal click.
+      </p>
+
+      <div class="mini-grid">
+        <div class="mini">
+          <strong>Rename music files</strong>
+          <span>Clean up spaces or weird file names in one folder.</span>
+        </div>
+
+        <div class="mini">
+          <strong>Work with PDFs</strong>
+          <span>Merge PDFs, split PDFs, or extract text with free tools.</span>
+        </div>
+
+        <div class="mini">
+          <strong>Find big files</strong>
+          <span>See what is filling up a drive without clicking around.</span>
+        </div>
+
+        <div class="mini">
+          <strong>Run a quick web server</strong>
+          <span>Share a local folder on your network for testing.</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="first-commands">
+      <h2>The first commands I would learn</h2>
+      <p class="section-intro">
+        These commands cover most beginner navigation and file work.
+      </p>
+
+      <table class="command-table">
+        <thead>
+          <tr>
+            <th>Command</th>
+            <th>What it means</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>pwd</code></td>
+            <td>Print the folder I am currently in.</td>
+            <td><code>pwd</code></td>
+          </tr>
+          <tr>
+            <td><code>ls</code></td>
+            <td>List files and folders.</td>
+            <td><code>ls -lah</code></td>
+          </tr>
+          <tr>
+            <td><code>cd</code></td>
+            <td>Change folders.</td>
+            <td><code>cd Downloads</code></td>
+          </tr>
+          <tr>
+            <td><code>mkdir</code></td>
+            <td>Make a new folder.</td>
+            <td><code>mkdir test-folder</code></td>
+          </tr>
+          <tr>
+            <td><code>cp</code></td>
+            <td>Copy a file.</td>
+            <td><code>cp notes.txt backup-notes.txt</code></td>
+          </tr>
+          <tr>
+            <td><code>mv</code></td>
+            <td>Move or rename a file.</td>
+            <td><code>mv old-name.txt new-name.txt</code></td>
+          </tr>
+          <tr>
+            <td><code>cat</code></td>
+            <td>Print a small file to the screen.</td>
+            <td><code>cat README.md</code></td>
+          </tr>
+          <tr>
+            <td><code>nano</code></td>
+            <td>Open a simple terminal text editor.</td>
+            <td><code>nano notes.txt</code></td>
+          </tr>
+          <tr>
+            <td><code>history</code></td>
+            <td>Show commands I ran before.</td>
+            <td><code>history | tail</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="safe-box">
+        <h3>Beginner rule</h3>
+        <p>
+          Before running a command from the internet, look for three things: what command is being run, what file or folder it touches, and whether it uses <code>sudo</code>, <code>rm</code>, or <code>&gt;</code>. <code>sudo</code> asks for administrator power, <code>rm</code> deletes, and <code>&gt;</code> can overwrite a file.
+        </p>
+      </div>
+    </section>
+
+    <section id="apt">
+      <h2>Why <code>apt install</code> is the magic part</h2>
+      <p class="section-intro">
+        On Ubuntu, Debian, Raspberry Pi OS, and many cloud servers, <code>apt</code> is how I install trusted software from the system repositories.
+      </p>
+
+      <div class="terminal-card">
+        <p><strong>The basic pattern:</strong></p>
+        <span class="prompt">sudo apt update</span>
+        <span class="prompt">sudo apt install package-name</span>
+      </div>
+
+      <div class="quick-list" style="margin-top: 18px;">
+        <article class="step-card">
+          <div class="step-number">1</div>
+          <h3>Update the package list</h3>
+          <p>
+            This checks the current list of available packages.
+          </p>
+<pre><code>sudo apt update</code></pre>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">2</div>
+          <h3>Install a tool</h3>
+          <p>
+            This installs the program and any dependencies it needs.
+          </p>
+<pre><code>sudo apt install tree</code></pre>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">3</div>
+          <h3>Search for a package</h3>
+          <p>
+            This helps me find the package name before installing.
+          </p>
+<pre><code>apt search pdf</code></pre>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">4</div>
+          <h3>Remove a package</h3>
+          <p>
+            This removes software I no longer need.
+          </p>
+<pre><code>sudo apt remove tree</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Small projects that make the terminal click</h2>
+      <p class="section-intro">
+        These are simple examples. The point is not to memorize them. The point is to see how one command can replace a lot of clicking.
+      </p>
+
+      <div class="quick-list">
+        <article class="step-card">
+          <div class="step-number">1</div>
+          <h3>Rename all <code>.mp3</code> files with spaces</h3>
+          <p>
+            Example: change spaces to underscores in every <code>.mp3</code> file in the current folder.
+          </p>
+          <p>
+            First do a preview:
+          </p>
+<pre><code>for f in *.mp3; do echo mv -- "$f" "${f// /_}"; done</code></pre>
+          <p>
+            Then run it for real:
+          </p>
+<pre><code>for f in *.mp3; do mv -- "$f" "${f// /_}"; done</code></pre>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">2</div>
+          <h3>Install PDF tools</h3>
+          <p>
+            Install free command-line tools for working with PDFs.
+          </p>
+<pre><code>sudo apt update
+sudo apt install poppler-utils qpdf img2pdf</code></pre>
+          <p>
+            Examples:
+          </p>
+<pre><code>pdftotext notes.pdf notes.txt
+pdfunite part1.pdf part2.pdf combined.pdf
+qpdf --split-pages big.pdf page-%03d.pdf</code></pre>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">3</div>
+          <h3>Find what is using disk space</h3>
+          <p>
+            This shows folder sizes in the current location.
+          </p>
+<pre><code>du -h --max-depth=1 | sort -h</code></pre>
+          <p>
+            A friendlier tool:
+          </p>
+<pre><code>sudo apt install ncdu
+ncdu</code></pre>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">4</div>
+          <h3>Search text inside a project</h3>
+          <p>
+            Install <code>ripgrep</code>, then search a folder fast.
+          </p>
+<pre><code>sudo apt install ripgrep
+rg "password" .</code></pre>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">5</div>
+          <h3>Run a tiny web server</h3>
+          <p>
+            This serves the current folder at port <code>8000</code> for local testing.
+          </p>
+<pre><code>python3 -m http.server 8000</code></pre>
+          <p>
+            Then open:
+          </p>
+<pre><code>http://localhost:8000</code></pre>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">6</div>
+          <h3>Install useful starter tools</h3>
+          <p>
+            This is a practical beginner toolkit.
+          </p>
+<pre><code>sudo apt install curl wget git tree htop ncdu tldr ripgrep unzip</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>What each symbol usually means</h2>
+      <p class="section-intro">
+        Commands are less scary once the symbols stop looking random.
+      </p>
+
+      <table class="command-table">
+        <thead>
+          <tr>
+            <th>Symbol</th>
+            <th>Meaning</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>~</code></td>
+            <td>My home folder.</td>
+            <td><code>cd ~</code></td>
+          </tr>
+          <tr>
+            <td><code>.</code></td>
+            <td>The current folder.</td>
+            <td><code>rg "hello" .</code></td>
+          </tr>
+          <tr>
+            <td><code>..</code></td>
+            <td>The folder above this one.</td>
+            <td><code>cd ..</code></td>
+          </tr>
+          <tr>
+            <td><code>*</code></td>
+            <td>A wildcard that matches many files.</td>
+            <td><code>ls *.mp3</code></td>
+          </tr>
+          <tr>
+            <td><code>|</code></td>
+            <td>Send output from one command into another.</td>
+            <td><code>history | tail</code></td>
+          </tr>
+          <tr>
+            <td><code>&gt;</code></td>
+            <td>Write output into a file. This can overwrite.</td>
+            <td><code>echo hello &gt; test.txt</code></td>
+          </tr>
+          <tr>
+            <td><code>&gt;&gt;</code></td>
+            <td>Add output to the end of a file.</td>
+            <td><code>echo hello &gt;&gt; notes.txt</code></td>
+          </tr>
+          <tr>
+            <td><code>sudo</code></td>
+            <td>Run as administrator.</td>
+            <td><code>sudo apt install nginx</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Simple practice path</h2>
+      <p class="section-intro">
+        This is the order I would use if I were starting from zero.
+      </p>
+
+      <div class="path">
+        <div class="path-row">
+          <div class="level">Day 1</div>
+          <div><strong>Navigate files.</strong></div>
+          <div class="tools"><code>pwd</code>, <code>ls</code>, <code>cd</code>, <code>mkdir</code>, <code>touch</code></div>
+        </div>
+        <div class="path-row">
+          <div class="level">Day 2</div>
+          <div><strong>Copy, move, rename, and edit.</strong></div>
+          <div class="tools"><code>cp</code>, <code>mv</code>, <code>rm</code>, <code>nano</code></div>
+        </div>
+        <div class="path-row">
+          <div class="level">Day 3</div>
+          <div><strong>Install tools with apt.</strong></div>
+          <div class="tools"><code>sudo apt update</code>, <code>sudo apt install</code>, <code>apt search</code></div>
+        </div>
+        <div class="path-row">
+          <div class="level">Day 4</div>
+          <div><strong>Use pipes and search.</strong></div>
+          <div class="tools"><code>|</code>, <code>grep</code>, <code>rg</code>, <code>find</code></div>
+        </div>
+        <div class="path-row">
+          <div class="level">Day 5</div>
+          <div><strong>Use it on a real server.</strong></div>
+          <div class="tools">SSH into a VPS, update it, check services, read logs.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ssh">
+      <h2>You spun up a server. Now what?</h2>
+      <p class="section-intro">
+        Most VPS and cloud servers are headless, which means there is no monitor, mouse, or desktop to click around in.
+        SSH is the encrypted tunnel into that server. It is your remote terminal, your control panel, and your way to update,
+        install, troubleshoot, and run commands safely from your own computer.
+      </p>
+
+      <div class="quick-list ssh-list">
+        <article class="step-card">
+          <h3>SSH is the portal</h3>
+          <p>
+            When I type an SSH command, my computer opens an encrypted connection to the server. After I log in,
+            the commands I type run on the server, not on my laptop.
+          </p>
+          <pre><code>ssh username@server_ip</code></pre>
+        </article>
+
+        <article class="step-card">
+          <h3>Keys replace passwords</h3>
+          <p>
+            SSH keys are safer than typing a server password over and over. The private key stays on my computer.
+            The server only gets the public key, or in AWS, the matching key is created when the instance is launched.
+          </p>
+          <pre><code>ssh -i ~/.ssh/student-vps-key.pem ubuntu@YOUR_PUBLIC_IP</code></pre>
+        </article>
+
+        <article class="step-card">
+          <h3>Installing SSH on your own Linux machine</h3>
+          <p>
+            If I am turning a local Ubuntu/Debian machine into something I can connect to remotely, I install and enable
+            OpenSSH Server.
+          </p>
+          <button class="image-expand" type="button" data-full-image="../../assets/install ssh 2.png" data-full-alt="Beginner guide showing how to install SSH on Ubuntu or Debian">
+            <img class="guide-image" src="../../assets/install ssh 2.png" alt="Beginner guide showing how to install SSH on Ubuntu or Debian" />
+            <span class="image-hint">Click to expand</span>
+          </button>
+        </article>
+
+        <article class="step-card">
+          <h3>Logging in with SSH keys</h3>
+          <p>
+            After SSH exists on the server, the next skill is key-based login: make a key pair, put the public key on the server,
+            then connect without using a server password.
+          </p>
+          <button class="image-expand" type="button" data-full-image="../../assets/install ssh.png" data-full-alt="Beginner guide showing how to log in with SSH keys">
+            <img class="guide-image" src="../../assets/install ssh.png" alt="Beginner guide showing how to log in with SSH keys" />
+            <span class="image-hint">Click to expand</span>
+          </button>
+        </article>
+      </div>
+    </section>
+
+    <section id="resources">
+      <h2>Beginner resources that are not scary</h2>
+      <p class="section-intro">
+        These are the resources I would send someone who is new to Linux and wants a calm, practical starting point.
+      </p>
+
+      <div class="grid docs-list">
+        <article class="card">
+          <span class="tag green">Free</span>
+          <h3>Linux Journey</h3>
+          <p>
+            A friendly starting point for command-line basics, files, permissions, processes, and Linux fundamentals.
+          </p>
+          <p><a href="https://linuxjourney.org/tutorials/command-line" rel="noopener">Open Linux Journey</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Free</span>
+          <h3>MIT Missing Semester</h3>
+          <p>
+            Best after the basics. It explains the shell, Git, editors, debugging, and the practical tools CS classes often skip.
+          </p>
+          <p><a href="https://missing.csail.mit.edu/" rel="noopener">Open Missing Semester</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Free</span>
+          <h3>LinuxCommand.org</h3>
+          <p>
+            A calm, old-school Linux command-line learning site with a free book and beginner shell lessons.
+          </p>
+          <p><a href="https://linuxcommand.org/" rel="noopener">Open LinuxCommand.org</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Free</span>
+          <h3>tldr pages</h3>
+          <p>
+            Short command examples when normal manual pages feel too dense.
+          </p>
+          <p><a href="https://tldr.sh/" rel="noopener">Open tldr pages</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Free</span>
+          <h3>ExplainShell</h3>
+          <p>
+            Paste a shell command and see what the pieces mean. Useful before running commands you do not fully understand.
+          </p>
+          <p><a href="https://explainshell.com/" rel="noopener">Open ExplainShell</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Official Docs</span>
+          <h3>Ubuntu APT Docs</h3>
+          <p>
+            The official Ubuntu guide for installing, removing, updating, and managing packages with APT.
+          </p>
+          <p><a href="https://ubuntu.com/server/docs/how-to/software/package-management/" rel="noopener">Open Ubuntu APT docs</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Official Docs</span>
+          <h3>GNU Bash Manual</h3>
+          <p>
+            Not the first thing I would read, but useful once I want the real reference for Bash behavior.
+          </p>
+          <p><a href="https://www.gnu.org/software/bash/manual/" rel="noopener">Open Bash manual</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Under $10/month</span>
+          <h3>Hack The Box Academy Student</h3>
+          <p>
+            Highly recommended for cybersecurity students after basic Linux comfort. The student plan is listed at $8/month and gives access to modules up to Tier II.
+          </p>
+          <p><a href="https://help.hackthebox.com/en/articles/13677074-academy-subscriptions" rel="noopener">Open HTB Academy subscriptions</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Next Step</span>
+          <h3>AWS Free VPS Guide</h3>
+          <p>
+            After learning the terminal basics, use them on a real disposable cloud VM.
+          </p>
+          <p><a href="../aws-free-vps/">Open AWS VPS guide</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>The mindset</h2>
+      <div class="callout">
+        <p>
+          The terminal is not about being a genius or memorizing a thousand commands. It is about learning a small set of patterns: move around, inspect files, install tools, run commands, read errors, and try again. That is enough to start doing real Linux, cloud, web server, and cybersecurity work.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© 2026 LaunchShell</div>
+    <div>Student-built project guides for Linux, cloud, electronics, and cybersecurity.</div>
+  </footer>
+
+  <dialog class="image-dialog" id="image-dialog" aria-label="Expanded guide image">
+    <form method="dialog">
+      <button class="button" type="submit">Close</button>
+    </form>
+    <img src="" alt="" />
+  </dialog>
+
+  <script>
+    const imageDialog = document.getElementById("image-dialog");
+    const imageDialogImg = imageDialog.querySelector("img");
+
+    document.querySelectorAll(".image-expand").forEach((button) => {
+      button.addEventListener("click", () => {
+        imageDialogImg.src = button.dataset.fullImage;
+        imageDialogImg.alt = button.dataset.fullAlt;
+        imageDialog.showModal();
+      });
+    });
+  </script>
+</body>
+</html>
