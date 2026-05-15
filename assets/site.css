@@ -81,8 +81,16 @@ main {
   padding: 36px 22px 86px;
 }
 
+.resources-page main {
+  padding-top: 8px;
+}
+
 .hero {
   padding: 56px 0 54px;
+}
+
+.resources-page .hero {
+  padding: 24px 0 44px;
 }
 
 .home-page .hero {
