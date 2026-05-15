@@ -1,65 +1,67 @@
-<p align="center">
-  <img src="assets/launchshell-logo-horizontial.png" alt="LaunchShell" width="420">
-</p>
+# LaunchShell
 
-<p align="center">
-  <strong>Build it. Back it up. Break it. Fix it. Learn why.</strong>
-</p>
+**Build it. Back it up. Break it. Fix it. Learn why.**
 
-<p align="center">
-  A project portfolio and tutorial site for practical technology builds.
-</p>
+LaunchShell is a static project portfolio and tutorial site for practical technology builds: Linux, cloud servers, Git/GitHub, web apps, electronics, virtual machines, and safe beginner cybersecurity labs.
 
-## About
+The site is intentionally simple. It is plain HTML and CSS so the content stays easy to inspect, edit, commit, and publish.
 
-LaunchShell is a project portfolio and tutorial site for documenting real builds, experiments, notes, and lessons from working with Linux, cloud hosting, web servers, electronics, and safe cybersecurity fundamentals.
+## Current Site
 
-The site is currently a coming-soon homepage. As it grows, it will collect project writeups, setup notes, troubleshooting logs, and tutorials built around the same practical loop:
+- Homepage: `index.html`
+- Guides index: `guides/index.html`
+- Projects index: `projects/index.html`
+- Resources index: `resources/index.html`
+- Shared styling: `assets/site.css`
+- Shared images and icons: `assets/`
 
-1. Build something real.
-2. Back it up before changing or stress-testing it.
-3. Break or stress-test it safely.
-4. Fix what broke.
-5. Learn how it actually works.
+## Guides
 
-## Project Areas
+- Linux Terminal Intro: `guides/linux-terminal-intro/`
+- AWS Free VPS Setup: `guides/aws-free-vps/`
+- What Is a VM?: `guides/what-is-a-vm/`
+- What Is Hacking?: `guides/what-is-hacking/`
+- Git and GitHub: `guides/git-and-github/`
+- GitHub Codespaces: `guides/github-codespace/`
+- Cloudflare Pages: `guides/cloudflare/`
+- IT and Cybersecurity Certifications: `guides/certification/`
 
-| Area | Focus |
-| --- | --- |
-| <img src="assets/this-site.svg" alt="This site" width="140"> | LaunchShell itself: static site work, GitHub workflow, and Cloudflare Pages deployment. |
-| <img src="assets/vps-checklist-hero-small.png" alt="VPS server" width="140"> | VPS web servers, Linux administration, DNS, HTTPS, services, and logs. |
-| <img src="assets/seed-app.svg" alt="Seed app" width="140"> | Small personal web apps that solve real tracking and planning problems. |
-| <img src="assets/raspberry-pi.svg" alt="Raspberry Pi" width="140"> | Raspberry Pi labs, networking, sensors, services, and local hardware projects. |
-| <img src="assets/eight-bit-cpu.svg" alt="8-bit CPU" width="140"> | Electronics and low-level computing projects. |
-| <img src="assets/codespaces.svg" alt="Codespaces" width="140"> | GitHub Codespaces and repeatable development environments. |
+## Projects
 
-## Current Status
-
-Coming-soon homepage.
+- Flask JSON app on a cheap server: `projects/cheap-server-web-app/`
+- T-Pot honeynet project: `projects/tpot-honeynet/`
+- 8-bit computer and ROM tooling: `projects/8-bit/`
+- How this site was built: `projects/build-this-site/`
 
 ## Tech Stack
 
-This is intentionally simple static web work:
-
-- `index.html`
-- shared CSS in `assets/site.css`
-- local image assets in `assets/`
-- no framework
-- no build tools
-- no backend
-- no package manager
+- Plain HTML
+- Shared CSS
+- Local assets
+- No framework
+- No build step
+- No backend
+- No package manager
 
 ## Deployment
 
 Deployment target: Cloudflare Pages.
 
-Cloudflare Pages can serve this repository directly because `index.html` is at the repository root and assets are stored in `assets/`.
+Cloudflare Pages can serve this repository directly because the root page is `index.html` and all pages/assets are committed into the repository.
 
-## Basic Edit Workflow
+## Edit Workflow
 
-Edit `index.html`, then commit and push:
+Make a small content or style change, check it locally, then commit:
 
 ```sh
-git add .
-git commit -m "Update LaunchShell homepage"
-git push
+git status --short
+git diff --check
+git add <files>
+git commit -m "Describe the site update"
+```
+
+Push only after reviewing what is staged. This site is public, so screenshots, logs, credentials, IPs, and private class/work material should be checked before publishing.
+
+## Content Rule
+
+LaunchShell pages should stay beginner-friendly, practical, and safety-conscious. The goal is to show real project work and clear learning paths without publishing sensitive details.

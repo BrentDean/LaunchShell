@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LaunchShell | How This Site Was Built</title>
+  <meta
+    name="description"
+    content="A LaunchShell project page explaining how LaunchShell.org was built with HTML, CSS, Git, GitHub, Cloudflare Pages, and AI-assisted learning."
+  />
+
+  <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+
+  <style>
+    .project-hero, .guide-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.85fr);
+      gap: 46px;
+      align-items: center;
+      padding: 56px 0 54px;
+    }
+
+    .visual-card {
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: white;
+      box-shadow: var(--shadow);
+    }
+
+    .visual-inner {
+      min-height: 430px;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+      background:
+        radial-gradient(circle at 20% 15%, rgba(18, 99, 255, 0.16), transparent 18rem),
+        radial-gradient(circle at 80% 70%, rgba(18, 201, 149, 0.14), transparent 18rem),
+        #ffffff;
+    }
+
+    .stack {
+      width: min(100%, 440px);
+      display: grid;
+      gap: 12px;
+    }
+
+    .stack-layer {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: white;
+      padding: 16px 18px;
+      box-shadow: 0 14px 34px rgba(6, 18, 38, 0.08);
+    }
+
+    .stack-layer.dark {
+      background: var(--dark);
+      color: white;
+      border-color: var(--dark);
+    }
+
+    .stack-layer strong {
+      display: block;
+      font-size: 1.02rem;
+      margin-bottom: 3px;
+    }
+
+    .stack-layer span {
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .stack-layer.dark span {
+      color: #c9d6e7;
+    }
+
+    .guide-note {
+      margin-top: 22px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: var(--soft);
+      border: 1px solid #cfe0ff;
+      color: var(--muted);
+    }
+
+    .guide-note strong { color: var(--text); }
+
+    .warning-note {
+      margin-top: 20px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: #fff7e8;
+      border: 1px solid #ffd89a;
+      color: var(--muted);
+    }
+
+    .warning-note strong { color: var(--text); }
+
+    .action-item {
+      margin-top: 20px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: var(--green-soft);
+      border: 1px solid #c5f2e5;
+      color: var(--muted);
+    }
+
+    .action-item strong { color: var(--text); }
+
+    .action-item a,
+    .docs-list a,
+    .inline-link {
+      color: var(--blue-dark);
+      font-weight: 900;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .panel {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .panel h3 {
+      margin-top: 0;
+      font-size: 1.25rem;
+    }
+
+    .panel p { color: var(--muted); }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .flow.three { grid-template-columns: repeat(3, 1fr); }
+
+    .flow-step {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 12px 34px rgba(6, 18, 38, 0.06);
+      min-height: 180px;
+    }
+
+    .flow-step span {
+      display: inline-flex;
+      margin-bottom: 10px;
+      color: var(--blue);
+      font-weight: 900;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .flow-step h3 {
+      margin: 0 0 8px;
+      font-size: 1.08rem;
+    }
+
+    .flow-step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .simple-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 18px;
+      background: white;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .simple-table th,
+    .simple-table td {
+      padding: 15px 16px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .simple-table th {
+      background: var(--soft);
+      color: var(--text);
+    }
+
+    .simple-table td { color: var(--muted); }
+
+    .simple-table tr:last-child td { border-bottom: 0; }
+
+    .simple-table strong { color: var(--text); }
+
+    .code-card {
+      background: var(--dark);
+      color: white;
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      overflow-x: auto;
+    }
+
+    .code-card pre {
+      margin: 0;
+      color: #d8e6ff;
+      line-height: 1.55;
+      font-size: 0.95rem;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-weight: 900;
+      color: var(--text);
+    }
+
+    .code-card code { color: #d8e6ff; }
+
+    .checklist {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .checklist li {
+      margin: 0;
+      padding: 13px 15px;
+      border-radius: 14px;
+      background: var(--soft);
+      color: var(--muted);
+      border: 1px solid #cfe0ff;
+    }
+
+    .checklist strong { color: var(--text); }
+
+    .tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .tech-pill {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: var(--soft);
+      border: 1px solid #cfe0ff;
+      color: var(--blue-dark);
+      font-weight: 900;
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 1020px) {
+      .project-hero,
+      .guide-hero,
+      .split {
+        grid-template-columns: 1fr;
+      }
+
+      .flow,
+      .flow.three {
+        grid-template-columns: 1fr;
+      }
+
+      .visual-inner {
+        min-height: 320px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .simple-table,
+      .simple-table thead,
+      .simple-table tbody,
+      .simple-table th,
+      .simple-table td,
+      .simple-table tr {
+        display: block;
+      }
+
+      .simple-table thead { display: none; }
+
+      .simple-table tr {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .simple-table tr:last-child { border-bottom: 0; }
+
+      .simple-table td {
+        border-bottom: 0;
+        padding: 12px 16px;
+      }
+
+      .simple-table td:nth-child(1)::before,
+      .simple-table td:nth-child(2)::before,
+      .simple-table td:nth-child(3)::before {
+        display: block;
+        font-weight: 900;
+        color: var(--text);
+        margin-bottom: 3px;
+      }
+
+      .simple-table td:nth-child(1)::before { content: "Part"; }
+      .simple-table td:nth-child(2)::before { content: "What I used"; }
+      .simple-table td:nth-child(3)::before { content: "Why it mattered"; }
+    }
+  </style>
+
+</head>
+
+<body class="resources-page" id="top">
+  <header>
+    <a href="../../index.html" aria-label="LaunchShell home">
+      <img src="../../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../../projects/">Projects</a>
+      <a href="../../guides/">Guides</a>
+      <a href="../../resources/">Resources</a>
+      <a href="#cloudflare" class="status">Cloudflare Pages</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="project-hero">
+      <div>
+        <div class="eyebrow">HTML • CSS • GitHub • Cloudflare • AI-Assisted Learning</div>
+        <h1>How LaunchShell.org Was Built</h1>
+
+        <p>
+          LaunchShell.org is a student-built project site for documenting practical technology builds,
+          beginner guides, free student resources, and lessons learned from real projects.
+        </p>
+
+        <p>
+          The site is intentionally simple: static HTML, shared CSS, local assets, Git, GitHub,
+          Cloudflare Pages, and AI-assisted planning, writing, debugging, and review.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href="#stack">See the stack</a>
+          <a class="button" href="#ai">How AI helped</a>
+        </div>
+
+        <div class="guide-note">
+          <strong>Core idea:</strong> AI did not replace the learning process. It helped me ask better questions,
+          organize ideas faster, test different approaches, and understand what I was building.
+        </div>
+      </div>
+
+      <div class="visual-card">
+        <div class="visual-inner" aria-label="LaunchShell build stack diagram">
+          <div class="stack">
+            <div class="stack-layer">
+              <strong>Content</strong>
+              <span>Guides, resources, projects, notes, screenshots</span>
+            </div>
+            <div class="stack-layer">
+              <strong>Frontend</strong>
+              <span>HTML pages, shared CSS, local image assets</span>
+            </div>
+            <div class="stack-layer dark">
+              <strong>Workflow</strong>
+              <span>Git, GitHub, Codespaces, AI-assisted review</span>
+            </div>
+            <div class="stack-layer">
+              <strong>Deployment</strong>
+              <span>Cloudflare Pages serving the static site</span>
+            </div>
+          </div>
+        </div>
+        <div class="caption">
+          This site is a practical example of learning by building, backing up, breaking safely, and improving.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Project page or AI guide?</h2>
+      <p class="section-intro">
+        This page should be a project page first. It shows how the site was built. AI belongs inside the story
+        because AI was one of the tools used during the build.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">Best choice</span>
+          <h3>Keep this as a project page</h3>
+          <p>
+            “How LaunchShell.org Was Built” belongs under Projects because it documents a real thing that was built.
+            It can include an AI section without becoming only an AI essay.
+          </p>
+          <p>
+            This keeps the story concrete: here is the site, here are the files, here is the workflow,
+            here is how AI helped, and here is what I learned.
+          </p>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Later guide</span>
+          <h3>Create a separate AI guide later</h3>
+          <p>
+            A separate guide can explain AI literacy in general: asking better questions, checking answers,
+            protecting privacy, reviewing code, and using AI without giving up ownership of the work.
+          </p>
+          <p>
+            That guide can link back to this project as a real example.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="stack">
+      <h2>What I used</h2>
+      <p class="section-intro">
+        The site uses a simple static setup on purpose. No framework, no backend, no build system.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Part</th>
+            <th>What I used</th>
+            <th>Why it mattered</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Pages</strong></td>
+            <td>HTML</td>
+            <td>Each page is easy to inspect, edit, copy, and deploy.</td>
+          </tr>
+          <tr>
+            <td><strong>Design</strong></td>
+            <td>Shared CSS file</td>
+            <td>One stylesheet keeps the site consistent across guides, resources, and projects.</td>
+          </tr>
+          <tr>
+            <td><strong>Version control</strong></td>
+            <td>Git</td>
+            <td>Git lets me commit working versions, try changes, and roll back when something breaks.</td>
+          </tr>
+          <tr>
+            <td><strong>Code hosting</strong></td>
+            <td>GitHub</td>
+            <td>GitHub stores the repo, supports private work-in-progress, and helps turn finished projects into a portfolio.</td>
+          </tr>
+          <tr>
+            <td><strong>Cloud coding</strong></td>
+            <td>GitHub Codespaces</td>
+            <td>Codespaces provides a Linux-based browser workspace where I can edit files and use the terminal.</td>
+          </tr>
+          <tr>
+            <td><strong>Domain and DNS</strong></td>
+            <td>Cloudflare Registrar and Cloudflare DNS</td>
+            <td>I used Cloudflare to register the domain, manage DNS, and keep the setup simple.</td>
+          </tr>
+          <tr>
+            <td><strong>Hosting</strong></td>
+            <td>Cloudflare Pages</td>
+            <td>Cloudflare Pages deploys the static site from the GitHub repo and serves it on Cloudflare’s network.</td>
+          </tr>
+          <tr>
+            <td><strong>Learning assistant</strong></td>
+            <td>AI</td>
+            <td>AI helped with planning, drafting, debugging, explaining, reviewing, and organizing.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="cloudflare">
+      <h2>Why Cloudflare deserves its own shoutout</h2>
+      <p class="section-intro">
+        Cloudflare made this project feel realistic without making it complicated.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">What I used</span>
+          <h3>Cloudflare Pages</h3>
+          <p>
+            I use Cloudflare Pages to host the static site. The workflow is simple:
+            push changes to GitHub, let Cloudflare deploy them, and then check the live site.
+          </p>
+          <p>
+            That is a huge win for students because it connects real web development habits:
+            Git commits, GitHub repos, deployment history, DNS, HTTPS, and a public website.
+          </p>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Domain</span>
+          <h3>Affordable domain registration</h3>
+          <p>
+            I registered the domain through Cloudflare for about $10 per year. Exact prices depend on the domain ending,
+            but Cloudflare’s main idea is at-cost domain registration and renewal instead of surprise markups.
+          </p>
+          <p>
+            For a student project, that matters. A real domain makes the project feel real.
+          </p>
+        </article>
+      </div>
+
+      <div class="action-item">
+        <strong>Related guide:</strong> Cloudflare deserves a dedicated guide.
+        Read the <a href="../../guides/cloudflare/">Cloudflare Pages Guide</a>.
+      </div>
+    </section>
+
+    <section>
+      <h2>Folder structure</h2>
+      <p class="section-intro">
+        The site is organized so each section has a clear purpose.
+      </p>
+
+      <div class="code-card">
+<pre><code>.
+├── index.html
+├── assets/
+│   ├── site.css
+│   ├── launchshell-logo-horizontial.png
+│   └── ...
+├── guides/
+│   ├── git-and-github/
+│   ├── github-codespace/
+│   ├── linux-terminal-intro/
+│   └── ...
+├── projects/
+│   ├── build-this-site/
+│   ├── eight-bit-computer/
+│   └── ...
+└── resources/
+    └── index.html</code></pre>
+      </div>
+
+      <div class="guide-note">
+        <strong>Rule:</strong> Guides are LaunchShell-written how-to pages. Resources are outside tools, free offerings,
+        student discounts, and learning platforms. Projects are real builds and portfolio work.
+      </div>
+    </section>
+
+    <section>
+      <h2>The build process</h2>
+      <p class="section-intro">
+        The workflow follows the same LaunchShell method used across the site.
+      </p>
+
+      <div class="method">
+        <div class="method-step">
+          <span>01</span>
+          <h3>Build it</h3>
+          <p>Create the page, add the structure, write the content, and connect the assets.</p>
+        </div>
+
+        <div class="method-step">
+          <span>02</span>
+          <h3>Back it up</h3>
+          <p>Commit working changes with Git before making risky edits.</p>
+        </div>
+
+        <div class="method-step">
+          <span>03</span>
+          <h3>Break it safely</h3>
+          <p>Try new layouts, move folders, change links, and test what fails.</p>
+        </div>
+
+        <div class="method-step">
+          <span>04</span>
+          <h3>Fix and explain</h3>
+          <p>Use the errors to understand paths, CSS, deployment, browser behavior, and Git history.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Problems I had to solve</h2>
+      <p class="section-intro">
+        A simple static site still teaches real technical lessons.
+      </p>
+
+      <div class="flow">
+        <article class="flow-step">
+          <span>01</span>
+          <h3>Relative paths</h3>
+          <p>Pages inside folders need different asset paths, like <code>../../assets/site.css</code>.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>02</span>
+          <h3>Folder strategy</h3>
+          <p>Guides, resources, and projects needed different meanings so the site stayed organized.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>03</span>
+          <h3>Image cleanup</h3>
+          <p>Logos and graphics needed to look clean on the site, not like copied previews.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>04</span>
+          <h3>Deployment</h3>
+          <p>Cloudflare Pages made deployment simple, but I still had to understand Git, paths, DNS, and site structure.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="ai">
+      <h2>How AI helped</h2>
+      <p class="section-intro">
+        AI was useful because I stayed involved. I asked questions, tested the output, changed the direction,
+        fixed mistakes, and made final decisions.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag green">Planning</span>
+          <h3>Turning rough ideas into structure</h3>
+          <p>
+            AI helped turn rough notes into page outlines, sections, checklists, and beginner-friendly explanations.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Writing</span>
+          <h3>Explaining things more clearly</h3>
+          <p>
+            AI helped rewrite technical ideas in plain English so a new student could understand them.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Review</span>
+          <h3>Checking for sensitive or unsafe content</h3>
+          <p>
+            AI helped review pages, code, and repo content for secrets, hardcoded values, confusing wording, and risky publishing mistakes.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>AI as a data cleanup tool</h2>
+      <p class="section-intro">
+        One of the most practical uses of AI is turning messy human information into structured data.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">Real example</span>
+          <h3>Recipe App JSON files</h3>
+          <p>
+            For the Recipe App, recipes came from index cards, magazine clippings, old notes, text messages,
+            family recipes, and online references. None of those formats matched.
+          </p>
+          <p>
+            AI helped normalize that messy information into consistent JSON records that the app could read,
+            search, display, and organize.
+          </p>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Important</span>
+          <h3>AI did not remove review</h3>
+          <p>
+            I still had to check ingredients, review steps, fix mistakes, choose the JSON structure,
+            test the data in the app, and make sure the recipe made sense.
+          </p>
+          <p>
+            AI made formatting and cleanup faster, but I was still responsible for the final result.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Safe AI rules for this project</h2>
+      <p class="section-intro">
+        AI is useful, but it has to be used carefully.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag">Verify</span>
+          <h3>Test everything</h3>
+          <p>
+            AI can produce confident wrong answers. I still had to run the code, open the page, check the links, and inspect the result.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Protect</span>
+          <h3>Do not paste secrets</h3>
+          <p>
+            Passwords, API keys, tokens, private files, SSH keys, and sensitive logs do not belong in AI prompts.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Own it</span>
+          <h3>Understand the final result</h3>
+          <p>
+            The final project is my responsibility. AI can help, but I need to explain what was built and why it works.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>What this project demonstrates</h2>
+      <p class="section-intro">
+        This site is more than a homepage. It demonstrates a complete beginner-friendly web workflow.
+      </p>
+
+      <div class="flow three">
+        <article class="flow-step">
+          <span>01</span>
+          <h3>Static web fundamentals</h3>
+          <p>HTML, CSS, assets, pages, links, browser testing, and clean folder structure.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>02</span>
+          <h3>Real deployment</h3>
+          <p>GitHub repository, Cloudflare Pages deployment, domain, DNS, and HTTPS.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>03</span>
+          <h3>AI-assisted learning</h3>
+          <p>Using AI to ask better questions, organize ideas, review work, and learn faster without giving up ownership.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Final lesson</h2>
+      <div class="callout">
+        <p>
+          LaunchShell.org was built to prove a simple idea: students can learn real technical skills by building real things.
+          Git makes the work safer, Cloudflare makes the site real, and AI can help turn curiosity into progress when the student stays in control.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© 2026 LaunchShell</div>
+    <div>Student-built project guides for Linux, cloud, electronics, and cybersecurity.</div>
+  </footer>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device
