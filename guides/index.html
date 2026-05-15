@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Guides | LaunchShell</title>
+  <meta
+    name="description"
+    content="LaunchShell guides for Linux terminal basics, SSH, cloud VPS setup, and beginner-friendly server workflows."
+  />
+
+  <link rel="icon" href="../assets/launchshell-logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="../assets/site.css" />
+</head>
+
+<body class="resources-page">
+  <header>
+    <a href="../" aria-label="LaunchShell home">
+      <img src="../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../projects/">Projects</a>
+      <a href="../guides/">Guides</a>
+      <a href="../resources/">Resources</a>
+      <a href="../guides/linux-terminal-intro/" class="status">Start Here</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">Guides</div>
+      <h1>Start small, then put it on a server.</h1>
+      <p>
+        These guides cover the practical setup work behind the projects: terminal basics,
+        SSH, cloud VPS setup, and the first server workflows students usually need.
+      </p>
+    </section>
+
+    <section>
+      <h2>Core guides</h2>
+      <p class="section-intro">
+        If this is new, start with Linux and SSH before jumping into cloud hosting or deployment.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag green">Start Here</span>
+          <h3>Linux Terminal Intro</h3>
+          <p>
+            Learn the basic commands, apt, files, SSH concepts, and why the terminal is the main way to control a server.
+          </p>
+          <p><a class="button" href="linux-terminal-intro/">Open guide</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Cloud</span>
+          <h3>AWS Free VPS Setup</h3>
+          <p>
+            Create a small disposable cloud server, connect with SSH, update Linux, harden access, and test a web server.
+          </p>
+          <p><a class="button" href="aws-free-vps/">Open guide</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Deploy</span>
+          <h3>Flask App on a Cheap Server</h3>
+          <p>
+            Use the project guide to build a simple Flask JSON app and deploy it with Gunicorn, Apache, systemd, DNS, and HTTPS.
+          </p>
+          <p><a class="button" href="../projects/cheap-server-web-app/">Open project guide</a></p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© 2026 LaunchShell</div>
+    <div>Student-built project guides for Linux, cloud, electronics, and cybersecurity.</div>
+  </footer>
+</body>
+</html>
