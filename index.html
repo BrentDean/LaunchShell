@@ -10,7 +10,7 @@
     content="LaunchShell is a student-built project journal and tutorial site for learning Linux, cloud computing, web servers, electronics, and safe cybersecurity fundamentals."
   />
 
-  <link rel="icon" href="assets/favicon.png" type="image/png" />
+  <link rel="icon" href="assets/launchshell-logo-icon.png" type="image/png" />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.launchshell.org/" />
@@ -23,315 +23,21 @@
   <meta name="twitter:description" content="Build it. Back it up. Break it. Learn why." />
   <meta name="twitter:image" content="https://www.launchshell.org/assets/social-preview.png" />
 
-  <style>
-    :root {
-      --bg: #f7f9fc;
-      --text: #061226;
-      --muted: #5f6f82;
-      --blue: #1263ff;
-      --blue-dark: #0747bd;
-      --dark: #061226;
-      --card: #ffffff;
-      --border: #dde5f0;
-      --soft: #eef4ff;
-      --green: #12c995;
-      --shadow: 0 18px 48px rgba(6, 18, 38, 0.08);
-    }
-
-    * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at 20% 0%, rgba(18, 99, 255, 0.12), transparent 34rem),
-        radial-gradient(circle at 90% 20%, rgba(18, 201, 149, 0.10), transparent 30rem),
-        var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    a { color: inherit; }
-
-    header {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 28px 22px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 24px;
-    }
-
-    .logo {
-      height: 52px;
-      width: auto;
-      display: block;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      color: var(--muted);
-      font-size: 0.95rem;
-      font-weight: 700;
-    }
-
-    nav a {
-      text-decoration: none;
-    }
-
-    nav a:hover { color: var(--blue); }
-
-    .status {
-      color: var(--blue-dark);
-      background: var(--soft);
-      border: 1px solid #cfe0ff;
-      padding: 8px 14px;
-      border-radius: 999px;
-      font-weight: 900;
-      white-space: nowrap;
-    }
-
-    main {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 36px 22px 86px;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.88fr);
-      gap: 46px;
-      align-items: center;
-      padding: 56px 0 74px;
-    }
-
-    .eyebrow {
-      color: var(--blue);
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 0.85rem;
-      margin-bottom: 16px;
-    }
-
-    h1 {
-      margin: 0 0 24px;
-      font-size: clamp(2.7rem, 6vw, 5.4rem);
-      line-height: 0.98;
-      letter-spacing: -0.065em;
-      max-width: 780px;
-    }
-
-    .hero p {
-      max-width: 710px;
-      color: var(--muted);
-      font-size: 1.18rem;
-      margin: 0 0 20px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 28px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 12px 18px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 900;
-      border: 1px solid var(--border);
-      background: white;
-      color: var(--text);
-    }
-
-    .button.primary {
-      background: var(--blue);
-      color: white;
-      border-color: var(--blue);
-    }
-
-    .hero-card {
-      border-radius: 28px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: white;
-      box-shadow: var(--shadow);
-    }
-
-    .hero-card img {
-      width: 100%;
-      height: 430px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .caption {
-      padding: 16px 18px;
-      color: var(--muted);
-      font-size: 0.95rem;
-      border-top: 1px solid var(--border);
-      background: white;
-    }
-
-    section { margin-top: 64px; }
-
-    h2 {
-      margin: 0 0 12px;
-      font-size: clamp(1.85rem, 3vw, 2.8rem);
-      line-height: 1.1;
-      letter-spacing: -0.04em;
-    }
-
-    .section-intro {
-      max-width: 790px;
-      color: var(--muted);
-      margin: 0 0 28px;
-      font-size: 1.05rem;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-
-    .card img {
-      width: 100%;
-      height: 210px;
-      object-fit: cover;
-      display: block;
-      background: #dfe7f2;
-    }
-
-    .card-body { padding: 22px; }
-
-    .card h3 {
-      margin: 0 0 8px;
-      font-size: 1.25rem;
-      letter-spacing: -0.02em;
-    }
-
-    .card p { margin: 0; color: var(--muted); }
-
-    .method {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-    }
-
-    .method-step {
-      background: var(--dark);
-      color: white;
-      border-radius: 18px;
-      padding: 22px;
-      min-height: 190px;
-    }
-
-    .method-step span {
-      display: block;
-      color: #8fb7ff;
-      font-weight: 900;
-      margin-bottom: 8px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    }
-
-    .method-step h3 {
-      margin: 0 0 8px;
-      font-size: 1.12rem;
-    }
-
-    .method-step p {
-      margin: 0;
-      color: #c9d6e7;
-      font-size: 0.95rem;
-    }
-
-    .coming {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 30px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 26px;
-      align-items: start;
-      box-shadow: var(--shadow);
-    }
-
-    .coming h3 { margin-top: 0; }
-
-    .coming ul {
-      margin: 0;
-      padding-left: 22px;
-      color: var(--muted);
-    }
-
-    .coming li { margin-bottom: 8px; }
-
-    footer {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 32px 22px;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 0.95rem;
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    @media (max-width: 920px) {
-      header {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      nav { flex-wrap: wrap; }
-
-      .hero {
-        grid-template-columns: 1fr;
-        padding-top: 24px;
-      }
-
-      .grid { grid-template-columns: 1fr; }
-
-      .method { grid-template-columns: 1fr; }
-
-      .coming { grid-template-columns: 1fr; }
-
-      .hero-card img { height: 500px; }
-    }
-  </style>
+  <link rel="stylesheet" href="assets/site.css" />
 </head>
 
-<body>
+<body class="home-page">
   <header>
-    <img src="assets/launchshell-logo-horizontal.webp" alt="LaunchShell logo" class="logo" />
+    <img src="assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
 
     <nav aria-label="Main navigation">
-      <a href="#projects">Projects</a>
+      <a href="projects/">Projects</a>
       <a href="#method">Method</a>
       <a href="#tools">Tools</a>
+      <a href="guides/linux-terminal-intro/">Linux Terminal</a>
+      <a href="guides/aws-free-vps/">AWS VPS</a>
+      <a href="projects/cheap-server-web-app/">Web App</a>
+      <a href="resources/">Resources</a>
       <a href="#coming-soon" class="status">Coming Soon</a>
     </nav>
   </header>
@@ -354,12 +60,13 @@
         </p>
 
         <div class="hero-actions">
-          <a class="button primary" href="#projects">Preview the projects</a>
+          <a class="button primary" href="projects/">Preview the projects</a>
           <a class="button" href="#method">See the method</a>
         </div>
       </div>
 
-      <div class="hero-card">
+      <div class="hero-card linked-card">
+        <a class="card-link" href="guides/aws-free-vps/" aria-label="Open the AWS Free VPS setup guide"></a>
         <img src="assets/vps-checklist-hero-small.webp" alt="VPS Checklist" />
         <div class="caption">A beginner-friendly guide for taking a fresh cloud server from empty VPS to a safer, working web server.
 
@@ -375,14 +82,16 @@ This checklist covers the real setup steps: choosing a provider, creating the se
       </p>
 
       <div class="grid">
-        <article class="card">
+        <article class="card linked-card">
+          <a class="card-link" href="projects/cheap-server-web-app/" aria-label="Build this kind of Seed App"></a>
           <img src="assets/seed-app.svg" alt="Seed App project graphic" />
           <div class="card-body">
             <h3>Seed App</h3>
             <p>
-              A Flask web app project for learning routes, templates, JSON data, Git,
+              The Flask app I host on LaunchShell.com for learning routes, templates, JSON data, Git,
               deployment, Nginx, Gunicorn, systemd, and server troubleshooting.
             </p>
+            <a class="button" href="projects/cheap-server-web-app/">Build this kind of app</a>
           </div>
         </article>
 
@@ -405,6 +114,19 @@ This checklist covers the real setup steps: choosing a provider, creating the se
               A meta-project showing how LaunchShell itself was created, versioned, deployed,
               backed up, tested, broken, fixed, and improved over time.
             </p>
+          </div>
+        </article>
+
+        <article class="card linked-card">
+          <a class="card-link" href="projects/tpot-honeynet/" aria-label="Open the T-Pot Honeynet project"></a>
+          <img src="assets/vps-server.svg" alt="Honeynet project graphic" />
+          <div class="card-body">
+            <h3>T-Pot Honeynet</h3>
+            <p>
+              An advanced Networking Protocols extension project using a disposable VPS honeynet,
+              T-Pot dashboards, evidence handling, and safe shutdown.
+            </p>
+            <a class="button" href="projects/tpot-honeynet/">Open the project</a>
           </div>
         </article>
       </div>
@@ -460,6 +182,7 @@ This checklist covers the real setup steps: choosing a provider, creating the se
               Small Linux machines are useful for learning SSH, services, networking,
               automation, sensors, and home lab basics.
             </p>
+            <a class="button" href="guides/linux-terminal-intro/">Start with the terminal</a>
           </div>
         </article>
 
@@ -482,6 +205,7 @@ This checklist covers the real setup steps: choosing a provider, creating the se
               A small cloud server can teach Linux administration, DNS, firewalls,
               HTTPS, logs, backups, and deployment.
             </p>
+            <a class="button" href="guides/aws-free-vps/">Read the AWS setup</a>
           </div>
         </article>
       </div>
@@ -500,12 +224,14 @@ This checklist covers the real setup steps: choosing a provider, creating the se
         </div>
 
         <ul>
-          <li>Step-by-step Seed App build guide</li>
+          <li><a href="projects/cheap-server-web-app/">Build and deploy a simple Flask JSON app</a></li>
           <li>8-bit CPU project notes and lessons learned</li>
+          <li><a href="projects/tpot-honeynet/">T-Pot honeynet setup and dashboard monitoring</a></li>
           <li>How to build and deploy this site</li>
           <li>Raspberry Pi beginner project path</li>
+          <li><a href="guides/linux-terminal-intro/">Linux terminal intro for beginners</a></li>
           <li>GitHub Codespaces setup for students</li>
-          <li>VPS web server setup from scratch</li>
+          <li><a href="guides/aws-free-vps/">AWS free VPS setup with a student account</a></li>
           <li>Free and low-cost student resources</li>
           <li>Backup, snapshot, and restore workflows</li>
         </ul>

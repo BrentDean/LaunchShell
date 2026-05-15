@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Projects | LaunchShell</title>
+  <meta
+    name="description"
+    content="LaunchShell project guides for Flask web apps, honeynet labs, cloud servers, Linux, deployment, and practical technical portfolio work."
+  />
+
+  <link rel="icon" href="../assets/launchshell-logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="../assets/site.css" />
+</head>
+
+<body class="resources-page">
+  <header>
+    <a href="../" aria-label="LaunchShell home">
+      <img src="../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../projects/" class="status">Projects</a>
+      <a href="../guides/linux-terminal-intro/">Linux Terminal</a>
+      <a href="../guides/aws-free-vps/">AWS VPS</a>
+      <a href="../resources/">Resources</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">Projects</div>
+      <h1>Practical builds with real deployment work.</h1>
+      <p>
+        These projects are meant to show the full path: build something useful, deploy it,
+        monitor it, troubleshoot it, document it, and keep the public version safe to share.
+      </p>
+    </section>
+
+    <section>
+      <h2>Project guides</h2>
+      <p class="section-intro">
+        Start with the web app project for a medium build, or the T-Pot honeynet for a more advanced networking and security lab.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag green">Medium</span>
+          <h3>Seed App / Flask JSON App</h3>
+          <p>
+            Build and deploy a simple Flask app backed by JSON files on a cheap server with Gunicorn,
+            Apache, systemd, DNS, HTTPS, logs, and backups.
+          </p>
+          <p><a class="button" href="cheap-server-web-app/">Open project</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Advanced</span>
+          <h3>T-Pot Honeynet</h3>
+          <p>
+            Set up a disposable T-Pot honeynet, monitor the dashboards, handle screenshots and evidence,
+            summarize findings safely, and shut the lab down cleanly.
+          </p>
+          <p><a class="button" href="tpot-honeynet/">Open project</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Coming next</span>
+          <h3>8-Bit CPU</h3>
+          <p>
+            Hardware notes for binary, registers, clock signals, control lines, debugging,
+            and how small computer systems actually compute.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Helpful prerequisites</h2>
+      <div class="path">
+        <div class="path-row">
+          <div class="level">Beginner</div>
+          <div><a href="../guides/linux-terminal-intro/">Linux terminal intro</a></div>
+          <div class="tools">Commands, apt, files, SSH basics, and headless server control.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">Beginner</div>
+          <div><a href="../guides/aws-free-vps/">Cloud VPS setup</a></div>
+          <div class="tools">Create a cheap or free-tier VPS, connect with SSH, and harden the basics.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© 2026 LaunchShell</div>
+    <div>Student-built project guides for Linux, cloud, electronics, and cybersecurity.</div>
+  </footer>
+</body>
+</html>

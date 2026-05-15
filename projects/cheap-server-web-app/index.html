@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LaunchShell | Build a Simple Web App on a Cheap Server</title>
+  <meta
+    name="description"
+    content="A beginner-friendly LaunchShell guide for building and deploying a simple Flask JSON-backed app on a cheap cloud server using Gunicorn, Apache, systemd, DNS, and HTTPS."
+  />
+
+  <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+
+  <style>
+    .guide-note {
+      margin-top: 22px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: var(--soft);
+      border: 1px solid #cfe0ff;
+      color: var(--muted);
+    }
+
+    .guide-note strong { color: var(--text); }
+
+    .difficulty {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--green-soft);
+      border: 1px solid #c5f2e5;
+      color: #08795d;
+      font-weight: 900;
+      font-size: 0.88rem;
+    }
+
+    .action-item {
+      margin: 14px 0 0;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: var(--green-soft);
+      border: 1px solid #c5f2e5;
+      color: var(--muted);
+    }
+
+    .action-item strong { color: var(--text); }
+
+    .action-item a,
+    .docs-list a,
+    .inline-link {
+      color: var(--blue-dark);
+      font-weight: 900;
+    }
+
+    .quick-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .step-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: var(--blue);
+      color: white;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .step-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .step-card p,
+    .step-card li {
+      color: var(--muted);
+    }
+
+    .simple-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 18px;
+      background: white;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .simple-table th,
+    .simple-table td {
+      padding: 15px 16px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .simple-table th {
+      background: var(--soft);
+      color: var(--text);
+    }
+
+    .simple-table tr:last-child td { border-bottom: 0; }
+
+    .code-block {
+      margin: 14px 0 0;
+      padding: 16px;
+      overflow-x: auto;
+      border-radius: 14px;
+      background: #061226;
+      color: #d8e6ff;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+    .idea-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .idea-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .idea-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.08rem;
+    }
+
+    .idea-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 920px) {
+      .quick-list,
+      .idea-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body class="resources-page">
+  <header>
+    <a href="../../" aria-label="LaunchShell home">
+      <img src="../../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../">Projects</a>
+      <a href="../../guides/linux-terminal-intro/">Linux Terminal</a>
+      <a href="../../guides/aws-free-vps/">AWS VPS</a>
+      <a href="../../resources/">Resources</a>
+      <a href="#docs" class="status">Docs</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">Flask • JSON • Gunicorn • Apache • systemd</div>
+      <h1>So now you have a cloud server. What do you put on it?</h1>
+
+      <p>
+        A good next project is a simple <strong>____ App</strong>. Replace the blank with something you actually care about:
+        Recipe App, Seed App, Movie App, Music App, Book App, Tool App, or anything else you want to organize.
+      </p>
+
+      <p>
+        My real example is the Seed App hosted on LaunchShell.com. It started as a practical way to track seeds,
+        trays, grow bags, planting dates, weather, and garden notes.
+      </p>
+
+      <p>
+        This is a medium-hardness project. It is doable on a free-tier server or a cheap VPS around $5 per month.
+        I use Hetzner for this kind of practical Linux VPS work, but the same pattern applies on other providers.
+      </p>
+
+      <div class="difficulty">Difficulty: Medium</div>
+
+      <div class="hero-actions">
+        <a class="button primary" href="#steps">Build the app</a>
+        <a class="button" href="#deploy">Deploy it</a>
+        <a class="button" href="#docs">Official docs</a>
+      </div>
+
+      <div class="guide-note">
+        <strong>Prerequisite:</strong> This guide assumes I already have a cheap cloud server with SSH working.
+        New to that part? Start with the <a class="inline-link" href="../../guides/aws-free-vps/">AWS Free Tier Cloud VPS Guide</a>.
+      </div>
+    </section>
+
+    <section>
+      <h2>The idea</h2>
+      <p class="section-intro">
+        The first app does not need accounts, payments, comments, AI, or a complicated database.
+        It just needs to solve one real problem for me.
+      </p>
+
+      <div class="idea-grid">
+        <article class="idea-card">
+          <h3>Recipe App</h3>
+          <p>Save recipes, ingredients, notes, ratings, photos, and cooking changes.</p>
+        </article>
+
+        <article class="idea-card">
+          <h3>Seed App</h3>
+          <p>Track seeds, trays, grow bags, planting dates, sprouting, and weather.</p>
+        </article>
+
+        <article class="idea-card">
+          <h3>Movie App</h3>
+          <p>Track movie files, size, genre, watched status, backup priority, and drive space.</p>
+        </article>
+
+        <article class="idea-card">
+          <h3>Music App</h3>
+          <p>Track albums, artists, formats, tags, missing artwork, and files to clean up.</p>
+        </article>
+      </div>
+
+      <div class="guide-note">
+        <strong>The trick:</strong> The project becomes easier when the app is based on data I already understand.
+        A boring tutorial app is easy to abandon. My Seed App became useful immediately because LaunchShell.com
+        hosts the real garden workflow I actually use.
+      </div>
+    </section>
+
+    <section>
+      <h2>What this project teaches</h2>
+      <p class="section-intro">
+        This is where a cloud server turns into a real portfolio project.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag">App Development</span>
+          <h3>Flask and templates</h3>
+          <p>
+            I create routes, render HTML with Jinja templates, serve static CSS and images, and handle forms.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Simple Storage</span>
+          <h3>JSON-backed data</h3>
+          <p>
+            Instead of starting with a database, I store records in JSON files so the data is easy to inspect,
+            copy, back up, and move.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Server Admin</span>
+          <h3>Real deployment</h3>
+          <p>
+            I run the app with Gunicorn, keep it alive with systemd, put Apache in front, point DNS at it,
+            and add HTTPS.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>The simple version</h2>
+      <p class="section-intro">
+        This is the whole project path in one list.
+      </p>
+
+      <div class="path">
+        <div class="path-row">
+          <div class="level">01</div>
+          <div><strong>Pick the app idea.</strong></div>
+          <div class="tools">Recipe, seed, movie, music, book, tool inventory, or anything personal.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">02</div>
+          <div><strong>Design the data first.</strong></div>
+          <div class="tools">Decide what one item looks like before building screens.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">03</div>
+          <div><strong>Make a tiny Flask app.</strong></div>
+          <div class="tools">One list page, one detail page, one add/edit form.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">04</div>
+          <div><strong>Store data in JSON.</strong></div>
+          <div class="tools">Simple files under <code>data/</code> before moving to a database later.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">05</div>
+          <div><strong>Run it locally.</strong></div>
+          <div class="tools">Use a Python virtual environment and test in the browser.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">06</div>
+          <div><strong>Deploy it to the server.</strong></div>
+          <div class="tools">Git clone, install requirements, test Gunicorn, then create a systemd service.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">07</div>
+          <div><strong>Put Apache in front.</strong></div>
+          <div class="tools">Public web traffic goes to Apache, then Apache proxies to Flask on localhost.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">08</div>
+          <div><strong>Add DNS, HTTPS, logs, and backups.</strong></div>
+          <div class="tools">Make it public, make it safer, and make it recoverable.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="steps">
+      <h2>Step-by-step build guide</h2>
+      <p class="section-intro">
+        This is the app-building part before the real deployment setup.
+      </p>
+
+      <div class="quick-list">
+        <article class="step-card">
+          <div class="step-number">1</div>
+          <h3>I picked a real app idea</h3>
+          <p>
+            I chose one small thing to organize. The best beginner app is personal and boring in a useful way.
+          </p>
+          <ul>
+            <li><strong>Recipe App:</strong> meals, ingredients, instructions, notes</li>
+            <li><strong>Movie App:</strong> titles, file sizes, drives, watched status</li>
+            <li><strong>Music App:</strong> albums, artists, formats, cleanup notes</li>
+            <li><strong>Seed App:</strong> varieties, planting dates, trays, grow bags</li>
+          </ul>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">2</div>
+          <h3>I designed one item first</h3>
+          <p>
+            Before writing routes, I wrote one example JSON item. That kept the project from turning into chaos.
+          </p>
+<pre class="code-block"><code>{
+  "id": "example-001",
+  "title": "Example Item",
+  "category": "Personal",
+  "notes": "What I want to remember",
+  "rating": 5,
+  "tags": ["favorite", "test"]
+}</code></pre>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">3</div>
+          <h3>I used a simple project structure</h3>
+          <p>
+            This layout is enough for a first real Flask app.
+          </p>
+<pre class="code-block"><code>blank-app/
+├── app.py
+├── requirements.txt
+├── data/
+│   └── items.json
+├── static/
+│   └── style.css
+└── templates/
+    ├── index.html
+    ├── detail.html
+    └── form.html</code></pre>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">4</div>
+          <h3>I created a Python virtual environment</h3>
+          <p>
+            A virtual environment keeps this app's Python packages separate from the rest of the system.
+          </p>
+          <div class="action-item">
+            <strong>Action item:</strong> New to Linux? Start with the <a href="../../guides/linux-terminal-intro/">Linux Terminal Intro Guide</a> before running these commands.
+          </div>
+<pre class="code-block"><code>cd blank-app
+python3 -m venv .venv
+source .venv/bin/activate
+pip install Flask gunicorn
+pip freeze &gt; requirements.txt</code></pre>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">5</div>
+          <h3>I wrote the smallest useful Flask app</h3>
+          <p>
+            The first version only needs to load JSON and show it in the browser.
+          </p>
+<pre class="code-block"><code>from flask import Flask, render_template
+import json
+import os
+
+app = Flask(__name__)
+DATA_FILE = os.path.join(app.root_path, "data", "items.json")
+
+def load_items():
+    with open(DATA_FILE) as f:
+        return json.load(f)
+
+@app.route("/")
+def index():
+    return render_template("index.html", items=load_items())
+
+if __name__ == "__main__":
+    app.run(debug=True)</code></pre>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">6</div>
+          <h3>I ran it locally first</h3>
+          <p>
+            I tested the app before touching Apache, DNS, HTTPS, or systemd.
+          </p>
+<pre class="code-block"><code>source .venv/bin/activate
+flask --app app run</code></pre>
+          <p>
+            Then I opened <code>http://127.0.0.1:5000</code> in the browser.
+          </p>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">7</div>
+          <h3>I added forms only after the list worked</h3>
+          <p>
+            The order matters. First show data. Then add detail pages. Then add create/edit forms.
+          </p>
+          <ul>
+            <li>List page: show all items</li>
+            <li>Detail page: show one item</li>
+            <li>Add form: create a new item</li>
+            <li>Edit form: update an item</li>
+            <li>Save function: write JSON back to disk</li>
+          </ul>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">8</div>
+          <h3>I added basic password protection</h3>
+          <p>
+            For a personal app, I do not want the whole internet editing my recipes, movies, music, or seed collection.
+          </p>
+          <p>
+            The password should come from an environment variable, not from code committed to GitHub.
+          </p>
+<pre class="code-block"><code>APP_PASSWORD=change-this
+SECRET_KEY=generate-a-long-random-value</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <section id="deploy">
+      <h2>Deploy it on the cheap server</h2>
+      <p class="section-intro">
+        This is the part that makes it feel like a real web app instead of a local Python script.
+      </p>
+
+      <div class="quick-list">
+        <article class="step-card">
+          <div class="step-number">9</div>
+          <h3>I installed server packages</h3>
+          <p>
+            On the cloud server, I installed Python tools, Apache, Git, and basic security packages.
+          </p>
+<pre class="code-block"><code>sudo apt update
+sudo apt install -y python3-venv python3-pip apache2 git ufw fail2ban</code></pre>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">10</div>
+          <h3>I copied the app to the server</h3>
+          <p>
+            The cleanest version is to push the project to GitHub, then clone it on the server.
+          </p>
+<pre class="code-block"><code>mkdir -p ~/apps
+cd ~/apps
+git clone https://github.com/YOURNAME/blank-app.git
+cd blank-app</code></pre>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">11</div>
+          <h3>I installed the app dependencies</h3>
+          <p>
+            The server gets its own virtual environment.
+          </p>
+<pre class="code-block"><code>python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt</code></pre>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">12</div>
+          <h3>I tested Gunicorn</h3>
+          <p>
+            Gunicorn runs the Flask app as a real application server. I bound it to localhost so it was not directly exposed to the internet.
+          </p>
+<pre class="code-block"><code>.venv/bin/gunicorn -w 2 -b 127.0.0.1:5000 app:app</code></pre>
+          <p>
+            In another SSH window, I tested:
+          </p>
+<pre class="code-block"><code>curl http://127.0.0.1:5000</code></pre>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">13</div>
+          <h3>I created an environment file</h3>
+          <p>
+            Secrets do not belong in the Git repository.
+          </p>
+<pre class="code-block"><code>sudo nano /etc/blank-app.env</code></pre>
+<pre class="code-block"><code>SECRET_KEY=replace-with-a-long-random-string
+APP_PASSWORD=replace-with-a-real-password
+SESSION_COOKIE_SECURE=1</code></pre>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">14</div>
+          <h3>I created a systemd service</h3>
+          <p>
+            systemd keeps the app running, starts it on boot, and gives me logs through <code>journalctl</code>.
+          </p>
+<pre class="code-block"><code>sudo nano /etc/systemd/system/blank-app.service</code></pre>
+<pre class="code-block"><code>[Unit]
+Description=Blank Flask App
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/apps/blank-app
+EnvironmentFile=/etc/blank-app.env
+ExecStart=/home/ubuntu/apps/blank-app/.venv/bin/gunicorn -w 2 -b 127.0.0.1:5000 app:app
+Restart=always
+
+[Install]
+WantedBy=multi-user.target</code></pre>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">15</div>
+          <h3>I enabled the service</h3>
+          <p>
+            This starts the app and makes it come back after reboot.
+          </p>
+<pre class="code-block"><code>sudo systemctl daemon-reload
+sudo systemctl enable --now blank-app
+sudo systemctl status blank-app --no-pager</code></pre>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">16</div>
+          <h3>I put Apache in front</h3>
+          <p>
+            Apache handles public web traffic. Flask stays private on <code>127.0.0.1:5000</code>.
+          </p>
+<pre class="code-block"><code>sudo a2enmod proxy proxy_http headers
+sudo nano /etc/apache2/sites-available/blank-app.conf</code></pre>
+<pre class="code-block"><code>&lt;VirtualHost *:80&gt;
+    ServerName app.example.com
+
+    ProxyPreserveHost On
+    ProxyPass / http://127.0.0.1:5000/
+    ProxyPassReverse / http://127.0.0.1:5000/
+
+    ErrorLog ${APACHE_LOG_DIR}/blank-app-error.log
+    CustomLog ${APACHE_LOG_DIR}/blank-app-access.log combined
+&lt;/VirtualHost&gt;</code></pre>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">17</div>
+          <h3>I enabled the Apache site</h3>
+          <p>
+            Then I tested Apache before reloading it.
+          </p>
+<pre class="code-block"><code>sudo a2ensite blank-app.conf
+sudo apachectl configtest
+sudo systemctl reload apache2</code></pre>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">18</div>
+          <h3>I pointed DNS at the server</h3>
+          <p>
+            I created an <code>A</code> record for the app subdomain.
+          </p>
+<pre class="code-block"><code>Type: A
+Name: app
+Value: YOUR_SERVER_PUBLIC_IP
+Proxy: on, if using Cloudflare for web traffic</code></pre>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">19</div>
+          <h3>I added HTTPS</h3>
+          <p>
+            Once the domain reached the server over HTTP, I used Certbot.
+          </p>
+<pre class="code-block"><code>sudo apt install -y certbot python3-certbot-apache
+sudo certbot --apache -d app.example.com</code></pre>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">20</div>
+          <h3>I checked logs and backups</h3>
+          <p>
+            A web app is not finished until I know how to troubleshoot it and back it up.
+          </p>
+<pre class="code-block"><code>sudo journalctl -u blank-app -f
+sudo tail -f /var/log/apache2/blank-app-error.log
+tar -czf ~/blank-app-data-$(date +%F).tar.gz ~/apps/blank-app/data</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>What to keep generic</h2>
+      <p class="section-intro">
+        This is the reason I would call it a <strong>____ App</strong> guide instead of only a Seed App guide.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Part</th>
+            <th>Generic version</th>
+            <th>Examples</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Item name</td>
+            <td><code>item</code></td>
+            <td>recipe, seed, movie, album, book, tool</td>
+          </tr>
+          <tr>
+            <td>Data folder</td>
+            <td><code>data/items.json</code> or <code>data/items/</code></td>
+            <td><code>data/recipes/</code>, <code>data/movies/</code>, <code>data/albums/</code></td>
+          </tr>
+          <tr>
+            <td>List page</td>
+            <td>Show all items</td>
+            <td>Recipe list, movie library, seed catalog, music collection</td>
+          </tr>
+          <tr>
+            <td>Detail page</td>
+            <td>Show one item</td>
+            <td>One recipe, one movie, one album, one seed variety</td>
+          </tr>
+          <tr>
+            <td>Form</td>
+            <td>Add/edit item</td>
+            <td>Add recipe notes, update movie drive, edit seed planting info</td>
+          </tr>
+          <tr>
+            <td>Deployment</td>
+            <td>Same every time</td>
+            <td>Gunicorn, systemd, Apache, DNS, HTTPS</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Safety and scope</h2>
+      <p class="section-intro">
+        This is a good student project, personal tool, or portfolio demo. It is not a full production platform.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag green">Good for</span>
+          <h3>Personal apps</h3>
+          <p>
+            Recipe trackers, small collections, lab dashboards, planting notes, file inventories, and simple internal tools.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Be careful with</span>
+          <h3>User accounts</h3>
+          <p>
+            Do not turn this first version into a public multi-user app with sensitive data. That needs stronger authentication and a real security review.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Upgrade later</span>
+          <h3>Database</h3>
+          <p>
+            JSON is excellent for learning and easy backups. If the app grows, moving to SQLite or PostgreSQL is a natural next step.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>What to show in a portfolio</h2>
+      <p class="section-intro">
+        This project is not just "I made a Flask app." It shows the full path from code to server.
+      </p>
+
+      <div class="path">
+        <div class="path-row">
+          <div class="level">Code</div>
+          <div><strong>Flask routes, templates, forms, and static files</strong></div>
+          <div class="tools">Shows web development basics.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">Data</div>
+          <div><strong>JSON structure and backup strategy</strong></div>
+          <div class="tools">Shows persistence and operational thinking.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">Linux</div>
+          <div><strong>Virtual environment, Gunicorn, systemd</strong></div>
+          <div class="tools">Shows application hosting and service management.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">Network</div>
+          <div><strong>Apache reverse proxy, DNS, HTTPS</strong></div>
+          <div class="tools">Shows how public web traffic reaches a private local app process.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">Ops</div>
+          <div><strong>Logs, restarts, secrets, backups</strong></div>
+          <div class="tools">Shows how I keep the app running and recover when something breaks.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="docs">
+      <h2>Official docs and friendly references</h2>
+      <p class="section-intro">
+        These are the links I would keep open while building the app.
+      </p>
+
+      <div class="grid docs-list">
+        <article class="card">
+          <span class="tag">Build</span>
+          <h3>Flask and Python</h3>
+          <ul>
+            <li><a href="https://flask.palletsprojects.com/en/stable/quickstart/" rel="noopener">Flask Quickstart</a></li>
+            <li><a href="https://flask.palletsprojects.com/en/stable/installation/" rel="noopener">Flask Installation</a></li>
+            <li><a href="https://docs.python.org/3/tutorial/venv.html" rel="noopener">Python virtual environments</a></li>
+            <li><a href="https://code.visualstudio.com/docs/python/tutorial-flask" rel="noopener">VS Code Flask tutorial</a></li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag">Deploy</span>
+          <h3>Gunicorn, Apache, systemd</h3>
+          <ul>
+            <li><a href="https://flask.palletsprojects.com/en/stable/deploying/gunicorn/" rel="noopener">Flask docs: Gunicorn</a></li>
+            <li><a href="https://gunicorn.org/quickstart/" rel="noopener">Gunicorn Quickstart</a></li>
+            <li><a href="https://httpd.apache.org/docs/2.4/howto/reverse_proxy.html" rel="noopener">Apache reverse proxy guide</a></li>
+            <li><a href="https://www.freedesktop.org/software/systemd/man/systemd.service.html" rel="noopener">systemd service docs</a></li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Publish</span>
+          <h3>DNS and HTTPS</h3>
+          <ul>
+            <li><a href="https://developers.cloudflare.com/dns/manage-dns-records/" rel="noopener">Cloudflare DNS records</a></li>
+            <li><a href="https://developers.cloudflare.com/dns/proxy-status/" rel="noopener">Cloudflare proxy status</a></li>
+            <li><a href="https://certbot.eff.org/instructions" rel="noopener">Certbot instructions</a></li>
+            <li><a href="https://eff-certbot.readthedocs.io/en/stable/using.html" rel="noopener">Certbot user guide</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Final result</h2>
+      <div class="callout">
+        <p>
+          At the end, I have a real personal web app running on a cheap cloud server. LaunchShell.com hosts my Seed App,
+          and it has a public domain, HTTPS,
+          a Linux service, a reverse proxy, a backup plan, and data I actually care about. That is a much stronger project
+          than another throwaway tutorial.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© 2026 LaunchShell</div>
+    <div>Student-built project guides for Linux, cloud, electronics, and cybersecurity.</div>
+  </footer>
+</body>
+</html>
