@@ -81,6 +81,10 @@ main {
   padding: 36px 22px 86px;
 }
 
+.home-page main {
+  padding-top: 0;
+}
+
 .resources-page main {
   padding-top: 8px;
 }
@@ -98,6 +102,8 @@ main {
   grid-template-columns: minmax(0, 1fr) minmax(320px, 0.88fr);
   gap: 46px;
   align-items: center;
+  margin-top: 16px;
+  padding-top: 22px;
   padding-bottom: 74px;
 }
 
