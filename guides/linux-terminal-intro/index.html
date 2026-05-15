@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>LaunchShell | Linux Terminal Intro</title>
-  <meta
-    name="description"
-    content="A beginner-friendly LaunchShell guide to the Linux terminal, apt install, simple commands, open-source tools, and practical command-line wins."
-  />
+  <meta name="description"
+    content="A beginner-friendly LaunchShell guide to the Linux terminal, apt install, simple commands, open-source tools, and practical command-line wins." />
 
   <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
   <link rel="stylesheet" href="../../assets/site.css" />
@@ -186,6 +185,7 @@
     }
 
     @media (max-width: 920px) {
+
       .quick-list,
       .mini-grid {
         grid-template-columns: 1fr;
@@ -214,11 +214,13 @@
       <h1>New to Linux? Start here.</h1>
 
       <p>
-        The terminal looks intimidating at first, but the idea is simple: it is a text box where you ask the computer to do a job.
+        The terminal looks intimidating at first, but the idea is simple: it is a text box where you ask the computer to
+        do a job.
       </p>
 
       <p>
-        Want to rename every <code>.mp3</code> file in a folder, install PDF tools, check a server, find a file, or update Linux? The terminal is usually the fastest way to do it.
+        Want to rename every <code>.mp3</code> file in a folder, install PDF tools, check a server, find a file, or
+        update Linux? The terminal is usually the fastest way to do it.
       </p>
 
       <div class="hero-actions">
@@ -227,14 +229,16 @@
       </div>
 
       <div class="guide-note">
-        <strong>Goal:</strong> This guide is not about memorizing every Linux command. The goal is to get comfortable enough to copy, read, modify, and safely run basic commands.
+        <strong>Goal:</strong> This guide is not about memorizing every Linux command. The goal is to get comfortable
+        enough to copy, read, modify, and safely run basic commands.
       </div>
     </section>
 
     <section>
       <h2>Why the terminal is worth learning</h2>
       <p class="section-intro">
-        The terminal is useful because it turns repetitive computer work into one command. Once you understand the pattern, Linux starts to feel less like a mystery and more like a toolbox.
+        The terminal is useful because it turns repetitive computer work into one command. Once you understand the
+        pattern, Linux starts to feel less like a mystery and more like a toolbox.
       </p>
 
       <div class="grid">
@@ -250,7 +254,8 @@
           <span class="tag green">Open Source</span>
           <h3>Install real tools with apt</h3>
           <p>
-            On Ubuntu and Debian-based Linux, <code>apt install</code> feels like an open-source app store for terminal tools.
+            On Ubuntu and Debian-based Linux, <code>apt install</code> feels like an open-source app store for terminal
+            tools.
           </p>
         </article>
 
@@ -258,7 +263,8 @@
           <span class="tag">Servers</span>
           <h3>Control cloud machines</h3>
           <p>
-            Most cloud servers do not have a desktop. SSH and the terminal are how I update them, check logs, and fix problems.
+            Most cloud servers do not have a desktop. SSH and the terminal are how I update them, check logs, and fix
+            problems.
           </p>
         </article>
       </div>
@@ -359,7 +365,10 @@
       <div class="safe-box">
         <h3>Beginner rule</h3>
         <p>
-          Before running a command from the internet, look for three things: what command is being run, what file or folder it touches, and whether it uses <code>sudo</code>, <code>rm</code>, or <code>&gt;</code>. <code>sudo</code> asks for administrator power, <code>rm</code> deletes, and <code>&gt;</code> can overwrite a file.
+          Before running a command from the internet, look for three things: what command is being run, what file or
+          folder it touches, and whether it uses <code>sudo</code>, <code>rm</code>, or <code>&gt;</code>.
+          <code>sudo</code> asks for administrator power, <code>rm</code> deletes, and <code>&gt;</code> can overwrite a
+          file.
         </p>
       </div>
     </section>
@@ -367,7 +376,8 @@
     <section id="apt">
       <h2>Why <code>apt install</code> is the magic part</h2>
       <p class="section-intro">
-        On Ubuntu, Debian, Raspberry Pi OS, and many cloud servers, <code>apt</code> is how I install trusted software from the system repositories.
+        On Ubuntu, Debian, Raspberry Pi OS, and many cloud servers, <code>apt</code> is how I install trusted software
+        from the system repositories.
       </p>
 
       <div class="terminal-card">
@@ -383,7 +393,7 @@
           <p>
             This checks the current list of available packages.
           </p>
-<pre><code>sudo apt update</code></pre>
+          <pre><code>sudo apt update</code></pre>
         </article>
 
         <article class="step-card">
@@ -392,7 +402,7 @@
           <p>
             This installs the program and any dependencies it needs.
           </p>
-<pre><code>sudo apt install tree</code></pre>
+          <pre><code>sudo apt install tree</code></pre>
         </article>
 
         <article class="step-card">
@@ -401,7 +411,7 @@
           <p>
             This helps me find the package name before installing.
           </p>
-<pre><code>apt search pdf</code></pre>
+          <pre><code>apt search pdf</code></pre>
         </article>
 
         <article class="step-card">
@@ -410,7 +420,7 @@
           <p>
             This removes software I no longer need.
           </p>
-<pre><code>sudo apt remove tree</code></pre>
+          <pre><code>sudo apt remove tree</code></pre>
         </article>
       </div>
     </section>
@@ -418,7 +428,8 @@
     <section>
       <h2>Small projects that make the terminal click</h2>
       <p class="section-intro">
-        These are simple examples. The point is not to memorize them. The point is to see how one command can replace a lot of clicking.
+        These are simple examples. The point is not to memorize them. The point is to see how one command can replace a
+        lot of clicking.
       </p>
 
       <div class="quick-list">
@@ -431,11 +442,11 @@
           <p>
             First do a preview:
           </p>
-<pre><code>for f in *.mp3; do echo mv -- "$f" "${f// /_}"; done</code></pre>
+          <pre><code>for f in *.mp3; do echo mv -- "$f" "${f// /_}"; done</code></pre>
           <p>
             Then run it for real:
           </p>
-<pre><code>for f in *.mp3; do mv -- "$f" "${f// /_}"; done</code></pre>
+          <pre><code>for f in *.mp3; do mv -- "$f" "${f// /_}"; done</code></pre>
         </article>
 
         <article class="step-card">
@@ -444,12 +455,12 @@
           <p>
             Install free command-line tools for working with PDFs.
           </p>
-<pre><code>sudo apt update
+          <pre><code>sudo apt update
 sudo apt install poppler-utils qpdf img2pdf</code></pre>
           <p>
             Examples:
           </p>
-<pre><code>pdftotext notes.pdf notes.txt
+          <pre><code>pdftotext notes.pdf notes.txt
 pdfunite part1.pdf part2.pdf combined.pdf
 qpdf --split-pages big.pdf page-%03d.pdf</code></pre>
         </article>
@@ -460,11 +471,11 @@ qpdf --split-pages big.pdf page-%03d.pdf</code></pre>
           <p>
             This shows folder sizes in the current location.
           </p>
-<pre><code>du -h --max-depth=1 | sort -h</code></pre>
+          <pre><code>du -h --max-depth=1 | sort -h</code></pre>
           <p>
             A friendlier tool:
           </p>
-<pre><code>sudo apt install ncdu
+          <pre><code>sudo apt install ncdu
 ncdu</code></pre>
         </article>
 
@@ -474,7 +485,7 @@ ncdu</code></pre>
           <p>
             Install <code>ripgrep</code>, then search a folder fast.
           </p>
-<pre><code>sudo apt install ripgrep
+          <pre><code>sudo apt install ripgrep
 rg "password" .</code></pre>
         </article>
 
@@ -484,11 +495,11 @@ rg "password" .</code></pre>
           <p>
             This serves the current folder at port <code>8000</code> for local testing.
           </p>
-<pre><code>python3 -m http.server 8000</code></pre>
+          <pre><code>python3 -m http.server 8000</code></pre>
           <p>
             Then open:
           </p>
-<pre><code>http://localhost:8000</code></pre>
+          <pre><code>http://localhost:8000</code></pre>
         </article>
 
         <article class="step-card">
@@ -497,7 +508,7 @@ rg "password" .</code></pre>
           <p>
             This is a practical beginner toolkit.
           </p>
-<pre><code>sudo apt install curl wget git tree htop ncdu tldr ripgrep unzip</code></pre>
+          <pre><code>sudo apt install curl wget git tree htop ncdu tldr ripgrep unzip</code></pre>
         </article>
       </div>
     </section>
@@ -571,7 +582,8 @@ rg "password" .</code></pre>
         <div class="path-row">
           <div class="level">Day 1</div>
           <div><strong>Navigate files.</strong></div>
-          <div class="tools"><code>pwd</code>, <code>ls</code>, <code>cd</code>, <code>mkdir</code>, <code>touch</code></div>
+          <div class="tools"><code>pwd</code>, <code>ls</code>, <code>cd</code>, <code>mkdir</code>, <code>touch</code>
+          </div>
         </div>
         <div class="path-row">
           <div class="level">Day 2</div>
@@ -595,12 +607,285 @@ rg "password" .</code></pre>
         </div>
       </div>
     </section>
+    <section id="apt-tools">
+      <h2>The moment Linux starts to feel powerful: apt install</h2>
+      <p class="section-intro">
+        One of the first things that makes Linux feel different is how easy it is to install serious tools.
+        You do not need to search random websites, download sketchy installers, or click through setup wizards.
+        On Debian, Ubuntu, and many beginner-friendly Linux systems, you can install software from a trusted package
+        library with one command.
+      </p>
 
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">Simple idea</span>
+          <h3>apt is like an app store for the terminal</h3>
+          <p>
+            <code>apt</code> is a package manager. It knows where trusted software packages are stored,
+            what versions are available, and what extra dependencies are needed.
+          </p>
+          <p>
+            That means you can type a command like <code>sudo apt install nmap tcpdump vim</code>,
+            and Linux will download and install those tools for you.
+          </p>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Why students should care</span>
+          <h3>Real tools are one command away</h3>
+          <p>
+            Tools used for networking, coding, system monitoring, file management, compression,
+            web testing, and cybersecurity can often be installed directly from the terminal.
+          </p>
+          <p>
+            This is one reason Linux is so useful for students: it gives you fast access to professional tools
+            without needing a complicated setup.
+          </p>
+        </article>
+      </div>
+
+      <div class="code-card">
+        <pre><code>sudo apt update
+sudo apt install nmap openvpn vim tcpdump htop jq tree</code></pre>
+      </div>
+
+      <div class="guide-note">
+        <strong>Plain English:</strong> <code>sudo apt update</code> refreshes the list of available software.
+        <code>sudo apt install</code> installs the tools you name after it.
+      </div>
+    </section>
+
+    <section id="apt-basics">
+      <h2>What apt update and apt upgrade actually mean</h2>
+      <p class="section-intro">
+        These two commands are easy to mix up. They do different jobs.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Command</th>
+            <th>What it does</th>
+            <th>Plain English</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>sudo apt update</code></td>
+            <td>Refreshes the package list</td>
+            <td>Checks your configured software repositories to see what packages and versions are available.</td>
+          </tr>
+          <tr>
+            <td><code>sudo apt upgrade</code></td>
+            <td>Upgrades installed packages</td>
+            <td>Installs newer versions of software already on your system.</td>
+          </tr>
+          <tr>
+            <td><code>sudo apt install nmap</code></td>
+            <td>Installs a package</td>
+            <td>Downloads and installs the tool named <code>nmap</code>.</td>
+          </tr>
+          <tr>
+            <td><code>sudo apt install nmap tcpdump vim</code></td>
+            <td>Installs multiple packages</td>
+            <td>Installs several tools in one command.</td>
+          </tr>
+          <tr>
+            <td><code>apt search nmap</code></td>
+            <td>Searches for packages</td>
+            <td>Helps you find the correct package name.</td>
+          </tr>
+          <tr>
+            <td><code>apt show nmap</code></td>
+            <td>Shows package details</td>
+            <td>Explains what a package is before you install it.</td>
+          </tr>
+          <tr>
+            <td><code>sudo apt remove nmap</code></td>
+            <td>Removes a package</td>
+            <td>Uninstalls the package from your system.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="package-library">
+      <h2>What is a package library?</h2>
+      <p class="section-intro">
+        A package library, usually called a repository, is a collection of software packages maintained for your Linux
+        distribution.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">Repository</span>
+          <h3>A trusted software source</h3>
+          <p>
+            When you run <code>apt install</code>, your computer checks its configured repositories,
+            downloads the package, checks dependencies, and installs what is needed.
+          </p>
+          <p>
+            This is why installing tools on Linux can feel almost unreal at first. The system already knows
+            where the software is supposed to come from.
+          </p>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Safety</span>
+          <h3>Is it safe?</h3>
+          <p>
+            Installing from the official repositories for your Linux distribution is generally much safer than
+            downloading random installers from random websites.
+          </p>
+          <p>
+            The risky part is copying commands from unknown websites, adding random third-party repositories,
+            or running scripts you do not understand with <code>sudo</code>.
+          </p>
+        </article>
+      </div>
+
+      <div class="warning-note">
+        <strong>Safety rule:</strong> Official repositories first. Be cautious with commands that use
+        <code>curl</code>, <code>wget</code>, pipes, install scripts, unknown repositories, or <code>sudo</code>.
+      </div>
+    </section>
+
+    <section id="starter-toolbox">
+      <h2>Starter Linux toolbox</h2>
+      <p class="section-intro">
+        These are practical tools worth knowing. You do not need to install everything at once,
+        but this shows how much power is available from the package manager.
+      </p>
+
+      <div class="code-card">
+        <pre><code>sudo apt update
+sudo apt install git vim nano tree htop curl wget unzip zip jq ripgrep nmap tcpdump dnsutils traceroute whois openvpn</code></pre>
+      </div>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Tools</th>
+            <th>Why they are useful</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Terminal basics</strong></td>
+            <td><code>tree</code>, <code>less</code>, <code>curl</code>, <code>wget</code></td>
+            <td>View folders, read files, download content, and inspect web responses.</td>
+          </tr>
+          <tr>
+            <td><strong>Text editing</strong></td>
+            <td><code>vim</code>, <code>nano</code></td>
+            <td>Edit config files, scripts, notes, and project files from the terminal.</td>
+          </tr>
+          <tr>
+            <td><strong>System monitoring</strong></td>
+            <td><code>htop</code>, <code>btop</code>, <code>ncdu</code>, <code>duf</code></td>
+            <td>Check CPU, memory, disk usage, running processes, and storage problems.</td>
+          </tr>
+          <tr>
+            <td><strong>Networking</strong></td>
+            <td><code>nmap</code>, <code>tcpdump</code>, <code>traceroute</code>, <code>dig</code>, <code>whois</code>
+            </td>
+            <td>Learn ports, packets, DNS, routes, IP addresses, and network troubleshooting.</td>
+          </tr>
+          <tr>
+            <td><strong>VPN and remote access</strong></td>
+            <td><code>openvpn</code>, <code>openssh-server</code>, <code>rsync</code></td>
+            <td>Connect to remote networks, manage servers, and copy files safely.</td>
+          </tr>
+          <tr>
+            <td><strong>Web and APIs</strong></td>
+            <td><code>curl</code>, <code>httpie</code>, <code>jq</code></td>
+            <td>Test websites, inspect HTTP headers, and format JSON output.</td>
+          </tr>
+          <tr>
+            <td><strong>Files and search</strong></td>
+            <td><code>find</code>, <code>grep</code>, <code>ripgrep</code>, <code>fd-find</code></td>
+            <td>Find files, search text, inspect logs, and locate project content quickly.</td>
+          </tr>
+          <tr>
+            <td><strong>Archives</strong></td>
+            <td><code>zip</code>, <code>unzip</code>, <code>tar</code>, <code>gzip</code>, <code>xz-utils</code></td>
+            <td>Create backups, unpack downloads, compress logs, and move project folders.</td>
+          </tr>
+          <tr>
+            <td><strong>Git and coding</strong></td>
+            <td><code>git</code>, <code>python3</code>, <code>python3-venv</code>, <code>build-essential</code></td>
+            <td>Work with repositories, run Python, create virtual environments, and compile C/C++ code.</td>
+          </tr>
+          <tr>
+            <td><strong>Security basics</strong></td>
+            <td><code>ufw</code>, <code>fail2ban</code>, <code>openssl</code>, <code>nmap</code></td>
+            <td>Practice firewalls, SSH protection, certificates, scanning, and basic hardening.</td>
+          </tr>
+          <tr>
+            <td><strong>Disk and hardware</strong></td>
+            <td><code>lsblk</code>, <code>smartmontools</code>, <code>exfatprogs</code>, <code>gparted</code></td>
+            <td>Inspect drives, check disk health, format storage, and understand block devices.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="warning-note">
+        <strong>Permission matters:</strong> Tools like <code>nmap</code>, <code>tcpdump</code>, and VPN clients are
+        legitimate,
+        but only use them on systems, networks, labs, and accounts where you have permission.
+      </div>
+    </section>
+
+    <section id="apt-cheat-sheet">
+      <h2>apt cheat sheet</h2>
+      <p class="section-intro">
+        These commands are enough to start installing and managing Linux tools safely.
+      </p>
+
+      <div class="code-card">
+        <pre><code># Refresh the list of available packages
+                    sudo apt update
+
+                  # Upgrade installed packages
+                  sudo apt upgrade
+
+                  # Install one package
+                  sudo apt install nmap
+
+                  # Install many packages at once
+                  sudo apt install nmap tcpdump vim htop jq tree
+
+                  # Search for a package
+                  apt search nmap
+
+                  # Show package details
+                  apt show nmap
+
+                  # Remove a package
+                  sudo apt remove nmap
+
+                  # Remove packages that are no longer needed
+                  sudo apt autoremove
+
+                  # List installed packages
+                  apt list --installed</code></pre>
+      </div>
+
+      <div class="callout">
+        <p>
+          <strong>Why this matters:</strong> Once you understand <code>apt</code>, Linux becomes less intimidating.
+          You can add tools for coding, networking, security, web testing, file management, and automation with one
+          command.
+        </p>
+      </div>
+    </section>
     <section id="ssh">
       <h2>You spun up a server. Now what?</h2>
       <p class="section-intro">
         Most VPS and cloud servers are headless, which means there is no monitor, mouse, or desktop to click around in.
-        SSH is the encrypted tunnel into that server. It is your remote terminal, your control panel, and your way to update,
+        SSH is the encrypted tunnel into that server. It is your remote terminal, your control panel, and your way to
+        update,
         install, troubleshoot, and run commands safely from your own computer.
       </p>
 
@@ -629,8 +914,10 @@ rg "password" .</code></pre>
             If I am turning a local Ubuntu/Debian machine into something I can connect to remotely, I install and enable
             OpenSSH Server.
           </p>
-          <button class="image-expand" type="button" data-full-image="../../assets/install ssh 2.png" data-full-alt="Beginner guide showing how to install SSH on Ubuntu or Debian">
-            <img class="guide-image" src="../../assets/install ssh 2.png" alt="Beginner guide showing how to install SSH on Ubuntu or Debian" />
+          <button class="image-expand" type="button" data-full-image="../../assets/install ssh 2.png"
+            data-full-alt="Beginner guide showing how to install SSH on Ubuntu or Debian">
+            <img class="guide-image" src="../../assets/install ssh 2.png"
+              alt="Beginner guide showing how to install SSH on Ubuntu or Debian" />
             <span class="image-hint">Click to expand</span>
           </button>
         </article>
@@ -638,11 +925,14 @@ rg "password" .</code></pre>
         <article class="step-card">
           <h3>Logging in with SSH keys</h3>
           <p>
-            After SSH exists on the server, the next skill is key-based login: make a key pair, put the public key on the server,
+            After SSH exists on the server, the next skill is key-based login: make a key pair, put the public key on
+            the server,
             then connect without using a server password.
           </p>
-          <button class="image-expand" type="button" data-full-image="../../assets/install ssh.png" data-full-alt="Beginner guide showing how to log in with SSH keys">
-            <img class="guide-image" src="../../assets/install ssh.png" alt="Beginner guide showing how to log in with SSH keys" />
+          <button class="image-expand" type="button" data-full-image="../../assets/install ssh.png"
+            data-full-alt="Beginner guide showing how to log in with SSH keys">
+            <img class="guide-image" src="../../assets/install ssh.png"
+              alt="Beginner guide showing how to log in with SSH keys" />
             <span class="image-hint">Click to expand</span>
           </button>
         </article>
@@ -669,7 +959,8 @@ rg "password" .</code></pre>
           <span class="tag green">Free</span>
           <h3>MIT Missing Semester</h3>
           <p>
-            Best after the basics. It explains the shell, Git, editors, debugging, and the practical tools CS classes often skip.
+            Best after the basics. It explains the shell, Git, editors, debugging, and the practical tools CS classes
+            often skip.
           </p>
           <p><a href="https://missing.csail.mit.edu/" rel="noopener">Open Missing Semester</a></p>
         </article>
@@ -696,7 +987,8 @@ rg "password" .</code></pre>
           <span class="tag green">Free</span>
           <h3>ExplainShell</h3>
           <p>
-            Paste a shell command and see what the pieces mean. Useful before running commands you do not fully understand.
+            Paste a shell command and see what the pieces mean. Useful before running commands you do not fully
+            understand.
           </p>
           <p><a href="https://explainshell.com/" rel="noopener">Open ExplainShell</a></p>
         </article>
@@ -707,7 +999,8 @@ rg "password" .</code></pre>
           <p>
             The official Ubuntu guide for installing, removing, updating, and managing packages with APT.
           </p>
-          <p><a href="https://ubuntu.com/server/docs/how-to/software/package-management/" rel="noopener">Open Ubuntu APT docs</a></p>
+          <p><a href="https://ubuntu.com/server/docs/how-to/software/package-management/" rel="noopener">Open Ubuntu APT
+              docs</a></p>
         </article>
 
         <article class="card">
@@ -723,9 +1016,11 @@ rg "password" .</code></pre>
           <span class="tag">Under $10/month</span>
           <h3>Hack The Box Academy Student</h3>
           <p>
-            Highly recommended for cybersecurity students after basic Linux comfort. The student plan is listed at $8/month and gives access to modules up to Tier II.
+            Highly recommended for cybersecurity students after basic Linux comfort. The student plan is listed at
+            $8/month and gives access to modules up to Tier II.
           </p>
-          <p><a href="https://help.hackthebox.com/en/articles/13677074-academy-subscriptions" rel="noopener">Open HTB Academy subscriptions</a></p>
+          <p><a href="https://help.hackthebox.com/en/articles/13677074-academy-subscriptions" rel="noopener">Open HTB
+              Academy subscriptions</a></p>
         </article>
 
         <article class="card">
@@ -743,7 +1038,9 @@ rg "password" .</code></pre>
       <h2>The mindset</h2>
       <div class="callout">
         <p>
-          The terminal is not about being a genius or memorizing a thousand commands. It is about learning a small set of patterns: move around, inspect files, install tools, run commands, read errors, and try again. That is enough to start doing real Linux, cloud, web server, and cybersecurity work.
+          The terminal is not about being a genius or memorizing a thousand commands. It is about learning a small set
+          of patterns: move around, inspect files, install tools, run commands, read errors, and try again. That is
+          enough to start doing real Linux, cloud, web server, and cybersecurity work.
         </p>
       </div>
     </section>
@@ -774,4 +1071,5 @@ rg "password" .</code></pre>
     });
   </script>
 </body>
+
 </html>
