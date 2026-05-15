@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LaunchShell | What Is Hacking?</title>
+  <meta
+    name="description"
+    content="A beginner-friendly LaunchShell guide explaining what hacking really means, safe project-based hacking, hacker history, and modern penetration testing."
+  />
+
+  <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+
+  <style>
+    .guide-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.82fr);
+      gap: 46px;
+      align-items: center;
+      padding: 56px 0 54px;
+    }
+
+    .guide-visual {
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: white;
+      box-shadow: var(--shadow);
+    }
+
+    .guide-visual-inner {
+      min-height: 430px;
+      padding: 28px;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(18, 99, 255, 0.16), transparent 18rem),
+        radial-gradient(circle at 85% 75%, rgba(18, 201, 149, 0.14), transparent 18rem),
+        #ffffff;
+    }
+
+    .hacker-loop {
+      width: min(100%, 440px);
+      display: grid;
+      gap: 12px;
+    }
+
+    .loop-card {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: white;
+      padding: 16px 18px;
+      box-shadow: 0 14px 34px rgba(6, 18, 38, 0.08);
+    }
+
+    .loop-card.dark {
+      background: var(--dark);
+      color: white;
+      border-color: var(--dark);
+    }
+
+    .loop-card strong {
+      display: block;
+      font-size: 1.03rem;
+      margin-bottom: 3px;
+    }
+
+    .loop-card span {
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .loop-card.dark span {
+      color: #c9d6e7;
+    }
+
+    .guide-note,
+    .action-item {
+      margin-top: 22px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      color: var(--muted);
+    }
+
+    .guide-note {
+      background: var(--soft);
+      border: 1px solid #cfe0ff;
+    }
+
+    .action-item {
+      background: var(--green-soft);
+      border: 1px solid #c5f2e5;
+    }
+
+    .guide-note strong,
+    .action-item strong {
+      color: var(--text);
+    }
+
+    .action-item a,
+    .docs-list a,
+    .timeline-card a {
+      color: var(--blue-dark);
+      font-weight: 900;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .panel,
+    .timeline-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .panel h3,
+    .timeline-card h3 {
+      margin-top: 0;
+      font-size: 1.2rem;
+    }
+
+    .panel p,
+    .timeline-card p {
+      color: var(--muted);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+
+    .timeline-card {
+      display: grid;
+      grid-template-columns: 120px minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    .timeline-year {
+      color: var(--blue);
+      font-weight: 900;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .simple-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 18px;
+      background: white;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .simple-table th,
+    .simple-table td {
+      padding: 15px 16px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .simple-table th {
+      background: var(--soft);
+      color: var(--text);
+    }
+
+    .simple-table td {
+      color: var(--muted);
+    }
+
+    .simple-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .flow-step {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 12px 34px rgba(6, 18, 38, 0.06);
+      min-height: 170px;
+    }
+
+    .flow-step span {
+      display: inline-flex;
+      margin-bottom: 10px;
+      color: var(--blue);
+      font-weight: 900;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .flow-step h3 {
+      margin: 0 0 8px;
+      font-size: 1.06rem;
+    }
+
+    .flow-step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .quote-card {
+      background: var(--dark);
+      color: white;
+      border-radius: 22px;
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .quote-card p {
+      color: #c9d6e7;
+      margin: 0;
+    }
+
+    .rules-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .rules-list li {
+      margin: 0;
+      padding: 13px 15px;
+      border-radius: 14px;
+      background: var(--soft);
+      color: var(--muted);
+      border: 1px solid #cfe0ff;
+    }
+
+    .rules-list strong,
+    .simple-table strong {
+      color: var(--text);
+    }
+
+    @media (max-width: 1020px) {
+      .guide-hero,
+      .split,
+      .timeline-card {
+        grid-template-columns: 1fr;
+      }
+
+      .flow {
+        grid-template-columns: 1fr;
+      }
+
+      .guide-visual-inner {
+        min-height: 320px;
+      }
+    }
+  </style>
+</head>
+
+<body class="resources-page">
+  <header>
+    <a href="../../" aria-label="LaunchShell home">
+      <img src="../../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../../projects/">Projects</a>
+      <a href="../">Guides</a>
+      <a href="../../resources/">Resources</a>
+      <a href="#pentesting" class="status">Pen Testing</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="guide-hero">
+      <div>
+        <div class="eyebrow">Hacker culture - Safe labs - Penetration testing</div>
+        <h1>What is hacking?</h1>
+        <p>
+          Hacking is not just "breaking into computers." At its best, hacking means curiosity,
+          technical creativity, building things, taking systems apart, understanding how they really work,
+          and rebuilding them better.
+        </p>
+        <p>
+          The LaunchShell version is simple: build it, back it up, break it safely, fix it,
+          and learn why it worked or failed.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href="#origins">Start with the origins</a>
+          <a class="button" href="#pentesting">Pen testing today</a>
+        </div>
+
+        <div class="guide-note">
+          <strong>Main idea:</strong> a hacker is a builder and problem-solver first. Permission,
+          safety, and documentation are what separate learning from harm.
+        </div>
+      </div>
+
+      <div class="guide-visual">
+        <div class="guide-visual-inner" aria-label="Hacker learning loop diagram">
+          <div class="hacker-loop">
+            <div class="loop-card">
+              <strong>Build something</strong>
+              <span>A script, VM, circuit, website, network, or tool.</span>
+            </div>
+            <div class="loop-card">
+              <strong>Understand the system</strong>
+              <span>Read the docs, inspect the wiring, trace the data.</span>
+            </div>
+            <div class="loop-card dark">
+              <strong>Break it safely</strong>
+              <span>Use your own lab, snapshots, backups, and permission.</span>
+            </div>
+            <div class="loop-card">
+              <strong>Fix and improve</strong>
+              <span>Make the next version cleaner, safer, and better documented.</span>
+            </div>
+          </div>
+        </div>
+        <div class="caption">
+          Hacking is a learning loop. The point is not destruction. The point is understanding systems deeply enough to improve them.
+        </div>
+      </div>
+    </section>
+
+    <section id="origins">
+      <h2>The origin story: model trains, relays, and computers</h2>
+      <p class="section-intro">
+        One of the best hacker origin stories starts at MIT with the Tech Model Railroad Club,
+        not with movie-style cybercrime.
+      </p>
+
+      <div class="timeline">
+        <article class="timeline-card">
+          <div class="timeline-year">1946</div>
+          <div>
+            <h3>The Tech Model Railroad Club forms</h3>
+            <p>
+              TMRC was a student club built around model railroading, but the interesting part
+              was the control system: switches, signals, relays, power, timing, logic, and automation.
+            </p>
+          </div>
+        </article>
+
+        <article class="timeline-card">
+          <div class="timeline-year">1950s</div>
+          <div>
+            <h3>Students start "hacking" the system</h3>
+            <p>
+              The Signals and Power group worked underneath the train layout, figuring out how
+              the electrical system worked and improving it with clever fixes.
+            </p>
+          </div>
+        </article>
+
+        <article class="timeline-card">
+          <div class="timeline-year">1959</div>
+          <div>
+            <h3>The TMRC Dictionary records the language</h3>
+            <p>
+              Peter Samson and other TMRC members helped capture club language in the TMRC Dictionary.
+              Early hacker vocabulary grew out of this world of technical play, systems, jokes, and serious skill.
+            </p>
+          </div>
+        </article>
+
+        <article class="timeline-card">
+          <div class="timeline-year">1960s+</div>
+          <div>
+            <h3>The mindset moves into computing</h3>
+            <p>
+              Some of the same people and culture moved from trains and relay logic into early computers.
+              The hacker became someone who wanted direct access to systems and made clever technical improvements.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Why students should care about TMRC</h2>
+      <p class="section-intro">
+        Kids may not care about model trains at first. But the train layout was basically an early systems lab.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">The real lesson</span>
+          <h3>It was not about trains. It was about systems.</h3>
+          <p>
+            A model railroad has inputs, outputs, timing, routes, constraints, hardware failures,
+            control logic, power issues, and debugging. That is the same kind of thinking used in
+            networking, robotics, cloud systems, industrial controls, IoT, and cybersecurity.
+          </p>
+        </article>
+
+        <article class="quote-card">
+          <p>
+            <strong>LaunchShell translation:</strong> a hacker is the person who looks at a system
+            and asks, "How does this really work? What happens if I change this? Can I build a better version?"
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>What hacking is and is not</h2>
+      <p class="section-intro">
+        The word "hacking" gets used in different ways. For learning, the distinction is simple.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Idea</th>
+            <th>What it means</th>
+            <th>Good example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Hacking as building</strong></td>
+            <td>Making something work with creativity, tools, and experimentation.</td>
+            <td>Writing a script, building a Flask app, wiring a sensor, or automating backups.</td>
+          </tr>
+          <tr>
+            <td><strong>Hacking as understanding</strong></td>
+            <td>Taking a system apart mentally so you know what each piece does.</td>
+            <td>Tracing a web request through DNS, HTTPS, Apache, Gunicorn, Flask, and JSON files.</td>
+          </tr>
+          <tr>
+            <td><strong>Hacking as safe breaking</strong></td>
+            <td>Testing your own systems to see where they fail.</td>
+            <td>Breaking a VM after taking a snapshot, then restoring it and documenting what happened.</td>
+          </tr>
+          <tr>
+            <td><strong>Unauthorized access</strong></td>
+            <td>Accessing or attacking systems without permission.</td>
+            <td>Not a learning shortcut. This can harm people and create legal trouble.</td>
+          </tr>
+          <tr>
+            <td><strong>Ethical hacking</strong></td>
+            <td>Security testing with permission, rules, scope, and reporting.</td>
+            <td>A student lab, CTF, bug bounty within scope, or professional penetration test.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>The LaunchShell hacker mindset</h2>
+      <p class="section-intro">
+        This is the version worth teaching: practical, curious, legal, and project-based.
+      </p>
+
+      <div class="method">
+        <div class="method-step">
+          <span>01</span>
+          <h3>Build it</h3>
+          <p>Create something real: a VM, web app, circuit, script, network, or small server.</p>
+        </div>
+        <div class="method-step">
+          <span>02</span>
+          <h3>Back it up</h3>
+          <p>Use Git, snapshots, exports, images, config backups, or restore points before risky changes.</p>
+        </div>
+        <div class="method-step">
+          <span>03</span>
+          <h3>Break it safely</h3>
+          <p>Test failure in your own lab. Change configs, block ports, crash services, and inspect logs.</p>
+        </div>
+        <div class="method-step">
+          <span>04</span>
+          <h3>Rebuild better</h3>
+          <p>Fix the mistake, document the cause, and improve the design so the next version is stronger.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="pentesting">
+      <h2>Penetration testing today</h2>
+      <p class="section-intro">
+        Modern penetration testing is the professional version of safe breaking. The tester tries
+        to find weaknesses before attackers do.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag">Professional security testing</span>
+          <h3>A pen test is authorized hacking</h3>
+          <p>
+            A penetration test has written permission, a defined scope, rules of engagement,
+            time limits, target systems, allowed techniques, and a final report.
+          </p>
+        </article>
+
+        <article class="panel">
+          <span class="tag green">The report matters</span>
+          <h3>The job is not just "getting in"</h3>
+          <p>
+            A useful tester explains what was found, why it matters, what evidence supports the finding,
+            and how the organization can fix it.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Typical pen test workflow</h2>
+      <p class="section-intro">
+        This is the safe, high-level version. Real testing should only happen with permission and within scope.
+      </p>
+
+      <div class="flow">
+        <article class="flow-step">
+          <span>01</span>
+          <h3>Scope</h3>
+          <p>Define what can be tested, what is off-limits, and who approved the work.</p>
+        </article>
+        <article class="flow-step">
+          <span>02</span>
+          <h3>Recon</h3>
+          <p>Understand the target environment, exposed services, versions, and attack surface.</p>
+        </article>
+        <article class="flow-step">
+          <span>03</span>
+          <h3>Test</h3>
+          <p>Check for weaknesses using approved tools, safe methods, and careful documentation.</p>
+        </article>
+        <article class="flow-step">
+          <span>04</span>
+          <h3>Verify</h3>
+          <p>Confirm which findings are real, avoid false positives, and gather clean evidence.</p>
+        </article>
+        <article class="flow-step">
+          <span>05</span>
+          <h3>Report</h3>
+          <p>Explain the risk, evidence, impact, and recommended fixes.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Rules for students</h2>
+      <p class="section-intro">
+        These rules keep learning safe and legitimate.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">Safe targets</span>
+          <h3>Practice here</h3>
+          <ul class="rules-list">
+            <li><strong>Your own VM</strong> or home lab.</li>
+            <li><strong>CTF platforms</strong> designed for security practice.</li>
+            <li><strong>School labs</strong> where the instructor gives permission.</li>
+            <li><strong>Your own web app</strong> or intentionally vulnerable apps.</li>
+            <li><strong>Bug bounty programs</strong> only inside their written scope.</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Do not test</span>
+          <h3>Stay away from this</h3>
+          <ul class="rules-list">
+            <li><strong>Random public IPs</strong> you do not own.</li>
+            <li><strong>School systems</strong> without written permission.</li>
+            <li><strong>Friends' accounts or devices</strong> as a "joke."</li>
+            <li><strong>Company networks</strong> unless it is part of your job and approved.</li>
+            <li><strong>Anything with real people's private data</strong> unless you are formally authorized.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="action-item">
+        <strong>Start safely:</strong> build a lab first. Use the
+        <a href="../what-is-a-vm/">What Is a VM?</a> guide and the
+        <a href="../linux-terminal-intro/">Linux Terminal Intro Guide</a>
+        before touching security tools.
+      </div>
+    </section>
+
+    <section>
+      <h2>Good beginner hacker projects</h2>
+      <p class="section-intro">
+        These projects teach the hacker mindset without crossing legal or ethical lines.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag">Builder</span>
+          <h3>Make a command-line tool</h3>
+          <p>Rename files, organize photos, parse logs, convert PDFs, or automate backups.</p>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Breaker</span>
+          <h3>Break your own VM</h3>
+          <p>Change firewall rules, stop services, fill disk space, read logs, restore from snapshot, and document the fix.</p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Security</span>
+          <h3>Harden a small server</h3>
+          <p>Use SSH keys, UFW, fail2ban, updates, HTTPS, environment variables, backups, and basic log review.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="docs">
+      <h2>Friendly resources</h2>
+      <p class="section-intro">
+        These resources help explain hacker culture, safe security testing, and beginner practice environments.
+      </p>
+
+      <div class="grid docs-list">
+        <article class="card">
+          <span class="tag green">Origins</span>
+          <h3>TMRC hackers</h3>
+          <p>The Tech Model Railroad Club's own page explains the older meaning of hacker.</p>
+          <p><a href="https://tmrc.mit.edu/old/hackers-ref.html" rel="noopener">Read TMRC - Hackers</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">History</span>
+          <h3>TMRC Dictionary</h3>
+          <p>The TMRC Dictionary shows the club language that influenced early hacker culture.</p>
+          <p><a href="https://tmrc.mit.edu/old/dictionary.html" rel="noopener">Open the TMRC Dictionary</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">MIT</span>
+          <h3>MIT news on TMRC</h3>
+          <p>MIT's own writing connects TMRC control-system work with the original computer hackers at MIT.</p>
+          <p><a href="https://news.mit.edu/1996/train-0320" rel="noopener">Read the MIT article</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Professional</span>
+          <h3>NIST penetration testing definition</h3>
+          <p>NIST defines penetration testing as security testing where evaluators mimic real-world attacks.</p>
+          <p><a href="https://csrc.nist.gov/glossary/term/penetration_testing" rel="noopener">Open the NIST glossary</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Practice</span>
+          <h3>Hack The Box Academy</h3>
+          <p>Structured cybersecurity learning with guided modules and hands-on practice.</p>
+          <p><a href="https://academy.hackthebox.com/" rel="noopener">Open Hack The Box Academy</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Practice</span>
+          <h3>OWASP Juice Shop</h3>
+          <p>An intentionally vulnerable web app for legal web security practice in a lab environment.</p>
+          <p><a href="https://owasp.org/www-project-juice-shop/" rel="noopener">Open OWASP Juice Shop</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Final idea</h2>
+      <div class="callout">
+        <p>
+          Hacking is the habit of understanding systems by building, testing, breaking safely,
+          and improving them. Penetration testing is one modern professional form of that mindset,
+          but the foundation starts earlier: curiosity, projects, documentation, permission,
+          and respect for the systems and people affected by your work.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>&copy; 2026 LaunchShell</div>
+    <div>Student-built project guides for Linux, cloud, electronics, and cybersecurity.</div>
+  </footer>
+</body>
+</html>
