@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Projects | LaunchShell</title>
-  <meta
-    name="description"
-    content="LaunchShell project guides for Flask web apps, honeynet labs, cloud servers, Linux, deployment, and practical technical portfolio work."
-  />
+  <title>LaunchShell | Projects</title>
+  <meta name="description"
+    content="LaunchShell portfolio projects for web apps, Python tools, Java CLI programs, electronics, networking, packet capture, honeynets, and static site building." />
 
   <link rel="icon" href="../assets/launchshell-logo-icon.png" type="image/png" />
   <link rel="stylesheet" href="../assets/site.css" />
 </head>
 
-<body class="resources-page">
+<body class="index-page projects-page">
   <header>
     <a href="../" aria-label="LaunchShell home">
       <img src="../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
@@ -32,167 +31,61 @@
 
   <main>
     <section class="hero">
-      <div class="eyebrow">Projects</div>
-      <h1>Practical builds with real deployment work.</h1>
+      <div class="eyebrow">Projects • Builds • Portfolio evidence</div>
+      <h1>Projects</h1>
       <p>
-        These projects are meant to show the full path: build something useful, deploy it,
-        monitor it, troubleshoot it, document it, and keep the public version safe to share.
-      </p>
-    </section>
-
-    <section>
-      <h2>Project guides</h2>
-      <p class="section-intro">
-        Start with the web app project for a medium build, or the T-Pot honeynet for a more advanced networking and security lab.
+        These projects show practical technical work: small Python tools, Java command-line programs,
+        static site design, Flask deployment, electronics, networking, Wi-Fi packet capture, and safe
+        cybersecurity labs.
       </p>
 
-      <div class="grid">
-        <article class="card">
-          <img src="../assets/card-cheap-server-web-app.png" alt="Seed App Flask JSON App project cover" />
-          <span class="tag green">Medium</span>
-          <h3>Seed App / Flask JSON App</h3>
-          <p>
-            Build and deploy a simple Flask app backed by JSON files on a cheap server with Gunicorn,
-            Apache, systemd, DNS, HTTPS, logs, and backups.
-          </p>
-          <p><a class="button" href="cheap-server-web-app/">Open project</a></p>
-        </article>
-
-        <article class="card">
-          <img src="../assets/card-tpot-honeynet.png" alt="T-Pot Honeynet project cover" />
-          <span class="tag">Advanced</span>
-          <h3>T-Pot Honeynet</h3>
-          <p>
-            Set up a disposable T-Pot honeynet, monitor the dashboards, handle screenshots and evidence,
-            summarize findings safely, and shut the lab down cleanly.
-          </p>
-          <p><a class="button" href="tpot-honeynet/">Open project</a></p>
-        </article>
-
-        <article class="card">
-          <img src="../assets/card-eight-bit-cpu.png" alt="8-Bit CPU project cover" />
-          <span class="tag">Hardware</span>
-          <h3>8-Bit CPU</h3>
-          <p>
-            Explore a from-scratch 8-bit CPU, Python assembler tooling, ROM image generation,
-            and an Arduino Nano EEPROM programmer workflow.
-          </p>
-          <p><a class="button" href="8-bit/">Open project</a></p>
-        </article>
-
-        <article class="card">
-          <img src="../assets/card-python-projects.png" alt="Small Python Projects cover" />
-          <span class="tag green">Beginner</span>
-          <h3>Small Python Projects</h3>
-          <p>
-            Start with a Diceware passphrase generator, then try file tools,
-            log parsers, hash checkers, and simple automation scripts.
-          </p>
-          <p><a class="button" href="python/">Open project</a></p>
-        </article>
-
-        <article class="card">
-          <img src="../assets/card-tiny-terminal-weather.png" alt="Tiny Terminal Weather App project cover" />
-          <span class="tag green">Beginner</span>
-          <h3>Tiny Terminal Weather App</h3>
-          <p>
-            Build a small Python command-line weather app, call an API, read JSON,
-            and print useful forecast details in the terminal.
-          </p>
-          <p><a class="button" href="tiny-terminal-weather/">Open project</a></p>
-        </article>
-
-        <article class="card">
-          <img src="../assets/card-tiny-terminal-weather-2.0.png" alt="Tiny Terminal Weather App 2.0 project cover" />
-          <span class="tag green">Beginner</span>
-          <h3>Tiny Terminal Weather App 2.0</h3>
-          <p>
-            Expand the weather script with a simple menu flow, cleaner choices,
-            and a more useful terminal workflow.
-          </p>
-          <p><a class="button" href="tiny-terminal-weather-2.0/">Open project</a></p>
-        </article>
-
-        <article class="card">
-          <img src="../assets/card-json-book-recommendations.png" alt="JSON Book Recommendations project cover" />
-          <span class="tag green">Beginner</span>
-          <h3>JSON Book Recommendations</h3>
-          <p>
-            Turn a private audiobook export into clean public JSON, then use it to render
-            a static book recommendations page.
-          </p>
-          <p><a class="button" href="json-book-recommendation/">Open project</a></p>
-        </article>
-
-        <article class="card">
-          <img src="../assets/card-raspi-wifi-sniffer.png" alt="Raspberry Pi and Alfa Wi-Fi Sniffer project cover" />
-          <span class="tag">Hardware</span>
-          <h3>Raspberry Pi + Alfa Wi-Fi Sniffer</h3>
-          <p>
-            Use a Raspberry Pi and Alfa Wi-Fi adapter to capture lab traffic,
-            save packet evidence, and review it safely with Wireshark.
-          </p>
-          <p><a class="button" href="raspi-wifi-sniffer/">Open project</a></p>
-        </article>
-
-        <article class="card">
-          <img src="../assets/raspberry-pi.svg" alt="Solar ESP32 MQTT Sensor project cover" />
-          <span class="tag">Hardware</span>
-          <h3>Solar ESP32 MQTT Sensor</h3>
-          <p>
-            Build a solar-powered ESP32 sensor node that reads temperature and humidity,
-            then publishes the data over MQTT to a local server.
-          </p>
-          <p><a class="button" href="solar-esp32-mqtt-sensor/">Open project</a></p>
-        </article>
-
-        <article class="card">
-          <img src="../assets/card-java-movie-cli.png" alt="Java Movie CLI project cover" />
-          <span class="tag">Java</span>
-          <h3>Java Movie CLI</h3>
-          <p>
-            Build a command-line Java movie tracking tool with menus, files,
-            search, and small database-style habits.
-          </p>
-          <p><a class="button" href="java-movie-cli/">Open project</a></p>
-        </article>
-
-        <article class="card">
-          <img src="../assets/card-java-radix-ip-sort.png" alt="Java Radix Sort for IP Addresses project cover" />
-          <span class="tag">Java</span>
-          <h3>Java Radix Sort for IP Addresses</h3>
-          <p>
-            Sort IP addresses with a Java radix sort project that connects data
-            structures, parsing, and network-style values.
-          </p>
-          <p><a class="button" href="java-radix-ip-sort/">Open project</a></p>
-        </article>
-
-        <article class="card">
-          <img src="../assets/card-build-this-site.png" alt="How LaunchShell was built project cover" />
-          <span class="tag">Website</span>
-          <h3>How I Built LaunchShell.org</h3>
-          <p>
-            See how LaunchShell was built with plain HTML, shared CSS, Git, GitHub,
-            Cloudflare Pages, and simple project documentation.
-          </p>
-          <p><a class="button" href="build-this-site/">Open project</a></p>
-        </article>
+      <div class="hero-actions">
+        <a class="button primary" href="#project-index">Browse projects</a>
+        <a class="button" href="../guides/">Read guides</a>
+        <a class="button" href="../projects/build-this-site/">How this site was built</a>
       </div>
     </section>
 
+    <section id="project-index">
+      <h2>All projects</h2>
+      <p class="section-intro">
+        These cards are rendered from <code>data/site-index.json</code>. The project pages stay separate,
+        but their card titles, summaries, images, categories, skill levels, and time estimates are managed
+        from one place.
+      </p>
+
+      <div class="grid" data-index-type="Project"></div>
+    </section>
+
     <section>
-      <h2>Helpful prerequisites</h2>
-      <div class="path">
-        <div class="path-row">
-          <div class="level">Beginner</div>
-          <div><a href="../guides/linux-terminal-intro/">Linux terminal intro</a></div>
-          <div class="tools">Commands, apt, files, SSH basics, and headless server control.</div>
+      <h2>What makes a project useful</h2>
+      <p class="section-intro">
+        A project does not need to be huge to be valuable. It needs to show real technical decision-making.
+      </p>
+
+      <div class="method">
+        <div class="method-step">
+          <span>01</span>
+          <h3>It solves something</h3>
+          <p>A script, app, lab, circuit, or guide should do something concrete and explain why it matters.</p>
         </div>
-        <div class="path-row">
-          <div class="level">Beginner</div>
-          <div><a href="../guides/aws-free-vps/">Cloud VPS setup</a></div>
-          <div class="tools">Create a cheap or free-tier VPS, connect with SSH, and harden the basics.</div>
+
+        <div class="method-step">
+          <span>02</span>
+          <h3>It shows process</h3>
+          <p>The project should show setup, tools, design choices, mistakes, fixes, and tradeoffs.</p>
+        </div>
+
+        <div class="method-step">
+          <span>03</span>
+          <h3>It is documented</h3>
+          <p>Clear notes, screenshots, commands, JSON, code, and deployment steps make the work understandable.</p>
+        </div>
+
+        <div class="method-step">
+          <span>04</span>
+          <h3>It can grow</h3>
+          <p>A small project can become a better project when it is versioned, tested, improved, and explained.</p>
         </div>
       </div>
     </section>
@@ -200,7 +93,10 @@
 
   <footer>
     <div>© 2026 LaunchShell</div>
-    <div>Student-built project guides for Linux, cloud, electronics, and cybersecurity.</div>
+    <div>Student-built project guides for Linux, cloud, electronics, Python, and cybersecurity.</div>
   </footer>
+
+  <script src="../assets/index-cards.js" data-json="../data/site-index.json" data-base-path="../"></script>
 </body>
+
 </html>

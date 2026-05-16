@@ -1929,15 +1929,6 @@ pre {
   margin-top: 28px;
 }
 
-/* Projects index page spacing */
-
-.projects-page .hero {
-  padding-bottom: 24px;
-}
-
-.projects-page .hero + section {
-  margin-top: 28px;
-}
 /* Homepage JSON-rendered cards */
 
 .home-page .grid {
@@ -1982,4 +1973,102 @@ pre {
 
 .home-page .section-footer {
   margin-top: 22px;
+}
+
+/* JSON-rendered index pages */
+
+.index-page main {
+  padding-top: 12px;
+}
+
+.index-page .hero {
+  padding: 28px 0 24px;
+}
+
+.index-page .hero + section {
+  margin-top: 36px;
+}
+
+.index-page section {
+  margin-top: 48px;
+}
+
+.index-page .section-intro {
+  margin-bottom: 22px;
+}
+
+.index-page .grid {
+  align-items: stretch;
+}
+
+.index-page .card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  padding: 0;
+}
+
+.index-page .linked-card {
+  position: relative;
+}
+
+.index-page .linked-card:hover {
+  transform: translateY(-2px);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 22px 58px rgba(6, 18, 38, 0.11);
+}
+
+.index-page .card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.index-page .card-body .button {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+.index-page .card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 4px 0 14px;
+}
+
+.index-page .card-meta span {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: #f8fbff;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.index-page .method {
+  margin-top: 18px;
+}
+
+.index-page #guide-index,
+.index-page #project-index,
+.index-page #resource-index {
+  margin-top: 36px;
+}
+
+@media (max-width: 920px) {
+  .index-page .hero {
+    padding: 18px 0;
+  }
+
+  .index-page .hero + section {
+    margin-top: 28px;
+  }
+
+  .index-page section {
+    margin-top: 38px;
+  }
 }
