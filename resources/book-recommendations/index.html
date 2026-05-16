@@ -133,7 +133,7 @@
           </div>
         ` : ""}
 
-        ${book.url ? `<a class="button" href="${escapeHtml(book.url)}" target="_blank" rel="noopener noreferrer">Open Libby link</a>` : ""}
+        ${book.url ? `<a class="button" href="${escapeHtml(book.url)}" target="_blank" rel="noopener noreferrer" onclick="event.preventDefault(); window.open(this.href, '_blank', 'noopener,noreferrer');">Open Libby link</a>` : ""}
       </div>
     </article>
   `;
