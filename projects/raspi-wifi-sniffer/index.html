@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LaunchShell | Raspberry Pi + Alfa Wi-Fi Sniffer</title>
+  <meta
+    name="description"
+    content="A LaunchShell project page for building a Raspberry Pi and Alfa Wi-Fi adapter packet-capture sensor for private lab Wi-Fi analysis with tcpdump, tshark, and Wireshark."
+  />
+
+  <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+</head>
+
+<body class="project-page raspi-alfa-wifi-sniffer-page">
+  <header>
+    <a href="../../" aria-label="LaunchShell home">
+      <img src="../../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../../projects/">Projects</a>
+      <a href="../../guides/">Guides</a>
+      <a href="../../resources/">Resources</a>
+      <a href="../../resources/book-recommendations/">Book List</a>
+      <a class="status" href="../../start.html">Start Here</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="project-hero">
+      <div>
+        <div class="eyebrow">Raspberry Pi • Alfa Wi-Fi • PCAPs • Private lab</div>
+
+        <h1>Raspberry Pi + Alfa Wi-Fi Sniffer</h1>
+
+        <p>
+          This project turns a Raspberry Pi and an Alfa Wi-Fi adapter into a portable packet-capture
+          sensor for my private lab. The Pi handles the capture, the Alfa adapter listens to Wi-Fi
+          traffic, and Wireshark on my desktop lets me analyze the saved PCAP files afterward.
+        </p>
+
+        <p>
+          The goal is to understand wireless networking at the packet level: beacons, probe requests,
+          channels, MAC addresses, access points, DNS, ARP, DHCP, TCP, and the difference between
+          visible metadata and encrypted payloads.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href="#build">Build the sensor</a>
+          <a class="button" href="#capture">Capture packets</a>
+        </div>
+
+        <div class="warning-note">
+          <strong>Private lab only:</strong> this project is for my own devices, my own access point,
+          and my own lab network. It is not for spying on neighbors, capturing random traffic, or
+          collecting private data.
+        </div>
+      </div>
+
+      <div class="visual-card">
+        <div class="visual-inner" aria-label="Raspberry Pi Wi-Fi capture sensor project diagram">
+          <div class="stack">
+            <div class="stack-layer">
+              <strong>Alfa Wi-Fi adapter</strong>
+              <span>External adapter for wireless capture in the lab.</span>
+            </div>
+
+            <div class="stack-layer">
+              <strong>Raspberry Pi</strong>
+              <span>Small Linux capture box running tcpdump and tshark.</span>
+            </div>
+
+            <div class="stack-layer dark">
+              <strong>PCAP files</strong>
+              <span>Saved packet captures for later analysis.</span>
+            </div>
+
+            <div class="stack-layer">
+              <strong>Wireshark desktop</strong>
+              <span>Analyze packets, filters, streams, and timelines.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="caption">
+          The Pi becomes a small capture sensor. Wireshark becomes the analysis workstation.
+        </div>
+      </div>
+    </section>
+
+    <section id="what">
+      <h2>What I built</h2>
+
+      <p class="section-intro">
+        This is a small portable lab tool. I can place the Raspberry Pi near my test access point,
+        capture wireless traffic from my own lab, save the capture as a PCAP file, and analyze it
+        later on my main computer.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Hardware</span>
+            <h3>Pi capture box</h3>
+            <p>
+              The Raspberry Pi runs Linux, handles the Alfa adapter, and records packet captures
+              without needing my main desktop to sit in the same spot.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Networking</span>
+            <h3>Wireless visibility</h3>
+            <p>
+              The Alfa adapter lets me study Wi-Fi management frames, channels, beacons, probe
+              requests, and other lab traffic that normal web tools do not show.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Analysis</span>
+            <h3>PCAP workflow</h3>
+            <p>
+              Instead of trying to understand everything live, I save a capture and then open it
+              in Wireshark where I can filter, inspect, and document it carefully.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="why">
+      <h2>Why this matters</h2>
+
+      <p class="section-intro">
+        Wi-Fi feels invisible until I capture it. This project gives me a safe way to see what my
+        own wireless lab is doing.
+      </p>
+
+      <div class="method">
+        <div class="method-step">
+          <span>01</span>
+          <h3>Learn Wi-Fi behavior</h3>
+          <p>See how access points advertise, how devices search, and how channels affect captures.</p>
+        </div>
+
+        <div class="method-step">
+          <span>02</span>
+          <h3>Practice Linux capture</h3>
+          <p>Use real tools like iw, tcpdump, tshark, and SSH.</p>
+        </div>
+
+        <div class="method-step">
+          <span>03</span>
+          <h3>Build useful PCAPs</h3>
+          <p>Create small, controlled captures that are easier to analyze than huge noisy files.</p>
+        </div>
+
+        <div class="method-step">
+          <span>04</span>
+          <h3>Analyze safely</h3>
+          <p>Open the capture in Wireshark and write down what the packets prove.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="hardware">
+      <h2>Hardware used</h2>
+
+      <p class="section-intro">
+        The exact adapter model matters less than having a Linux-supported Wi-Fi adapter that can
+        work with monitor mode. Alfa adapters are popular for wireless labs because many models are
+        well supported.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Part</th>
+            <th>What I use it for</th>
+            <th>Why it matters</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong>Raspberry Pi</strong></td>
+            <td>Small Linux capture machine.</td>
+            <td>Portable, low-power, easy to SSH into, and good for lab sensors.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Alfa Wi-Fi adapter</strong></td>
+            <td>External Wi-Fi interface for captures.</td>
+            <td>Better lab adapter than relying only on the Pi's built-in Wi-Fi.</td>
+          </tr>
+
+          <tr>
+            <td><strong>microSD card</strong></td>
+            <td>Stores Raspberry Pi OS and capture files.</td>
+            <td>Packet captures can grow, so free space matters.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Power supply</strong></td>
+            <td>Powers the Pi and USB adapter.</td>
+            <td>Weak power can cause unstable adapters and failed captures.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Main desktop/laptop</strong></td>
+            <td>Runs Wireshark for analysis.</td>
+            <td>Bigger screen, better storage, and easier packet review.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="guide-note">
+        <strong>Note:</strong> I would keep this project on a dedicated lab Pi or lab SD card so I
+        can experiment without risking my normal setup.
+      </div>
+    </section>
+
+    <section>
+      <h2>Private lab safety rules</h2>
+
+      <p class="section-intro">
+        The safety rules are part of the project. Packet capture is powerful, and the public version
+        of this project should be clear about what it is and is not for.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">Allowed lab targets</span>
+          <h3>What I capture</h3>
+          <ul>
+            <li>My own access point</li>
+            <li>My own test devices</li>
+            <li>My own Raspberry Pi traffic</li>
+            <li>My own home lab network</li>
+            <li>CTF or training PCAP files</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Not part of this project</span>
+          <h3>What I avoid</h3>
+          <ul>
+            <li>Cracking Wi-Fi passwords</li>
+            <li>Deauthentication attacks</li>
+            <li>Evil twin access points</li>
+            <li>Capturing neighbors' traffic</li>
+            <li>Collecting credentials or private data</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="warning-note">
+        <strong>Rule:</strong> if I would not be comfortable explaining the capture target in a lab
+        report, I should not capture it.
+      </div>
+    </section>
+
+    <section id="build">
+      <h2>Install the capture tools</h2>
+
+      <p class="section-intro">
+        Here is the magic of <code>apt install</code> again: most of the tools I need are FREE Linux
+        utilities. I install Wireshark support, command-line capture tools, wireless tools, and USB
+        inspection tools.
+      </p>
+
+      <div class="code-card">
+        <pre><code>sudo apt update
+sudo apt install tcpdump tshark wireshark-common iw rfkill usbutils -y</code></pre>
+      </div>
+
+      <div class="guide-note">
+        <strong>Tool roles:</strong> <code>tcpdump</code> captures packets, <code>tshark</code>
+        analyzes captures from the terminal, <code>iw</code> manages Wi-Fi interfaces, and
+        <code>usbutils</code> helps confirm the Alfa adapter is detected.
+      </div>
+    </section>
+
+    <section>
+      <h2>Identify the Alfa adapter</h2>
+
+      <p class="section-intro">
+        Before changing anything, I check that Linux can see the USB adapter and I find the interface
+        name. It may be <code>wlan1</code>, <code>wlan2</code>, or another name depending on the Pi.
+      </p>
+
+      <div class="code-card">
+        <pre><code># Show USB devices
+lsusb
+
+# Show network interfaces
+ip link
+
+# Show wireless interfaces
+iw dev
+
+# Check if anything is blocked
+rfkill list</code></pre>
+      </div>
+
+      <div class="action-item">
+        <strong>What I am looking for:</strong> the Alfa adapter should appear in <code>lsusb</code>,
+        and a wireless interface should appear in <code>iw dev</code>.
+      </div>
+    </section>
+
+    <section>
+      <h2>Create a capture folder</h2>
+
+      <p class="section-intro">
+        I like keeping captures organized by project or date. PCAP files can get messy quickly.
+      </p>
+
+      <div class="code-card">
+        <pre><code>mkdir -p ~/captures
+cd ~/captures</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>Capture normal traffic first</h2>
+
+      <p class="section-intro">
+        Before using monitor mode, I start with a normal capture from an interface. This is easier
+        and confirms that my tools work.
+      </p>
+
+      <div class="code-card">
+        <pre><code># Replace wlan0 with the interface that is actually carrying traffic
+sudo tcpdump -i wlan0 -w ~/captures/normal-network-test.pcap</code></pre>
+      </div>
+
+      <div class="guide-note">
+        <strong>Stop the capture:</strong> press <code>Ctrl+C</code> when I have enough traffic.
+        Short captures are easier to understand than giant captures.
+      </div>
+    </section>
+
+    <section id="monitor-mode">
+      <h2>Enable monitor mode in the lab</h2>
+
+      <p class="section-intro">
+        Monitor mode lets the adapter listen to wireless frames on a channel. I use this only inside
+        my private lab and only to understand my own wireless environment.
+      </p>
+
+      <div class="code-card">
+        <pre><code># Replace wlan1 with the Alfa interface shown by iw dev
+sudo ip link set wlan1 down
+sudo iw dev wlan1 set type monitor
+sudo ip link set wlan1 up
+
+# Confirm the interface type
+iw dev</code></pre>
+      </div>
+
+      <div class="warning-note">
+        <strong>Adapter note:</strong> not every Wi-Fi adapter or driver supports monitor mode well.
+        If this fails, I would first confirm the exact adapter chipset and Linux driver support.
+      </div>
+    </section>
+
+    <section>
+      <h2>Lock to one lab channel</h2>
+
+      <p class="section-intro">
+        Wi-Fi channels matter. If my lab access point is on channel 6, I set the adapter to channel 6
+        so the capture stays focused.
+      </p>
+
+      <div class="code-card">
+        <pre><code># Example: set the monitor interface to channel 6
+sudo iw dev wlan1 set channel 6
+
+# Confirm current channel details
+iw dev wlan1 info</code></pre>
+      </div>
+
+      <div class="guide-note">
+        <strong>Practical tip:</strong> focused channel captures are easier to analyze than hopping
+        around and collecting everything.
+      </div>
+    </section>
+
+    <section id="capture">
+      <h2>Capture wireless packets to a PCAP file</h2>
+
+      <p class="section-intro">
+        Once the adapter is in monitor mode and locked to my lab channel, I capture packets to a file.
+      </p>
+
+      <div class="code-card">
+        <pre><code>mkdir -p ~/captures
+
+sudo tcpdump -i wlan1 -w ~/captures/lab-wifi-channel-6.pcap</code></pre>
+      </div>
+
+      <div class="action-item">
+        <strong>Capture plan:</strong> I keep the capture short, generate one lab activity, stop the
+        capture, and then analyze it. One clean test is better than ten minutes of noise.
+      </div>
+    </section>
+
+    <section>
+      <h2>Generate safe lab traffic</h2>
+
+      <p class="section-intro">
+        I want traffic that is easy to recognize and belongs to my own devices. Good first tests are
+        DNS lookups, pings, and normal browsing from a test device on my lab network.
+      </p>
+
+      <div class="quick-list">
+        <article class="step-card">
+          <span class="step-number">1</span>
+          <h3>DNS lookup</h3>
+          <p>
+            From a test device, generate a simple DNS lookup.
+          </p>
+
+          <div class="code-card">
+            <pre><code>dig example.com</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <span class="step-number">2</span>
+          <h3>Ping test</h3>
+          <p>
+            Generate ICMP traffic that is easy to find later.
+          </p>
+
+          <div class="code-card">
+            <pre><code>ping 1.1.1.1</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <span class="step-number">3</span>
+          <h3>HTTP test</h3>
+          <p>
+            Use a plain HTTP test site only for learning request structure.
+          </p>
+
+          <div class="code-card">
+            <pre><code>curl http://example.com</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <span class="step-number">4</span>
+          <h3>HTTPS comparison</h3>
+          <p>
+            Compare visible metadata with encrypted payloads.
+          </p>
+
+          <div class="code-card">
+            <pre><code>curl https://example.com</code></pre>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Move the PCAP to my desktop</h2>
+
+      <p class="section-intro">
+        The Pi is good for capturing, but my desktop is better for analysis. I move the PCAP file
+        with <code>scp</code>.
+      </p>
+
+      <div class="code-card">
+        <pre><code># From my desktop or laptop
+scp pi@raspberrypi.local:~/captures/lab-wifi-channel-6.pcap .
+
+# Open it locally
+wireshark lab-wifi-channel-6.pcap</code></pre>
+      </div>
+
+      <div class="guide-note">
+        <strong>Alternative:</strong> if hostname resolution does not work, I can use the Pi's IP
+        address instead of <code>raspberrypi.local</code>.
+      </div>
+    </section>
+
+    <section>
+      <h2>Analyze the capture in Wireshark</h2>
+
+      <p class="section-intro">
+        Once the PCAP is open, I use filters and statistics to understand what I captured.
+      </p>
+
+      <div class="quick-list">
+        <article class="step-card">
+          <h3>Look at protocols</h3>
+          <p>
+            Start with protocol hierarchy to see what kinds of traffic exist.
+          </p>
+
+          <div class="code-card">
+            <pre><code>Statistics → Protocol Hierarchy</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>Look at endpoints</h3>
+          <p>
+            See which devices or addresses appear.
+          </p>
+
+          <div class="code-card">
+            <pre><code>Statistics → Endpoints</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>Filter DNS</h3>
+          <p>
+            Find name lookups from my test traffic.
+          </p>
+
+          <div class="code-card">
+            <pre><code>dns</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>Filter a device</h3>
+          <p>
+            Focus on one lab device by IP address.
+          </p>
+
+          <div class="code-card">
+            <pre><code>ip.addr == 192.168.1.50</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>Look for Wi-Fi management frames</h3>
+          <p>
+            Useful for seeing beacons, probes, and wireless metadata in a monitor-mode capture.
+          </p>
+
+          <div class="code-card">
+            <pre><code>wlan.fc.type == 0</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>Look for beacon frames</h3>
+          <p>
+            Beacon frames advertise access points.
+          </p>
+
+          <div class="code-card">
+            <pre><code>wlan.fc.type_subtype == 8</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>Look for probe requests</h3>
+          <p>
+            Probe requests show devices searching for networks.
+          </p>
+
+          <div class="code-card">
+            <pre><code>wlan.fc.type_subtype == 4</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>Look for probe responses</h3>
+          <p>
+            Probe responses are replies from access points.
+          </p>
+
+          <div class="code-card">
+            <pre><code>wlan.fc.type_subtype == 5</code></pre>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Use tshark for quick summaries on the Pi</h2>
+
+      <p class="section-intro">
+        I can also inspect the capture directly on the Raspberry Pi before moving it.
+      </p>
+
+      <div class="code-card">
+        <pre><code># Basic read
+tshark -r ~/captures/lab-wifi-channel-6.pcap
+
+# Protocol summary
+tshark -r ~/captures/lab-wifi-channel-6.pcap -q -z io,phs
+
+# Conversation summary
+tshark -r ~/captures/lab-wifi-channel-6.pcap -q -z conv,ip
+
+# Show only DNS packets
+tshark -r ~/captures/lab-wifi-channel-6.pcap -Y dns</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>Return the adapter to managed mode</h2>
+
+      <p class="section-intro">
+        After the capture, I put the adapter back to normal managed mode if I want to use it like a
+        regular Wi-Fi client again.
+      </p>
+
+      <div class="code-card">
+        <pre><code>sudo ip link set wlan1 down
+sudo iw dev wlan1 set type managed
+sudo ip link set wlan1 up
+
+iw dev</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>What I learned</h2>
+
+      <p class="section-intro">
+        This project connects hardware, Linux, wireless networking, packet capture, and analysis.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Linux</span>
+            <h3>Interfaces matter</h3>
+            <p>
+              I need to know which adapter is which, what mode it is in, what channel it is on, and
+              whether Linux can see it correctly.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Wi-Fi</span>
+            <h3>Wireless is chatty</h3>
+            <p>
+              Even before application data, Wi-Fi has management frames, beacons, probes, channels,
+              signal behavior, and metadata worth understanding.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Cybersecurity</span>
+            <h3>Evidence beats guessing</h3>
+            <p>
+              A PCAP gives me packet-level evidence. Instead of saying “the network is broken,” I
+              can show where the conversation failed or what traffic appeared.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Next steps</h2>
+
+      <p class="section-intro">
+        Once the basic capture workflow works, I can improve the project without making it unsafe.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">Good upgrades</span>
+          <h3>Make the project cleaner</h3>
+          <ul>
+            <li>Create a capture script with filenames based on date and channel.</li>
+            <li>Add a cron job for short scheduled captures in the lab.</li>
+            <li>Write a README explaining the hardware and workflow.</li>
+            <li>Add a systemd service for controlled capture sessions.</li>
+            <li>Store captures in a dedicated folder with cleanup rules.</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Analysis upgrades</span>
+          <h3>Make the results easier to read</h3>
+          <ul>
+            <li>Use <code>tshark</code> to summarize protocols automatically.</li>
+            <li>Export endpoint and conversation summaries.</li>
+            <li>Compare captures from different channels.</li>
+            <li>Document what normal lab traffic looks like.</li>
+            <li>Build a small packet-analysis checklist.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="action-item">
+        <strong>Related guide:</strong> use the
+        <a href="../../guides/advanced-wireshark/">Advanced Wireshark Guide</a>
+        to analyze the captures from this project.
+      </div>
+    </section>
+
+    <section>
+      <h2>Project cheat sheet</h2>
+
+      <p class="section-intro">
+        This is the short version of the build and capture workflow.
+      </p>
+
+      <div class="code-card">
+        <pre><code># Install tools
+sudo apt update
+sudo apt install tcpdump tshark wireshark-common iw rfkill usbutils -y
+
+# Identify adapter
+lsusb
+ip link
+iw dev
+rfkill list
+
+# Create capture folder
+mkdir -p ~/captures
+
+# Normal capture test
+sudo tcpdump -i wlan0 -w ~/captures/normal-network-test.pcap
+
+# Enable monitor mode on Alfa adapter
+sudo ip link set wlan1 down
+sudo iw dev wlan1 set type monitor
+sudo ip link set wlan1 up
+iw dev
+
+# Lock to lab channel
+sudo iw dev wlan1 set channel 6
+iw dev wlan1 info
+
+# Capture wireless packets
+sudo tcpdump -i wlan1 -w ~/captures/lab-wifi-channel-6.pcap
+
+# Quick summaries
+tshark -r ~/captures/lab-wifi-channel-6.pcap -q -z io,phs
+tshark -r ~/captures/lab-wifi-channel-6.pcap -q -z conv,ip
+
+# Copy to desktop
+scp pi@raspberrypi.local:~/captures/lab-wifi-channel-6.pcap .
+
+# Open in Wireshark
+wireshark lab-wifi-channel-6.pcap
+
+# Return adapter to managed mode
+sudo ip link set wlan1 down
+sudo iw dev wlan1 set type managed
+sudo ip link set wlan1 up</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>Final idea</h2>
+
+      <div class="callout">
+        <p>
+          <strong>This project turns Wi-Fi from something invisible into something I can study.</strong>
+          The Raspberry Pi captures, the Alfa adapter listens in my private lab, and Wireshark lets
+          me analyze the evidence afterward. It is a practical bridge between Linux, wireless
+          networking, packet analysis, and safe cybersecurity learning.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>&copy; 2026 LaunchShell</div>
+    <div>Student-built project guides for Linux, cloud, electronics, Python, and cybersecurity.</div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LaunchShell | Advanced Wireshark Guide</title>
+  <meta
+    name="description"
+    content="An advanced first-person LaunchShell guide to Wireshark for deeper packet analysis, PCAP review, TCP troubleshooting, DNS investigation, TLS metadata, wireless captures, and safe private lab workflows."
+  />
+
+  <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+</head>
+
+<body class="guide-page advanced-wireshark-page">
+  <header>
+    <a href="../../" aria-label="LaunchShell home">
+      <img src="../../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../../projects/">Projects</a>
+      <a href="../../guides/">Guides</a>
+      <a href="../../resources/">Resources</a>
+      <a href="../../resources/book-recommendations/">Book List</a>
+      <a class="status" href="../../start.html">Start Here</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="guide-hero">
+      <div>
+        <div class="eyebrow">Packet analysis • PCAPs • TCP • DNS • Wireless labs</div>
+
+        <h1>Advanced Wireshark is where packets become evidence.</h1>
+
+        <p>
+          Basic Wireshark teaches me how to capture packets and use simple filters. Advanced
+          Wireshark is where I start asking better questions: what failed, who talked to who,
+          which service responded, how long it took, and what the packet evidence actually proves.
+        </p>
+
+        <p>
+          This is the version I would use for deeper troubleshooting, CTF packet captures, honeynet
+          review, server debugging, home lab analysis, and private wireless lab captures from a
+          Raspberry Pi and Alfa adapter.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href="#workflow">See the workflow</a>
+          <a class="button" href="#filters">Advanced filters</a>
+        </div>
+
+        <div class="guide-note">
+          <strong>Important:</strong> packet captures can contain private data, device names,
+          internal IPs, hostnames, cookies, tokens, and browsing metadata. I only capture traffic
+          from my own devices, my own lab, CTF files, or environments where I have permission.
+        </div>
+      </div>
+
+      <div class="visual-card">
+        <div class="visual-inner" aria-label="Advanced Wireshark analysis workflow diagram">
+          <div class="stack">
+            <div class="stack-layer">
+              <strong>Capture or load PCAP</strong>
+              <span>Start with a focused file or controlled lab capture.</span>
+            </div>
+
+            <div class="stack-layer">
+              <strong>Summarize endpoints</strong>
+              <span>Find the hosts, ports, protocols, and conversations.</span>
+            </div>
+
+            <div class="stack-layer dark">
+              <strong>Filter and inspect</strong>
+              <span>Follow streams, check timing, and read protocol details.</span>
+            </div>
+
+            <div class="stack-layer">
+              <strong>Write the finding</strong>
+              <span>Turn packet evidence into a clear explanation.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="caption">
+          Advanced Wireshark is less about clicking every packet and more about building a clean timeline from evidence.
+        </div>
+      </div>
+    </section>
+
+    <section id="why">
+      <h2>Why go beyond basic captures?</h2>
+
+      <p class="section-intro">
+        A beginner capture answers “what packets do I see?” An advanced capture answers “what
+        happened, why did it happen, and what evidence supports that conclusion?”
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Troubleshooting</span>
+            <h3>Find the failure point</h3>
+            <p>
+              I can separate DNS failure, TCP failure, TLS failure, HTTP failure, firewall behavior,
+              retransmissions, resets, and application problems.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Forensics</span>
+            <h3>Read PCAPs like evidence</h3>
+            <p>
+              In CTFs, honeynet logs, and security labs, a PCAP is a record of what happened. I can
+              use Wireshark to build a timeline instead of guessing.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Wireless lab</span>
+            <h3>Understand Wi-Fi behavior</h3>
+            <p>
+              With my own private lab and an Alfa adapter, I can study beacons, probes, channels,
+              management frames, and encrypted traffic metadata safely.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="workflow">
+      <h2>My advanced Wireshark workflow</h2>
+
+      <p class="section-intro">
+        When a capture gets large, I do not start by clicking random packets. I start with structure:
+        endpoints, conversations, protocols, timing, and then packet details.
+      </p>
+
+      <div class="flow">
+        <article class="flow-step">
+          <span>01</span>
+          <h3>Define the question</h3>
+          <p>Am I investigating DNS, TCP, TLS, HTTP, DHCP, ARP, latency, failed login, or suspicious traffic?</p>
+        </article>
+
+        <article class="flow-step">
+          <span>02</span>
+          <h3>Review statistics</h3>
+          <p>I check endpoints, conversations, protocol hierarchy, and I/O graphs before drilling down.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>03</span>
+          <h3>Filter the capture</h3>
+          <p>I use display filters to isolate one host, port, stream, protocol, or time window.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>04</span>
+          <h3>Write the answer</h3>
+          <p>I document the packet numbers, timestamps, hosts, ports, and explanation.</p>
+        </article>
+      </div>
+
+      <div class="guide-note">
+        <strong>My rule:</strong> if I cannot explain the capture in plain English, I do not
+        understand it yet.
+      </div>
+    </section>
+
+    <section>
+      <h2>Start with Wireshark statistics</h2>
+
+      <p class="section-intro">
+        The statistics menus are underrated. They give me the map before I inspect individual packets.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Wireshark view</th>
+            <th>What I use it for</th>
+            <th>Why it matters</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong>Protocol Hierarchy</strong></td>
+            <td>See which protocols appear in the capture.</td>
+            <td>Quickly separates DNS, TCP, TLS, HTTP, DHCP, ARP, ICMP, and other traffic.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Endpoints</strong></td>
+            <td>List the IPs, MACs, and hosts involved.</td>
+            <td>Helps identify the main devices before looking at packet details.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Conversations</strong></td>
+            <td>See which hosts talked to each other.</td>
+            <td>Useful for finding the main client-server relationships.</td>
+          </tr>
+
+          <tr>
+            <td><strong>I/O Graphs</strong></td>
+            <td>Visualize traffic over time.</td>
+            <td>Helpful for bursts, scans, failures, retries, and timing patterns.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Resolved Addresses</strong></td>
+            <td>View resolved names from DNS and name resolution.</td>
+            <td>Helps connect IPs to domains and hostnames.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="filters">
+      <h2>Advanced display filters I actually use</h2>
+
+      <p class="section-intro">
+        Display filters are how I turn a huge capture into a focused investigation.
+      </p>
+
+      <div class="quick-list">
+        <article class="step-card">
+          <h3>One host</h3>
+          <p>Show traffic to or from one device.</p>
+
+          <div class="code-card">
+            <pre><code>ip.addr == 192.168.1.50</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>One conversation</h3>
+          <p>Show traffic between two specific hosts.</p>
+
+          <div class="code-card">
+            <pre><code>ip.addr == 192.168.1.50 && ip.addr == 192.168.1.1</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>One TCP stream</h3>
+          <p>After I right-click a packet and find the stream number, I can isolate it.</p>
+
+          <div class="code-card">
+            <pre><code>tcp.stream == 3</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>DNS errors</h3>
+          <p>Useful when a site or service name does not resolve.</p>
+
+          <div class="code-card">
+            <pre><code>dns.flags.rcode != 0</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>TCP retransmissions</h3>
+          <p>Useful for packet loss, congestion, or unreliable connections.</p>
+
+          <div class="code-card">
+            <pre><code>tcp.analysis.retransmission</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>TCP resets</h3>
+          <p>Useful when connections are being forcefully closed.</p>
+
+          <div class="code-card">
+            <pre><code>tcp.flags.reset == 1</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>TLS handshakes</h3>
+          <p>Useful for seeing encrypted connection setup.</p>
+
+          <div class="code-card">
+            <pre><code>tls.handshake</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>HTTP requests</h3>
+          <p>Useful for plain HTTP labs and intentionally unencrypted test traffic.</p>
+
+          <div class="code-card">
+            <pre><code>http.request</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>Show SYN packets</h3>
+          <p>Useful for watching connection attempts and scans in my lab.</p>
+
+          <div class="code-card">
+            <pre><code>tcp.flags.syn == 1 && tcp.flags.ack == 0</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>Find possible latency</h3>
+          <p>Useful when Wireshark flags slow or duplicate acknowledgments.</p>
+
+          <div class="code-card">
+            <pre><code>tcp.analysis.ack_rtt
+tcp.analysis.duplicate_ack</code></pre>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Follow streams instead of reading every packet</h2>
+
+      <p class="section-intro">
+        One of the most useful Wireshark features is “Follow TCP Stream.” It rebuilds a conversation
+        so I can understand the exchange without reading every packet one at a time.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">How I use it</span>
+          <h3>Follow one conversation</h3>
+          <ul>
+            <li>Right-click a packet from the conversation.</li>
+            <li>Select <strong>Follow</strong>.</li>
+            <li>Choose <strong>TCP Stream</strong>, <strong>UDP Stream</strong>, or another stream type.</li>
+            <li>Read the reconstructed conversation.</li>
+            <li>Use the generated stream filter to isolate it.</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Why it matters</span>
+          <h3>It gives context</h3>
+          <p>
+            Individual packets are fragments. A stream shows the full exchange. This is useful for
+            HTTP labs, CTFs, protocol debugging, and understanding client-server behavior.
+          </p>
+        </article>
+      </div>
+
+      <div class="guide-note">
+        <strong>Privacy note:</strong> following streams can reveal sensitive application data in
+        unencrypted traffic. Do this only with your own traffic, lab traffic, or authorized PCAPs.
+      </div>
+    </section>
+
+    <section>
+      <h2>TCP troubleshooting checklist</h2>
+
+      <p class="section-intro">
+        TCP is where Wireshark becomes extremely useful. A connection problem usually leaves clues.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>What I see</th>
+            <th>Possible meaning</th>
+            <th>Useful filter</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong>SYN with no SYN-ACK</strong></td>
+            <td>The server may be down, filtered, blocked, or unreachable.</td>
+            <td><code>tcp.flags.syn == 1</code></td>
+          </tr>
+
+          <tr>
+            <td><strong>RST packet</strong></td>
+            <td>A host forcefully closed or refused the connection.</td>
+            <td><code>tcp.flags.reset == 1</code></td>
+          </tr>
+
+          <tr>
+            <td><strong>Retransmissions</strong></td>
+            <td>Packet loss, congestion, bad Wi-Fi, or path instability.</td>
+            <td><code>tcp.analysis.retransmission</code></td>
+          </tr>
+
+          <tr>
+            <td><strong>Duplicate ACKs</strong></td>
+            <td>The receiver may be missing data and asking for recovery.</td>
+            <td><code>tcp.analysis.duplicate_ack</code></td>
+          </tr>
+
+          <tr>
+            <td><strong>Long handshake time</strong></td>
+            <td>Latency, routing path, remote server delay, or network congestion.</td>
+            <td><code>tcp.analysis.ack_rtt</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>DNS investigation workflow</h2>
+
+      <p class="section-intro">
+        DNS is one of the first things I check when a service “does not work.” Sometimes the network
+        is fine, but name resolution is broken.
+      </p>
+
+      <div class="code-card">
+        <pre><code># Generate a lookup
+dig launchshell.org
+dig example.com
+
+# Wireshark filters
+dns
+dns.qry.name contains "launchshell"
+dns.flags.rcode != 0
+ip.addr == 1.1.1.1
+ip.addr == 8.8.8.8</code></pre>
+      </div>
+
+      <div class="quick-list">
+        <article class="step-card">
+          <h3>What name was requested?</h3>
+          <p>I check the DNS query name and confirm the client asked for the name I expected.</p>
+        </article>
+
+        <article class="step-card">
+          <h3>Which DNS server answered?</h3>
+          <p>I check whether the answer came from my router, Pi-hole, Cloudflare, Google, or another resolver.</p>
+        </article>
+
+        <article class="step-card">
+          <h3>Was there an error?</h3>
+          <p>I look for NXDOMAIN, SERVFAIL, refused responses, or no response at all.</p>
+        </article>
+
+        <article class="step-card">
+          <h3>What IP came back?</h3>
+          <p>I compare the returned address with what I expected.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>TLS metadata: what I can still learn from encrypted traffic</h2>
+
+      <p class="section-intro">
+        HTTPS encrypts the content, but Wireshark can still show useful metadata. This is good for
+        troubleshooting, but it is also a reminder that encrypted traffic still has visible patterns.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">Visible metadata</span>
+          <h3>What I can usually see</h3>
+          <ul>
+            <li>Client and server IP addresses</li>
+            <li>TCP ports</li>
+            <li>Connection timing</li>
+            <li>TLS handshake packets</li>
+            <li>Certificate details in some cases</li>
+            <li>Server Name Indication in some captures</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Protected content</span>
+          <h3>What should be encrypted</h3>
+          <ul>
+            <li>Page contents</li>
+            <li>Passwords</li>
+            <li>Session data</li>
+            <li>Form submissions</li>
+            <li>Most application payloads</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="code-card">
+        <pre><code># Useful TLS filters
+tls
+tls.handshake
+tcp.port == 443
+ip.addr == 192.168.1.50 && tcp.port == 443</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>Reading CTF and honeynet PCAPs</h2>
+
+      <p class="section-intro">
+        For CTFs and honeynet analysis, I usually start with the same questions every time.
+      </p>
+
+      <div class="method">
+        <div class="method-step">
+          <span>01</span>
+          <h3>Who are the hosts?</h3>
+          <p>Use endpoints and conversations to identify clients, servers, and noisy systems.</p>
+        </div>
+
+        <div class="method-step">
+          <span>02</span>
+          <h3>What protocols appear?</h3>
+          <p>Check protocol hierarchy before assuming the capture is about one service.</p>
+        </div>
+
+        <div class="method-step">
+          <span>03</span>
+          <h3>What stands out?</h3>
+          <p>Look for errors, scans, unusual ports, repeated attempts, cleartext traffic, or bursts.</p>
+        </div>
+
+        <div class="method-step">
+          <span>04</span>
+          <h3>What is the timeline?</h3>
+          <p>Use packet timestamps and streams to explain the order of events.</p>
+        </div>
+      </div>
+
+      <div class="code-card">
+        <pre><code># Useful filters for PCAP review
+tcp.flags.syn == 1 && tcp.flags.ack == 0
+tcp.flags.reset == 1
+dns
+http
+ftp
+smb || nbss
+icmp
+frame contains "password"</code></pre>
+      </div>
+
+      <div class="warning-note">
+        <strong>Careful:</strong> searching for strings like passwords should only be done in lab
+        PCAPs, CTF files, honeynet data you collected, or captures you are authorized to review.
+      </div>
+    </section>
+
+    <section>
+      <h2>Wireless captures in my private lab</h2>
+
+      <p class="section-intro">
+        With a Raspberry Pi and Alfa Wi-Fi adapter, I can capture wireless frames in my own lab and
+        analyze the PCAP files later in Wireshark. This is for learning and troubleshooting, not for
+        spying on other people.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">What I study</span>
+          <h3>Safe wireless topics</h3>
+          <ul>
+            <li>Beacon frames from my own access point</li>
+            <li>SSID advertisements</li>
+            <li>Channel usage</li>
+            <li>Probe requests from my own test devices</li>
+            <li>Signal behavior and packet timing</li>
+            <li>Encrypted traffic metadata</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Not covered</span>
+          <h3>What this guide avoids</h3>
+          <ul>
+            <li>Cracking Wi-Fi passwords</li>
+            <li>Deauthentication attacks</li>
+            <li>Evil twin access points</li>
+            <li>Capturing traffic from networks I do not own</li>
+            <li>Collecting credentials or private data</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="action-item">
+        <strong>Related project:</strong> build the
+        <a href="../../projects/raspi-wifi-sniffer/">Raspberry Pi + Alfa Wi-Fi Sniffer</a>
+        to capture private lab traffic and analyze the PCAP files in Wireshark.
+      </div>
+    </section>
+
+    <section>
+      <h2>Using tshark when Wireshark is too much</h2>
+
+      <p class="section-intro">
+        Wireshark is great visually, but <code>tshark</code> is better for quick summaries, scripts,
+        servers, and repeatable analysis.
+      </p>
+
+      <div class="code-card">
+        <pre><code># Basic pcap summary
+tshark -r capture.pcap
+
+# Show protocol hierarchy
+tshark -r capture.pcap -q -z io,phs
+
+# Show TCP conversations
+tshark -r capture.pcap -q -z conv,tcp
+
+# Show IP endpoints
+tshark -r capture.pcap -q -z endpoints,ip
+
+# Filter DNS packets
+tshark -r capture.pcap -Y dns
+
+# Filter one host
+tshark -r capture.pcap -Y "ip.addr == 192.168.1.50"</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>My advanced Wireshark cheat sheet</h2>
+
+      <p class="section-intro">
+        This is the short version I would keep nearby when analyzing a real capture.
+      </p>
+
+      <div class="code-card">
+        <pre><code># Core display filters
+ip.addr == 192.168.1.50
+ip.src == 192.168.1.50
+ip.dst == 192.168.1.50
+tcp.port == 22
+tcp.port == 80
+tcp.port == 443
+udp.port == 53
+
+# TCP analysis
+tcp.stream == 3
+tcp.flags.syn == 1 && tcp.flags.ack == 0
+tcp.flags.reset == 1
+tcp.analysis.retransmission
+tcp.analysis.duplicate_ack
+tcp.analysis.ack_rtt
+
+# DNS analysis
+dns
+dns.flags.rcode != 0
+dns.qry.name contains "example"
+
+# Web and TLS
+http
+http.request
+http.response
+tls
+tls.handshake
+
+# Local network protocols
+arp
+dhcp
+icmp
+
+# Command-line summaries
+tshark -r capture.pcap -q -z io,phs
+tshark -r capture.pcap -q -z conv,tcp
+tshark -r capture.pcap -q -z endpoints,ip</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>Final idea</h2>
+
+      <div class="callout">
+        <p>
+          <strong>Advanced Wireshark is about evidence, not guessing.</strong> I use it to find the
+          hosts, isolate the conversation, inspect the packets, explain the failure, and document
+          what actually happened. It turns networking from something invisible into something I can
+          prove with packet-level detail.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>&copy; 2026 LaunchShell</div>
+    <div>Student-built project guides for Linux, cloud, electronics, Python, and cybersecurity.</div>
+  </footer>
+</body>
+</html>

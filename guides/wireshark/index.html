@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LaunchShell | Wireshark Packet Analysis Guide</title>
+  <meta
+    name="description"
+    content="A first-person LaunchShell guide to Wireshark for packet analysis, network troubleshooting, home labs, CTFs, and safe cybersecurity learning."
+  />
+
+  <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+</head>
+
+<body class="guide-page wireshark-page">
+  <header>
+    <a href="../../" aria-label="LaunchShell home">
+      <img src="../../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../../projects/">Projects</a>
+      <a href="../../guides/">Guides</a>
+      <a href="../../resources/">Resources</a>
+      <a href="../../resources/book-recommendations/">Book List</a>
+      <a class="status" href="../../start.html">Start Here</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="guide-hero">
+      <div>
+        <div class="eyebrow">Packets • Troubleshooting • Cybersecurity • Home Lab</div>
+
+        <h1>Wireshark is my packet microscope.</h1>
+
+        <p>
+          Nmap helps me find what is on the network. Wireshark helps me see what is actually
+          happening on the network. If Nmap is the map, Wireshark is the microscope.
+        </p>
+
+        <p>
+          I use Wireshark when I want to understand DNS lookups, TCP handshakes, HTTP requests,
+          TLS connections, DHCP, ARP, weird connection problems, and what devices are really saying
+          to each other.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href="#quick-start">Start capturing</a>
+          <a class="button" href="#workflow">See the workflow</a>
+        </div>
+
+        <div class="guide-note">
+          <strong>Important:</strong> packet captures can expose private data. I only capture traffic
+          on my own devices, my own lab network, or environments where I have clear permission.
+        </div>
+      </div>
+
+      <div class="visual-card">
+        <div class="visual-inner" aria-label="Wireshark packet analysis workflow diagram">
+          <div class="stack">
+            <div class="stack-layer">
+              <strong>Capture packets</strong>
+              <span>Pick an interface and record traffic.</span>
+            </div>
+
+            <div class="stack-layer">
+              <strong>Filter the noise</strong>
+              <span>Use display filters to focus on one protocol or host.</span>
+            </div>
+
+            <div class="stack-layer dark">
+              <strong>Inspect conversations</strong>
+              <span>Follow DNS, TCP, HTTP, TLS, ARP, and DHCP flows.</span>
+            </div>
+
+            <div class="stack-layer">
+              <strong>Explain what happened</strong>
+              <span>Turn packet evidence into troubleshooting notes.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="caption">
+          Wireshark turns invisible network traffic into something I can read, filter, and reason about.
+        </div>
+      </div>
+    </section>
+
+    <section id="why">
+      <h2>Why Wireshark matters</h2>
+
+      <p class="section-intro">
+        A lot of networking feels invisible until I capture packets. Wireshark makes the invisible
+        part visible.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Troubleshooting</span>
+            <h3>See what failed</h3>
+            <p>
+              If a website, server, VM, DNS lookup, or SSH connection is not working, Wireshark can
+              help me see where the conversation breaks.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Networking</span>
+            <h3>Learn protocols for real</h3>
+            <p>
+              Textbook protocols become much easier to understand when I can actually see ARP,
+              DHCP, DNS, TCP, HTTP, and TLS packets on my own machine.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Cybersecurity</span>
+            <h3>Analyze evidence</h3>
+            <p>
+              In CTFs, malware labs, honeypots, and incident-response practice, packet captures
+              often tell the story of what happened.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="install">
+      <h2>Install Wireshark</h2>
+
+      <p class="section-intro">
+        Here is the magic of <code>apt install</code> again: on most Linux systems, Wireshark is one
+        package install away, and like most Linux utilities, it is FREE. I usually install it with
+        <code>tcpdump</code> and <code>tshark</code> so I can capture from the terminal too.
+      </p>
+
+      <div class="code-card">
+        <pre><code>sudo apt update
+sudo apt install wireshark tcpdump tshark nmap -y</code></pre>
+      </div>
+
+      <div class="guide-note">
+        <strong>Note:</strong> during installation, Debian or Ubuntu may ask whether non-superusers
+        should be able to capture packets. For a personal lab machine, I usually allow this and add
+        my user to the <code>wireshark</code> group.
+      </div>
+    </section>
+
+    <section>
+      <h2>Allow packet capture without running as root</h2>
+
+      <p class="section-intro">
+        I do not want to run the whole Wireshark GUI as root. The cleaner setup is to allow the
+        packet capture helper to capture traffic while my normal user runs Wireshark.
+      </p>
+
+      <div class="code-card">
+        <pre><code># Reconfigure Wireshark capture permissions
+sudo dpkg-reconfigure wireshark-common
+
+# Add my user to the wireshark group
+sudo usermod -aG wireshark "$USER"
+
+# Refresh group membership for this terminal session
+newgrp wireshark
+
+# Optional: confirm dumpcap has capture capabilities
+getcap /usr/bin/dumpcap</code></pre>
+      </div>
+
+      <div class="warning-note">
+        <strong>Security note:</strong> packet capture is powerful. Only give this permission to
+        trusted users on your machine.
+      </div>
+    </section>
+
+    <section id="quick-start">
+      <h2>Quick start: capture my own traffic</h2>
+
+      <p class="section-intro">
+        The easiest first lab is to capture traffic from my own computer while I open a website,
+        ping a device, or run a DNS lookup.
+      </p>
+
+      <div class="quick-list">
+        <article class="step-card">
+          <span class="step-number">1</span>
+          <h3>Find my network interface</h3>
+          <p>
+            I check which interface is active. It might be named <code>wlan0</code>, <code>eth0</code>,
+            <code>enp3s0</code>, or something similar.
+          </p>
+
+          <div class="code-card">
+            <pre><code>ip link
+ip -4 addr show</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <span class="step-number">2</span>
+          <h3>Open Wireshark</h3>
+          <p>
+            I start Wireshark and select the active interface.
+          </p>
+
+          <div class="code-card">
+            <pre><code>wireshark</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <span class="step-number">3</span>
+          <h3>Generate simple traffic</h3>
+          <p>
+            I create traffic that is easy to recognize.
+          </p>
+
+          <div class="code-card">
+            <pre><code>ping 1.1.1.1
+dig example.com
+curl http://example.com</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <span class="step-number">4</span>
+          <h3>Use display filters</h3>
+          <p>
+            I filter the packet list so I am not staring at every packet at once.
+          </p>
+
+          <div class="code-card">
+            <pre><code>dns
+icmp
+tcp
+http</code></pre>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Capture filters vs display filters</h2>
+
+      <p class="section-intro">
+        This confused me at first. Wireshark has two different types of filters.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Filter type</th>
+            <th>What it does</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong>Capture filter</strong></td>
+            <td>Controls what gets recorded in the first place.</td>
+            <td><code>host 192.168.1.50</code></td>
+          </tr>
+
+          <tr>
+            <td><strong>Display filter</strong></td>
+            <td>Controls what I see after packets are already captured.</td>
+            <td><code>ip.addr == 192.168.1.50</code></td>
+          </tr>
+
+          <tr>
+            <td><strong>My beginner rule</strong></td>
+            <td>Capture broadly, then display-filter carefully.</td>
+            <td><code>dns</code>, <code>http</code>, <code>tcp.port == 443</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="guide-note">
+        <strong>Practical tip:</strong> when I am learning, I usually avoid strict capture filters.
+        I capture the traffic first, then use display filters so I do not accidentally miss the packet
+        I needed.
+      </div>
+    </section>
+
+    <section id="filters">
+      <h2>Display filters I actually use</h2>
+
+      <p class="section-intro">
+        Display filters are one of Wireshark's superpowers. They let me cut through noise and focus
+        on one protocol, host, port, or conversation.
+      </p>
+
+      <div class="quick-list">
+        <article class="step-card">
+          <h3>Show DNS traffic</h3>
+          <p>
+            Good for seeing domain lookups.
+          </p>
+
+          <div class="code-card">
+            <pre><code>dns</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>Show ping traffic</h3>
+          <p>
+            Useful for checking ICMP echo requests and replies.
+          </p>
+
+          <div class="code-card">
+            <pre><code>icmp</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>Show one IP address</h3>
+          <p>
+            Focus on traffic to or from one device.
+          </p>
+
+          <div class="code-card">
+            <pre><code>ip.addr == 192.168.1.50</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>Show traffic from one source</h3>
+          <p>
+            Useful when I only care about packets leaving one machine.
+          </p>
+
+          <div class="code-card">
+            <pre><code>ip.src == 192.168.1.50</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>Show traffic to one destination</h3>
+          <p>
+            Useful when I am watching traffic going to a server.
+          </p>
+
+          <div class="code-card">
+            <pre><code>ip.dst == 192.168.1.50</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>Show a TCP port</h3>
+          <p>
+            Good for watching SSH, HTTP, HTTPS, or a custom app port.
+          </p>
+
+          <div class="code-card">
+            <pre><code>tcp.port == 22
+tcp.port == 80
+tcp.port == 443
+tcp.port == 5000</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>Show ARP</h3>
+          <p>
+            ARP helps explain how devices find each other on a local network.
+          </p>
+
+          <div class="code-card">
+            <pre><code>arp</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>Show DHCP</h3>
+          <p>
+            DHCP helps me see how a device gets an IP address.
+          </p>
+
+          <div class="code-card">
+            <pre><code>dhcp</code></pre>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="workflow">
+      <h2>My normal Wireshark workflow</h2>
+
+      <p class="section-intro">
+        Wireshark can show too much at once. My workflow is to capture a small test, filter it,
+        inspect the conversation, and write down what I learned.
+      </p>
+
+      <div class="flow">
+        <article class="flow-step">
+          <span>01</span>
+          <h3>Pick one question</h3>
+          <p>What am I trying to learn: DNS failure, web request, SSH connection, DHCP, ARP, or latency?</p>
+        </article>
+
+        <article class="flow-step">
+          <span>02</span>
+          <h3>Start capture</h3>
+          <p>I capture on the interface that actually carries the traffic.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>03</span>
+          <h3>Generate traffic</h3>
+          <p>I run one clear test command so the capture has something easy to find.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>04</span>
+          <h3>Filter and inspect</h3>
+          <p>I use display filters, follow streams, and check packet details.</p>
+        </article>
+      </div>
+
+      <div class="code-card">
+        <pre><code># Example workflow: watch a DNS lookup
+
+# 1. Start Wireshark on the active interface
+
+# 2. In another terminal, generate DNS traffic
+dig example.com
+
+# 3. In Wireshark, use this display filter
+dns
+
+# 4. Click the DNS query and response packets
+# Look for:
+# - the domain requested
+# - the DNS server used
+# - the answer returned
+# - response time
+# - errors like NXDOMAIN</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>First lab: watch DNS happen</h2>
+
+      <p class="section-intro">
+        DNS is one of the best first Wireshark labs because it is simple and easy to recognize.
+        I ask for a name, and the network answers with an IP address.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">Terminal</span>
+          <h3>Generate the lookup</h3>
+
+          <div class="code-card">
+            <pre><code>dig launchshell.org
+dig example.com
+dig cloudflare.com</code></pre>
+          </div>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Wireshark</span>
+          <h3>Filter the capture</h3>
+
+          <div class="code-card">
+            <pre><code>dns</code></pre>
+          </div>
+
+          <p>
+            I look for the query name, the DNS server, the response, and whether the lookup succeeded.
+          </p>
+        </article>
+      </div>
+
+      <div class="action-item">
+        <strong>Why this is useful:</strong> DNS problems can make the internet feel broken even when
+        the network connection itself is fine. Wireshark lets me prove whether the DNS request went out
+        and whether a valid answer came back.
+      </div>
+    </section>
+
+    <section>
+      <h2>Second lab: watch a TCP handshake</h2>
+
+      <p class="section-intro">
+        TCP connections usually begin with a three-way handshake. Wireshark lets me see it instead
+        of just memorizing it.
+      </p>
+
+      <div class="code-card">
+        <pre><code># Generate simple TCP traffic
+curl http://example.com
+
+# Useful Wireshark display filters
+tcp
+http
+tcp.port == 80</code></pre>
+      </div>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Step</th>
+            <th>Packet</th>
+            <th>Meaning</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong>1</strong></td>
+            <td>SYN</td>
+            <td>My computer asks to start a TCP connection.</td>
+          </tr>
+
+          <tr>
+            <td><strong>2</strong></td>
+            <td>SYN, ACK</td>
+            <td>The server acknowledges and agrees to start the connection.</td>
+          </tr>
+
+          <tr>
+            <td><strong>3</strong></td>
+            <td>ACK</td>
+            <td>My computer confirms. The connection is established.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Third lab: compare HTTP and HTTPS</h2>
+
+      <p class="section-intro">
+        This is one of the clearest security lessons. HTTP is readable. HTTPS protects the content
+        with encryption.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag">HTTP</span>
+          <h3>Plain web traffic</h3>
+
+          <div class="code-card">
+            <pre><code>curl http://example.com</code></pre>
+          </div>
+
+          <p>
+            With HTTP, Wireshark can show readable request and response details because the content
+            is not encrypted.
+          </p>
+        </article>
+
+        <article class="panel">
+          <span class="tag green">HTTPS</span>
+          <h3>Encrypted web traffic</h3>
+
+          <div class="code-card">
+            <pre><code>curl https://example.com</code></pre>
+          </div>
+
+          <p>
+            With HTTPS, I can still see metadata like IPs, ports, timing, DNS, and TLS negotiation,
+            but the page contents are encrypted.
+          </p>
+        </article>
+      </div>
+
+      <div class="warning-note">
+        <strong>Privacy note:</strong> this is why packet captures must be handled carefully. Even
+        when content is encrypted, captures can still reveal hostnames, IP addresses, timing, device
+        behavior, and network patterns.
+      </div>
+    </section>
+
+    <section>
+      <h2>Using Wireshark with Nmap</h2>
+
+      <p class="section-intro">
+        Nmap and Wireshark make a strong pair. Nmap tells me what ports are open. Wireshark lets me
+        watch the scan packets and understand what the scan is doing.
+      </p>
+
+      <div class="code-card">
+        <pre><code># Start Wireshark first, then run a small scan against my own device or lab target
+nmap -sV 192.168.1.50
+
+# Wireshark display filters to watch the scan
+ip.addr == 192.168.1.50
+tcp
+tcp.flags.syn == 1</code></pre>
+      </div>
+
+      <div class="guide-note">
+        <strong>Learning moment:</strong> this is a good way to understand that tools are not magic.
+        Nmap works by sending packets and reading responses. Wireshark lets me see those packets.
+      </div>
+    </section>
+
+    <section>
+      <h2>Capture from the terminal with tcpdump</h2>
+
+      <p class="section-intro">
+        Sometimes I do not want a GUI. I can capture packets with <code>tcpdump</code>, save them
+        as a <code>.pcap</code> file, and open the file later in Wireshark.
+      </p>
+
+      <div class="code-card">
+        <pre><code># List interfaces
+ip link
+
+# Capture traffic on an interface and save to a file
+sudo tcpdump -i eth0 -w capture.pcap
+
+# Capture only traffic for one host
+sudo tcpdump -i eth0 host 192.168.1.50 -w host-capture.pcap
+
+# Open the capture later
+wireshark capture.pcap</code></pre>
+      </div>
+
+      <div class="action-item">
+        <strong>Why this matters:</strong> on servers, VMs, and headless devices, terminal capture
+        is often easier than running the full Wireshark GUI.
+      </div>
+    </section>
+
+    <section>
+      <h2>Use tshark for command-line packet analysis</h2>
+
+      <p class="section-intro">
+        <code>tshark</code> is basically Wireshark in the terminal. I do not need it for my first
+        day, but it becomes useful for scripts, servers, and quick filtering.
+      </p>
+
+      <div class="code-card">
+        <pre><code># Show live DNS packets
+sudo tshark -i eth0 -Y dns
+
+# Read a pcap file
+tshark -r capture.pcap
+
+# Read only HTTP packets from a pcap
+tshark -r capture.pcap -Y http
+
+# Show conversations from a pcap
+tshark -r capture.pcap -q -z conv,tcp</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>Common protocols worth recognizing</h2>
+
+      <p class="section-intro">
+        Wireshark becomes much easier when I recognize the common protocols that appear in normal
+        traffic.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Protocol</th>
+            <th>What it does</th>
+            <th>Why I care</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong>ARP</strong></td>
+            <td>Maps IP addresses to MAC addresses on a local network.</td>
+            <td>Helps explain local device discovery and gateway communication.</td>
+          </tr>
+
+          <tr>
+            <td><strong>DHCP</strong></td>
+            <td>Gives devices IP addresses automatically.</td>
+            <td>Useful when a device is not getting an IP address.</td>
+          </tr>
+
+          <tr>
+            <td><strong>DNS</strong></td>
+            <td>Turns names into IP addresses.</td>
+            <td>Useful when websites fail to load or a service name does not resolve.</td>
+          </tr>
+
+          <tr>
+            <td><strong>ICMP</strong></td>
+            <td>Used by tools like <code>ping</code>.</td>
+            <td>Useful for basic reachability testing.</td>
+          </tr>
+
+          <tr>
+            <td><strong>TCP</strong></td>
+            <td>Reliable connection-based transport.</td>
+            <td>Shows handshakes, retransmissions, resets, and connection behavior.</td>
+          </tr>
+
+          <tr>
+            <td><strong>HTTP</strong></td>
+            <td>Plain web traffic.</td>
+            <td>Good for learning request and response structure.</td>
+          </tr>
+
+          <tr>
+            <td><strong>TLS</strong></td>
+            <td>Encryption layer used by HTTPS and many other services.</td>
+            <td>Shows secure connection setup, certificates, and encrypted sessions.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Beginner mistakes to avoid</h2>
+
+      <p class="section-intro">
+        Wireshark is powerful, but it can overwhelm beginners because modern networks are noisy.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag">Avoid this</span>
+          <h3>Bad habits</h3>
+          <ul>
+            <li>Capturing traffic on networks where I do not have permission</li>
+            <li>Trying to understand every packet at once</li>
+            <li>Forgetting which interface is actually active</li>
+            <li>Using strict capture filters too early and missing useful packets</li>
+            <li>Saving packet captures that contain private data without thinking</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <span class="tag green">Do this instead</span>
+          <h3>Better habits</h3>
+          <ul>
+            <li>Start with my own machine and my own lab traffic</li>
+            <li>Ask one question per capture</li>
+            <li>Use display filters like <code>dns</code>, <code>icmp</code>, and <code>tcp.port == 80</code></li>
+            <li>Save short captures with clear filenames</li>
+            <li>Write down what I expected and what I actually saw</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>My basic Wireshark cheat sheet</h2>
+
+      <p class="section-intro">
+        This is the short version I would keep nearby.
+      </p>
+
+      <div class="code-card">
+        <pre><code># Install Wireshark and command-line capture tools
+sudo apt update
+sudo apt install wireshark tcpdump tshark -y
+
+# Allow my user to capture packets
+sudo dpkg-reconfigure wireshark-common
+sudo usermod -aG wireshark "$USER"
+newgrp wireshark
+
+# Find network interfaces
+ip link
+ip -4 addr show
+
+# Open Wireshark
+wireshark
+
+# Generate simple traffic
+ping 1.1.1.1
+dig example.com
+curl http://example.com
+curl https://example.com
+
+# Useful Wireshark display filters
+dns
+icmp
+arp
+dhcp
+tcp
+http
+tls
+ip.addr == 192.168.1.50
+ip.src == 192.168.1.50
+ip.dst == 192.168.1.50
+tcp.port == 22
+tcp.port == 80
+tcp.port == 443
+
+# Capture from the terminal
+sudo tcpdump -i eth0 -w capture.pcap
+sudo tcpdump -i eth0 host 192.168.1.50 -w host-capture.pcap
+
+# Analyze pcap files from the terminal
+tshark -r capture.pcap
+tshark -r capture.pcap -Y dns
+tshark -r capture.pcap -q -z conv,tcp</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>Final idea</h2>
+
+      <div class="callout">
+        <p>
+          <strong>Wireshark is one of the best tools for learning networking because it shows the
+          evidence.</strong> Instead of guessing what happened, I can capture packets, filter the
+          noise, inspect the conversation, and understand how devices actually communicate. Used
+          safely, it is useful for troubleshooting, home labs, CTFs, packet analysis, server work,
+          and cybersecurity fundamentals.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>&copy; 2026 LaunchShell</div>
+    <div>Student-built project guides for Linux, cloud, electronics, Python, and cybersecurity.</div>
+  </footer>
+</body>
+</html>

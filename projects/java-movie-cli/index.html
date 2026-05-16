@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LaunchShell | Java Movie Watch Tool</title>
+  <meta
+    name="description"
+    content="A LaunchShell project page for a Java data structures class project: a command-line movie database using ArrayList, TreeMap, TSV file loading, random suggestions, and title search."
+  />
+
+  <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+</head>
+
+<body class="project-page java-movie-database-page">
+  <header>
+    <a href="../../" aria-label="LaunchShell home">
+      <img src="../../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../../projects/">Projects</a>
+      <a href="../../guides/">Guides</a>
+      <a href="../../resources/">Resources</a>
+      <a href="../../resources/book-recommendations/">Book List</a>
+      <a class="status" href="../../start.html">Start Here</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="project-hero">
+      <div>
+        <div class="eyebrow">Java • Data Structures • CLI • File Input</div>
+
+        <h1>Java Movie CLI</h1>
+
+        <p>
+          This was a Data Structures class project where I built a Java command-line movie database.
+          The app loads movie records, stores them in memory, suggests random movies, searches by
+          title, and lets the user add or remove movies from the running program.
+        </p>
+
+        <p>
+          The main point of the project was not just making a menu. It was choosing the right data
+          structures for the job: an <code>ArrayList</code> for storing and randomly selecting movies,
+          and a <code>TreeMap</code> for title lookup and prefix search.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href="#features">See the features</a>
+          <a class="button" href="#data-structures">Data structures</a>
+        </div>
+
+        <div class="guide-note">
+          <strong>Project context:</strong> this was built for a Data Structures course, so the
+          important part is explaining why each structure was used, what the tradeoffs are, and how
+          the program behaves with real input.
+        </div>
+      </div>
+
+      <div class="visual-card">
+        <div class="visual-inner" aria-label="Java movie database CLI workflow diagram">
+          <div class="stack">
+            <div class="stack-layer">
+              <strong>movies_data.tsv</strong>
+              <span>Load 12-column movie records from a tab-separated file.</span>
+            </div>
+
+            <div class="stack-layer">
+              <strong>ArrayList&lt;Movie&gt;</strong>
+              <span>Store movies for iteration, appending, and random indexed access.</span>
+            </div>
+
+            <div class="stack-layer dark">
+              <strong>TreeMap title index</strong>
+              <span>Map normalized titles to matching Movie objects.</span>
+            </div>
+
+            <div class="stack-layer">
+              <strong>CLI menu</strong>
+              <span>Suggest, search, add, remove, or quit.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="caption">
+          This project connects Java objects, file parsing, random access, associative lookup, and menu-driven programs.
+        </div>
+      </div>
+    </section>
+
+    <section id="what">
+      <h2>What I built</h2>
+
+      <p class="section-intro">
+        I built a single-file Java console application called <code>Movies.java</code>. It defines a
+        movie record, loads data from a file when available, falls back to sample data when needed,
+        and gives the user an interactive menu.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Java</span>
+            <h3>Object model</h3>
+            <p>
+              Each movie is represented as a <code>Movie</code> object with fields like title, year,
+              duration, rating, studio, summary, genres, directors, writers, and cast.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">CLI</span>
+            <h3>Interactive menu</h3>
+            <p>
+              The user can request a list of random movies, search by title, add a new movie, remove a movie,
+              or quit from a simple terminal menu.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Data structures</span>
+            <h3>ArrayList and TreeMap</h3>
+            <p>
+              The project uses an <code>ArrayList</code> for movie storage and a <code>TreeMap</code>
+              for a searchable title index.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="features">
+      <h2>Program features</h2>
+
+      <p class="section-intro">
+        The app is small, but it has a complete working loop: load data, show a menu, process user
+        input, update the movie list, and rebuild the title index when the data changes.
+      </p>
+
+      <div class="method">
+        <div class="method-step">
+          <span>01</span>
+          <h3>Suggest random movies</h3>
+          <p>
+            The user chooses how many movies to display, and the app prints that many distinct
+            random movies.
+          </p>
+        </div>
+
+        <div class="method-step">
+          <span>02</span>
+          <h3>Search by title</h3>
+          <p>
+            The app normalizes titles, checks for exact matches first, then prints prefix matches.
+          </p>
+        </div>
+
+        <div class="method-step">
+          <span>03</span>
+          <h3>Add movies</h3>
+          <p>
+            The user can add a new movie through prompts, and the movie is appended to the list.
+          </p>
+        </div>
+
+        <div class="method-step">
+          <span>04</span>
+          <h3>Remove movies</h3>
+          <p>
+            The user can remove the first movie with an exact matching title.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="menu">
+      <h2>The menu workflow</h2>
+
+      <p class="section-intro">
+        The program runs as a terminal app. The user selects an option, the program performs the
+        action, then returns to the menu.
+      </p>
+
+      <div class="code-card">
+        <pre><code>=====================================
+-------Welcome to the Movie DB-------
+=====================================
+
+Menu:
+1.) Suggest random movies
+2.) Search by Title
+3.) Add Movie
+4.) Remove Movie
+Q.) Quit
+
+Select Option &gt;</code></pre>
+      </div>
+
+      <div class="guide-note">
+        <strong>Why this matters:</strong> a menu-driven CLI is a good way to practice control flow,
+        input handling, methods, objects, collections, and program state without needing a GUI or web app.
+      </div>
+    </section>
+
+    <section id="data-structures">
+      <h2>Data structures used</h2>
+
+      <p class="section-intro">
+        This was the core data structures part of the project. Each structure has a clear reason.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Structure</th>
+            <th>Used for</th>
+            <th>Why it fits</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong>ArrayList&lt;Movie&gt;</strong></td>
+            <td>Main movie storage.</td>
+            <td>
+              Good for appending records, iterating through movies, and selecting random movies by
+              index in constant time.
+            </td>
+          </tr>
+
+          <tr>
+            <td><strong>boolean[] used</strong></td>
+            <td>Tracking already-selected random movie indexes.</td>
+            <td>
+              Prevents duplicates during a random suggestion run without modifying or shuffling the
+              original movie list.
+            </td>
+          </tr>
+
+          <tr>
+            <td><strong>TreeMap&lt;String, List&lt;Movie&gt;&gt;</strong></td>
+            <td>Title search index.</td>
+            <td>
+              Stores normalized title keys in sorted order and maps each title key to one or more
+              matching movie objects.
+            </td>
+          </tr>
+
+          <tr>
+            <td><strong>List&lt;Movie&gt;</strong></td>
+            <td>Map value for duplicate title keys.</td>
+            <td>
+              Allows more than one movie to share the same normalized title key.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Why ArrayList works for random suggestions</h2>
+
+      <p class="section-intro">
+        Random movie suggestions need fast indexed access. That makes <code>ArrayList</code> a good
+        choice because the program can generate a random index and immediately retrieve the movie at
+        that position.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">Good fit</span>
+          <h3>ArrayList</h3>
+          <p>
+            <code>ArrayList</code> gives efficient indexed access, which is exactly what random
+            selection needs. The program generates a random index and uses it to pull a movie from
+            the list.
+          </p>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Poorer fit</span>
+          <h3>LinkedList</h3>
+          <p>
+            A <code>LinkedList</code> would be weaker here because indexed access requires walking
+            through the list. This project does not need frequent middle insertions or removals.
+          </p>
+        </article>
+      </div>
+
+      <div class="code-card">
+        <pre><code>static void showRandom(ArrayList&lt;Movie&gt; list, int k) {
+    if (list.isEmpty()) {
+        System.out.println("(No Results)");
+        return;
+    }
+
+    int size = list.size();
+    int n = Math.min(k, size);
+    boolean[] used = new boolean[size];
+    int printed = 0;
+
+    while (printed &lt; n) {
+        int idx = (int) (Math.random() * size);
+
+        if (used[idx]) continue;
+
+        used[idx] = true;
+        System.out.println("#" + (printed + 1) + ". " + list.get(idx));
+        printed++;
+    }
+}</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>How title normalization works</h2>
+
+      <p class="section-intro">
+        Search works better when titles are normalized. The program lowercases titles and removes
+        leading articles like <code>the</code>, <code>a</code>, and <code>an</code>.
+      </p>
+
+      <div class="code-card">
+        <pre><code>static String normTitle(String s) {
+    if (s == null) return "";
+
+    s = s.trim().toLowerCase();
+
+    if (s.startsWith("the ")) return s.substring(4).trim();
+    if (s.startsWith("an "))  return s.substring(3).trim();
+    if (s.startsWith("a "))   return s.substring(2).trim();
+
+    return s;
+}</code></pre>
+      </div>
+
+      <div class="action-item">
+        <strong>Example:</strong> <code>The Matrix</code> becomes <code>matrix</code>, so a user can
+        search for <code>matrix</code> without needing to type the leading article.
+      </div>
+    </section>
+
+    <section>
+      <h2>How the TreeMap title index works</h2>
+
+      <p class="section-intro">
+        The title index maps a normalized title string to a list of matching movie objects. This is
+        better than only storing titles because the program can retrieve and print the full movie
+        record.
+      </p>
+
+      <div class="code-card">
+        <pre><code>static Map&lt;String, List&lt;Movie&gt;&gt; buildTitleIndex(List&lt;Movie&gt; movies) {
+    Map&lt;String, List&lt;Movie&gt;&gt; index = new TreeMap&lt;&gt;();
+
+    for (Movie m : movies) {
+        String key = normTitle(m.title);
+        List&lt;Movie&gt; bucket = index.computeIfAbsent(key, k -&gt; new ArrayList&lt;&gt;());
+        bucket.add(m);
+    }
+
+    return index;
+}</code></pre>
+      </div>
+
+      <div class="guide-note">
+        <strong>Why TreeMap:</strong> a <code>HashMap</code> would be faster for direct lookup on
+        average, but it does not keep keys sorted. <code>TreeMap</code> keeps keys ordered, which
+        makes it a better fit for prefix-style title search.
+      </div>
+    </section>
+
+    <section>
+      <h2>Exact search first, prefix search second</h2>
+
+      <p class="section-intro">
+        When the user searches, the program first checks for an exact normalized title match. After
+        that, it scans the sorted keys for titles that start with the search text.
+      </p>
+
+      <div class="code-card">
+        <pre><code>// Exact match first
+List&lt;Movie&gt; exact = titleIndex.get(searchTitle);
+
+if (exact != null) {
+    for (Movie m : exact) {
+        System.out.println(m);
+    }
+}
+
+// Prefix matches second
+for (Map.Entry&lt;String, List&lt;Movie&gt;&gt; entry : titleIndex.entrySet()) {
+    String key = entry.getKey();
+
+    if (!key.startsWith(searchTitle) || key.equals(searchTitle)) continue;
+
+    for (Movie m : entry.getValue()) {
+        System.out.println(m);
+    }
+}</code></pre>
+      </div>
+
+      <div class="warning-note">
+        <strong>Important distinction:</strong> this version performs exact and prefix matching.
+        It is not the same as a general substring search with <code>contains()</code>.
+      </div>
+    </section>
+
+    <section id="input">
+      <h2>Input file format</h2>
+
+      <p class="section-intro">
+        The program tries to load a file named <code>movies_data.tsv</code>. It expects a header row
+        and exactly 12 tab-separated fields per movie.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Column</th>
+            <th>Field</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong>1</strong></td>
+            <td><code>id</code></td>
+            <td><code>S001</code></td>
+          </tr>
+
+          <tr>
+            <td><strong>2</strong></td>
+            <td><code>title</code></td>
+            <td><code>The Matrix</code></td>
+          </tr>
+
+          <tr>
+            <td><strong>3</strong></td>
+            <td><code>year</code></td>
+            <td><code>1999</code></td>
+          </tr>
+
+          <tr>
+            <td><strong>4</strong></td>
+            <td><code>durationMinutes</code></td>
+            <td><code>136</code></td>
+          </tr>
+
+          <tr>
+            <td><strong>5</strong></td>
+            <td><code>criticRating</code></td>
+            <td><code>8.7</code></td>
+          </tr>
+
+          <tr>
+            <td><strong>6</strong></td>
+            <td><code>mpaaRating</code></td>
+            <td><code>R</code></td>
+          </tr>
+
+          <tr>
+            <td><strong>7-12</strong></td>
+            <td>Studio, summary, genres, directors, writers, cast</td>
+            <td>Longer text fields from the movie dataset.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="code-card">
+        <pre><code>String[] c = line.split("\t", -1);
+
+if (c.length != EXPECTED_COLS) continue;
+
+movies.add(new Movie(
+    c[0], c[1], c[2], c[3], c[4], c[5],
+    c[6], c[7], c[8], c[9], c[10], c[11]
+));</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>Fallback sample data</h2>
+
+      <p class="section-intro">
+        If the TSV file is missing or no valid rows are loaded, the program falls back to a built-in
+        sample dataset of 25 movies. That makes the project easier to demo because it still works
+        without an external file.
+      </p>
+
+      <div class="code-card">
+        <pre><code>ArrayList&lt;Movie&gt; movies = loadFile();
+
+if (movies.isEmpty()) {
+    movies = seedSample();
+    System.out.println("File Not Found: Reverting to sample dataset");
+} else {
+    System.out.println("Loaded " + movies.size() + " movies from: movies_data.tsv");
+}</code></pre>
+      </div>
+
+      <div class="guide-note">
+        <strong>Why this is useful:</strong> the app can run in a classroom, Codespace, or local
+        terminal even if the data file is not present.
+      </div>
+    </section>
+
+    <section>
+      <h2>Add and remove operations</h2>
+
+      <p class="section-intro">
+        Adding and removing movies changes the main <code>ArrayList</code>. After either operation,
+        the program rebuilds the <code>TreeMap</code> title index so search results stay current.
+      </p>
+
+      <div class="flow">
+        <article class="flow-step">
+          <span>01</span>
+          <h3>User selects add or remove</h3>
+          <p>The menu sends the program to the correct method.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>02</span>
+          <h3>ArrayList changes</h3>
+          <p>A movie is appended, or the first exact title match is removed.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>03</span>
+          <h3>TreeMap rebuilds</h3>
+          <p>The title index is recreated from the updated movie list.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>04</span>
+          <h3>Search stays accurate</h3>
+          <p>Future title searches reflect the current list.</p>
+        </article>
+      </div>
+
+      <div class="code-card">
+        <pre><code>case "3": {
+    addMovie(in, movies);
+    titleIndex = buildTitleIndex(movies);
+    returnToMenu(in);
+    break;
+}
+
+case "4": {
+    removeMovieByTitle(in, movies);
+    titleIndex = buildTitleIndex(movies);
+    returnToMenu(in);
+    break;
+}</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>Complexity notes</h2>
+
+      <p class="section-intro">
+        The project is small, but it still shows how data-structure choices affect performance.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Operation</th>
+            <th>Approximate complexity</th>
+            <th>Reason</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong>Append movie</strong></td>
+            <td>Amortized <code>O(1)</code></td>
+            <td><code>ArrayList</code> append is usually constant time.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Random indexed access</strong></td>
+            <td><code>O(1)</code></td>
+            <td>The app can directly access <code>list.get(index)</code>.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Suggest K random movies</strong></td>
+            <td>Expected about <code>O(K)</code></td>
+            <td>The app picks random indexes and uses a boolean array to avoid duplicates.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Exact title lookup</strong></td>
+            <td><code>O(log n)</code></td>
+            <td><code>TreeMap</code> lookup is logarithmic.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Prefix search</strong></td>
+            <td><code>O(n)</code></td>
+            <td>This version scans the sorted map keys and checks <code>startsWith()</code>.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Remove by exact title</strong></td>
+            <td><code>O(n)</code></td>
+            <td>The program scans the list until it finds the first matching title.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>What I learned</h2>
+
+      <p class="section-intro">
+        This project helped connect class data-structure concepts to a working program.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Data structures</span>
+            <h3>Use the structure that matches the task</h3>
+            <p>
+              <code>ArrayList</code> is a good fit for indexed random access. <code>TreeMap</code>
+              is a better fit when sorted keys and prefix search matter.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">File input</span>
+            <h3>Input format matters</h3>
+            <p>
+              The TSV loader has to preserve empty columns and skip malformed rows so the program
+              does not build broken movie objects.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Program design</span>
+            <h3>Indexes must stay synced</h3>
+            <p>
+              If the movie list changes, the search index has to be rebuilt or updated. Otherwise,
+              search results can become stale.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Future improvements</h2>
+
+      <p class="section-intro">
+        The current version works for the assignment, but there are clear ways to make it more robust.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">Code improvements</span>
+          <h3>Make it safer</h3>
+          <ul>
+            <li>Add <code>try/catch</code> input validation for numbers.</li>
+            <li>Print a clearer error when the TSV file cannot load.</li>
+            <li>Prevent duplicate generated IDs after removals.</li>
+            <li>Move the <code>Movie</code> class into its own file for larger versions.</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Feature upgrades</span>
+          <h3>Make it more useful</h3>
+          <ul>
+            <li>Add search by director, actor, genre, or rating.</li>
+            <li>Save added movies back to a file.</li>
+            <li>Support contains-anywhere title search as a separate option.</li>
+            <li>Sort results by year, title, or rating.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Run it locally</h2>
+
+      <p class="section-intro">
+        The project can be compiled and run directly with the Java compiler and runtime.
+      </p>
+
+      <div class="code-card">
+        <pre><code>javac Movies.java
+java Movies</code></pre>
+      </div>
+
+      <div class="guide-note">
+        <strong>Optional:</strong> place <code>movies_data.tsv</code> in the same folder before
+        running. If the file is missing, the program falls back to sample data.
+      </div>
+    </section>
+
+    <section>
+      <h2>Final idea</h2>
+
+      <div class="callout">
+        <p>
+          <strong>This project is a good example of a class assignment becoming a real portfolio
+          piece.</strong> It shows Java basics, object modeling, file parsing, menu-driven programs,
+          random access with ArrayList, associative lookup with TreeMap,
+          and the reasoning behind choosing one data structure over another.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>&copy; 2026 LaunchShell</div>
+    <div>Student-built project guides for Linux, cloud, electronics, Python, and cybersecurity.</div>
+  </footer>
+</body>
+</html>

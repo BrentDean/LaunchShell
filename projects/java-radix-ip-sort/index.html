@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LaunchShell | Java Radix Sort for IP Addresses</title>
+  <meta
+    name="description"
+    content="A LaunchShell project page for a Java data structures class project demonstrating radix sort with IPv4 addresses, base-256 buckets, queues, and byte-level sorting."
+  />
+
+  <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+</head>
+
+<body class="project-page java-radix-ip-page">
+  <header>
+    <a href="../../" aria-label="LaunchShell home">
+      <img src="../../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../../projects/">Projects</a>
+      <a href="../../guides/">Guides</a>
+      <a href="../../resources/">Resources</a>
+      <a href="../../resources/book-recommendations/">Book List</a>
+      <a class="status" href="../../start.html">Start Here</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="project-hero">
+      <div>
+        <div class="eyebrow">Java • Data Structures • Radix Sort • IPv4</div>
+
+        <h1>Sorting IP Addresses with Java Radix Sort</h1>
+
+        <p>
+          This was a small data structures class project where I used Java to demonstrate radix sort
+          on IPv4 addresses. Instead of sorting normal decimal numbers, the program treats each IP
+          address as a 32-bit integer and sorts it one byte at a time.
+        </p>
+
+        <p>
+          I liked this project because it connects a class algorithm to networking. IPv4 addresses
+          already have four byte-sized parts, so base-256 radix sort maps naturally to the way IP
+          addresses are written and stored.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href="#workflow">See the workflow</a>
+          <a class="button" href="#code">Code walkthrough</a>
+        </div>
+
+        <div class="guide-note">
+          <strong>Project context:</strong> this is a simple Java data structures project, but it
+          has a strong networking angle: IP addresses, bytes, bit shifts, queues, and radix sorting.
+        </div>
+      </div>
+
+      <div class="visual-card">
+        <div class="visual-inner" aria-label="Radix sort IPv4 workflow diagram">
+          <div class="stack">
+            <div class="stack-layer">
+              <strong>IPv4 address</strong>
+              <span>Example: 192.168.15.200</span>
+            </div>
+
+            <div class="stack-layer">
+              <strong>32-bit integer</strong>
+              <span>Store the address as four bytes.</span>
+            </div>
+
+            <div class="stack-layer dark">
+              <strong>Base-256 buckets</strong>
+              <span>Use 256 queues for byte values 0 through 255.</span>
+            </div>
+
+            <div class="stack-layer">
+              <strong>Four passes</strong>
+              <span>Sort last byte to first byte.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="caption">
+          IPv4 addresses are four bytes, so the radix sort runs four byte-level passes.
+        </div>
+      </div>
+    </section>
+
+    <section id="what">
+      <h2>What I built</h2>
+
+      <p class="section-intro">
+        I built a Java program called <code>RadixIP</code>. It stores several IPv4 addresses,
+        converts each dotted-decimal address into an integer, then uses a base-256 radix sort to
+        sort them.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Java</span>
+            <h3>Algorithm demo</h3>
+            <p>
+              The program demonstrates radix sort using Java classes, lists, queues, loops, and
+              helper methods.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Networking</span>
+            <h3>IPv4 addresses</h3>
+            <p>
+              Instead of sorting generic numbers, the program sorts IP addresses like
+              <code>10.0.143.92</code> and <code>192.168.15.200</code>.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Data structures</span>
+            <h3>Queues as buckets</h3>
+            <p>
+              Each byte value gets its own queue. The queues preserve ordering inside each bucket,
+              which keeps the radix sort stable.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="why">
+      <h2>Why IP addresses fit radix sort</h2>
+
+      <p class="section-intro">
+        An IPv4 address is made of four octets. Each octet is one byte, and one byte can hold values
+        from <code>0</code> to <code>255</code>. That makes base 256 a natural match.
+      </p>
+
+      <div class="code-card">
+        <pre><code>192.168.15.200
+
+192  = first byte
+168  = second byte
+15   = third byte
+200  = fourth byte</code></pre>
+      </div>
+
+      <div class="action-item">
+        <strong>Main idea:</strong> radix sort can sort the IPs byte-by-byte instead of comparing
+        each full address as a string.
+      </div>
+    </section>
+
+    <section id="workflow">
+      <h2>The sorting workflow</h2>
+
+      <p class="section-intro">
+        The program performs four sorting passes. It starts with the least significant byte, which is
+        the last octet, and works toward the most significant byte, which is the first octet.
+      </p>
+
+      <div class="flow">
+        <article class="flow-step">
+          <span>01</span>
+          <h3>Pass 0</h3>
+          <p>Sort by the last octet, such as the <code>200</code> in <code>192.168.15.200</code>.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>02</span>
+          <h3>Pass 1</h3>
+          <p>Sort by the third octet, such as the <code>15</code> in <code>192.168.15.200</code>.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>03</span>
+          <h3>Pass 2</h3>
+          <p>Sort by the second octet, such as the <code>168</code> in <code>192.168.15.200</code>.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>04</span>
+          <h3>Pass 3</h3>
+          <p>Sort by the first octet, such as the <code>192</code> in <code>192.168.15.200</code>.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="data-structures">
+      <h2>Data structures used</h2>
+
+      <p class="section-intro">
+        The project is small, but the data-structure choices matter.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Structure</th>
+            <th>Used for</th>
+            <th>Why it fits</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong>List&lt;Integer&gt;</strong></td>
+            <td>Stores the IP addresses as integers.</td>
+            <td>
+              The list is the main sequence being sorted and rewritten after each radix pass.
+            </td>
+          </tr>
+
+          <tr>
+            <td><strong>ArrayList&lt;Queue&lt;Integer&gt;&gt;</strong></td>
+            <td>Stores 256 radix buckets.</td>
+            <td>
+              The array-style list gives direct access to bucket numbers from <code>0</code> through
+              <code>255</code>.
+            </td>
+          </tr>
+
+          <tr>
+            <td><strong>Queue&lt;Integer&gt;</strong></td>
+            <td>Stores IPs inside each bucket.</td>
+            <td>
+              Queues preserve insertion order, which is important because radix sort depends on
+              stable bucket collection.
+            </td>
+          </tr>
+
+          <tr>
+            <td><strong>LinkedList&lt;Integer&gt;</strong></td>
+            <td>Implements each queue.</td>
+            <td>
+              Java's <code>LinkedList</code> can act as a queue with <code>add()</code> and
+              <code>poll()</code>.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="code">
+      <h2>Code walkthrough</h2>
+
+      <p class="section-intro">
+        The main radix-sort class stores the list being sorted, creates 256 queues, distributes
+        values into buckets, then collects them back into the list.
+      </p>
+
+      <div class="code-card">
+        <pre><code>class RadixSortBase256 {
+    List&lt;Integer&gt; toSort;
+    ArrayList&lt;Queue&lt;Integer&gt;&gt; bins;
+    final int BASE = 256;
+    final int numBytes = 4;
+
+    RadixSortBase256(List&lt;Integer&gt; toSort) {
+        this.toSort = toSort;
+        bins = new ArrayList&lt;&gt;(BASE);
+
+        for (int i = 0; i &lt; BASE; i++) {
+            bins.add(new LinkedList&lt;&gt;());
+        }
+    }
+}</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>How one byte is selected</h2>
+
+      <p class="section-intro">
+        This line is the key part of the program. It uses bit shifting to select one byte from the
+        integer representation of the IP address.
+      </p>
+
+      <div class="code-card">
+        <pre><code>int bucket = (ip &gt;&gt;&gt; (8 * bytePass)) &amp; 0xFF;</code></pre>
+      </div>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Part</th>
+            <th>What it does</th>
+            <th>Why it matters</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong><code>bytePass</code></strong></td>
+            <td>Chooses which byte to inspect.</td>
+            <td>There are four passes: <code>0</code>, <code>1</code>, <code>2</code>, and <code>3</code>.</td>
+          </tr>
+
+          <tr>
+            <td><strong><code>8 * bytePass</code></strong></td>
+            <td>Calculates how many bits to shift.</td>
+            <td>Each byte is 8 bits.</td>
+          </tr>
+
+          <tr>
+            <td><strong><code>&gt;&gt;&gt;</code></strong></td>
+            <td>Performs an unsigned right shift.</td>
+            <td>Moves the target byte into the lowest byte position.</td>
+          </tr>
+
+          <tr>
+            <td><strong><code>&amp; 0xFF</code></strong></td>
+            <td>Keeps only the lowest 8 bits.</td>
+            <td>Produces a bucket number from <code>0</code> to <code>255</code>.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Distribute and collect</h2>
+
+      <p class="section-intro">
+        Each pass has two main steps. First, distribute each IP into the correct byte bucket. Then,
+        collect the buckets back into the main list in order.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">Distribute</span>
+          <h3>Put each IP into a bucket</h3>
+
+          <div class="code-card">
+            <pre><code>public void distribute(int bytePass) {
+    for (Integer ip : toSort) {
+        int bucket = (ip &gt;&gt;&gt; (8 * bytePass)) &amp; 0xFF;
+        bins.get(bucket).add(ip);
+    }
+}</code></pre>
+          </div>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Collect</span>
+          <h3>Rebuild the list in bucket order</h3>
+
+          <div class="code-card">
+            <pre><code>public void collect() {
+    toSort.clear();
+
+    for (Queue&lt;Integer&gt; b : bins) {
+        while (!b.isEmpty()) {
+            toSort.add(b.poll());
+        }
+    }
+}</code></pre>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Converting IP strings to integers</h2>
+
+      <p class="section-intro">
+        The program starts with readable dotted-decimal IP strings, splits them on periods, parses
+        each octet, then packs the four octets into one integer using bit shifts.
+      </p>
+
+      <div class="code-card">
+        <pre><code>private static int ip(String s) {
+    String[] p = s.split("\\.");
+
+    return (Integer.parseInt(p[0]) &lt;&lt; 24)
+            | (Integer.parseInt(p[1]) &lt;&lt; 16)
+            | (Integer.parseInt(p[2]) &lt;&lt; 8)
+            |  Integer.parseInt(p[3]);
+}</code></pre>
+      </div>
+
+      <div class="warning-note">
+        <strong>Improvement to make later:</strong> this helper assumes valid input. A stronger
+        version should check that there are exactly four octets and that each octet is between
+        <code>0</code> and <code>255</code>.
+      </div>
+    </section>
+
+    <section>
+      <h2>Converting integers back to IP strings</h2>
+
+      <p class="section-intro">
+        For readable output, the program converts each sorted integer back into normal
+        dotted-decimal form.
+      </p>
+
+      <div class="code-card">
+        <pre><code>private static String intToIp(int x) {
+    return ((x &gt;&gt;&gt; 24) &amp; 0xFF) + "."
+            + ((x &gt;&gt;&gt; 16) &amp; 0xFF) + "."
+            + ((x &gt;&gt;&gt; 8) &amp; 0xFF) + "."
+            + (x &amp; 0xFF);
+}</code></pre>
+      </div>
+
+      <div class="guide-note">
+        <strong>Same idea in reverse:</strong> shift the byte into position, mask with
+        <code>0xFF</code>, and print each octet.
+      </div>
+    </section>
+
+    <section>
+      <h2>Sample input</h2>
+
+      <p class="section-intro">
+        The demo sorts a small list of hardcoded IPv4 addresses.
+      </p>
+
+      <div class="code-card">
+        <pre><code>ips.add(ip("10.0.143.92"));
+ips.add(ip("10.12.8.77"));
+ips.add(ip("172.16.0.14"));
+ips.add(ip("192.168.15.200"));
+ips.add(ip("172.31.254.9"));
+ips.add(ip("192.168.0.3"));
+ips.add(ip("203.0.113.45"));</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>Final sorted output</h2>
+
+      <p class="section-intro">
+        After four passes, the addresses are sorted numerically by IPv4 value.
+      </p>
+
+      <div class="code-card">
+        <pre><code>10.0.143.92
+10.12.8.77
+172.16.0.14
+172.31.254.9
+192.168.0.3
+192.168.15.200
+203.0.113.45</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>What I learned</h2>
+
+      <p class="section-intro">
+        This project helped connect sorting algorithms, Java data structures, and networking basics.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Algorithms</span>
+            <h3>Radix sort is different</h3>
+            <p>
+              Instead of repeatedly comparing two full values, radix sort processes one digit or byte
+              position at a time.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Binary</span>
+            <h3>Bit operations matter</h3>
+            <p>
+              Shifts and masks are easier to understand when they are connected to something real,
+              like extracting octets from an IPv4 address.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Networking</span>
+            <h3>IPs are structured data</h3>
+            <p>
+              An IPv4 address is not just text. It can be represented as a 32-bit value made from
+              four separate bytes.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Future improvements</h2>
+
+      <p class="section-intro">
+        This is a simple demo, but it could become more practical with a few upgrades.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">Code improvements</span>
+          <h3>Make the demo stronger</h3>
+          <ul>
+            <li>Rename the file to <code>RadixIP.java</code> so it matches the public class name.</li>
+            <li>Add validation for invalid IPv4 addresses.</li>
+            <li>Reject octets below <code>0</code> or above <code>255</code>.</li>
+            <li>Move sorting logic and IP helpers into separate classes.</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Project upgrades</span>
+          <h3>Make it more realistic</h3>
+          <ul>
+            <li>Load IP addresses from a text file.</li>
+            <li>Sort source IPs from a log file.</li>
+            <li>Count duplicate IP addresses.</li>
+            <li>Group sorted IPs by private ranges like <code>10.0.0.0/8</code> and <code>192.168.0.0/16</code>.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="action-item">
+        <strong>Related class project:</strong> this pairs well with the
+        <a href="../java-movie-cli/">Java Movie CLI</a>
+        because both projects show data-structure choices with practical examples.
+      </div>
+    </section>
+
+    <section>
+      <h2>Run it locally</h2>
+
+      <p class="section-intro">
+        Since the public class is named <code>RadixIP</code>, the file should be saved as
+        <code>RadixIP.java</code> before compiling.
+      </p>
+
+      <div class="code-card">
+        <pre><code>javac RadixIP.java
+java RadixIP</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>Final idea</h2>
+
+      <div class="callout">
+        <p>
+          <strong>This is a tiny project, but it has a clean LaunchShell lesson:</strong> data
+          structures and algorithms become easier to understand when they are connected to real
+          technical systems. Sorting IP addresses with radix sort turns an abstract classroom
+          algorithm into something tied to networking, bytes, queues, and binary representation.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>&copy; 2026 LaunchShell</div>
+    <div>Student-built project guides for Linux, cloud, electronics, Python, Java, and cybersecurity.</div>
+  </footer>
+</body>
+</html>

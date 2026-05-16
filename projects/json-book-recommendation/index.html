@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>LaunchShell | From Audiobook History to Book Recommendations</title>
-  <meta
-    name="description"
-    content="A LaunchShell project showing how a lifetime audiobook/export file can be normalized into JSON and turned into a curated public book recommendations page."
-  />
+  <meta name="description"
+    content="A LaunchShell project showing how a lifetime audiobook/export file can be normalized into JSON and turned into a curated public book recommendations page." />
 
   <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
   <link rel="stylesheet" href="../../assets/site.css" />
@@ -45,14 +44,13 @@
         </p>
 
         <div class="hero-actions">
-          <a class="button primary" href="#conversation">See the AI planning flow</a>
-          <a class="button" href="#data-structures">Why this matters for data structures</a>
-          <a class="button" href="../../resources/book-recommendations/">View the book list</a>
+          <a class="button primary" href="../../resources/book-recommendations/">View the finished product</a>
         </div>
 
         <div class="guide-note">
-          <strong>Core lesson:</strong> JSON is not just a homework format. It is a practical way to organize real data
-          so a website, app, or script can use it.
+          <strong>Core lesson:</strong>
+          JSON turns content into data. Instead of editing the HTML every time something changes,
+          you can store the information in a JSON file and let the website, app, or script load it.
         </div>
       </div>
 
@@ -78,7 +76,8 @@
           </div>
         </div>
         <div class="caption">
-          The same source data can become a private archive, a public reading list, a project writeup, or a future searchable tool.
+          The same source data can become a private archive, a public reading list, a project writeup, or a future
+          searchable tool.
         </div>
       </div>
     </section>
@@ -125,7 +124,7 @@
       </p>
 
       <div class="code-card">
-<pre><code>{
+        <pre><code>{
   "title": "The Code Book",
   "author": "Simon Singh",
   "publisher": "Books on Tape",
@@ -177,7 +176,7 @@
       </div>
 
       <div class="code-card">
-<pre><code>{
+        <pre><code>{
   "rank": 1,
   "title": "Hackers",
   "author": "Steven Levy",
@@ -201,7 +200,8 @@
       <div class="path">
         <div class="path-row">
           <div class="level">Student</div>
-          <div><strong>“My audiobook app gave me an export of my lifetime book activity. Can we turn this into something useful?”</strong></div>
+          <div><strong>“My audiobook app gave me an export of my lifetime book activity. Can we turn this into something
+              useful?”</strong></div>
           <div class="tools">The student starts with real data and a real goal, not a vague request.</div>
         </div>
 
@@ -243,7 +243,8 @@
 
         <div class="path-row">
           <div class="level">AI</div>
-          <div><strong>“Start with a clean curated Top 30. Keep filters and search as future improvements.”</strong></div>
+          <div><strong>“Start with a clean curated Top 30. Keep filters and search as future improvements.”</strong>
+          </div>
           <div class="tools">The first version stays readable instead of trying to show every possible feature.</div>
         </div>
       </div>
@@ -252,7 +253,8 @@
     <section>
       <h2>Ways this data could be displayed</h2>
       <p class="section-intro">
-        The current public page uses a curated Top 30 list, but the same JSON structure could support other displays later.
+        The current public page uses a curated Top 30 list, but the same JSON structure could support other displays
+        later.
       </p>
 
       <div class="grid">
@@ -317,7 +319,8 @@
           <div class="level">Array / List</div>
           <div><strong>The books array</strong></div>
           <div class="tools">
-            The JSON contains a list of book objects. A program can loop through the list and display each book as a row.
+            The JSON contains a list of book objects. A program can loop through the list and display each book as a
+            row.
           </div>
         </div>
 
@@ -325,7 +328,8 @@
           <div class="level">Object / Dictionary</div>
           <div><strong>Each book record</strong></div>
           <div class="tools">
-            Each book is an object with key-value pairs like <code>rank</code>, <code>title</code>, <code>author</code>, <code>isbn</code>, and <code>cover</code>.
+            Each book is an object with key-value pairs like <code>rank</code>, <code>title</code>, <code>author</code>,
+            <code>isbn</code>, and <code>cover</code>.
           </div>
         </div>
 
@@ -333,7 +337,8 @@
           <div class="level">Ordering</div>
           <div><strong>The rank field</strong></div>
           <div class="tools">
-            A simple <code>rank</code> value controls the display order without hardcoding every book directly into the HTML.
+            A simple <code>rank</code> value controls the display order without hardcoding every book directly into the
+            HTML.
           </div>
         </div>
 
@@ -381,7 +386,8 @@
       <div class="callout">
         <p>
           <strong>Data structures lesson:</strong> A data structure is not just something used in coding assignments.
-          It is how real information gets shaped so programs can search it, sort it, filter it, protect it, and display it.
+          It is how real information gets shaped so programs can search it, sort it, filter it, protect it, and display
+          it.
         </p>
       </div>
     </section>
@@ -414,7 +420,8 @@
         <div class="method-step">
           <span>04</span>
           <h3>Render the page</h3>
-          <p>Use HTML, CSS, and JavaScript to turn JSON into a clean ranked list with covers and recommendation notes.</p>
+          <p>Use HTML, CSS, and JavaScript to turn JSON into a clean ranked list with covers and recommendation notes.
+          </p>
         </div>
       </div>
     </section>
@@ -477,4 +484,5 @@
     <div>Student-built project guides for Linux, cloud, Python, data, and cybersecurity.</div>
   </footer>
 </body>
+
 </html>

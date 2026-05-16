@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>LaunchShell | Nmap Recon Guide</title>
+    <meta name="description"
+        content="A first-person LaunchShell guide to Nmap, my favorite recon tool for CTFs, Hack The Box, home labs, finding headless devices, and authorized penetration testing." />
+
+    <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
+    <link rel="stylesheet" href="../../assets/site.css" />
+</head>
+
+<body class="guide-page nmap-page">
+    <header>
+        <a href="../../" aria-label="LaunchShell home">
+            <img src="../../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+        </a>
+
+        <nav aria-label="Main navigation">
+            <a href="../../projects/">Projects</a>
+            <a href="../../guides/">Guides</a>
+            <a href="../../resources/">Resources</a>
+            <a href="../../resources/book-recommendations/">Book List</a>
+            <a class="status" href="../../start.html">Start Here</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="guide-hero">
+            <div>
+                <div class="eyebrow">Recon • Home Lab • CTFs • Safe Pentesting</div>
+
+                <h1>My favorite recon tool is Nmap.</h1>
+
+                <p>
+                    Whether I am doing a CTF on Hack The Box, checking my home lab, finding the IP address
+                    of a headless Raspberry Pi, or mapping out a small test network, Nmap is usually one of
+                    the first tools I reach for.
+                </p>
+
+                <p>
+                    Nmap feels like a superpower because it turns a mystery network into something visible:
+                    live hosts, open ports, running services, software versions, and clues about what to
+                    investigate next.
+                </p>
+
+                <div class="hero-actions">
+                    <a class="button primary" href="#quick-start">Start scanning</a>
+                    <a class="button" href="#workflow">See the workflow</a>
+                </div>
+
+                <div class="guide-note">
+                    <strong>Important:</strong> only scan systems you own or have clear permission to test.
+                    For this guide, the safe targets are your own home network, your own lab, your own VMs,
+                    or intentionally authorized platforms like CTF labs.
+                </div>
+            </div>
+
+            <div class="visual-card">
+                <div class="visual-inner" aria-label="Nmap recon workflow diagram">
+                    <div class="stack">
+                        <div class="stack-layer">
+                            <strong>Find my network</strong>
+                            <span>What subnet am I on?</span>
+                        </div>
+
+                        <div class="stack-layer">
+                            <strong>Discover live hosts</strong>
+                            <span>What devices are responding?</span>
+                        </div>
+
+                        <div class="stack-layer dark">
+                            <strong>Scan ports and services</strong>
+                            <span>What is exposed?</span>
+                        </div>
+
+                        <div class="stack-layer">
+                            <strong>Document the results</strong>
+                            <span>What should I investigate, secure, or fix?</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="caption">
+                    Nmap is not the whole pentest. It is the map you build before you decide where to look closer.
+                </div>
+            </div>
+        </section>
+
+        <section id="why">
+            <h2>Why Nmap matters</h2>
+
+            <p class="section-intro">
+                Before I can secure, troubleshoot, or test a network, I need to know what exists. Nmap helps
+                answer that quickly.
+            </p>
+
+            <div class="grid">
+                <article class="card">
+                    <div class="card-body">
+                        <span class="tag green">Home lab</span>
+                        <h3>Find headless devices</h3>
+                        <p>
+                            If I plug in a Raspberry Pi, VM, camera, printer, lab box, or small server and do not
+                            know its IP address, Nmap can help me find it.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-body">
+                        <span class="tag">Cybersecurity</span>
+                        <h3>See the attack surface</h3>
+                        <p>
+                            Open ports show where a machine is listening. SSH, HTTP, SMB, DNS, databases, and
+                            admin panels all tell me what kind of system I am looking at.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-body">
+                        <span class="tag green">CTF practice</span>
+                        <h3>Start with recon</h3>
+                        <p>
+                            In CTFs and lab platforms, Nmap is often the first real step. It tells me which
+                            services are available before I start researching versions or testing paths.
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="install">
+            <h2>Install Nmap</h2>
+
+            <p class="section-intro">
+                Here is the magic of <code>apt install</code> again: on most Linux systems,
+                Nmap is one package install away, and it is FREE like most other Linux
+                utilities. I usually install it with a few other basic network tools so the
+                machine is ready for troubleshooting, home lab discovery, and safe recon work.
+            </p>
+
+            <div class="code-card">
+                <pre><code>sudo apt update
+sudo apt install nmap wireshark tcpdump net-tools iproute2 dnsutils -y</code></pre>
+            </div>
+
+            <div class="guide-note">
+                <strong>Note:</strong> on Debian, Ubuntu, Kali, Raspberry Pi OS, and most common Linux
+                distros, the package is simply called <code>nmap</code>.
+            </div>
+        </section>
+
+        <section id="quick-start">
+            <h2>Quick start: find devices on my own network</h2>
+
+            <p class="section-intro">
+                The first thing I usually need is my subnet. If my laptop is on
+                <code>192.168.1.42</code>, the network is often something like
+                <code>192.168.1.0/24</code>. That means “scan all addresses from
+                <code>192.168.1.1</code> through <code>192.168.1.254</code>.”
+            </p>
+
+            <div class="quick-list">
+                <article class="step-card">
+                    <span class="step-number">1</span>
+                    <h3>Find my IP address</h3>
+                    <p>
+                        I use this to see my current interface, IP address, and subnet.
+                    </p>
+
+                    <div class="code-card">
+                        <pre><code>ip -4 addr show</code></pre>
+                    </div>
+                </article>
+
+                <article class="step-card">
+                    <span class="step-number">2</span>
+                    <h3>Find my default route</h3>
+                    <p>
+                        This usually shows the router/gateway and helps confirm which network I am on.
+                    </p>
+
+                    <div class="code-card">
+                        <pre><code>ip route</code></pre>
+                    </div>
+                </article>
+
+                <article class="step-card">
+                    <span class="step-number">3</span>
+                    <h3>Ping scan the subnet</h3>
+                    <p>
+                        This asks: “Which hosts are alive?” It does not do a full port scan yet.
+                    </p>
+
+                    <div class="code-card">
+                        <pre><code>nmap -sn 192.168.1.0/24</code></pre>
+                    </div>
+                </article>
+
+                <article class="step-card">
+                    <span class="step-number">4</span>
+                    <h3>Use ARP discovery on a local LAN</h3>
+                    <p>
+                        On my own local network, ARP discovery is often better at finding nearby devices.
+                    </p>
+
+                    <div class="code-card">
+                        <pre><code>sudo nmap -sn -PR 192.168.1.0/24</code></pre>
+                    </div>
+                </article>
+            </div>
+
+            <div class="action-item">
+                <strong>Home lab use case:</strong> if I boot a Raspberry Pi with no monitor, I can run a
+                ping scan from my laptop and look for a new device. The result usually gives me the IP,
+                hostname, and sometimes the vendor.
+            </div>
+        </section>
+
+        <section>
+            <h2>What the output is telling me</h2>
+
+            <p class="section-intro">
+                Nmap output can look plain, but it is packed with useful clues.
+            </p>
+
+            <table class="simple-table">
+                <thead>
+                    <tr>
+                        <th>Output</th>
+                        <th>What I learn</th>
+                        <th>Why it matters</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td><strong>Host is up</strong></td>
+                        <td>The device responded to discovery.</td>
+                        <td>I now know the IP address is active.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>MAC Address</strong></td>
+                        <td>The hardware address of a local network device.</td>
+                        <td>The vendor hint can reveal Raspberry Pi, Apple, Dell, TP-Link, etc.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Hostname</strong></td>
+                        <td>The name the device reports or resolves to.</td>
+                        <td>A name like <code>raspberrypi</code>, <code>printer</code>, or <code>nas</code> gives
+                            context.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Open port</strong></td>
+                        <td>A service is listening.</td>
+                        <td>This is a possible admin path, app endpoint, or security exposure.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Service version</strong></td>
+                        <td>The software behind a port.</td>
+                        <td>Versions help with patching, research, and authorized security testing.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="commands">
+            <h2>Commands I actually use</h2>
+
+            <p class="section-intro">
+                I do not need every Nmap flag at once. These are the practical commands I would actually
+                use in a home lab, school lab, CTF, or authorized pentest.
+            </p>
+
+            <div class="quick-list">
+                <article class="step-card">
+                    <h3>Basic scan of one host</h3>
+                    <p>
+                        Good first look after I find a device.
+                    </p>
+
+                    <div class="code-card">
+                        <pre><code>nmap 192.168.1.50</code></pre>
+                    </div>
+                </article>
+
+                <article class="step-card">
+                    <h3>Scan common ports faster</h3>
+                    <p>
+                        Useful when I want a quick overview.
+                    </p>
+
+                    <div class="code-card">
+                        <pre><code>nmap --top-ports 100 192.168.1.50</code></pre>
+                    </div>
+                </article>
+
+                <article class="step-card">
+                    <h3>Detect service versions</h3>
+                    <p>
+                        This is one of the most useful recon commands.
+                    </p>
+
+                    <div class="code-card">
+                        <pre><code>nmap -sV 192.168.1.50</code></pre>
+                    </div>
+                </article>
+
+                <article class="step-card">
+                    <h3>Try OS detection</h3>
+                    <p>
+                        This needs root privileges and is not always perfect, but it can give helpful clues.
+                    </p>
+
+                    <div class="code-card">
+                        <pre><code>sudo nmap -O 192.168.1.50</code></pre>
+                    </div>
+                </article>
+
+                <article class="step-card">
+                    <h3>Scan every TCP port</h3>
+                    <p>
+                        Slower, but useful when I want to avoid missing a service on an unusual port.
+                    </p>
+
+                    <div class="code-card">
+                        <pre><code>nmap -p- 192.168.1.50</code></pre>
+                    </div>
+                </article>
+
+                <article class="step-card">
+                    <h3>Scan all ports and detect services</h3>
+                    <p>
+                        My deeper scan after a quick scan finds something interesting.
+                    </p>
+
+                    <div class="code-card">
+                        <pre><code>nmap -p- -sV --reason 192.168.1.50</code></pre>
+                    </div>
+                </article>
+
+                <article class="step-card">
+                    <h3>Save results</h3>
+                    <p>
+                        For labs and reports, saving output is better than relying on terminal scrollback.
+                    </p>
+
+                    <div class="code-card">
+                        <pre><code>nmap -sV -oN scan-results.txt 192.168.1.50</code></pre>
+                    </div>
+                </article>
+
+                <article class="step-card">
+                    <h3>Save in all formats</h3>
+                    <p>
+                        This creates normal, grepable, and XML output with the same base filename.
+                    </p>
+
+                    <div class="code-card">
+                        <pre><code>nmap -sV -oA scans/target-192-168-1-50 192.168.1.50</code></pre>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="workflow">
+            <h2>My normal Nmap workflow</h2>
+
+            <p class="section-intro">
+                I try to move from broad to specific. First I find the network. Then I find live hosts.
+                Then I scan one target more carefully.
+            </p>
+
+            <div class="flow">
+                <article class="flow-step">
+                    <span>01</span>
+                    <h3>Find my subnet</h3>
+                    <p>I check my own IP and default route so I know what range belongs to my local network.</p>
+                </article>
+
+                <article class="flow-step">
+                    <span>02</span>
+                    <h3>Discover hosts</h3>
+                    <p>I run a ping or ARP scan to see which devices are alive.</p>
+                </article>
+
+                <article class="flow-step">
+                    <span>03</span>
+                    <h3>Pick a target</h3>
+                    <p>I choose one IP that belongs to my device, VM, CTF target, or authorized lab box.</p>
+                </article>
+
+                <article class="flow-step">
+                    <span>04</span>
+                    <h3>Scan ports</h3>
+                    <p>I check which services are exposed and save the results.</p>
+                </article>
+            </div>
+
+            <div class="code-card">
+                <pre><code># 1. Check my network
+ip -4 addr show
+ip route
+
+# 2. Discover live hosts on my own LAN
+sudo nmap -sn -PR 192.168.1.0/24
+
+# 3. Scan one device
+nmap -sV 192.168.1.50
+
+# 4. Run a deeper scan if it is my device or an authorized target
+nmap -p- -sV --reason -oA scans/target-192-168-1-50 192.168.1.50</code></pre>
+            </div>
+        </section>
+
+        <section>
+            <h2>Finding a headless Raspberry Pi or lab device</h2>
+
+            <p class="section-intro">
+                This is one of the most practical Nmap uses. If a device has no screen, I can still find it
+                from another computer on the same network.
+            </p>
+
+            <div class="split">
+                <article class="panel">
+                    <span class="tag green">Simple method</span>
+                    <h3>Scan before and after plugging it in</h3>
+                    <p>
+                        I can scan the network, plug in the device, wait for it to boot, then scan again.
+                        The new IP is probably the device I just added.
+                    </p>
+
+                    <div class="code-card">
+                        <pre><code>sudo nmap -sn -PR 192.168.1.0/24</code></pre>
+                    </div>
+                </article>
+
+                <article class="panel">
+                    <span class="tag">What I look for</span>
+                    <h3>Clues in the output</h3>
+                    <ul>
+                        <li>New IP address that was not there before</li>
+                        <li>Hostname like <code>raspberrypi</code>, <code>ubuntu</code>, or <code>debian</code></li>
+                        <li>Vendor name from the MAC address</li>
+                        <li>Open SSH port, usually <code>22/tcp</code></li>
+                    </ul>
+                </article>
+            </div>
+
+            <div class="code-card">
+                <pre><code># After finding a likely device, check if SSH is open
+nmap -p 22 -sV 192.168.1.50</code></pre>
+            </div>
+        </section>
+
+        <section>
+            <h2>Using Nmap for CTFs and pentesting</h2>
+
+            <p class="section-intro">
+                In a CTF or authorized pentest, Nmap helps me build the starting picture. I am not trying
+                to guess. I am collecting facts.
+            </p>
+
+            <div class="method">
+                <div class="method-step">
+                    <span>01</span>
+                    <h3>What is alive?</h3>
+                    <p>Find the target or confirm that the assigned IP is reachable.</p>
+                </div>
+
+                <div class="method-step">
+                    <span>02</span>
+                    <h3>What is open?</h3>
+                    <p>Look for ports like SSH, HTTP, HTTPS, SMB, FTP, DNS, databases, or custom apps.</p>
+                </div>
+
+                <div class="method-step">
+                    <span>03</span>
+                    <h3>What is running?</h3>
+                    <p>Use service detection to identify software and versions.</p>
+                </div>
+
+                <div class="method-step">
+                    <span>04</span>
+                    <h3>What comes next?</h3>
+                    <p>Research the service, visit web ports, check banners, and document everything.</p>
+                </div>
+            </div>
+
+            <div class="warning-note">
+                <strong>Scope rule:</strong> CTF targets and lab boxes are designed for this. Random public IPs,
+                school systems, company systems, and other people's devices are not targets unless I have
+                written authorization.
+            </div>
+        </section>
+
+        <section>
+            <h2>Common ports worth recognizing</h2>
+
+            <p class="section-intro">
+                Nmap becomes more useful when I recognize what common ports usually mean.
+            </p>
+
+            <table class="simple-table">
+                <thead>
+                    <tr>
+                        <th>Port</th>
+                        <th>Common service</th>
+                        <th>What I think when I see it</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td><strong>22</strong></td>
+                        <td>SSH</td>
+                        <td>Remote Linux login. Useful for servers, Raspberry Pis, VMs, and cloud machines.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>53</strong></td>
+                        <td>DNS</td>
+                        <td>Name resolution. Could be a router, DNS server, Pi-hole, or lab service.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>80</strong></td>
+                        <td>HTTP</td>
+                        <td>Plain web server. I usually open this in a browser next.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>443</strong></td>
+                        <td>HTTPS</td>
+                        <td>Encrypted web server. Also worth checking in a browser.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>445</strong></td>
+                        <td>SMB</td>
+                        <td>Windows file sharing or Samba. Important in labs, but risky if exposed publicly.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>3306</strong></td>
+                        <td>MySQL/MariaDB</td>
+                        <td>Database service. Should usually not be exposed broadly.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>5432</strong></td>
+                        <td>PostgreSQL</td>
+                        <td>Database service. Useful in apps, but should be carefully firewalled.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>8080</strong></td>
+                        <td>Alternate HTTP</td>
+                        <td>Often a dev server, proxy, admin panel, API, or containerized app.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Scanning multiple authorized targets</h2>
+
+            <p class="section-intro">
+                If I have a small lab with a few known IPs, I can put them into a target file and scan them
+                consistently.
+            </p>
+
+            <div class="code-card">
+                <pre><code>cat > targets.txt << "EOF"
+192.168.1.20
+192.168.1.50
+192.168.1.77
+EOF
+
+nmap -sV -iL targets.txt -oA scans/home-lab-services</code></pre>
+            </div>
+
+            <div class="guide-note">
+                <strong>Why this is useful:</strong> a target file keeps my scan repeatable. If I am writing
+                a lab report or comparing before-and-after hardening, repeatable commands matter.
+            </div>
+        </section>
+
+        <section>
+            <h2>What I do after a scan</h2>
+
+            <p class="section-intro">
+                Nmap gives me the map. It does not automatically tell me the full answer. After the scan,
+                I still need to inspect, research, test safely, and document.
+            </p>
+
+            <div class="grid">
+                <article class="card">
+                    <div class="card-body">
+                        <span class="tag green">Web ports</span>
+                        <h3>Open in a browser</h3>
+                        <p>
+                            If I see <code>80</code>, <code>443</code>, <code>8080</code>, or another web port,
+                            I check the page, headers, title, login forms, and visible app behavior.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-body">
+                        <span class="tag">SSH</span>
+                        <h3>Confirm expected access</h3>
+                        <p>
+                            If SSH is open on my own server, I confirm whether it should be reachable from that
+                            network and whether key-based login is configured.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-body">
+                        <span class="tag green">Hardening</span>
+                        <h3>Reduce exposure</h3>
+                        <p>
+                            If I find services that should not be exposed, I fix firewall rules, bind services
+                            to localhost, disable unused software, or move access behind a VPN.
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section>
+            <h2>Beginner mistakes to avoid</h2>
+
+            <p class="section-intro">
+                Nmap is powerful, but most mistakes come from scanning the wrong thing, scanning too broadly,
+                or not understanding the output.
+            </p>
+
+            <div class="split">
+                <article class="panel">
+                    <span class="tag">Avoid this</span>
+                    <h3>Bad habits</h3>
+                    <ul>
+                        <li>Scanning random public IPs without permission</li>
+                        <li>Running huge scans before understanding the target</li>
+                        <li>Assuming OS detection is always correct</li>
+                        <li>Forgetting to save scan results</li>
+                        <li>Ignoring the difference between filtered, closed, and open ports</li>
+                    </ul>
+                </article>
+
+                <article class="panel">
+                    <span class="tag green">Do this instead</span>
+                    <h3>Better habits</h3>
+                    <ul>
+                        <li>Start with your own lab or authorized CTF target</li>
+                        <li>Scan broad first, then narrow down</li>
+                        <li>Use <code>-sV</code> to identify services</li>
+                        <li>Save output with <code>-oN</code> or <code>-oA</code></li>
+                        <li>Write notes as you go</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section>
+            <h2>My basic Nmap cheat sheet</h2>
+
+            <p class="section-intro">
+                This is the short version I would keep nearby.
+            </p>
+
+            <div class="code-card">
+                <pre><code># Find my IP and route
+ip -4 addr show
+ip route
+
+# Find live hosts on my own local network
+nmap -sn 192.168.1.0/24
+sudo nmap -sn -PR 192.168.1.0/24
+
+# Basic scan of one host
+nmap 192.168.1.50
+
+# Service detection
+nmap -sV 192.168.1.50
+
+# OS detection
+sudo nmap -O 192.168.1.50
+
+# All TCP ports
+nmap -p- 192.168.1.50
+
+# All TCP ports with service detection
+nmap -p- -sV --reason 192.168.1.50
+
+# Save normal output
+nmap -sV -oN scan-results.txt 192.168.1.50
+
+# Save all output formats
+nmap -sV -oA scans/target-name 192.168.1.50
+
+# Scan from a list of authorized targets
+nmap -sV -iL targets.txt -oA scans/lab-scan</code></pre>
+            </div>
+        </section>
+
+        <section>
+            <h2>Final idea</h2>
+
+            <div class="callout">
+                <p>
+                    <strong>Nmap is one of the best first tools to learn because it teaches recon.</strong>
+                    It helps me find devices, understand networks, discover exposed services, and turn a
+                    confusing environment into something I can reason about. Used safely, it is useful for
+                    home labs, CTFs, school labs, server hardening, troubleshooting, and real penetration
+                    testing workflows.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div>&copy; 2026 LaunchShell</div>
+        <div>Student-built project guides for Linux, cloud, electronics, Python, and cybersecurity.</div>
+    </footer>
+</body>
+
+</html>

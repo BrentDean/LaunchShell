@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LaunchShell | VS Code Guide</title>
+  <meta
+    name="description"
+    content="A LaunchShell guide to Visual Studio Code for students: editing files, using the terminal, Git, extensions, Python, Java, C++, SSH, Codespaces, and remote development."
+  />
+
+  <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+</head>
+
+<body class="guide-page vs-code-page">
+  <header>
+    <a href="../../" aria-label="LaunchShell home">
+      <img src="../../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../../projects/">Projects</a>
+      <a href="../../guides/">Guides</a>
+      <a href="../../resources/">Resources</a>
+      <a href="../../resources/book-recommendations/">Book List</a>
+      <a class="status" href="../../start.html">Start Here</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="guide-hero">
+      <div>
+        <div class="eyebrow">Editor • Terminal • Git • SSH • Student Workflow</div>
+
+        <h1>VS Code is the student control room.</h1>
+
+        <p>
+          Visual Studio Code is a free editor where I can write code, open folders, run terminal
+          commands, use Git, connect to remote servers, manage projects, and install extensions for
+          different languages.
+        </p>
+
+        <p>
+          The reason VS Code feels powerful is that it is not just a text editor. It becomes the place
+          where the whole workflow comes together: files on the left, code in the center, terminal on
+          the bottom, Git changes on the side, and remote servers one SSH connection away.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href="#setup">Set it up</a>
+          <a class="button" href="#try-codespaces">Try it in Codespaces</a>
+        </div>
+
+        <div class="guide-note">
+          <strong>Main idea:</strong> VS Code is useful because it connects editing, terminal work,
+          Git, debugging, extensions, and remote development in one clean workspace.
+        </div>
+      </div>
+
+      <div class="visual-card">
+        <div class="visual-inner" aria-label="VS Code student workflow diagram">
+          <div class="stack">
+            <div class="stack-layer">
+              <strong>Project folder</strong>
+              <span>Open the real folder, not random loose files.</span>
+            </div>
+
+            <div class="stack-layer">
+              <strong>Editor + terminal</strong>
+              <span>Write code and run commands in the same workspace.</span>
+            </div>
+
+            <div class="stack-layer dark">
+              <strong>Git + extensions</strong>
+              <span>Track changes and add language support.</span>
+            </div>
+
+            <div class="stack-layer">
+              <strong>Remote SSH or Codespaces</strong>
+              <span>Edit on servers, Raspberry Pis, or browser-based cloud environments.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="caption">
+          VS Code becomes much more useful once I treat it as a full project workspace, not just an editor.
+        </div>
+      </div>
+    </section>
+
+    <section id="why">
+      <h2>Why VS Code matters</h2>
+
+      <p class="section-intro">
+        VS Code is one of the best tools for students because it works across many kinds of projects:
+        Python scripts, Java assignments, C++ labs, static websites, Flask apps, Markdown notes,
+        GitHub repos, and remote Linux servers.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Coding</span>
+            <h3>One editor for many languages</h3>
+            <p>
+              I can use the same editor for Python, Java, C++, HTML, CSS, JavaScript, Markdown,
+              JSON, Bash scripts, and config files.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Linux</span>
+            <h3>Terminal built in</h3>
+            <p>
+              I can run commands, compile programs, start servers, use Git, and test scripts without
+              leaving the project window.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Remote work</span>
+            <h3>Edit servers over SSH</h3>
+            <p>
+              With Remote SSH, I can open a folder on a VPS, VM, Raspberry Pi, or lab machine and
+              edit it almost like it is local.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="setup">
+      <h2>Install VS Code</h2>
+
+      <p class="section-intro">
+        VS Code is free and runs on Windows, macOS, and Linux. On Linux, I usually
+        install it from the official package. On Debian or Ubuntu-based systems, the
+        downloaded <code>.deb</code> package can be installed with <code>apt</code>.
+      </p>
+
+      <div class="code-card">
+        <pre><code># After downloading the official .deb package
+sudo apt install ./code_*.deb</code></pre>
+      </div>
+
+      <div class="guide-note">
+        <strong>Note:</strong> the official VS Code Linux install page explains the current package
+        options for Debian, Ubuntu, Fedora, RHEL, SUSE, Snap, and other Linux setups.
+      </div>
+
+      <div class="action-item">
+        <strong>Raspberry Pi note:</strong> on Raspberry Pi OS, VS Code can usually be installed
+        through apt with <code>sudo apt install code</code>.
+      </div>
+    </section>
+
+    <section id="try-codespaces">
+      <h2>Want to try it before installing?</h2>
+
+      <p class="section-intro">
+        VS Code itself is free, but I do not even need to install it first to understand the workflow.
+        GitHub Codespaces gives me a VS Code-style editor in the browser with a Linux terminal attached
+        to a GitHub repo.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">Free editor</span>
+          <h3>VS Code costs nothing to start</h3>
+          <p>
+            VS Code is a free editor that works on Windows, macOS, and Linux. I can install it locally
+            and use it for Python, Java, C++, HTML, CSS, Git, SSH, and general project work.
+          </p>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Browser option</span>
+          <h3>Codespaces lets me test the workflow</h3>
+          <p>
+            Codespaces is useful when I want to try the VS Code-style workflow without setting up a full
+            local toolchain first. I can open a repo, use the editor, run Linux commands, test code, and
+            commit changes from the browser.
+          </p>
+        </article>
+      </div>
+
+      <div class="action-item">
+        <strong>Want to try it first?</strong> Start with the
+        <a href="../github-codespace/">GitHub Codespaces Guide</a>
+        to open a browser-based VS Code-style workspace, then install VS Code locally once the workflow
+        makes sense.
+      </div>
+
+      <div class="guide-note">
+        <strong>Student note:</strong> GitHub personal accounts include some free Codespaces usage each
+        month, and verified students may get more through GitHub Education. Check GitHub's current quota
+        and billing page before relying on exact usage limits.
+      </div>
+    </section>
+
+    <section>
+      <h2>Open a project the right way</h2>
+
+      <p class="section-intro">
+        The best habit is to open the whole project folder, not just one file. That lets VS Code
+        understand the folder structure, Git repo, terminal location, and project settings.
+      </p>
+
+      <div class="code-card">
+        <pre><code># Go to a project folder
+cd ~/projects/launchshell-org
+
+# Open the folder in VS Code
+code .</code></pre>
+      </div>
+
+      <div class="warning-note">
+        <strong>Common beginner mistake:</strong> opening one random file makes VS Code less useful.
+        Opening the full folder gives me Explorer, terminal, Git status, search, and workspace context.
+      </div>
+    </section>
+
+    <section id="workflow">
+      <h2>My normal VS Code workflow</h2>
+
+      <p class="section-intro">
+        This is the loop I use for most student projects.
+      </p>
+
+      <div class="flow">
+        <article class="flow-step">
+          <span>01</span>
+          <h3>Open folder</h3>
+          <p>Start from the project root so VS Code can see the whole workspace.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>02</span>
+          <h3>Edit files</h3>
+          <p>Use Explorer, search, tabs, and split view to work across files.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>03</span>
+          <h3>Run commands</h3>
+          <p>Use the integrated terminal to test, compile, serve, or debug.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>04</span>
+          <h3>Commit changes</h3>
+          <p>Use Git from the terminal or Source Control panel after checking the diff.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>The integrated terminal is the key feature</h2>
+
+      <p class="section-intro">
+        The terminal inside VS Code is not a fake terminal. It runs my normal shell inside the
+        project folder. That means I can use the same Linux commands I would use in a separate
+        terminal window.
+      </p>
+
+      <div class="quick-list">
+        <article class="step-card">
+          <span class="step-number">1</span>
+          <h3>Open terminal</h3>
+          <p>
+            Open the integrated terminal from the VS Code menu or keyboard shortcut.
+          </p>
+
+          <div class="code-card">
+            <pre><code>Ctrl + `</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <span class="step-number">2</span>
+          <h3>Check the folder</h3>
+          <p>
+            Confirm I am in the project directory.
+          </p>
+
+          <div class="code-card">
+            <pre><code>pwd
+ls</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <span class="step-number">3</span>
+          <h3>Run project commands</h3>
+          <p>
+            Test scripts, compile code, or run a local server.
+          </p>
+
+          <div class="code-card">
+            <pre><code>python3 weather.py --zip 11234
+javac Movies.java
+python3 -m http.server 8000</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <span class="step-number">4</span>
+          <h3>Use Git</h3>
+          <p>
+            Check changes before committing.
+          </p>
+
+          <div class="code-card">
+            <pre><code>git status --short
+git diff
+git add .
+git commit -m "Add VS Code guide"</code></pre>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Install useful extensions</h2>
+
+      <p class="section-intro">
+        Extensions are what turn VS Code into a good editor for specific languages and workflows.
+        I do not need hundreds of them. I need the right few.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Extension type</th>
+            <th>Why I use it</th>
+            <th>Good for</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong>Python</strong></td>
+            <td>Syntax help, linting, testing, virtual environments, and debugging.</td>
+            <td>Scripts, Flask apps, API tools, automation.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Java Extension Pack</strong></td>
+            <td>Java language support, project tools, running, and debugging.</td>
+            <td>Data structures assignments and Java class projects.</td>
+          </tr>
+
+          <tr>
+            <td><strong>C/C++</strong></td>
+            <td>Editing, IntelliSense, compiling, and debugging support.</td>
+            <td>C++ labs, systems work, algorithms practice.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Remote - SSH</strong></td>
+            <td>Open folders on remote Linux machines over SSH.</td>
+            <td>VPS work, Raspberry Pi projects, cloud servers.</td>
+          </tr>
+
+          <tr>
+            <td><strong>GitHub Pull Requests</strong></td>
+            <td>Review issues and pull requests from inside VS Code.</td>
+            <td>GitHub workflow and collaboration.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Markdown tools</strong></td>
+            <td>Preview Markdown and improve docs.</td>
+            <td>README files, project notes, LaunchShell writeups.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="guide-note">
+        <strong>My rule:</strong> install extensions when they support an actual project. Do not
+        turn VS Code into a cluttered dashboard of extensions I barely use.
+      </div>
+    </section>
+
+    <section>
+      <h2>Use the command palette</h2>
+
+      <p class="section-intro">
+        The command palette is one of the fastest ways to control VS Code. Instead of searching
+        through menus, I can type what I want to do.
+      </p>
+
+      <div class="code-card">
+        <pre><code>Ctrl + Shift + P</code></pre>
+      </div>
+
+      <div class="quick-list">
+        <article class="step-card">
+          <h3>Open settings</h3>
+          <p>Search for settings without digging through menus.</p>
+
+          <div class="code-card">
+            <pre><code>Preferences: Open Settings</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>Open keyboard shortcuts</h3>
+          <p>Find or change shortcuts.</p>
+
+          <div class="code-card">
+            <pre><code>Preferences: Open Keyboard Shortcuts</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>Install extensions</h3>
+          <p>Open the extension interface quickly.</p>
+
+          <div class="code-card">
+            <pre><code>Extensions: Install Extensions</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>Remote SSH connect</h3>
+          <p>Start a remote SSH session.</p>
+
+          <div class="code-card">
+            <pre><code>Remote-SSH: Connect to Host...</code></pre>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Use VS Code with Git</h2>
+
+      <p class="section-intro">
+        VS Code makes Git easier because I can see changed files, inspect diffs, stage changes,
+        and commit. I still like knowing the terminal commands because they are portable.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">Terminal Git</span>
+          <h3>Portable commands</h3>
+
+          <div class="code-card">
+            <pre><code>git status --short
+git diff
+git add index.html assets/site.css
+git commit -m "Add VS Code guide"
+git push</code></pre>
+          </div>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Source Control panel</span>
+          <h3>Visual review</h3>
+          <p>
+            The Source Control panel is useful for seeing exactly which files changed and reviewing
+            diffs before committing.
+          </p>
+        </article>
+      </div>
+
+      <div class="warning-note">
+        <strong>Public repo habit:</strong> before committing, check for API keys, passwords, private
+        IPs, screenshots with secrets, local settings files, and anything that should not be public.
+      </div>
+    </section>
+
+    <section>
+      <h2>Use VS Code for LaunchShell HTML work</h2>
+
+      <p class="section-intro">
+        For a static HTML/CSS site like LaunchShell, VS Code is a clean setup because I can edit
+        HTML, check CSS, serve the folder locally, and commit the changes from one workspace.
+      </p>
+
+      <div class="code-card">
+        <pre><code># From the LaunchShell project root
+python3 -m http.server 8000</code></pre>
+      </div>
+
+      <div class="code-card">
+        <pre><code>http://localhost:8000/</code></pre>
+      </div>
+
+      <div class="quick-list">
+        <article class="step-card">
+          <h3>Edit the page</h3>
+          <p>
+            Open a guide or project page and make the content changes.
+          </p>
+
+          <div class="code-card">
+            <pre><code>guides/vs-code/index.html</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>Keep CSS centralized</h3>
+          <p>
+            Use <code>assets/site.css</code> for styling instead of inline CSS.
+          </p>
+
+          <div class="code-card">
+            <pre><code>assets/site.css</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>Preview locally</h3>
+          <p>
+            Use the local server and refresh the browser.
+          </p>
+
+          <div class="code-card">
+            <pre><code>python3 -m http.server 8000</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>Check before commit</h3>
+          <p>
+            Review the diff before publishing.
+          </p>
+
+          <div class="code-card">
+            <pre><code>git diff --check
+git status --short</code></pre>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Use VS Code for Python scripts</h2>
+
+      <p class="section-intro">
+        Python projects are a good fit for VS Code because I can edit the script, run it in the
+        terminal, and use Git from the same workspace.
+      </p>
+
+      <div class="code-card">
+        <pre><code># Example: Tiny Terminal Weather project
+cd ~/projects/tiny-terminal-weather
+code .
+
+python3 weather.py --zip 11234</code></pre>
+      </div>
+
+      <div class="guide-note">
+        <strong>Good habit:</strong> run the script from the terminal, not only through a play button.
+        That teaches command-line arguments, file paths, environment variables, and real execution.
+      </div>
+    </section>
+
+    <section>
+      <h2>Use VS Code for Java assignments</h2>
+
+      <p class="section-intro">
+        VS Code can work for Java class projects, especially small single-file assignments or
+        data structures projects. I still want to know the raw compile and run commands.
+      </p>
+
+      <div class="code-card">
+        <pre><code># Compile and run a Java file
+javac Movies.java
+java Movies
+
+# Another example
+javac RadixIP.java
+java RadixIP</code></pre>
+      </div>
+
+      <div class="action-item">
+        <strong>Why this matters:</strong> even if VS Code can run Java through extensions, knowing
+        <code>javac</code> and <code>java</code> helps me understand what is actually happening.
+      </div>
+    </section>
+
+    <section>
+      <h2>Use VS Code for C++ labs</h2>
+
+      <p class="section-intro">
+        For C++ assignments, VS Code is useful, but the compiler still matters. On Linux, I usually
+        want <code>g++</code> and sometimes <code>gdb</code> for debugging.
+      </p>
+
+      <div class="code-card">
+        <pre><code>sudo apt update
+sudo apt install build-essential gdb -y
+
+g++ main.cpp -o main
+./main</code></pre>
+      </div>
+
+      <div class="guide-note">
+        <strong>Student habit:</strong> compile manually at least sometimes. It makes autograder
+        errors and terminal output less mysterious.
+      </div>
+    </section>
+
+    <section id="remote-ssh">
+      <h2>Remote SSH is one of VS Code's superpowers</h2>
+
+      <p class="section-intro">
+        Remote SSH lets me connect VS Code to a remote machine and open a folder there. This is
+        useful for VPS work, Raspberry Pi projects, Linux servers, and cloud labs.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">Local machine</span>
+          <h3>Where VS Code runs</h3>
+          <p>
+            My laptop or desktop runs the VS Code window, keyboard shortcuts, theme, and interface.
+          </p>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Remote machine</span>
+          <h3>Where the files live</h3>
+          <p>
+            The project folder is on a VPS, VM, Raspberry Pi, or Linux box. VS Code connects through
+            SSH and lets me edit remote files.
+          </p>
+        </article>
+      </div>
+
+      <div class="code-card">
+        <pre><code># Example SSH config entry
+Host launchshell-vps
+    HostName example.server.ip
+    User deploy
+    Port 4222
+    IdentityFile ~/.ssh/id_ed25519</code></pre>
+      </div>
+
+      <div class="warning-note">
+        <strong>Security habit:</strong> use SSH keys, keep private keys private, avoid committing
+        SSH configs with sensitive hostnames or IPs, and only connect to systems I own or administer.
+      </div>
+    </section>
+
+    <section>
+      <h2>Recommended beginner settings</h2>
+
+      <p class="section-intro">
+        VS Code has many settings. These are a few practical ones that make student work cleaner.
+      </p>
+
+      <div class="code-card">
+        <pre><code>{
+  "editor.wordWrap": "on",
+  "editor.tabSize": 2,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "terminal.integrated.defaultProfile.linux": "bash",
+  "explorer.confirmDelete": true
+}</code></pre>
+      </div>
+
+      <div class="guide-note">
+        <strong>Note:</strong> settings are personal. I would not blindly copy a huge settings file.
+        Start small and add settings only when they solve a real problem.
+      </div>
+    </section>
+
+    <section>
+      <h2>Workspace files worth knowing</h2>
+
+      <p class="section-intro">
+        VS Code and Git projects often create small config files. Some should be committed. Some
+        should stay local.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>File or folder</th>
+            <th>Purpose</th>
+            <th>Commit?</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong><code>.vscode/settings.json</code></strong></td>
+            <td>Workspace settings for the project.</td>
+            <td>Sometimes, if they are useful for everyone.</td>
+          </tr>
+
+          <tr>
+            <td><strong><code>.vscode/extensions.json</code></strong></td>
+            <td>Recommended extensions for the project.</td>
+            <td>Often yes.</td>
+          </tr>
+
+          <tr>
+            <td><strong><code>.env</code></strong></td>
+            <td>Environment variables and secrets.</td>
+            <td>No. Add to <code>.gitignore</code>.</td>
+          </tr>
+
+          <tr>
+            <td><strong><code>.gitignore</code></strong></td>
+            <td>Files Git should ignore.</td>
+            <td>Yes.</td>
+          </tr>
+
+          <tr>
+            <td><strong><code>README.md</code></strong></td>
+            <td>Project explanation and run instructions.</td>
+            <td>Yes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Good keyboard shortcuts</h2>
+
+      <p class="section-intro">
+        I do not need to memorize every shortcut. These are enough to make VS Code faster.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Shortcut</th>
+            <th>Action</th>
+            <th>Why I use it</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong><code>Ctrl + `</code></strong></td>
+            <td>Toggle terminal.</td>
+            <td>Fast switch between editing and commands.</td>
+          </tr>
+
+          <tr>
+            <td><strong><code>Ctrl + P</code></strong></td>
+            <td>Quick open file.</td>
+            <td>Jump between files without clicking through folders.</td>
+          </tr>
+
+          <tr>
+            <td><strong><code>Ctrl + Shift + P</code></strong></td>
+            <td>Command palette.</td>
+            <td>Run commands without finding menus.</td>
+          </tr>
+
+          <tr>
+            <td><strong><code>Ctrl + Shift + F</code></strong></td>
+            <td>Search across files.</td>
+            <td>Find text across the entire project.</td>
+          </tr>
+
+          <tr>
+            <td><strong><code>Ctrl + /</code></strong></td>
+            <td>Toggle comment.</td>
+            <td>Quickly comment or uncomment code.</td>
+          </tr>
+
+          <tr>
+            <td><strong><code>Ctrl + S</code></strong></td>
+            <td>Save file.</td>
+            <td>Still worth knowing. Save before testing.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Beginner mistakes to avoid</h2>
+
+      <p class="section-intro">
+        VS Code is helpful, but it can hide what is happening if I rely on buttons without
+        understanding the project.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag">Avoid this</span>
+          <h3>Bad habits</h3>
+          <ul>
+            <li>Opening single files instead of the full project folder.</li>
+            <li>Installing too many extensions without knowing what they do.</li>
+            <li>Running code only with a play button and never learning the terminal command.</li>
+            <li>Committing <code>.env</code> files, tokens, passwords, or private screenshots.</li>
+            <li>Editing files on a server without backups, Git, or a rollback plan.</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <span class="tag green">Do this instead</span>
+          <h3>Better habits</h3>
+          <ul>
+            <li>Open the project root with <code>code .</code>.</li>
+            <li>Use the integrated terminal constantly.</li>
+            <li>Know the real run command for each project.</li>
+            <li>Check <code>git diff</code> before committing.</li>
+            <li>Use Remote SSH carefully on systems I own or administer.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>My VS Code starter checklist</h2>
+
+      <p class="section-intro">
+        This is the short checklist I would give a student setting up VS Code for real technical work.
+      </p>
+
+      <div class="code-card">
+        <pre><code># 1. Install VS Code
+
+# 2. Open a real project folder
+cd ~/projects/my-project
+code .
+
+# 3. Open the terminal
+Ctrl + `
+
+# 4. Confirm project location
+pwd
+ls
+
+# 5. Run the project manually
+python3 script.py
+javac Main.java && java Main
+g++ main.cpp -o main && ./main
+python3 -m http.server 8000
+
+# 6. Check Git before publishing
+git status --short
+git diff --check
+
+# 7. Ignore private files
+echo ".env" >> .gitignore
+echo "weather_settings.json" >> .gitignore</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>Related LaunchShell guides and projects</h2>
+
+      <p class="section-intro">
+        VS Code is the workspace I would use for many of the projects on this site.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Browser IDE</span>
+            <h3>GitHub Codespaces</h3>
+            <p>
+              Try a VS Code-style coding environment in the browser before installing a full local setup.
+            </p>
+            <p><a href="../github-codespace/">Open the Codespaces guide</a></p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Python</span>
+            <h3>Tiny Terminal Weather</h3>
+            <p>
+              Edit <code>weather.py</code>, run it in the terminal, and commit the project with Git.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Java</span>
+            <h3>Java Movie Database CLI</h3>
+            <p>
+              Compile and run Java class projects while using the editor to inspect methods and data structures.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Web</span>
+            <h3>LaunchShell.org</h3>
+            <p>
+              Edit static HTML/CSS pages, preview locally, and publish through Git and Cloudflare Pages.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+<section id="docs">
+  <h2>Official docs worth bookmarking</h2>
+
+  <p class="section-intro">
+    VS Code and Codespaces both have useful official documentation. These are the areas I would start with.
+  </p>
+
+  <div class="grid docs-list">
+    <article class="card">
+      <div class="card-body">
+        <span class="tag green">Setup</span>
+        <h3>Install VS Code</h3>
+        <p>Official setup instructions for different operating systems.</p>
+        <p><a href="https://code.visualstudio.com/docs/setup/setup-overview" rel="noopener">Open setup docs</a></p>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-body">
+        <span class="tag">Terminal</span>
+        <h3>Integrated Terminal</h3>
+        <p>Official explanation of how the terminal works inside VS Code.</p>
+        <p><a href="https://code.visualstudio.com/docs/terminal/basics" rel="noopener">Open terminal docs</a></p>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-body">
+        <span class="tag green">Remote</span>
+        <h3>Remote SSH</h3>
+        <p>Official guide to connecting VS Code to remote machines over SSH.</p>
+        <p><a href="https://code.visualstudio.com/docs/remote/ssh" rel="noopener">Open Remote SSH docs</a></p>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-body">
+        <span class="tag">Browser</span>
+        <h3>GitHub Codespaces</h3>
+        <p>Official GitHub docs for browser-based cloud development environments.</p>
+        <p><a href="https://docs.github.com/en/codespaces" rel="noopener">Open Codespaces docs</a></p>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-body">
+        <span class="tag green">Students</span>
+        <h3>GitHub Education</h3>
+        <p>Student benefits, GitHub Pro for verified learners, and included Codespaces usage.</p>
+        <p><a href="https://github.com/education/students" rel="noopener">Open GitHub Education</a></p>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-body">
+        <span class="tag">Billing</span>
+        <h3>Codespaces usage</h3>
+        <p>Check current free quota, storage, compute time, and billing rules.</p>
+        <p><a href="https://docs.github.com/billing/managing-billing-for-github-codespaces/about-billing-for-github-codespaces" rel="noopener">Open Codespaces billing docs</a></p>
+      </div>
+    </article>
+  </div>
+</section>
+
+    <section>
+      <h2>Final idea</h2>
+
+      <div class="callout">
+        <p>
+          <strong>VS Code is most useful when I use it as a complete workspace.</strong> The editor
+          handles files, the terminal runs real commands, Git tracks changes, extensions support
+          languages, and Remote SSH connects the same workflow to servers and Raspberry Pis. If I want
+          to try the workflow first, Codespaces gives me a VS Code-style browser environment with a
+          Linux terminal and GitHub repo already attached.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>&copy; 2026 LaunchShell</div>
+    <div>Student-built project guides for Linux, cloud, electronics, Python, Java, web tools, and cybersecurity.</div>
+  </footer>
+</body>
+</html>

@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>LaunchShell | 8-Bit Computer Project</title>
-  <meta
-    name="description"
-    content="A LaunchShell project page for a from-scratch 8-bit CPU, Python assembler, ROM image tooling, and Arduino Nano EEPROM programmer."
-  />
+  <meta name="description"
+    content="A LaunchShell project page for a from-scratch 8-bit CPU, Python assembler, ROM image tooling, and Arduino Nano EEPROM programmer." />
 
   <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
   <link rel="stylesheet" href="../../assets/site.css" />
@@ -155,8 +154,7 @@
       border-bottom: 0;
     }
 
-    .instruction-table code,
-    .code-card code {
+    .instruction-table code {
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       color: var(--text);
       font-weight: 900;
@@ -189,6 +187,7 @@
     }
 
     @media (max-width: 1020px) {
+
       .project-hero,
       .split {
         grid-template-columns: 1fr;
@@ -298,7 +297,7 @@
           </div>
           <div class="stat">
             <strong>28C64</strong>
-            <span>EEPROM target</span>
+            <span>EEPROM</span>
           </div>
           <div class="stat">
             <strong>Python</strong>
@@ -312,9 +311,10 @@
       </div>
 
       <div class="project-visual">
-        <img src="../../assets/eight-bit-cpu.svg" alt="8-bit CPU project graphic" />
+        <img src="../../assets/card-eight-bit-cpu.png" alt="8-bit CPU project graphic" />
         <div class="caption">
-          A hardware/software project for learning CPU architecture, buses, registers, microcode, ROMs, and the real path from source code to electrical behavior.
+          A hardware/software project for learning CPU architecture, buses, registers, microcode, ROMs, and the real
+          path from source code to electrical behavior.
         </div>
       </div>
     </section>
@@ -331,7 +331,8 @@
           <span class="tag">Project Goal</span>
           <h3>Build the computer and the toolchain</h3>
           <p>
-            The CPU is only half the project. The other half is the software pipeline that lets me write simple assembly,
+            The CPU is only half the project. The other half is the software pipeline that lets me write simple
+            assembly,
             encode it into bytes, generate a ROM image, and program an EEPROM that the hardware can actually run.
           </p>
 
@@ -350,7 +351,7 @@
         </article>
 
         <article class="diagram">
-<pre>Assembly source
+          <pre>Assembly source
       ↓
 Python assembler
       ↓
@@ -378,7 +379,8 @@ LEDs / output register</pre>
           <span class="tag">CPU Architecture</span>
           <h3>Datapath and control</h3>
           <p>
-            Registers, buses, ALU behavior, flags, instruction fetch, program counter movement, and how control signals make the datapath do work.
+            Registers, buses, ALU behavior, flags, instruction fetch, program counter movement, and how control signals
+            make the datapath do work.
           </p>
         </article>
 
@@ -386,7 +388,8 @@ LEDs / output register</pre>
           <span class="tag green">Digital Logic</span>
           <h3>Real chips, real timing</h3>
           <p>
-            Glue logic, tri-state buses, latches, edge-triggered registers, clock sequencing, control lines, decoupling, and electrical debugging.
+            Glue logic, tri-state buses, latches, edge-triggered registers, clock sequencing, control lines, decoupling,
+            and electrical debugging.
           </p>
         </article>
 
@@ -394,7 +397,8 @@ LEDs / output register</pre>
           <span class="tag">Tooling</span>
           <h3>Assembler and ROM generation</h3>
           <p>
-            A small Python toolchain parses assembly, encodes instructions, creates a byte listing, and outputs data suitable for EEPROM programming.
+            A small Python toolchain parses assembly, encodes instructions, creates a byte listing, and outputs data
+            suitable for EEPROM programming.
           </p>
         </article>
       </div>
@@ -403,7 +407,8 @@ LEDs / output register</pre>
     <section id="workflow">
       <h2>Python → Arduino → EEPROM workflow</h2>
       <p class="section-intro">
-        The workflow is intentionally practical. I want to change code, regenerate bytes, burn the ROM, and test it on the board.
+        The workflow is intentionally practical. I want to change code, regenerate bytes, burn the ROM, and test it on
+        the board.
       </p>
 
       <div class="flow">
@@ -442,7 +447,8 @@ LEDs / output register</pre>
     <section id="isa">
       <h2>Instruction set starting point</h2>
       <p class="section-intro">
-        The ISA is intentionally small. The goal is to make each instruction easy to understand and easy to trace through the hardware.
+        The ISA is intentionally small. The goal is to make each instruction easy to understand and easy to trace
+        through the hardware.
       </p>
 
       <table class="instruction-table">
@@ -504,7 +510,7 @@ LEDs / output register</pre>
       </p>
 
       <div class="code-card">
-<pre><code>; Example: load a value, store it, read it back, and output
+        <pre><code>; Example: load a value, store it, read it back, and output
 LDI 0x0
 STA 0xF
 LDA 0xF
@@ -529,12 +535,13 @@ HLT</code></pre>
             and the output register.
           </p>
           <p>
-            Long term, the same Python tooling can generate not only instruction ROM images, but also the microcode ROM image.
+            Long term, the same Python tooling can generate not only instruction ROM images, but also the microcode ROM
+            image.
           </p>
         </article>
 
         <article class="diagram">
-<pre>(opcode, microstep, flags)
+          <pre>(opcode, microstep, flags)
           ↓
       control_word
           ↓
@@ -566,7 +573,8 @@ Output register enable</pre>
           <span class="tag">How it expands I/O</span>
           <h3>74HC595 shift registers</h3>
           <p>
-            The Nano does not have enough GPIO for everything, so shift registers fan out address, data, and control signals.
+            The Nano does not have enough GPIO for everything, so shift registers fan out address, data, and control
+            signals.
           </p>
         </article>
 
@@ -583,7 +591,8 @@ Output register enable</pre>
     <section id="status">
       <h2>Current status</h2>
       <p class="section-intro">
-        This project is still active. The point of the page is to show the build honestly: completed work, testing work, and next steps.
+        This project is still active. The point of the page is to show the build honestly: completed work, testing work,
+        and next steps.
       </p>
 
       <div class="split">
@@ -636,7 +645,8 @@ Output register enable</pre>
         <div class="method-step">
           <span>03</span>
           <h3>Break it</h3>
-          <p>Expect wiring issues, timing problems, bad assumptions, incorrect control bits, and failed test programs.</p>
+          <p>Expect wiring issues, timing problems, bad assumptions, incorrect control bits, and failed test programs.
+          </p>
         </div>
 
         <div class="method-step">
@@ -669,7 +679,8 @@ Output register enable</pre>
           <p>
             A practical reference for building an Arduino-based EEPROM programmer.
           </p>
-          <p><a href="https://www.youtube.com/watch?v=K88pgWhEb1M" rel="noopener">Watch the EEPROM programmer video</a></p>
+          <p><a href="https://www.youtube.com/watch?v=K88pgWhEb1M" rel="noopener">Watch the EEPROM programmer video</a>
+          </p>
         </article>
 
         <article class="card resource-card">
@@ -700,4 +711,5 @@ Output register enable</pre>
     <div>Student-built project guides for Linux, cloud, electronics, and cybersecurity.</div>
   </footer>
 </body>
+
 </html>
