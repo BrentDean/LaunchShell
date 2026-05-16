@@ -24,6 +24,7 @@
       <a href="../../projects/">Projects</a>
       <a href="../../guides/">Guides</a>
       <a href="../../resources/">Resources</a>
+      <a href="../../resources/book-recommendations/">Book List</a>
       <a href="#cloudflare" class="status">Cloudflare Pages</a>
     </nav>
   </header>
@@ -141,6 +142,12 @@
 
         <div class="path-row">
           <div class="level">09</div>
+          <div>Added a public book recommendations resource</div>
+          <div class="tools">A cleaned JSON file now powers a Top 30 book list, with a related Libby guide explaining how students can borrow ebooks and audiobooks through public libraries.</div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">10</div>
           <div>Kept improving it as a real project</div>
           <div class="tools">The site is not just a finished page. It is a growing project notebook for guides, builds, experiments, and lessons learned.</div>
         </div>
@@ -316,13 +323,18 @@
 ├── guides/
 │   ├── git-and-github/
 │   ├── github-codespace/
+│   ├── libby/
 │   ├── linux-terminal-intro/
 │   └── ...
 ├── projects/
 │   ├── build-this-site/
 │   ├── 8-bit/
+│   ├── json-book-recommendation/
 │   └── ...
 └── resources/
+    ├── book-recommendations/
+    │   ├── books_public.json
+    │   └── index.html
     └── index.html</code></pre>
       </div>
 
@@ -441,7 +453,7 @@
       <div class="split">
         <article class="panel">
           <span class="tag green">Real example</span>
-          <h3>Recipe App JSON files</h3>
+          <h3>Recipe and book JSON files</h3>
           <p>
             For the Recipe App, recipes came from index cards, magazine clippings, old notes, text messages,
             family recipes, and online references. None of those formats matched.
@@ -449,6 +461,10 @@
           <p>
             AI helped normalize that messy information into consistent JSON records that the app could read,
             search, display, and organize.
+          </p>
+          <p>
+            The book recommendations page uses the same idea: a private audiobook history became a smaller public
+            <code>books_public.json</code> file that renders a Top 30 list without exposing the full source history.
           </p>
         </article>
 

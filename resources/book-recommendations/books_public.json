@@ -1,0 +1,489 @@
+{
+  "page_title": "Top 30 Book Recommendations",
+  "page_description": "A curated reading list for students interested in Linux, networking, cybersecurity, programming, AI, systems thinking, and practical learning.",
+  "books": [
+    {
+      "rank": 1,
+      "title": "Hackers",
+      "author": "Steven Levy",
+      "category": "Tech History / Hacker Culture",
+      "tags": [
+        "hacker-culture",
+        "computing-history",
+        "builders"
+      ],
+      "format": "audiobook",
+      "isbn": "",
+      "cover": "https://img1.od-cdn.com/ImageType-100/6578-1/{109CE608-FB03-4EB8-ACA8-FA4FAC95C9E7}Img100.jpg",
+      "why_recommended": "A foundational book for understanding the older meaning of hacking: curiosity, building, exploring systems, and pushing computers to do new things.",
+      "url": "https://share.libbyapp.com/title/2461570"
+    },
+    {
+      "rank": 2,
+      "title": "Ghost in the Wires",
+      "author": "Kevin Mitnick",
+      "category": "Cybersecurity / Hacking",
+      "tags": [
+        "social-engineering",
+        "hacker-history",
+        "security"
+      ],
+      "format": "audiobook",
+      "isbn": "9781483067216",
+      "cover": "https://img2.od-cdn.com/ImageType-100/0887-1/{30DF8BF2-3D3F-4F66-8EF2-E55C4146D9F6}Img100.jpg",
+      "why_recommended": "A classic hacker memoir that shows the human side of security, social engineering, curiosity, and consequences.",
+      "url": "https://share.libbyapp.com/title/555451"
+    },
+    {
+      "rank": 3,
+      "title": "The Art of Invisibility",
+      "author": "Kevin Mitnick, Robert Vamosi",
+      "category": "Cybersecurity / Privacy",
+      "tags": [
+        "privacy",
+        "opsec",
+        "security-awareness"
+      ],
+      "format": "audiobook",
+      "isbn": "9781478985846",
+      "cover": "https://img2.od-cdn.com/ImageType-100/0887-1/{3E6925E3-B422-4568-ABB5-67FFBBBA21DF}Img100.jpg",
+      "why_recommended": "Useful for thinking about privacy, tracking, operational security, and how much information everyday systems leak.",
+      "url": "https://share.libbyapp.com/title/3007247"
+    },
+    {
+      "rank": 4,
+      "title": "The Art of Deception",
+      "author": "Kevin D. Mitnick, William L. Simon, Steve Wozniak",
+      "category": "Cybersecurity / Social Engineering",
+      "tags": [
+        "social-engineering",
+        "security-awareness",
+        "human-factors"
+      ],
+      "format": "audiobook",
+      "isbn": "9781705259405",
+      "cover": "https://img1.od-cdn.com/ImageType-100/1219-1/{BDD306F1-05CE-4F25-925E-74384E863EBD}Img100.jpg",
+      "why_recommended": "A strong reminder that security is not only technical. People, trust, procedures, and assumptions are often the weak points.",
+      "url": "https://share.libbyapp.com/title/5831120"
+    },
+    {
+      "rank": 5,
+      "title": "The Code Book",
+      "author": "Simon Singh",
+      "category": "Cryptography / Computing History",
+      "tags": [
+        "cryptography",
+        "history",
+        "codes"
+      ],
+      "format": "audiobook",
+      "isbn": "9780593554272",
+      "cover": "https://img2.od-cdn.com/ImageType-100/1191-1/{3A9BCDCE-C845-419E-BE4D-E28BDAF68BEC}IMG100.JPG",
+      "why_recommended": "A readable history of codes, ciphers, secrecy, and cryptography. Good bridge between math, history, and security.",
+      "url": "https://share.libbyapp.com/title/6286690"
+    },
+    {
+      "rank": 6,
+      "title": "Cryptography",
+      "author": "Keith Martin",
+      "category": "Cryptography / Security",
+      "tags": [
+        "cryptography",
+        "security",
+        "encryption"
+      ],
+      "format": "audiobook",
+      "isbn": "9781684579136",
+      "cover": "https://img2.od-cdn.com/ImageType-100/1294-1/{2ED58349-94C6-4E4C-8DA8-B183F90C0DB7}Img100.jpg",
+      "why_recommended": "A more focused cryptography pick for understanding encryption, trust, keys, and why secure communication is difficult.",
+      "url": "https://share.libbyapp.com/title/5295469"
+    },
+    {
+      "rank": 7,
+      "title": "Cybersecurity For Dummies",
+      "author": "Joseph Steinberg",
+      "category": "Cybersecurity / Beginner",
+      "tags": [
+        "cybersecurity",
+        "beginner",
+        "it"
+      ],
+      "format": "audiobook",
+      "isbn": "9781541437098",
+      "cover": "https://img1.od-cdn.com/ImageType-100/1219-1/{47353F73-ECA2-4C76-BA48-5DC3883BA6B1}Img100.jpg",
+      "why_recommended": "A plain-language cybersecurity overview for students who want the big picture before diving into tools.",
+      "url": "https://share.libbyapp.com/title/5017265"
+    },
+    {
+      "rank": 8,
+      "title": "Networking for Dummies",
+      "author": "Doug Lowe",
+      "category": "Networking / Beginner",
+      "tags": [
+        "networking",
+        "beginner",
+        "it"
+      ],
+      "format": "audiobook",
+      "isbn": "9781630155117",
+      "cover": "https://img2.od-cdn.com/ImageType-100/1219-1/{5F712312-873C-40AD-A9C7-6C4F8455A306}Img100.jpg",
+      "why_recommended": "A less intimidating networking starter for ports, IP addresses, routers, switches, and basic network structure.",
+      "url": "https://share.libbyapp.com/title/4872525"
+    },
+    {
+      "rank": 9,
+      "title": "A People's History of Computing in the United States",
+      "author": "Joy Lisi Rankin",
+      "category": "Tech History / Computing",
+      "tags": [
+        "computing-history",
+        "education",
+        "community"
+      ],
+      "format": "audiobook",
+      "isbn": "9781982556983",
+      "cover": "https://img1.od-cdn.com/ImageType-100/0887-1/{7B91D877-D801-4DDD-9C66-37A0AB0D36B1}IMG100.JPG",
+      "why_recommended": "Good for understanding computing as a social and educational movement, not just a story about companies and products.",
+      "url": "https://share.libbyapp.com/title/4127353"
+    },
+    {
+      "rank": 10,
+      "title": "Creative Selection",
+      "author": "Ken Kocienda",
+      "category": "Software / Product Building",
+      "tags": [
+        "software",
+        "apple",
+        "product-design"
+      ],
+      "format": "audiobook",
+      "isbn": "9781250300683",
+      "cover": "https://img2.od-cdn.com/ImageType-100/1493-1/{03634AB2-FED2-49E5-8ACE-233FE50C8B96}Img100.jpg",
+      "why_recommended": "A practical look at how software products are designed, prototyped, tested, criticized, and improved.",
+      "url": "https://share.libbyapp.com/title/3788088"
+    },
+    {
+      "rank": 11,
+      "title": "The Thinking Machine",
+      "author": "Stephen Witt",
+      "category": "AI / Tech Industry",
+      "tags": [
+        "ai",
+        "computing",
+        "tech-industry"
+      ],
+      "format": "audiobook",
+      "isbn": "9780593944141",
+      "cover": "https://img1.od-cdn.com/ImageType-100/1191-1/{1A070BC6-3195-4E08-BEF7-15EE545B2D0E}IMG100.JPG",
+      "why_recommended": "A useful AI and tech-industry pick for understanding how modern computing systems become products, platforms, and power centers.",
+      "url": "https://share.libbyapp.com/title/10750668"
+    },
+    {
+      "rank": 12,
+      "title": "Why Machines Learn",
+      "author": "Anil Ananthaswamy",
+      "category": "AI / Machine Learning",
+      "tags": [
+        "ai",
+        "machine-learning",
+        "math"
+      ],
+      "format": "audiobook",
+      "isbn": "9780593786956",
+      "cover": "https://img2.od-cdn.com/ImageType-100/1191-1/{C6EF35FF-38CB-4E26-BA73-ABF74E9C733B}IMG100.JPG",
+      "why_recommended": "A strong conceptual introduction to how machine learning developed and why it works the way it does.",
+      "url": "https://share.libbyapp.com/title/10092036"
+    },
+    {
+      "rank": 13,
+      "title": "Rationality",
+      "author": "Steven Pinker",
+      "category": "Thinking / Reasoning",
+      "tags": [
+        "reasoning",
+        "logic",
+        "decision-making"
+      ],
+      "format": "audiobook",
+      "isbn": "9781984843555",
+      "cover": "https://img3.od-cdn.com/ImageType-100/1191-1/{4540EA65-D975-46EB-912F-E9565DE2CFD7}Img100.jpg",
+      "why_recommended": "Useful for students because technical work requires clear thinking: evidence, probability, logic, bias, and better decisions.",
+      "url": "https://share.libbyapp.com/title/6069813"
+    },
+    {
+      "rank": 14,
+      "title": "The Extended Mind",
+      "author": "Annie Murphy Paul",
+      "category": "Learning / Cognition",
+      "tags": [
+        "learning",
+        "cognition",
+        "thinking"
+      ],
+      "format": "audiobook",
+      "isbn": "9780358611516",
+      "cover": "https://img1.od-cdn.com/ImageType-100/0293-1/{52B92863-B156-4445-B79F-A2AFC944CCC6}IMG100.JPG",
+      "why_recommended": "Good for thinking about learning environments, tools, notes, bodies, spaces, and why thinking is not only something inside your head.",
+      "url": "https://share.libbyapp.com/title/6396848"
+    },
+    {
+      "rank": 15,
+      "title": "Behave",
+      "author": "Robert M. Sapolsky",
+      "category": "Science / Human Behavior",
+      "tags": [
+        "neuroscience",
+        "behavior",
+        "biology"
+      ],
+      "format": "audiobook",
+      "isbn": "9781524735166",
+      "cover": "https://img1.od-cdn.com/ImageType-100/1191-1/{AB92B142-3715-4641-92F5-F99F63413F59}Img100.jpg",
+      "why_recommended": "A deep systems-thinking book about behavior, biology, environment, and causes. Good for learning to think across layers.",
+      "url": "https://share.libbyapp.com/title/2854618"
+    },
+    {
+      "rank": 16,
+      "title": "An Immense World",
+      "author": "Ed Yong",
+      "category": "Science / Systems Thinking",
+      "tags": [
+        "science",
+        "biology",
+        "perception"
+      ],
+      "format": "audiobook",
+      "isbn": "9780593593547",
+      "cover": "https://img1.od-cdn.com/ImageType-100/1191-1/{9432D5A5-6081-4E65-B3A6-B22508A5FE4B}IMG100.JPG",
+      "why_recommended": "A strong reminder that different systems sense the world differently. That is useful thinking for sensors, interfaces, networks, and security.",
+      "url": "https://share.libbyapp.com/title/7345963"
+    },
+    {
+      "rank": 17,
+      "title": "A Short History of Nearly Everything",
+      "author": "Bill Bryson",
+      "category": "Science / Big Ideas",
+      "tags": [
+        "science",
+        "history",
+        "curiosity"
+      ],
+      "format": "audiobook",
+      "isbn": "9780736697958",
+      "cover": "https://img1.od-cdn.com/ImageType-100/1191-1/{78765C5E-ADF9-494D-8F78-47CBD4B7702F}IMG100.JPG",
+      "why_recommended": "A curiosity-builder. Good for students who like learning how different fields connect.",
+      "url": "https://share.libbyapp.com/title/114376"
+    },
+    {
+      "rank": 18,
+      "title": "Sapiens",
+      "author": "Yuval Noah Harari",
+      "category": "History / Society",
+      "tags": [
+        "history",
+        "society",
+        "systems-thinking"
+      ],
+      "format": "audiobook",
+      "isbn": "9780062796233",
+      "cover": "https://img2.od-cdn.com/ImageType-100/0293-1/{807484E0-6F0D-42A6-B976-0546AFED02DD}IMG100.JPG",
+      "why_recommended": "A broad history and society book that helps connect technology to larger systems: cooperation, institutions, stories, and power.",
+      "url": "https://share.libbyapp.com/title/3255516"
+    },
+    {
+      "rank": 19,
+      "title": "The Body",
+      "author": "Bill Bryson",
+      "category": "Science / Human Systems",
+      "tags": [
+        "science",
+        "biology",
+        "human-body"
+      ],
+      "format": "audiobook",
+      "isbn": "9780147526922",
+      "cover": "https://img2.od-cdn.com/ImageType-100/1191-1/{38DDDC42-8411-4192-96F7-56BE613A6F27}Img100.jpg",
+      "why_recommended": "A readable systems tour of the human body. Useful for thinking about complex systems with many interacting parts.",
+      "url": "https://share.libbyapp.com/title/4528180"
+    },
+    {
+      "rank": 20,
+      "title": "Dopamine Nation",
+      "author": "Anna Lembke",
+      "category": "Mind / Psychology",
+      "tags": [
+        "psychology",
+        "behavior",
+        "attention"
+      ],
+      "format": "audiobook",
+      "isbn": "9780593409220",
+      "cover": "https://img3.od-cdn.com/ImageType-100/1191-1/{46E44FBA-211D-4F50-9AC3-B9090494799B}IMG100.JPG",
+      "why_recommended": "Useful for thinking about attention, habits, phones, reward loops, and why tech can be hard to use intentionally.",
+      "url": "https://share.libbyapp.com/title/5790657"
+    },
+    {
+      "rank": 21,
+      "title": "Sandworm",
+      "author": "Andy Greenberg",
+      "category": "Cybersecurity / Real-World Cyber Conflict",
+      "tags": [
+        "cybersecurity",
+        "real-world-cyber",
+        "history"
+      ],
+      "format": "audiobook",
+      "isbn": "9780593146781",
+      "cover": "https://covers.openlibrary.org/b/isbn/9780593146781-L.jpg",
+      "why_recommended": "Core real-world cyber history",
+      "url": "https://share.libbyapp.com/title/4414528"
+    },
+    {
+      "rank": 22,
+      "title": "Countdown to Zero Day",
+      "author": "Kim Zetter",
+      "category": "Cybersecurity / ICS / Malware",
+      "tags": [
+        "cybersecurity",
+        "malware",
+        "ics",
+        "stuxnet"
+      ],
+      "format": "audiobook",
+      "isbn": "9780804166201",
+      "cover": "https://covers.openlibrary.org/b/isbn/9780804166201-L.jpg",
+      "why_recommended": "Stuxnet, ICS, malware, and cyber-physical systems. One of the strongest real-world cybersecurity narratives for students.",
+      "url": "https://share.libbyapp.com/title/1397159"
+    },
+    {
+      "rank": 23,
+      "title": "This Is How They Tell Me the World Ends",
+      "author": "Nicole Perlroth",
+      "category": "Cybersecurity / Zero-Days",
+      "tags": [
+        "cybersecurity",
+        "zero-days",
+        "cyberwar"
+      ],
+      "format": "audiobook",
+      "isbn": "9781635577174",
+      "cover": "https://covers.openlibrary.org/b/isbn/9781635577174-L.jpg",
+      "why_recommended": "A clear look at the zero-day market, modern cyber conflict, and why vulnerability research matters.",
+      "url": "https://share.libbyapp.com/title/6312357"
+    },
+    {
+      "rank": 24,
+      "title": "The Hacker and the State",
+      "author": "Ben Buchanan",
+      "category": "Cybersecurity / Nation-State Operations",
+      "tags": [
+        "cybersecurity",
+        "nation-state",
+        "geopolitics"
+      ],
+      "format": "audiobook",
+      "isbn": "9781705231920",
+      "cover": "https://covers.openlibrary.org/b/isbn/9781705231920-L.jpg",
+      "why_recommended": "A strong nation-state cyber operations book that connects hacking, geopolitics, espionage, and strategy.",
+      "url": "https://share.libbyapp.com/title/5418381"
+    },
+    {
+      "rank": 25,
+      "title": "Dark Wire",
+      "author": "Joseph Cox",
+      "category": "Cybersecurity / Privacy / Law Enforcement",
+      "tags": [
+        "cybersecurity",
+        "encryption",
+        "opsec",
+        "law-enforcement"
+      ],
+      "format": "audiobook",
+      "isbn": "9781668641606",
+      "cover": "https://covers.openlibrary.org/b/isbn/9781668641606-L.jpg",
+      "why_recommended": "A modern law-enforcement and secure-phone operation story that connects encryption, organized crime, surveillance, and operational security.",
+      "url": "https://share.libbyapp.com/title/10180476"
+    },
+    {
+      "rank": 26,
+      "title": "Practical Packet Analysis",
+      "author": "Chris Sanders",
+      "category": "Networking / Packet Analysis",
+      "tags": [
+        "networking",
+        "wireshark",
+        "packet-analysis",
+        "security"
+      ],
+      "format": "ebook",
+      "isbn": "9781593272661",
+      "cover": "https://covers.openlibrary.org/b/isbn/9781593272661-L.jpg",
+      "why_recommended": "Directly useful for Wireshark, packet captures, network troubleshooting, and hands-on network security practice.",
+      "url": "https://share.libbyapp.com/title/1475458"
+    },
+    {
+      "rank": 27,
+      "title": "Linux Basics for Hackers",
+      "author": "OccupyTheWeb",
+      "category": "Linux / Cybersecurity",
+      "tags": [
+        "linux",
+        "cybersecurity",
+        "command-line"
+      ],
+      "format": "ebook",
+      "isbn": "9781593278564",
+      "cover": "https://covers.openlibrary.org/b/isbn/9781593278564-L.jpg",
+      "why_recommended": "A practical Linux and security bridge for students who want command-line skills that connect directly to cybersecurity labs.",
+      "url": "https://share.libbyapp.com/title/3682540"
+    },
+    {
+      "rank": 28,
+      "title": "The Linux Command Line",
+      "author": "William E. Shotts, Jr.",
+      "category": "Linux / Command Line",
+      "tags": [
+        "linux",
+        "command-line",
+        "shell"
+      ],
+      "format": "ebook",
+      "isbn": "9781593273897",
+      "cover": "https://covers.openlibrary.org/b/isbn/9781593273897-L.jpg",
+      "why_recommended": "A strong foundational Linux pick for learning shell commands, files, processes, scripting, and daily terminal work.",
+      "url": "https://share.libbyapp.com/title/1475490"
+    },
+    {
+      "rank": 29,
+      "title": "Zero Day",
+      "author": "Mark Russinovich",
+      "category": "Cybersecurity Fiction",
+      "tags": [
+        "cybersecurity",
+        "fiction",
+        "malware"
+      ],
+      "format": "audiobook",
+      "isbn": "9781427231833",
+      "cover": "https://img1.od-cdn.com/ImageType-100/1493-1/{68EC1D2F-CB7C-4FF1-B429-C25C351B5F7A}Img100.jpg",
+      "why_recommended": "Cybersecurity-themed fiction by a real systems expert. Useful as an accessible way into malware and infrastructure risk.",
+      "url": "https://share.libbyapp.com/title/1067606"
+    },
+    {
+      "rank": 30,
+      "title": "Trojan Horse",
+      "author": "Mark Russinovich",
+      "category": "Cybersecurity Fiction",
+      "tags": [
+        "cybersecurity",
+        "fiction",
+        "malware"
+      ],
+      "format": "audiobook",
+      "isbn": "9781427231840",
+      "cover": "https://img1.od-cdn.com/ImageType-100/1493-1/{E49CCC6C-58CF-45C6-8A0E-3002FC5A462C}Img100.jpg",
+      "why_recommended": "A follow-up cybersecurity thriller that keeps the focus on malware, systems, and technical risk in a readable story format.",
+      "url": "https://share.libbyapp.com/title/1077166"
+    }
+  ]
+}

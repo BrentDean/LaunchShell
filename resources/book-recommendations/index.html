@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LaunchShell | Top 30 Book Recommendations</title>
+  <meta name="description"
+    content="A curated LaunchShell Top 30 reading list for cybersecurity, Linux, networking, programming, AI, systems thinking, and practical learning." />
+
+  <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+</head>
+
+<body class="resources-page" id="top">
+  <header>
+    <a href="../../" aria-label="LaunchShell home">
+      <img src="../../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../../projects/">Projects</a>
+      <a href="../../guides/">Guides</a>
+      <a href="../">Resources</a>
+      <a href="./">Book List</a>
+      <a href="../../projects/json-book-recommendation/" class="status">Data Project</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">Books • Cybersecurity • Linux • AI • Systems Thinking</div>
+      <h1>Top 30 book recommendations.</h1>
+
+      <p>
+        A curated reading list for students interested in Linux, networking, cybersecurity,
+        programming, AI, hacker culture, systems thinking, and practical learning.
+      </p>
+
+      <div class="hero-actions">
+        <a class="button primary" href="#top-books">View the Top 30</a>
+        <a class="button" href="../../guides/libby/">New to Libby?</a>
+        <a class="button" href="../../projects/json-book-recommendation/">How this was built</a>
+      </div>
+    </section>
+
+    <section>
+      <div class="callout">
+        <span class="tag green">New to Libby?</span>
+        <h2>Use your public library card for free ebooks and audiobooks.</h2>
+        <p>
+          Libby connects many public library cards to free ebooks, audiobooks, magazines,
+          and other digital materials. Check Libby before buying technical books or audiobooks.
+        </p>
+        <p>
+          <a class="button primary" href="../../guides/libby/">Read the Libby setup guide</a>
+        </p>
+      </div>
+    </section>
+
+    <section id="top-books">
+      <h2>Top 30 recommendations</h2>
+
+
+      <div class="book-list" id="books-list"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© 2026 LaunchShell</div>
+    <div>Student-built project guides for Linux, cloud, Python, data, and cybersecurity.</div>
+  </footer>
+
+  <script>
+    const booksList = document.getElementById("books-list");
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function coverUrl(book) {
+      if (book.cover) {
+        return book.cover;
+      }
+
+      if (book.isbn) {
+        return `https://covers.openlibrary.org/b/isbn/${encodeURIComponent(book.isbn)}-L.jpg`;
+      }
+
+      return "";
+    }
+
+    function renderBook(book) {
+      const cover = coverUrl(book)
+        ? `
+      <div class="book-cover-wrap">
+        <img
+          class="book-cover"
+          src="${escapeHtml(coverUrl(book))}"
+          alt="Cover of ${escapeHtml(book.title)}"
+          loading="lazy"
+          onerror="this.parentElement.classList.add('book-cover-placeholder'); this.remove();"
+        />
+      </div>
+    `
+        : `
+      <div class="book-cover-wrap book-cover-placeholder">
+        <span>${escapeHtml(book.title)}</span>
+      </div>
+    `;
+
+      return `
+    <article class="book-row">
+      <div class="book-rank">${escapeHtml(book.rank)}</div>
+
+      ${cover}
+
+      <div class="book-info">
+        <span class="tag green">${escapeHtml(book.category)}</span>
+        <h3>${escapeHtml(book.title)}</h3>
+        <p class="book-author">${escapeHtml(book.author)}</p>
+        <p>${escapeHtml(book.why_recommended)}</p>
+
+        ${book.isbn ? `
+          <div class="book-meta">
+            <span>ISBN: ${escapeHtml(book.isbn)}</span>
+          </div>
+        ` : ""}
+
+        ${book.url ? `<a class="button" href="${escapeHtml(book.url)}" target="_blank" rel="noopener noreferrer">Open Libby link</a>` : ""}
+      </div>
+    </article>
+  `;
+    }
+
+    async function loadBooks() {
+      const response = await fetch("./books_public.json");
+
+      if (!response.ok) {
+        throw new Error("Could not load books_public.json");
+      }
+
+      const data = await response.json();
+      const books = data.books || [];
+
+      booksList.innerHTML = books
+        .sort((a, b) => Number(a.rank) - Number(b.rank))
+        .map(renderBook)
+        .join("");
+    }
+
+    loadBooks().catch((error) => {
+      booksList.innerHTML = `
+        <div class="empty-state">
+          Could not load the book recommendations data.
+        </div>
+      `;
+      console.error(error);
+    });
+  </script>
+</body>
+
+</html>

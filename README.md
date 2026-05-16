@@ -1,6 +1,3 @@
-Use a **four-backtick fence** around the whole README so the inner code blocks do not break out.
-
-````md
 # LaunchShell
 
 **Build. Launch. Repeat.**
@@ -15,6 +12,7 @@ The site is intentionally simple. It is plain HTML and CSS so the content stays 
 - [Guides](https://www.launchshell.org/guides/) — `guides/index.html`
 - [Projects](https://www.launchshell.org/projects/) — `projects/index.html`
 - [Resources](https://www.launchshell.org/resources/) — `resources/index.html`
+- [Book Recommendations](https://www.launchshell.org/resources/book-recommendations/) — `resources/book-recommendations/index.html`
 
 ## Homepage Sections
 
@@ -32,6 +30,7 @@ The site is intentionally simple. It is plain HTML and CSS so the content stays 
 - [What Is Hacking?](https://www.launchshell.org/guides/what-is-hacking/) — `guides/what-is-hacking/`
 - [Git and GitHub](https://www.launchshell.org/guides/git-and-github/) — `guides/git-and-github/`
 - [GitHub Codespaces](https://www.launchshell.org/guides/github-codespace/) — `guides/github-codespace/`
+- [Use Libby With Your Library](https://www.launchshell.org/guides/libby/) — `guides/libby/`
 - [Cloudflare Pages](https://www.launchshell.org/guides/cloudflare/) — `guides/cloudflare/`
 - [IT and Cybersecurity Certifications](https://www.launchshell.org/guides/certification/) — `guides/certification/`
 
@@ -41,7 +40,14 @@ The site is intentionally simple. It is plain HTML and CSS so the content stays 
 - [Small Python Projects and Diceware](https://www.launchshell.org/projects/python/) — `projects/python/`
 - [T-Pot Honeynet Project](https://www.launchshell.org/projects/tpot-honeynet/) — `projects/tpot-honeynet/`
 - [8-Bit Computer and ROM Tooling](https://www.launchshell.org/projects/8-bit/) — `projects/8-bit/`
+- [JSON Book Recommendations](https://www.launchshell.org/projects/json-book-recommendation/) — `projects/json-book-recommendation/`
 - [How This Site Was Built](https://www.launchshell.org/projects/build-this-site/) — `projects/build-this-site/`
+
+## Resources
+
+- [Student Resources](https://www.launchshell.org/resources/) — `resources/index.html`
+- [Top 30 Book Recommendations](https://www.launchshell.org/resources/book-recommendations/) — `resources/book-recommendations/`
+- Book recommendation data — `resources/book-recommendations/books_public.json`
 
 ## Tech Stack
 
@@ -66,6 +72,7 @@ The site is intentionally simple. It is plain HTML and CSS so the content stays 
 │   ├── cloudflare/
 │   ├── git-and-github/
 │   ├── github-codespace/
+│   ├── libby/
 │   ├── linux-terminal-intro/
 │   ├── what-is-a-vm/
 │   └── what-is-hacking/
@@ -73,9 +80,13 @@ The site is intentionally simple. It is plain HTML and CSS so the content stays 
 │   ├── 8-bit/
 │   ├── build-this-site/
 │   ├── cheap-server-web-app/
+│   ├── json-book-recommendation/
 │   ├── python/
 │   └── tpot-honeynet/
 ├── resources/
+│   ├── book-recommendations/
+│   │   ├── books_public.json
+│   │   └── index.html
 │   └── index.html
 ├── index.html
 └── README.md
@@ -111,4 +122,3 @@ This site is public, so screenshots, logs, credentials, IPs, and private class/w
 LaunchShell pages should stay beginner-friendly, practical, and safety-conscious.
 
 The goal is to show real project work, clear learning paths, and public portfolio evidence without publishing sensitive details.
-````
