@@ -18,11 +18,15 @@
 }
 
 html {
+  max-width: 100%;
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
 body {
+  max-width: 100%;
   margin: 0;
+  overflow-x: hidden;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background:
     radial-gradient(circle at 20% 0%, rgba(18, 99, 255, 0.12), transparent 34rem),
@@ -84,6 +88,7 @@ nav a:hover {
 }
 
 main {
+  min-width: 0;
   max-width: 1120px;
   margin: 0 auto;
   padding: 36px 22px 86px;
@@ -246,6 +251,8 @@ h1 {
 }
 
 section {
+  min-width: 0;
+  max-width: 100%;
   margin-top: 64px;
 }
 
@@ -273,11 +280,23 @@ h2 {
   gap: 18px;
 }
 
+.grid > *,
+.quick-list > *,
+.split > *,
+.flow > *,
+.method > *,
+.command-grid > * {
+  min-width: 0;
+}
+
 .card {
+  max-width: 100%;
+  min-width: 0;
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 20px;
   box-shadow: var(--shadow);
+  overflow-wrap: anywhere;
 }
 
 .home-page .card {
@@ -326,7 +345,20 @@ h2 {
 }
 
 .card-body {
+  min-width: 0;
+  max-width: 100%;
   padding: 22px;
+}
+
+.card p,
+.panel p,
+.step-card p,
+.flow-step p,
+.card li,
+.panel li,
+.step-card li,
+.flow-step li {
+  overflow-wrap: anywhere;
 }
 
 .about-page #next .card {
@@ -413,11 +445,14 @@ li {
 }
 
 .method-step {
+  max-width: 100%;
+  min-width: 0;
   background: var(--dark);
   color: white;
   border-radius: 18px;
   padding: 22px;
   min-height: 190px;
+  overflow-wrap: anywhere;
 }
 
 .method-step span {
@@ -647,11 +682,14 @@ footer {
 }
 
 .panel {
+  max-width: 100%;
+  min-width: 0;
   background: white;
   border: 1px solid var(--border);
   border-radius: 22px;
   padding: 24px;
   box-shadow: var(--shadow);
+  overflow-wrap: anywhere;
 }
 
 .panel h3 {
@@ -674,12 +712,15 @@ footer {
 }
 
 .flow-step {
+  max-width: 100%;
+  min-width: 0;
   background: white;
   border: 1px solid var(--border);
   border-radius: 18px;
   padding: 20px;
   box-shadow: 0 12px 34px rgba(6, 18, 38, 0.06);
   min-height: 180px;
+  overflow-wrap: anywhere;
 }
 
 .flow-step span {
@@ -737,6 +778,8 @@ footer {
 }
 
 .code-card {
+  max-width: 100%;
+  min-width: 0;
   background: var(--dark);
   color: white;
   border-radius: 22px;
@@ -774,11 +817,14 @@ pre code {
 }
 
 .step-card {
+  max-width: 100%;
+  min-width: 0;
   background: white;
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 22px;
   box-shadow: var(--shadow);
+  overflow-wrap: anywhere;
 }
 
 .step-number {
@@ -810,6 +856,8 @@ pre code {
 }
 
 pre {
+  max-width: 100%;
+  min-width: 0;
   margin: 14px 0 0;
   padding: 16px;
   overflow-x: auto;
@@ -1536,55 +1584,67 @@ pre {
 }
 
 @media (max-width: 700px) {
-  .simple-table,
+  .simple-table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 18px;
+    -webkit-overflow-scrolling: touch;
+  }
+
   .simple-table thead,
   .simple-table tbody,
+  .simple-table tr {
+    width: 100%;
+  }
+
   .simple-table th,
-  .simple-table td,
-  .simple-table tr {
-    display: block;
+  .simple-table td {
+    min-width: 180px;
+    padding: 13px 14px;
   }
 
-  .simple-table thead {
-    display: none;
-  }
-
-  .simple-table tr {
-    border-bottom: 1px solid var(--border);
-  }
-
-  .simple-table tr:last-child {
-    border-bottom: 0;
+  .simple-table th {
+    white-space: nowrap;
   }
 
   .simple-table td {
-    border-bottom: 0;
-    padding: 12px 16px;
+    font-size: 0.95rem;
   }
 
-  .simple-table td:nth-child(1)::before,
-  .simple-table td:nth-child(2)::before,
-  .simple-table td:nth-child(3)::before {
-    display: block;
-    font-weight: 900;
-    color: var(--text);
-    margin-bottom: 3px;
-  }
-
-  .simple-table td:nth-child(1)::before {
-    content: "Part";
-  }
-
-  .simple-table td:nth-child(2)::before {
-    content: "What I used";
-  }
-
-  .simple-table td:nth-child(3)::before {
-    content: "Why it mattered";
+  .simple-table td::before {
+    content: none !important;
+    display: none !important;
   }
 }
 
 @media (max-width: 560px) {
+  main {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  .step-card,
+  .panel,
+  .card-body {
+    padding: 20px;
+  }
+
+  .step-card h3,
+  .panel h3,
+  .card h3 {
+    font-size: 1.2rem;
+  }
+
+  .step-card p,
+  .panel p,
+  .card p,
+  .step-card li,
+  .panel li,
+  .card li {
+    font-size: 1rem;
+  }
+
   .book-row {
     grid-template-columns: 40px 76px 1fr;
     gap: 12px;
@@ -1746,6 +1806,8 @@ pre {
 }
 
 .command-block {
+  max-width: 100%;
+  min-width: 0;
   overflow: hidden;
   margin-top: 18px;
   background: var(--dark);
