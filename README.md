@@ -8,7 +8,7 @@
 
 [LaunchShell.org](https://www.launchshell.org/) is a student-built technical portfolio and learning site. It documents practical work with Linux, cloud servers, Git/GitHub, VS Code, Python, Java, web apps, electronics, virtual machines, public resources, networking, APIs, packet analysis, and safe beginner cybersecurity labs.
 
-The site is intentionally simple: plain HTML, shared CSS, local assets, and static hosting through Cloudflare Pages. There is no framework, backend, package manager, or build step.
+The site is intentionally simple: plain HTML, shared CSS, local assets, small JavaScript helpers, JSON data files, and static hosting through Cloudflare Pages. There is no framework, backend, package manager, or build step.
 
 ## Live Site
 
@@ -25,7 +25,9 @@ LaunchShell is meant to show real project work, not a polished fake demo. The si
 - static web fundamentals with HTML, CSS, assets, links, and page structure
 - beginner Linux, Git, GitHub, Cloudflare, VPS, and VM workflows
 - practical project documentation for Flask apps, Python tools, Java CLI work, honeynet labs, packet captures, and hardware work
+- electronics and IoT learning through Arduino, ESP32, Raspberry Pi, MQTT, sensors, and physical computing projects
 - public-resource pages for students, including Libby and free or low-cost technical learning tools
+- lightweight JSON-backed content patterns for cards, books, and static data
 - safe publishing habits: no credentials, private logs, sensitive IPs, or unrevised class material
 
 ## Preview
@@ -66,6 +68,7 @@ LaunchShell is meant to show real project work, not a polished fake demo. The si
 - [Wireshark Packet Analysis](https://www.launchshell.org/guides/wireshark/)
 - [Advanced Wireshark](https://www.launchshell.org/guides/advanced-wireshark/)
 - [What Is an API?](https://www.launchshell.org/guides/apis/)
+- [Arduino and ESP32 Overview](https://www.launchshell.org/guides/arduino-esp32-overview/)
 - [IT and Cybersecurity Certifications](https://www.launchshell.org/guides/certification/)
 
 ### Projects
@@ -77,6 +80,7 @@ LaunchShell is meant to show real project work, not a polished fake demo. The si
 - [T-Pot Honeynet Project](https://www.launchshell.org/projects/tpot-honeynet/)
 - [8-Bit Computer and ROM Tooling](https://www.launchshell.org/projects/8-bit/)
 - [Raspberry Pi + Alfa Wi-Fi Sniffer](https://www.launchshell.org/projects/raspi-wifi-sniffer/)
+- [Solar ESP32 MQTT Sensor](https://www.launchshell.org/projects/solar-esp32-mqtt-sensor/)
 - [Java Movie CLI](https://www.launchshell.org/projects/java-movie-cli/)
 - [Java Radix Sort for IP Addresses](https://www.launchshell.org/projects/java-radix-ip-sort/)
 - [JSON Book Recommendations](https://www.launchshell.org/projects/json-book-recommendation/)
@@ -88,97 +92,32 @@ LaunchShell is meant to show real project work, not a polished fake demo. The si
 - [Top 30 Book Recommendations](https://www.launchshell.org/resources/book-recommendations/)
 - `resources/book-recommendations/books_public.json` powers the book list
 
-## Tech Stack
+## Homepage Card System
 
-- HTML
-- CSS
-- local images and icons
-- JSON for simple static data
-- Python scripts for small project examples
-- Git and GitHub for version control
-- Cloudflare Pages for hosting
+The homepage originally hardcoded every card directly into `index.html`. That worked when the site was small, but the homepage became harder to maintain as LaunchShell grew past 25 card images, guides, projects, resources, and repeated links.
 
-## Repository Structure
+The homepage now uses a small JSON-backed card system:
 
-```text
-.
-├── assets/
-│   ├── site.css
-│   ├── card-*.png
-│   └── shared logos, screenshots, and icons
-├── guides/
-│   ├── advanced-wireshark/
-│   ├── apis/
-│   ├── aws-free-vps/
-│   ├── certification/
-│   ├── cloudflare/
-│   ├── git-and-github/
-│   ├── github-codespace/
-│   ├── libby/
-│   ├── linux-terminal-intro/
-│   ├── nmap/
-│   ├── terminus-mobile-ssh/
-│   ├── vs-code/
-│   ├── what-is-a-vm/
-│   ├── what-is-hacking/
-│   └── wireshark/
-├── projects/
-│   ├── 8-bit/
-│   ├── build-this-site/
-│   ├── cheap-server-web-app/
-│   ├── java-movie-cli/
-│   ├── java-radix-ip-sort/
-│   ├── json-book-recommendation/
-│   ├── python/
-│   ├── raspi-wifi-sniffer/
-│   ├── tiny-terminal-weather/
-│   ├── tiny-terminal-weather-2.0/
-│   └── tpot-honeynet/
-├── resources/
-│   ├── book-recommendations/
-│   │   ├── books_public.json
-│   │   └── index.html
-│   └── index.html
-├── index.html
-└── README.md
-```
+- `data/site-index.json` stores card data such as title, type, level, time estimate, category, summary, URL, image, and homepage section.
+- `assets/home-cards.js` loads the JSON file and renders cards into homepage sections.
+- `index.html` keeps the page structure clean with section containers such as `data-card-section="start-here"`, `data-card-section="featured-guides"`, `data-card-section="featured-projects"`, and `data-card-section="resources-preview"`.
+- `assets/site.css` styles the reusable card layout, metadata chips, and equal-height homepage cards.
 
-## Local Preview
+This keeps the homepage focused on layout and storytelling while the repeated card content lives in one structured data file.
 
-Because this is a static site, it can be opened directly in a browser. For a closer local preview, serve the folder:
+Example card record:
 
-```sh
-cd sites/launchshell-org
-python3 -m http.server 8000
-```
-
-Then open:
-
-```text
-http://localhost:8000/
-```
-
-## Deployment
-
-The deployment target is [Cloudflare Pages](https://www.launchshell.org/guides/cloudflare/). Cloudflare Pages can serve this repository directly because the root page is `index.html` and all pages, JSON files, images, and CSS are committed.
-
-The normal publishing workflow is:
-
-```sh
-git status --short
-git diff --check
-git add <files>
-git commit -m "Describe the site update"
-git push
-```
-
-## Publishing Rule
-
-LaunchShell is public. Before pushing, review changes for:
-
-- credentials, API keys, SSH keys, tokens, or passwords
-- private logs, screenshots, IPs, hostnames, or account details
-- unrevised class/work material that should not be public
-- broken relative links or missing assets
-
-The goal is to show real project work, clear learning paths, and useful public documentation without publishing sensitive details.
+```json
+{
+  "id": "linux-terminal-intro",
+  "title": "Linux Terminal Intro",
+  "type": "Guide",
+  "level": "Beginner",
+  "time": "30-45 min",
+  "category": "Linux",
+  "summary": "Learn basic commands, files, folders, apt installs, SSH, and why Linux tools are useful.",
+  "url": "guides/linux-terminal-intro/",
+  "image": "assets/card-linux-terminal-intro.png",
+  "homeSection": "start-here",
+  "featured": true
+}

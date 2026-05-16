@@ -62,8 +62,8 @@
 
         <div class="hero-actions">
           <a class="button primary" href="start.html">Start the path</a>
-          <a class="button" href="#featured">Browse projects</a>
-          <a class="button" href="#method">See the method</a>
+          <a class="button" href="#featured-projects">Browse projects</a>
+          <a class="button" href="#paths">Choose a path</a>
         </div>
       </div>
 
@@ -86,375 +86,14 @@
         These guides are the best first steps if you are new to Linux, GitHub, cloud servers, or technical projects.
       </p>
 
-      <div class="grid">
-        <article class="card linked-card">
-          <a class="card-link" href="guides/linux-terminal-intro/" aria-label="Open the Linux Terminal Intro guide"></a>
-          <img src="assets/card-linux-terminal-intro.png" alt="Linux terminal guide graphic" />
-          <div class="card-body">
-            <span class="tag green">Guide</span>
-            <h3>Linux Terminal Intro</h3>
-            <p>
-              Learn basic commands, files, folders, apt installs, SSH, and why Linux tools are so useful.
-            </p>
-            <a class="button" href="start.html">Start here</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="guides/git-and-github/" aria-label="Open the Git and GitHub guide"></a>
-          <img src="assets/card-git-and-github.png" alt="Git and GitHub guide graphic" />
-          <div class="card-body">
-            <span class="tag green">Guide</span>
-            <h3>Git and GitHub</h3>
-            <p>
-              Learn version control, commits, project history, private repos, public portfolios, and safer
-              experimentation.
-            </p>
-            <a class="button" href="guides/git-and-github/">Read the guide</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="guides/github-codespace/" aria-label="Open the GitHub Codespaces guide"></a>
-          <img src="assets/card-github-codespaces.png" alt="GitHub Codespaces environment graphic" />
-          <div class="card-body">
-            <span class="tag green">Guide</span>
-            <h3>GitHub Codespaces</h3>
-            <p>
-              Use a browser-based Linux coding environment for Python, C++, Java, databases, web pages, and terminal
-              practice.
-            </p>
-            <a class="button" href="guides/github-codespace/">Open the guide</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="featured">
-      <h2>Featured guides and projects</h2>
-      <p class="section-intro">
-        These are not fake portfolio pieces. They are practical projects built to teach how systems work, how mistakes
-        happen, and how to recover when something breaks.
-      </p>
-
-      <div class="grid">
-        <article class="card linked-card">
-          <a class="card-link" href="guides/aws-free-vps/" aria-label="Open the AWS Free VPS guide"></a>
-          <img src="assets/card-aws-free-vps.png" alt="AWS VPS setup guide graphic" />
-          <div class="card-body">
-            <span class="tag green">Guide</span>
-            <h3>AWS Free VPS Setup</h3>
-            <p>
-              Create a simple disposable cloud server with a public IP, SSH access, security groups, and a cleanup plan.
-            </p>
-            <a class="button" href="guides/aws-free-vps/">Read the guide</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="projects/cheap-server-web-app/"
-            aria-label="Open the cheap server web app project"></a>
-          <img src="assets/card-cheap-server-web-app.png" alt="Flask JSON app project graphic" />
-          <div class="card-body">
-            <span class="tag">Project</span>
-            <h3>Build and Deploy a Web App</h3>
-            <p>
-              Start with simple JSON files, then turn them into a real web app running on a Linux server with Flask,
-              Git, Gunicorn, systemd, and Apache or Nginx.
-            </p>
-            <a class="button" href="projects/cheap-server-web-app/">Open the project</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="projects/python/" aria-label="Open the Python projects page"></a>
-          <img src="assets/card-python-projects.png" alt="Python projects graphic" />
-          <div class="card-body">
-            <span class="tag">Project</span>
-            <h3>Useful Python Projects</h3>
-            <p>
-              Practical beginner Python tools, starting with a Diceware passphrase generator that teaches randomness and
-              password security.
-            </p>
-            <a class="button" href="projects/python/">Open Python projects</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="projects/tiny-terminal-weather/"
-            aria-label="Open the Tiny Terminal Weather App project"></a>
-          <img src="assets/card-tiny-terminal-weather.png" alt="Tiny Terminal Weather App project graphic" />
-          <div class="card-body">
-            <span class="tag">Project</span>
-            <h3>Tiny Terminal Weather App</h3>
-            <p>
-              Build a small Python weather script that calls an API, reads JSON, and prints useful terminal output.
-            </p>
-            <a class="button" href="projects/tiny-terminal-weather/">Open the project</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="projects/tiny-terminal-weather-2.0/"
-            aria-label="Open the Tiny Terminal Weather App 2.0 project"></a>
-          <img src="assets/card-tiny-terminal-weather-2.0.png" alt="Tiny Terminal Weather App 2.0 project graphic" />
-          <div class="card-body">
-            <span class="tag">Project</span>
-            <h3>Tiny Terminal Weather 2.0</h3>
-            <p>
-              Expand the weather script with a menu flow, cleaner choices, and a more useful terminal workflow.
-            </p>
-            <a class="button" href="projects/tiny-terminal-weather-2.0/">Open the project</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="projects/json-book-recommendation/"
-            aria-label="Open the JSON Book Recommendations project"></a>
-          <img src="assets/card-json-book-recommendations.png" alt="JSON book recommendations project graphic" />
-          <div class="card-body">
-            <span class="tag">Project</span>
-            <h3>JSON Book Recommendations</h3>
-            <p>
-              Clean a private audiobook export into public JSON and use it to power a static recommendation page.
-            </p>
-            <a class="button" href="projects/json-book-recommendation/">Open the project</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="guides/nmap/" aria-label="Open the Nmap Recon guide"></a>
-          <img src="assets/card-nmap.png" alt="Nmap recon guide graphic" />
-          <div class="card-body">
-            <span class="tag green">Guide</span>
-            <h3>Nmap Recon Guide</h3>
-            <p>
-              Learn safe network discovery, service checks, scan output, and basic recon habits for your own lab.
-            </p>
-            <a class="button" href="guides/nmap/">Read the guide</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="guides/wireshark/" aria-label="Open the Wireshark Packet Analysis guide"></a>
-          <img src="assets/card-wireshark.png" alt="Wireshark packet analysis guide graphic" />
-          <div class="card-body">
-            <span class="tag green">Guide</span>
-            <h3>Wireshark Packet Analysis</h3>
-            <p>
-              Inspect packet captures, use filters, and turn lab network traffic into useful evidence.
-            </p>
-            <a class="button" href="guides/wireshark/">Read the guide</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="guides/advanced-wireshark/" aria-label="Open the Advanced Wireshark guide"></a>
-          <img src="assets/card-advanced-wireshark.png" alt="Advanced Wireshark guide graphic" />
-          <div class="card-body">
-            <span class="tag green">Guide</span>
-            <h3>Advanced Wireshark</h3>
-            <p>
-              Move from basic packet viewing into deeper protocol review, evidence cleanup, and troubleshooting.
-            </p>
-            <a class="button" href="guides/advanced-wireshark/">Read the guide</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="guides/apis/" aria-label="Open the API guide"></a>
-          <img src="assets/card-apis.png" alt="API guide graphic" />
-          <div class="card-body">
-            <span class="tag green">Guide</span>
-            <h3>What Is an API?</h3>
-            <p>
-              Learn how requests, responses, JSON, status codes, and API keys fit into small coding projects.
-            </p>
-            <a class="button" href="guides/apis/">Read the guide</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="guides/vs-code/" aria-label="Open the VS Code guide"></a>
-          <img src="assets/card-vs-code.png" alt="VS Code guide graphic" />
-          <div class="card-body">
-            <span class="tag green">Guide</span>
-            <h3>Visual Studio Code</h3>
-            <p>
-              Use VS Code as a project workspace for files, terminal commands, Git, extensions, and remote SSH work.
-            </p>
-            <a class="button" href="guides/vs-code/">Read the guide</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="guides/cloudflare/" aria-label="Open the Cloudflare guide"></a>
-          <img src="assets/card-cloudflare-student-sites.png" alt="Cloudflare guide graphic" />
-          <div class="card-body">
-            <span class="tag green">Guide</span>
-            <h3>Cloudflare for Student Sites</h3>
-            <p>
-              Learn how Cloudflare Pages, DNS, proxying, security rules, access control, and Workers fit together.
-            </p>
-            <a class="button" href="guides/cloudflare/">Read the guide</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="projects/build-this-site/"
-            aria-label="Open the How This Site Was Built project"></a>
-          <img src="assets/card-build-this-site.png" alt="LaunchShell site build graphic" />
-          <div class="card-body">
-            <span class="tag">Project</span>
-            <h3>How I Built LaunchShell.org</h3>
-            <p>
-              A meta-project showing how LaunchShell itself was created, organized, versioned, deployed, reviewed, and
-              improved.
-            </p>
-            <a class="button" href="projects/build-this-site/">Open the project</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="guides/what-is-a-vm/" aria-label="Open the What Is a VM guide"></a>
-          <img src="assets/card-what-is-a-vm.png" alt="Virtual machine guide graphic" />
-          <div class="card-body">
-            <span class="tag green">Guide</span>
-            <h3>What Is a VM?</h3>
-            <p>
-              Learn what virtual machines are, why snapshots matter, and how VMs make safe practice easier.
-            </p>
-            <a class="button" href="guides/what-is-a-vm/">Read the guide</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="guides/terminus-mobile-ssh/" aria-label="Open the Termius Mobile SSH guide"></a>
-          <img src="assets/card-termius-mobile-ssh.png" alt="Termius Mobile SSH guide graphic" />
-          <div class="card-body">
-            <span class="tag green">Guide</span>
-            <h3>Termius Mobile SSH</h3>
-            <p>
-              Connect to a cloud server from your phone, run safe checks, and trigger repeatable maintenance scripts.
-            </p>
-            <a class="button" href="guides/terminus-mobile-ssh/">Read the guide</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="guides/libby/" aria-label="Open the Libby guide"></a>
-          <img src="assets/card-libby.png" alt="Libby library guide graphic" />
-          <div class="card-body">
-            <span class="tag green">Guide</span>
-            <h3>Use Libby With Your Library</h3>
-            <p>
-              Use a library card for free ebooks and audiobooks as a practical learning resource.
-            </p>
-            <a class="button" href="guides/libby/">Read the guide</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="projects/8-bit/" aria-label="Open the 8-Bit CPU project"></a>
-          <img src="assets/card-eight-bit-cpu.png" alt="8-bit CPU project graphic" />
-          <div class="card-body">
-            <span class="tag">Project</span>
-            <h3>8-Bit CPU</h3>
-            <p>
-              A hardware project for understanding binary, logic gates, registers, clock signals, control lines, and
-              debugging.
-            </p>
-            <a class="button" href="projects/8-bit/">Open the project</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="projects/raspi-wifi-sniffer/"
-            aria-label="Open the Raspberry Pi and Alfa Wi-Fi Sniffer project"></a>
-          <img src="assets/card-raspi-wifi-sniffer.png" alt="Raspberry Pi and Alfa Wi-Fi Sniffer project graphic" />
-          <div class="card-body">
-            <span class="tag">Project</span>
-            <h3>Raspberry Pi + Alfa Wi-Fi Sniffer</h3>
-            <p>
-              Capture private lab traffic with a Raspberry Pi and Alfa Wi-Fi adapter, then review packet evidence.
-            </p>
-            <a class="button" href="projects/raspi-wifi-sniffer/">Open the project</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="projects/java-movie-cli/" aria-label="Open the Java Movie CLI project"></a>
-          <img src="assets/card-java-movie-cli.png" alt="Java Movie CLI project graphic" />
-          <div class="card-body">
-            <span class="tag">Project</span>
-            <h3>Java Movie CLI</h3>
-            <p>
-              Build a command-line Java movie tracker with menus, search, watchlist state, and file-backed data.
-            </p>
-            <a class="button" href="projects/java-movie-cli/">Open the project</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="projects/java-radix-ip-sort/"
-            aria-label="Open the Java Radix Sort for IP Addresses project"></a>
-          <img src="assets/card-java-radix-ip-sort.png" alt="Java Radix Sort for IP Addresses project graphic" />
-          <div class="card-body">
-            <span class="tag">Project</span>
-            <h3>Java Radix Sort for IP Addresses</h3>
-            <p>
-              Sort IP address data with Java while practicing parsing, buckets, and data-structure choices.
-            </p>
-            <a class="button" href="projects/java-radix-ip-sort/">Open the project</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="guides/what-is-hacking/" aria-label="Open the What Is Hacking guide"></a>
-          <img src="assets/card-what-is-hacking.png" alt="Hacking basics guide graphic" />
-          <div class="card-body">
-            <span class="tag green">Guide</span>
-            <h3>What Is Hacking?</h3>
-            <p>
-              Learn the builder meaning of hacking, safe breaking, project curiosity, and modern penetration testing.
-            </p>
-            <a class="button" href="guides/what-is-hacking/">Read the guide</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="projects/tpot-honeynet/" aria-label="Open the T-Pot Honeynet project"></a>
-          <img src="assets/card-tpot-honeynet.png" alt="T-Pot honeynet project graphic" />
-          <div class="card-body">
-            <span class="tag">Project</span>
-            <h3>T-Pot Honeynet</h3>
-            <p>
-              An advanced networking and cybersecurity project using a disposable VPS honeynet, dashboards, logs, and
-              safe shutdown.
-            </p>
-            <a class="button" href="projects/tpot-honeynet/">Open the project</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="guides/certification/" aria-label="Open the certification guide"></a>
-          <img src="assets/card-certification-roadmap.png" alt="Certification roadmap graphic" />
-          <div class="card-body">
-            <span class="tag green">Guide</span>
-            <h3>Certification Roadmap</h3>
-            <p>
-              Compare beginner-friendly certifications for networking, Linux, cloud, cybersecurity, and IT fundamentals.
-            </p>
-            <a class="button" href="guides/certification/">Read the guide</a>
-          </div>
-        </article>
-      </div>
+      <div class="grid" data-card-section="start-here"></div>
     </section>
 
     <section id="paths">
       <h2>Suggested learning paths</h2>
       <p class="section-intro">
-        These paths connect guides and projects in a practical order.
+        These paths connect guides and projects in a practical order. Use them when the full site feels too large
+        and you want a clear starting route.
       </p>
 
       <div class="path">
@@ -482,7 +121,7 @@
           <div class="level">Path 3</div>
           <div><strong>Interested in web and infrastructure</strong></div>
           <div class="tools">
-            <a href="projects/build-this-site/">How I Build LaunchShell.org</a> →
+            <a href="projects/build-this-site/">How I Built LaunchShell.org</a> →
             <a href="guides/vs-code/">VS Code</a> →
             <a href="guides/cloudflare/">Cloudflare Guide</a> →
             <a href="resources/">Student Resources</a>
@@ -495,20 +134,48 @@
           <div class="tools">
             <a href="guides/what-is-hacking/">What Is Hacking?</a> →
             <a href="guides/what-is-a-vm/">What Is a VM?</a> →
-            <a href="projects/tpot-honeynet/">T-Pot Honeynet</a>
+            <a href="guides/nmap/">Nmap Recon Guide</a> →
+            <a href="guides/wireshark/">Wireshark Packet Analysis</a>
           </div>
         </div>
 
         <div class="path-row">
           <div class="level">Path 5</div>
-          <div><strong>Interested in how computers work</strong></div>
+          <div><strong>Interested in electronics and physical computing</strong></div>
           <div class="tools">
+            <a href="guides/arduino-esp32-overview/">Arduino and ESP32 Overview</a> →
             <a href="projects/8-bit/">8-Bit CPU</a> →
-            <a href="guides/linux-terminal-intro/">Linux basics</a> →
-            <a href="projects/python/">Python tools</a> →
-            <a href="projects/raspi-wifi-sniffer/">electronics and sensors</a>
+            <a href="projects/raspi-wifi-sniffer/">Raspberry Pi + Alfa Wi-Fi Sniffer</a> →
+            <a href="projects/solar-esp32-mqtt-sensor/">Solar ESP32 MQTT Sensor</a>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section id="featured-guides">
+      <h2>Featured guides</h2>
+      <p class="section-intro">
+        Start with core tools and concepts before moving into larger projects. These guides focus on Linux,
+        cloud servers, networking, cybersecurity, and student-friendly workflows.
+      </p>
+
+      <div class="grid" data-card-section="featured-guides"></div>
+
+      <div class="section-footer">
+        <a class="button" href="guides/">View all guides</a>
+      </div>
+    </section>
+
+    <section id="featured-projects">
+      <h2>Featured projects</h2>
+      <p class="section-intro">
+        Practical builds that show how systems work, how mistakes happen, and how to recover when something breaks.
+      </p>
+
+      <div class="grid" data-card-section="featured-projects"></div>
+
+      <div class="section-footer">
+        <a class="button" href="projects/">View all projects</a>
       </div>
     </section>
 
@@ -552,320 +219,10 @@
         The resources page collects tools that students can use to build real projects, not just collect free accounts.
       </p>
 
-      <div class="grid">
-        <article class="card linked-card">
-          <a class="card-link" href="resources/" aria-label="Open the student resources page"></a>
-          <img src="assets/launchshell-logo-square.png" alt="LaunchShell resources graphic" />
-          <div class="card-body">
-            <span class="tag green">Resources</span>
-            <h3>Student Resource List</h3>
-            <p>
-              GitHub Student Developer Pack, Codespaces, Cloudflare, AWS, Termius, Hack The Box Academy,
-              and other tools worth exploring.
-            </p>
-            <a class="button" href="resources/">Open resources</a>
-          </div>
-        </article>
+      <div class="grid" data-card-section="resources-preview"></div>
 
-        <article class="card linked-card">
-          <a class="card-link" href="resources/book-recommendations/" aria-label="Open the book recommendations"></a>
-          <img src="assets/card-json-book-recommendations.png" alt="Book recommendations resource graphic" />
-          <div class="card-body">
-            <span class="tag green">Books</span>
-            <h3>Book Recommendations</h3>
-            <p>
-              A curated Top 30 reading list for cybersecurity, Linux, networking, programming, AI, and systems thinking.
-            </p>
-            <a class="button" href="resources/book-recommendations/">Open book list</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="guides/git-and-github/" aria-label="Open the Git and GitHub guide"></a>
-          <img src="assets/card-git-and-github.png" alt="GitHub resource graphic" />
-          <div class="card-body">
-            <span class="tag">Version control</span>
-            <h3>GitHub</h3>
-            <p>
-              Learn commits, branches, project history, public documentation, and safer portfolio sharing.
-            </p>
-            <a class="button" href="guides/git-and-github/">Read the guide</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="guides/github-codespace/" aria-label="Open the GitHub Codespaces guide"></a>
-          <img src="assets/card-github-codespaces.png" alt="GitHub Codespaces resource graphic" />
-          <div class="card-body">
-            <span class="tag">Cloud coding</span>
-            <h3>GitHub Codespaces</h3>
-            <p>
-              Use a browser-based Linux coding environment for class repos, Python, Java, databases, and terminal practice.
-            </p>
-            <a class="button" href="guides/github-codespace/">Read the guide</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="resources/" aria-label="Open the GitHub Copilot Student resource"></a>
-          <img src="assets/launchshell-logo-square.png" alt="GitHub Copilot Student resource graphic" />
-          <div class="card-body">
-            <span class="tag">AI assistant</span>
-            <h3>GitHub Copilot Student</h3>
-            <p>
-              Use AI help for syntax, explanations, debugging, and repetitive coding while still testing the result.
-            </p>
-            <a class="button" href="resources/">Open resources</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="guides/vs-code/" aria-label="Open the Visual Studio Code guide"></a>
-          <img src="assets/card-vs-code.png" alt="Visual Studio Code resource graphic" />
-          <div class="card-body">
-            <span class="tag">Editor</span>
-            <h3>Visual Studio Code</h3>
-            <p>
-              Work with Git, SSH, Python, web development, Markdown, and class projects in one practical editor.
-            </p>
-            <a class="button" href="guides/vs-code/">Read the guide</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="guides/cloudflare/" aria-label="Open the Cloudflare guide"></a>
-          <img src="assets/card-cloudflare-student-sites.png" alt="Cloudflare resource graphic" />
-          <div class="card-body">
-            <span class="tag">Hosting</span>
-            <h3>Cloudflare</h3>
-            <p>
-              Use DNS, Pages hosting, proxying, security rules, access control, and Workers for real student sites.
-            </p>
-            <a class="button" href="guides/cloudflare/">Read the guide</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="guides/aws-free-vps/" aria-label="Open the AWS VPS guide"></a>
-          <img src="assets/card-aws-free-vps.png" alt="AWS resource graphic" />
-          <div class="card-body">
-            <span class="tag">Cloud server</span>
-            <h3>AWS</h3>
-            <p>
-              Practice public IPs, EC2, SSH, security groups, Linux, budgets, and cloud cleanup.
-            </p>
-            <a class="button" href="guides/aws-free-vps/">Read the guide</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="guides/terminus-mobile-ssh/" aria-label="Open the Termius guide"></a>
-          <img src="assets/card-termius-mobile-ssh.png" alt="Termius resource graphic" />
-          <div class="card-body">
-            <span class="tag">SSH client</span>
-            <h3>Termius</h3>
-            <p>
-              Manage SSH access across devices and practice remote Linux administration from a phone.
-            </p>
-            <a class="button" href="guides/terminus-mobile-ssh/">Read the guide</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="resources/" aria-label="Open the Hack The Box Academy resource"></a>
-          <img src="assets/card-what-is-hacking.png" alt="Hack The Box Academy resource graphic" />
-          <div class="card-body">
-            <span class="tag">Training</span>
-            <h3>Hack The Box Academy</h3>
-            <p>
-              Use structured cybersecurity lessons and labs instead of random hacking videos.
-            </p>
-            <a class="button" href="resources/">Open resources</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="resources/" aria-label="Open the Microsoft Azure credit resource"></a>
-          <img src="assets/vps-server.svg" alt="Azure resource graphic" />
-          <div class="card-body">
-            <span class="tag">Cloud platform</span>
-            <h3>Microsoft Azure Credit</h3>
-            <p>
-              Explore cloud services beyond one server, including app hosting, databases, identity, and monitoring.
-            </p>
-            <a class="button" href="resources/">Open resources</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="resources/" aria-label="Open the Cisco Networking Academy resource"></a>
-          <img src="assets/card-nmap.png" alt="Cisco Networking Academy resource graphic" />
-          <div class="card-body">
-            <span class="tag">Networking</span>
-            <h3>Cisco Networking Academy</h3>
-            <p>
-              Practice networking fundamentals, packet tracing, IP addressing, switching, routing, and certification prep.
-            </p>
-            <a class="button" href="resources/">Open resources</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="resources/" aria-label="Open the MongoDB Atlas resource"></a>
-          <img src="assets/card-seed-app.png" alt="MongoDB Atlas resource graphic" />
-          <div class="card-body">
-            <span class="tag">Database</span>
-            <h3>MongoDB Atlas</h3>
-            <p>
-              Build real app backends with hosted databases before maintaining database infrastructure yourself.
-            </p>
-            <a class="button" href="resources/">Open resources</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="guides/arduino-esp32-overview/"
-            aria-label="Open the Arduino and ESP32 overview guide"></a>
-          <img src="assets/raspberry-pi.svg" alt="Arduino Cloud and Adafruit IO resource graphic" />
-          <div class="card-body">
-            <span class="tag">IoT</span>
-            <h3>Arduino Cloud and Adafruit IO</h3>
-            <p>
-              Connect software with real sensors, dashboards, devices, and electronics projects.
-            </p>
-            <a class="button" href="guides/arduino-esp32-overview/">Read the guide</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="resources/" aria-label="Open the GitHub Pages resource"></a>
-          <img src="assets/card-git-and-github.png" alt="GitHub Pages resource graphic" />
-          <div class="card-body">
-            <span class="tag">Static hosting</span>
-            <h3>GitHub Pages</h3>
-            <p>
-              Host static websites directly from a repository as a simple first publishing step.
-            </p>
-            <a class="button" href="resources/">Open resources</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="resources/" aria-label="Open the DigitalOcean credit resource"></a>
-          <img src="assets/vps-server.svg" alt="DigitalOcean resource graphic" />
-          <div class="card-body">
-            <span class="tag">Cloud server</span>
-            <h3>DigitalOcean Credit</h3>
-            <p>
-              Learn Linux, SSH, firewalls, web servers, deployment, backups, and server troubleshooting.
-            </p>
-            <a class="button" href="resources/">Open resources</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="resources/" aria-label="Open the monitoring tools resource"></a>
-          <img src="assets/dash2.png" alt="Monitoring tools resource graphic" />
-          <div class="card-body">
-            <span class="tag">Monitoring</span>
-            <h3>Datadog, New Relic, and Sentry</h3>
-            <p>
-              Learn logs, errors, uptime, performance, alerts, and how production systems are watched.
-            </p>
-            <a class="button" href="resources/">Open resources</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="resources/" aria-label="Open the password managers resource"></a>
-          <img src="assets/card-what-is-hacking.png" alt="Password managers resource graphic" />
-          <div class="card-body">
-            <span class="tag">Security habits</span>
-            <h3>1Password or Dashlane</h3>
-            <p>
-              Practice better credential handling, stronger passwords, and safer project secret storage.
-            </p>
-            <a class="button" href="resources/">Open resources</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="resources/" aria-label="Open learning platform resources"></a>
-          <img src="assets/card-python-projects.png" alt="Learning platforms resource graphic" />
-          <div class="card-body">
-            <span class="tag">Learning</span>
-            <h3>FrontendMasters, Scrimba, Educative, and Boot.dev</h3>
-            <p>
-              Fill gaps in web development, backend development, Python, JavaScript, and DevOps.
-            </p>
-            <a class="button" href="resources/">Open resources</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="resources/" aria-label="Open the TryHackMe resource"></a>
-          <img src="assets/card-tpot-honeynet.png" alt="TryHackMe resource graphic" />
-          <div class="card-body">
-            <span class="tag">Training</span>
-            <h3>TryHackMe</h3>
-            <p>
-              Use guided cybersecurity rooms and beginner-friendly labs for structured practice.
-            </p>
-            <a class="button" href="resources/">Open resources</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="resources/" aria-label="Open auth and backend resources"></a>
-          <img src="assets/card-seed-app.png" alt="Auth backend resource graphic" />
-          <div class="card-body">
-            <span class="tag">Auth/backend</span>
-            <h3>Clerk and Appwrite</h3>
-            <p>
-              Add login, users, storage, and backend features without building every system from scratch.
-            </p>
-            <a class="button" href="resources/">Open resources</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="resources/" aria-label="Open browser testing resources"></a>
-          <img src="assets/social-preview.png" alt="Browser testing resource graphic" />
-          <div class="card-body">
-            <span class="tag">Testing</span>
-            <h3>BrowserStack, LambdaTest, and Polypane</h3>
-            <p>
-              Test websites across browsers, screen sizes, and devices before sharing them.
-            </p>
-            <a class="button" href="resources/">Open resources</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="resources/" aria-label="Open the LocalStack resource"></a>
-          <img src="assets/vps-checklist.png" alt="LocalStack resource graphic" />
-          <div class="card-body">
-            <span class="tag">Cloud lab</span>
-            <h3>LocalStack</h3>
-            <p>
-              Emulate AWS-style services locally and learn cloud patterns safely.
-            </p>
-            <a class="button" href="resources/">Open resources</a>
-          </div>
-        </article>
-
-        <article class="card linked-card">
-          <a class="card-link" href="resources/" aria-label="Open the Doppler resource"></a>
-          <img src="assets/card-cloudflare-student-sites.png" alt="Doppler resource graphic" />
-          <div class="card-body">
-            <span class="tag">Secrets</span>
-            <h3>Doppler</h3>
-            <p>
-              Learn environment variables, API keys, and why secrets should not be hardcoded into projects.
-            </p>
-            <a class="button" href="resources/">Open resources</a>
-          </div>
-        </article>
+      <div class="section-footer">
+        <a class="button" href="resources/">View all resources</a>
       </div>
     </section>
   </main>
@@ -874,6 +231,8 @@
     <div>© 2026 LaunchShell</div>
     <div>Student-built project guides for Linux, cloud, electronics, Python, and cybersecurity.</div>
   </footer>
+
+  <script src="assets/home-cards.js"></script>
 </body>
 
 </html>

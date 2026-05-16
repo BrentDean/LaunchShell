@@ -98,6 +98,11 @@ main {
   padding-top: 0;
 }
 
+.home-page .panel-stack {
+  display: grid;
+  gap: 20px;
+}
+
 .resources-page main {
   padding-top: 8px;
 }
@@ -1912,4 +1917,69 @@ pre {
   .phone-terminal {
     min-height: 280px;
   }
+}
+
+/* About page project section spacing */
+
+.about-page .split + .method {
+  margin-top: 28px;
+}
+
+.about-page .method + .callout {
+  margin-top: 28px;
+}
+
+/* Projects index page spacing */
+
+.projects-page .hero {
+  padding-bottom: 24px;
+}
+
+.projects-page .hero + section {
+  margin-top: 28px;
+}
+/* Homepage JSON-rendered cards */
+
+.home-page .grid {
+  align-items: stretch;
+}
+
+.home-page .card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.home-page .card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.home-page .card-body .button {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+.home-page .card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 4px 0 14px;
+}
+
+.home-page .card-meta span {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: #f8fbff;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.home-page .section-footer {
+  margin-top: 22px;
 }

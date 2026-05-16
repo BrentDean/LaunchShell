@@ -7,7 +7,7 @@
   <title>LaunchShell | How This Site Was Built</title>
   <meta
     name="description"
-    content="A LaunchShell project page explaining how LaunchShell.org was built with HTML, CSS, Git, GitHub, Cloudflare Pages, Cloudflare DNS, and AI-assisted learning."
+    content="A LaunchShell project page explaining how LaunchShell.org was built with HTML, CSS, Git, GitHub, JSON, Cloudflare Pages, Cloudflare DNS, and AI-assisted learning."
   />
 
   <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
@@ -33,7 +33,7 @@
   <main>
     <section class="project-hero">
       <div>
-        <div class="eyebrow">HTML • CSS • GitHub • Cloudflare • AI-Assisted Learning</div>
+        <div class="eyebrow">HTML • CSS • JSON • GitHub • Cloudflare • AI-Assisted Learning</div>
         <h1>How LaunchShell.org Was Built</h1>
 
         <p>
@@ -43,13 +43,15 @@
 
         <p>
           The site started as a simple static homepage and grew into a structured project archive with
-          separate areas for guides, resources, and real builds. The stack stayed intentionally simple:
-          HTML, shared CSS, local assets, Git, GitHub, Cloudflare Pages, and AI-assisted learning.
+          separate areas for guides, resources, real builds, reusable card assets, and JSON-backed content.
+          The stack stayed intentionally simple: HTML, shared CSS, local assets, JSON, Git, GitHub,
+          Cloudflare Pages, and AI-assisted learning.
         </p>
 
         <div class="hero-actions">
           <a class="button primary" href="#story">How it came together</a>
           <a class="button" href="#stack">See the stack</a>
+          <a class="button" href="#json-index">JSON site index</a>
           <a class="button" href="#ai">How AI helped</a>
         </div>
 
@@ -64,7 +66,7 @@
           <div class="stack">
             <div class="stack-layer">
               <strong>Content</strong>
-              <span>Guides, resources, projects, notes, screenshots</span>
+              <span>Guides, resources, projects, notes, screenshots, JSON index</span>
             </div>
             <div class="stack-layer">
               <strong>Frontend</strong>
@@ -149,6 +151,12 @@
 
         <div class="path-row">
           <div class="level">10</div>
+          <div>Added a JSON site index for homepage cards</div>
+          <div class="tools">Once the site reached more than 25 card assets and many separate guide, project, and resource pages, I needed a more organized way to manage titles, summaries, links, images, categories, skill levels, and time estimates.</div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">11</div>
           <div>Kept improving it as a real project</div>
           <div class="tools">The site is not just a finished page. It is a growing project notebook for guides, builds, experiments, and lessons learned.</div>
         </div>
@@ -179,6 +187,11 @@
             <td><strong>Design</strong></td>
             <td>Shared CSS file</td>
             <td>One stylesheet keeps the site consistent across guides, resources, and projects.</td>
+          </tr>
+          <tr>
+            <td><strong>Structured content</strong></td>
+            <td>JSON</td>
+            <td>JSON keeps repeated card information and book data organized without turning the site into a full web app.</td>
           </tr>
           <tr>
             <td><strong>Assets</strong></td>
@@ -317,9 +330,13 @@
       <div class="code-card">
 <pre><code>.
 ├── index.html
+├── data/
+│   └── site-index.json
 ├── assets/
 │   ├── site.css
 │   ├── launchshell-logo-horizontial.png
+│   ├── card-linux-terminal-intro.png
+│   ├── card-aws-free-vps.png
 │   └── ...
 ├── guides/
 │   ├── git-and-github/
@@ -342,6 +359,113 @@
       <div class="guide-note">
         <strong>Rule:</strong> Guides are LaunchShell-written how-to pages. Resources are outside tools, free offerings,
         student discounts, and learning platforms. Projects are real builds and portfolio work.
+      </div>
+    </section>
+
+    <section id="json-index">
+      <h2>Why I added a JSON site index</h2>
+      <p class="section-intro">
+        As LaunchShell grew, the homepage started to become harder to maintain by hand. At first,
+        writing each card directly in HTML was simple. But once the site reached more than 25 card
+        images, guides, projects, resources, and homepage links, I needed a more organized way to
+        manage the same information across the site.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag">Problem</span>
+          <h3>The homepage was becoming a manual card archive</h3>
+          <p>
+            Each card had a title, type, image, summary, link, button, category, and eventually
+            metadata like skill level and time to complete. Updating that directly in
+            <code>index.html</code> meant repeating the same structure over and over.
+          </p>
+          <p>
+            That worked when the site only had a few pages. It became messy once LaunchShell had
+            separate sections for guides, projects, resources, books, Linux, cloud, Python,
+            electronics, networking, and cybersecurity.
+          </p>
+        </article>
+
+        <article class="panel">
+          <span class="tag green">Solution</span>
+          <h3>Move card data into one JSON file</h3>
+          <p>
+            I added a central <code>data/site-index.json</code> file to describe each public page
+            once. The homepage can then read that file and render the correct cards into sections
+            like Start Here, Featured Guides, Featured Projects, and Resources.
+          </p>
+          <p>
+            This keeps the homepage focused on layout and storytelling, while the JSON file becomes
+            the source of truth for card content.
+          </p>
+        </article>
+      </div>
+
+      <div class="flow">
+        <article class="flow-step">
+          <span>01</span>
+          <h3>Card data</h3>
+          <p>
+            Each item gets an ID, title, type, level, time estimate, category, summary, URL, image,
+            and homepage section.
+          </p>
+        </article>
+
+        <article class="flow-step">
+          <span>02</span>
+          <h3>Homepage sections</h3>
+          <p>
+            Instead of hardcoding every card, the homepage uses empty grid containers marked with
+            <code>data-card-section</code>.
+          </p>
+        </article>
+
+        <article class="flow-step">
+          <span>03</span>
+          <h3>JavaScript render</h3>
+          <p>
+            A small script loads the JSON, filters cards by section, escapes the text, and builds
+            consistent card HTML.
+          </p>
+        </article>
+
+        <article class="flow-step">
+          <span>04</span>
+          <h3>Future filters</h3>
+          <p>
+            Because every card now has level, category, type, and time metadata, full project and
+            guide filters can be added later without rewriting everything.
+          </p>
+        </article>
+      </div>
+
+      <div class="code-card">
+<pre><code>{
+  "id": "linux-terminal-intro",
+  "title": "Linux Terminal Intro",
+  "type": "Guide",
+  "level": "Beginner",
+  "time": "30-45 min",
+  "category": "Linux",
+  "summary": "Learn basic commands, files, folders, apt installs, SSH, and why Linux tools are useful.",
+  "url": "guides/linux-terminal-intro/",
+  "image": "assets/card-linux-terminal-intro.png",
+  "homeSection": "start-here",
+  "featured": true
+}</code></pre>
+      </div>
+
+      <div class="guide-note">
+        <strong>Why this matters:</strong> this is a small static-site architecture decision. The site
+        still uses plain HTML, CSS, local assets, JSON, and Cloudflare Pages, but the content is now
+        easier to update because the repeated card information lives in one structured file.
+      </div>
+
+      <div class="action-item">
+        <strong>Result:</strong> adding a new LaunchShell guide or project now means adding the page,
+        adding the card image, and adding one JSON object. The homepage can stay cleaner, while the
+        full project and guide indexes can grow over time.
       </div>
     </section>
 
@@ -405,8 +529,8 @@
 
         <article class="flow-step">
           <span>04</span>
-          <h3>Deployment</h3>
-          <p>Cloudflare Pages made deployment simple, but I still had to understand Git, paths, DNS, and site structure.</p>
+          <h3>Card organization</h3>
+          <p>Once the site had many cards and assets, repeated homepage card HTML needed to move toward structured data.</p>
         </article>
       </div>
     </section>
@@ -548,7 +672,8 @@
       <div class="callout">
         <p>
           LaunchShell.org was built to prove a simple idea: students can learn real technical skills by building real things.
-          Git makes the work safer, Cloudflare makes the site real, and AI can help turn curiosity into progress when the student stays in control.
+          Git makes the work safer, Cloudflare makes the site real, JSON keeps repeated content organized, and AI can help
+          turn curiosity into progress when the student stays in control.
         </p>
       </div>
     </section>
