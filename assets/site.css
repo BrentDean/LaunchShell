@@ -329,6 +329,22 @@ h2 {
   padding: 22px;
 }
 
+.about-page #next .card {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-page #next .card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.about-page #next .card-body .button {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
 .tag {
   display: inline-flex;
   align-items: center;
