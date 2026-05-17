@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LaunchShell | From Audiobook History to Book Recommendations</title>
+  <meta name="description"
+    content="A LaunchShell project showing how a lifetime audiobook/export file can be normalized into JSON and turned into a curated public book recommendations page." />
+
+  <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+</head>
+
+<body class="resources-page" id="top">
+  <header>
+    <a href="../../" aria-label="LaunchShell home">
+      <img src="../../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../../projects/">Projects</a>
+      <a href="../../guides/">Guides</a>
+      <a href="../../resources/">Resources</a>
+      <a href="../../resources/book-recommendations/" class="status">Read Books!</a>
+      <a href="../../about/">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="project-hero">
+      <div>
+        <div class="eyebrow">JSON • Data Structures • AI-Assisted Planning • Static Websites</div>
+        <h1>From audiobook history to a book recommendations page.</h1>
+
+        <p>
+          This project started with a simple idea: my audiobook app gave me an export of my lifetime book activity.
+          Instead of leaving it as a messy file, I wanted to turn it into something useful.
+        </p>
+
+        <p>
+          The result is a small data project: take a long personal reading history, normalize it into clean JSON,
+          remove private fields, and use it to build a curated public Top 30 book recommendations page.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href="../../resources/book-recommendations/">View the finished product</a>
+        </div>
+
+        <div class="guide-note">
+          <strong>Core lesson:</strong>
+          JSON turns content into data. Instead of editing the HTML every time something changes,
+          you can store the information in a JSON file and let the website, app, or script load it.
+        </div>
+      </div>
+
+      <div class="visual-card">
+        <div class="visual-inner" aria-label="Data project flow diagram">
+          <div class="stack">
+            <div class="stack-layer">
+              <strong>Raw export</strong>
+              <span>Lifetime book activity, titles, authors, dates, links</span>
+            </div>
+            <div class="stack-layer dark">
+              <strong>Normalized JSON</strong>
+              <span>Clean fields, ranks, covers, ISBNs, notes</span>
+            </div>
+            <div class="stack-layer">
+              <strong>Privacy review</strong>
+              <span>Remove personal history fields before publishing</span>
+            </div>
+            <div class="stack-layer">
+              <strong>Static webpage</strong>
+              <span>Curated Top 30 list with covers and notes</span>
+            </div>
+          </div>
+        </div>
+        <div class="caption">
+          The same source data can become a private archive, a public reading list, a project writeup, or a future
+          searchable tool.
+        </div>
+      </div>
+    </section>
+
+    <section id="raw-idea">
+      <h2>The raw idea</h2>
+      <p class="section-intro">
+        The project started with a question, not a finished plan.
+      </p>
+
+      <div class="callout">
+        <p>
+          <strong>Prompt idea:</strong> “My audiobook app gave me an export of my lifetime book activity.
+          Can I use this as data input to build an HTML page for my book recommendations?”
+        </p>
+      </div>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">What I had</span>
+          <h3>A large reading-history export</h3>
+          <p>
+            The source data contained hundreds of borrow events and hundreds of unique titles.
+            It included titles, authors, publishers, ISBNs, cover image URLs, Libby links, dates,
+            activities, and library information.
+          </p>
+        </article>
+
+        <article class="panel">
+          <span class="tag">What I needed</span>
+          <h3>A public recommendation list</h3>
+          <p>
+            A full private reading history is not the same thing as a public recommendations page.
+            The project needed a cleaner public version with only the fields visitors actually need.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>What the source data looked like</h2>
+      <p class="section-intro">
+        The useful part was that the data already had structure. It was not just plain text.
+      </p>
+
+      <div class="code-card">
+        <pre><code>{
+  "title": "The Code Book",
+  "author": "Simon Singh",
+  "publisher": "Books on Tape",
+  "isbn": "9780593554272",
+  "url": "https://share.libbyapp.com/title/6286690",
+  "cover": "https://img2.od-cdn.com/ImageType-100/1191-1/{3A9BCDCE-C845-419E-BE4D-E28BDAF68BEC}IMG100.JPG",
+  "date": "January 22, 2026",
+  "activity": "Borrowed",
+  "library": "Brooklyn Public Library"
+}</code></pre>
+      </div>
+
+      <div class="guide-note">
+        <strong>Why this matters:</strong> Once data has consistent fields, a program can loop through it,
+        filter it, sort it, group it, rank it, and display it.
+      </div>
+    </section>
+
+    <section>
+      <h2>Public data vs private source data</h2>
+      <p class="section-intro">
+        A major part of this project is deciding what should be public and what should stay private.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag">Private source data</span>
+          <h3>Useful while building</h3>
+          <p>
+            The full file is useful for analysis because it includes dates, activity history, library names,
+            duplicate borrow events, publishers, ISBNs, covers, and raw Libby metadata.
+          </p>
+          <p>
+            But that does not mean every field belongs on a public website.
+          </p>
+        </article>
+
+        <article class="panel">
+          <span class="tag green">Public website data</span>
+          <h3>Clean and intentional</h3>
+          <p>
+            The public version keeps only the fields needed for recommendations:
+            rank, title, author, category, tags, ISBN, cover image, recommendation note, and URL.
+          </p>
+          <p>
+            This keeps the page useful without publishing unnecessary personal reading-history metadata.
+          </p>
+        </article>
+      </div>
+
+      <div class="code-card">
+        <pre><code>{
+  "rank": 1,
+  "title": "Hackers",
+  "author": "Steven Levy",
+  "category": "Tech History / Hacker Culture",
+  "tags": ["hacker-culture", "computing-history", "builders"],
+  "isbn": "",
+  "cover": "https://img1.od-cdn.com/ImageType-100/6578-1/{109CE608-FB03-4EB8-ACA8-FA4FAC95C9E7}Img100.jpg",
+  "why_recommended": "A foundational book for understanding the older meaning of hacking.",
+  "url": "https://share.libbyapp.com/title/2461570"
+}</code></pre>
+      </div>
+    </section>
+
+    <section id="conversation">
+      <h2>AI planning conversation</h2>
+      <p class="section-intro">
+        This is the kind of AI conversation a student should have: start with real data, ask what is possible,
+        question the structure, protect privacy, and decide what to build.
+      </p>
+
+      <div class="path">
+        <div class="path-row">
+          <div class="level">Student</div>
+          <div><strong>“My audiobook app gave me an export of my lifetime book activity. Can we turn this into something
+              useful?”</strong></div>
+          <div class="tools">The student starts with real data and a real goal, not a vague request.</div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">AI</div>
+          <div><strong>“Yes. First we should inspect the structure and decide what fields are useful.”</strong></div>
+          <div class="tools">The AI helps identify the shape of the data before jumping into design.</div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">Student</div>
+          <div><strong>“I want a recommendations page, not a full personal history dump.”</strong></div>
+          <div class="tools">The student sets a privacy boundary and defines the actual output.</div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">AI</div>
+          <div><strong>“Then we should normalize a public JSON file with only the fields visitors need.”</strong></div>
+          <div class="tools">The project changes from raw export to cleaned public data.</div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">Student</div>
+          <div><strong>“What fields should each book have?”</strong></div>
+          <div class="tools">The student asks for a schema, which is the structure every record should follow.</div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">AI</div>
+          <div><strong>“Use rank, title, author, category, tags, ISBN, cover, why_recommended, and URL.”</strong></div>
+          <div class="tools">The AI proposes a simpler public schema that supports a clean recommendation page.</div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">Student</div>
+          <div><strong>“Now that the data is clean, how should we display it?”</strong></div>
+          <div class="tools">The student moves from data structure to interface design.</div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">AI</div>
+          <div><strong>“Start with a clean curated Top 30. Keep filters and search as future improvements.”</strong>
+          </div>
+          <div class="tools">The first version stays readable instead of trying to show every possible feature.</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Ways this data could be displayed</h2>
+      <p class="section-intro">
+        The current public page uses a curated Top 30 list, but the same JSON structure could support other displays
+        later.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag green">Current version</span>
+          <h3>Curated Top 30</h3>
+          <p>
+            A ranked list with covers, authors, categories, recommendation notes, and Libby links.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Simple</span>
+          <h3>Category sections</h3>
+          <p>
+            Group books under headings like Cybersecurity, Programming, Networking, AI, Outdoors, and Fiction.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Useful later</span>
+          <h3>Searchable card grid</h3>
+          <p>
+            Let visitors search by title, author, topic, or tag if the list grows beyond a curated set.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Learning path</span>
+          <h3>Reading roadmaps</h3>
+          <p>
+            Build paths like “Start with Linux,” “Learn cybersecurity stories,” or “Programming basics.”
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Interactive</span>
+          <h3>Filters and sorting</h3>
+          <p>
+            Filter by category, priority, format, and tags. Sort by title, priority, or recommendation order.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Portfolio</span>
+          <h3>Project story</h3>
+          <p>
+            Show how a messy export became structured data and then a clean website.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="data-structures">
+      <h2>Why this is relevant to a data structures course</h2>
+      <p class="section-intro">
+        This project is a practical example of data structures outside a textbook.
+      </p>
+
+      <div class="path">
+        <div class="path-row">
+          <div class="level">Array / List</div>
+          <div><strong>The books array</strong></div>
+          <div class="tools">
+            The JSON contains a list of book objects. A program can loop through the list and display each book as a
+            row.
+          </div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">Object / Dictionary</div>
+          <div><strong>Each book record</strong></div>
+          <div class="tools">
+            Each book is an object with key-value pairs like <code>rank</code>, <code>title</code>, <code>author</code>,
+            <code>isbn</code>, and <code>cover</code>.
+          </div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">Ordering</div>
+          <div><strong>The rank field</strong></div>
+          <div class="tools">
+            A simple <code>rank</code> value controls the display order without hardcoding every book directly into the
+            HTML.
+          </div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">Hash Map Idea</div>
+          <div><strong>Fast lookup by category or tag</strong></div>
+          <div class="tools">
+            Categories and tags can be used as keys to group books into buckets for faster display and filtering.
+          </div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">Filtering</div>
+          <div><strong>Future display option</strong></div>
+          <div class="tools">
+            A search box or category dropdown could filter the array into a smaller list if the page grows.
+          </div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">Sorting</div>
+          <div><strong>Future display option</strong></div>
+          <div class="tools">
+            The same list could be sorted alphabetically, by category, by format, or by recommendation strength.
+          </div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">Normalization</div>
+          <div><strong>Clean repeated messy data</strong></div>
+          <div class="tools">
+            Normalizing the data means every record follows the same structure, which makes it easier to process.
+          </div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">Schema Design</div>
+          <div><strong>Choosing fields intentionally</strong></div>
+          <div class="tools">
+            The project requires deciding which fields belong in the public data model and which should stay private.
+          </div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <p>
+          <strong>Data structures lesson:</strong> A data structure is not just something used in coding assignments.
+          It is how real information gets shaped so programs can search it, sort it, filter it, protect it, and display
+          it.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>What this teaches</h2>
+      <p class="section-intro">
+        This is a small project, but it connects several important skills.
+      </p>
+
+      <div class="method">
+        <div class="method-step">
+          <span>01</span>
+          <h3>Clean the data</h3>
+          <p>Turn messy source data into consistent JSON records.</p>
+        </div>
+
+        <div class="method-step">
+          <span>02</span>
+          <h3>Protect privacy</h3>
+          <p>Remove fields that do not need to be public.</p>
+        </div>
+
+        <div class="method-step">
+          <span>03</span>
+          <h3>Design the schema</h3>
+          <p>Choose the keys every book object should have.</p>
+        </div>
+
+        <div class="method-step">
+          <span>04</span>
+          <h3>Render the page</h3>
+          <p>Use HTML, CSS, and JavaScript to turn JSON into a clean ranked list with covers and recommendation notes.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Responsible AI use</h2>
+      <p class="section-intro">
+        This project is also an example of how a student can use AI without giving up ownership of the work.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag green">Good use</span>
+          <h3>Ask better questions</h3>
+          <p>
+            Instead of asking AI to “make a website,” the student asks how to inspect, clean, and use the data.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Good use</span>
+          <h3>Design the schema</h3>
+          <p>
+            AI can suggest fields, but the student decides what belongs in the public version.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Good use</span>
+          <h3>Compare display options</h3>
+          <p>
+            AI can help brainstorm category sections, cards, filters, search, sorting, ranked lists, and reading paths.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Required</span>
+          <h3>Review the output</h3>
+          <p>
+            The student still needs to check the data, remove sensitive fields, test the page, and understand the code.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Final lesson</h2>
+      <div class="callout">
+        <p>
+          This project shows how raw personal data can become a real public resource when it is cleaned,
+          normalized, privacy-reviewed, and displayed carefully. It also shows why data structures matter:
+          the structure of the data controls what the website can do with it.
+        </p>
+      </div>
+    </section>
+    <section class="page-end-nav" aria-label="Page navigation">
+      <a class="button primary" href="#top">Back to top</a>
+    </section>
+  </main>
+
+  <footer>
+    <div>© 2026 LaunchShell</div>
+    <div>Student-built project guides for Linux, cloud, Python, data, and cybersecurity.</div>
+  </footer>
+</body>
+
+</html>

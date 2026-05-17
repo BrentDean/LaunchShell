@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LaunchShell | Arduino and ESP32 Overview</title>
+  <meta
+    name="description"
+    content="A LaunchShell beginner guide to Arduino, ESP32, sensors, breadboards, soldering, physical computing, networking hardware, and building real electronics projects."
+  />
+
+  <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+</head>
+
+<body id="top" class="guide-page arduino-esp32-overview-page">
+  <header>
+    <a href="../../" aria-label="LaunchShell home">
+      <img src="../../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../../projects/">Projects</a>
+      <a href="../../guides/">Guides</a>
+      <a href="../../resources/">Resources</a>
+      <a href="../../resources/book-recommendations/">Book List</a>
+      <a class="status" href="../../start.html">Start Here</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="guide-hero">
+      <div>
+        <div class="eyebrow">Arduino • ESP32 • Sensors • Soldering • Physical Computing</div>
+
+        <h1>Arduino and ESP32 make code physical.</h1>
+
+        <p>
+          Arduino and ESP32 boards are some of the easiest ways to move from screen-only projects
+          into real physical systems. Even a simple <code>blink()</code> sketch makes the connection:
+          code runs on a chip, electricity moves through a circuit, and something in the real world
+          changes.
+        </p>
+
+        <p>
+          That matters for networking, cybersecurity, IoT, electronics, and systems thinking because
+          hardware is where software stops being abstract. A packet, sensor reading, GPIO pin, wire,
+          solder joint, button, LED, or antenna is part of the system.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href="#first-projects">Start with simple projects</a>
+          <a class="button" href="#language-and-ide">Language and IDE</a>
+          <a class="button" href="#networking">Why it matters for networking</a>
+        </div>
+
+        <div class="guide-note">
+          <strong>Main idea:</strong> Arduino and ESP32 projects teach how code, circuits, sensors,
+          power, networking, and physical connections work together.
+        </div>
+      </div>
+
+      <div class="visual-card">
+        <div class="visual-inner" aria-label="Arduino and ESP32 physical computing workflow diagram">
+          <div class="stack">
+            <div class="stack-layer">
+              <strong>Code</strong>
+              <span>Write a sketch in the Arduino IDE or Cloud Editor.</span>
+            </div>
+
+            <div class="stack-layer">
+              <strong>Board</strong>
+              <span>Upload to an Arduino Nano, ESP32, or similar microcontroller.</span>
+            </div>
+
+            <div class="stack-layer dark">
+              <strong>Circuit</strong>
+              <span>Use LEDs, sensors, buttons, displays, and breadboards.</span>
+            </div>
+
+            <div class="stack-layer">
+              <strong>Physical result</strong>
+              <span>Blink, measure, display, transmit, log, or control something real.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="caption">
+          Microcontroller projects turn code into visible electrical behavior.
+        </div>
+      </div>
+    </section>
+
+    <section id="why">
+      <h2>Why physical projects matter</h2>
+
+      <p class="section-intro">
+        A lot of students learn code only on a screen. That is useful, but physical projects add a
+        missing layer: power, wiring, signals, sensors, timing, and failure modes you can see.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Visible systems</span>
+            <h3>You can see the connection</h3>
+            <p>
+              When an LED turns on, a relay clicks, a sensor value changes, or an LCD updates, the
+              program is no longer abstract. The code is affecting hardware.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Troubleshooting</span>
+            <h3>Debugging becomes real</h3>
+            <p>
+              A bug might be code, wiring, power, a bad jumper, a weak solder joint, the wrong pin,
+              a floating input, or a sensor wired backward.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Systems thinking</span>
+            <h3>Everything depends on everything</h3>
+            <p>
+              The board, circuit, power source, sensor, code, network, enclosure, and server all
+              become parts of one system.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Arduino vs ESP32</h2>
+
+      <p class="section-intro">
+        Arduino and ESP32 are not the same thing, but they are often used in similar beginner
+        projects. Both can run small programs, read sensors, control outputs, and teach electronics.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Board type</th>
+            <th>Why it is useful</th>
+            <th>Good first use</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong>Arduino Nano</strong></td>
+            <td>Simple, cheap, small, and good for basic GPIO projects.</td>
+            <td>Blink LEDs, read buttons, dim LEDs, read sensors, drive small displays.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Arduino Uno-style boards</strong></td>
+            <td>Larger and easier to wire on a desk because the headers are spaced out.</td>
+            <td>Beginner labs, classroom demos, shields, and breadboard practice.</td>
+          </tr>
+
+          <tr>
+            <td><strong>ESP32</strong></td>
+            <td>More powerful and includes Wi-Fi/Bluetooth on many boards.</td>
+            <td>IoT sensors, MQTT projects, web dashboards, wireless monitoring.</td>
+          </tr>
+
+          <tr>
+            <td><strong>ESP32-C3 / small ESP32 boards</strong></td>
+            <td>Tiny, inexpensive, and useful for compact sensor nodes.</td>
+            <td>Small wireless projects, battery-powered sensors, embedded experiments.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="guide-note">
+        <strong>Student price note:</strong> exact prices change, but hobby boards are often cheap
+        enough to experiment with. I usually think of Nano-class boards as a few-dollar part and
+        ESP32 boards as roughly a low-cost Wi-Fi microcontroller, often around the price of lunch.
+      </div>
+    </section>
+
+    <section id="language-and-ide">
+      <h2>What language does Arduino use?</h2>
+
+      <p class="section-intro">
+        Arduino sketches are written in a simplified C/C++ style. The Arduino environment hides some
+        of the setup work, so beginners can start with two main functions: <code>setup()</code> and
+        <code>loop()</code>.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">Language</span>
+          <h3>Arduino is basically C/C++ made approachable</h3>
+          <p>
+            Arduino code looks beginner-friendly, but underneath it is compiled as C/C++. That means
+            learning Arduino can build real programming skills: variables, functions, loops,
+            conditionals, arrays, libraries, timing, and hardware control.
+          </p>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Sketch structure</span>
+          <h3>setup() and loop()</h3>
+          <p>
+            <code>setup()</code> runs once when the board starts. <code>loop()</code> runs over and
+            over. That pattern is perfect for physical projects because the board can constantly
+            read sensors, check buttons, update displays, or send data.
+          </p>
+        </article>
+      </div>
+
+      <div class="code-card">
+        <pre><code>void setup() {
+  // Runs once when the board starts
+  pinMode(LED_BUILTIN, OUTPUT);
+}
+
+void loop() {
+  // Runs forever
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(1000);
+
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(1000);
+}</code></pre>
+      </div>
+
+      <div class="guide-note">
+        <strong>Why this matters:</strong> Arduino makes embedded programming less intimidating. I can
+        start with simple sketches, but the same ideas lead into real C/C++, microcontrollers, sensors,
+        networking, and embedded systems.
+      </div>
+    </section>
+
+    <section id="arduino-ide">
+      <h2>What is the Arduino IDE?</h2>
+
+      <p class="section-intro">
+        The Arduino IDE is the main beginner tool for writing code, selecting a board, choosing a
+        serial port, installing libraries, compiling sketches, uploading code, and reading debug
+        output from the board.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Write</span>
+            <h3>Edit sketches</h3>
+            <p>
+              The IDE gives me a simple place to write Arduino code without needing to set up a full
+              professional embedded toolchain first.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Upload</span>
+            <h3>Send code to the board</h3>
+            <p>
+              After selecting the correct board and port, the IDE compiles the sketch and uploads it
+              over USB to the Arduino or ESP32.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Debug</span>
+            <h3>Use the Serial Monitor</h3>
+            <p>
+              The Serial Monitor lets the board print messages back to the computer. This is how I
+              can check sensor readings, Wi-Fi status, button presses, and program flow.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <div class="code-card">
+        <pre><code>Serial.begin(115200);
+
+Serial.println("ESP32 starting...");
+Serial.println("Reading temperature sensor...");
+Serial.println("Publishing MQTT message...");</code></pre>
+      </div>
+
+      <div class="action-item">
+        <strong>Beginner workflow:</strong> write a small sketch, upload it, open Serial Monitor,
+        watch what the board prints, change one thing, upload again, and repeat.
+      </div>
+    </section>
+
+    <section>
+      <h2>Why even Blink matters</h2>
+
+      <p class="section-intro">
+        The first Arduino example is usually blinking an LED. It looks simple, but it teaches the
+        core idea of physical computing.
+      </p>
+
+      <div class="code-card">
+        <pre><code>void setup() {
+  pinMode(LED_BUILTIN, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(1000);
+
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(1000);
+}</code></pre>
+      </div>
+
+      <div class="callout">
+        <p>
+          <strong>Blink is the “hello world” of electronics.</strong> It proves that code compiled,
+          uploaded, ran on the board, controlled a pin, moved voltage, and changed the physical
+          world. That is a real connection between software and hardware.
+        </p>
+      </div>
+
+      <div class="callout">
+        <p>
+          <strong>The Arduino IDE is like training wheels for embedded systems.</strong> It lets me
+          write C/C++-style code, upload it to a real board, and immediately see physical results.
+          That is why even a simple blink sketch matters: it proves the full chain from code to
+          compiler to USB upload to microcontroller pin to electrical output.
+        </p>
+      </div>
+    </section>
+
+    <section id="breadboards">
+      <h2>Breadboards make electronics less scary</h2>
+
+      <p class="section-intro">
+        A breadboard lets me build circuits without soldering. I can plug in wires, resistors, LEDs,
+        buttons, sensors, and jumper cables, then change the circuit quickly.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">No solder first</span>
+            <h3>Prototype safely</h3>
+            <p>
+              Breadboards are good for testing ideas before making anything permanent. If the wiring
+              is wrong, I can move a jumper instead of desoldering parts.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Learn circuits</span>
+            <h3>See the electrical path</h3>
+            <p>
+              A breadboard makes power rails, ground, input pins, output pins, and component legs
+              easier to understand.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Then solder</span>
+            <h3>Make it permanent later</h3>
+            <p>
+              Once the circuit works, soldering makes the project stronger, cleaner, and more reliable
+              than loose jumper wires.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="soldering">
+      <h2>Soldering turns a demo into a device</h2>
+
+      <p class="section-intro">
+        Breadboards are excellent for learning, but soldering is what makes a project feel real.
+        Soldered connections survive movement, mounting, enclosures, and long-term use better than
+        loose jumper wires.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">Why soldering matters</span>
+          <h3>Mechanical strength</h3>
+          <p>
+            A sensor in an enclosure is not sitting flat on a desk. Wires move, the box opens, cables
+            get pulled, and vibration happens. Soldering and strain relief protect the circuit.
+          </p>
+        </article>
+
+        <article class="panel">
+          <span class="tag">What to practice</span>
+          <h3>Small skills add up</h3>
+          <p>
+            Practice tinning wires, soldering header pins, using heat shrink, checking continuity
+            with a multimeter, and keeping power and ground clear.
+          </p>
+        </article>
+      </div>
+
+      <div class="warning-note">
+        <strong>Good habit:</strong> prototype on a breadboard first, then solder only after the
+        circuit works. That avoids making a broken circuit permanent.
+      </div>
+    </section>
+
+    <section id="networking">
+      <h2>Why this matters for networking</h2>
+
+      <p class="section-intro">
+        Networking is not only software. Every network eventually touches hardware: radios, cables,
+        antennas, ports, power supplies, switches, sensors, routers, and physical placement.
+      </p>
+
+      <div class="method">
+        <div class="method-step">
+          <span>01</span>
+          <h3>Device</h3>
+          <p>An ESP32 becomes a real network node with a MAC address, IP address, and Wi-Fi radio.</p>
+        </div>
+
+        <div class="method-step">
+          <span>02</span>
+          <h3>Protocol</h3>
+          <p>The board can send data using HTTP, MQTT, UDP, TCP, or custom messages.</p>
+        </div>
+
+        <div class="method-step">
+          <span>03</span>
+          <h3>Signal</h3>
+          <p>Distance, walls, antenna placement, interference, and power affect the connection.</p>
+        </div>
+
+        <div class="method-step">
+          <span>04</span>
+          <h3>Server</h3>
+          <p>A local server, Raspberry Pi, VPS, or dashboard can receive and display the data.</p>
+        </div>
+      </div>
+
+      <div class="action-item">
+        <strong>Networking lesson:</strong> an ESP32 sensor project can teach DHCP, IP addressing,
+        Wi-Fi signal strength, MQTT, HTTP, ports, firewalls, packet captures, and server logging.
+      </div>
+    </section>
+
+    <section>
+      <h2>Free software tools</h2>
+
+      <p class="section-intro">
+        One reason Arduino and ESP32 projects are so beginner-friendly is that the software tools are
+        available without buying an expensive IDE. I can start with the Arduino IDE locally or use
+        the Arduino Cloud Editor from the browser.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th>What it does</th>
+            <th>Why it helps</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong>Arduino IDE</strong></td>
+            <td>Desktop editor for writing, compiling, and uploading sketches.</td>
+            <td>Good first tool for local Arduino and ESP32 work.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Arduino Cloud Editor</strong></td>
+            <td>Browser-based Arduino editor.</td>
+            <td>Useful when I want to try projects without setting up everything locally first.</td>
+          </tr>
+
+          <tr>
+            <td><strong>ESP32 Arduino core</strong></td>
+            <td>Adds ESP32 board support to Arduino-style development.</td>
+            <td>Lets ESP32 boards use the familiar Arduino programming workflow.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Library Manager</strong></td>
+            <td>Installs sensor, display, Wi-Fi, MQTT, and device libraries.</td>
+            <td>Makes it easier to use common modules without writing every driver from scratch.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Serial Monitor</strong></td>
+            <td>Shows text output from the board over USB.</td>
+            <td>Essential for debugging sensor values, Wi-Fi status, and program flow.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="first-projects">
+      <h2>Good first projects</h2>
+
+      <p class="section-intro">
+        The best first projects are small, visible, and easy to debug. Do not start with the most
+        complicated robot or wireless system first.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Start here</span>
+            <h3>Blink an LED</h3>
+            <p>
+              Upload <code>blink()</code>, change the delay, and prove that code can control a real
+              output pin.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Analog input</span>
+            <h3>Potentiometer dims an LED</h3>
+            <p>
+              Turn a knob, read the analog value, and use PWM to dim an LED. This teaches input,
+              output, mapping, and real-time feedback.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Sensors</span>
+            <h3>Build a thermometer</h3>
+            <p>
+              Use a temperature sensor or temperature/humidity sensor and print readings to the
+              Serial Monitor.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Display</span>
+            <h3>Hook up an LCD</h3>
+            <p>
+              Show sensor values on a simple LCD screen so the project works without a computer
+              attached.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Controls</span>
+            <h3>Add buttons</h3>
+            <p>
+              Use buttons to change modes, reset counters, switch display pages, or trigger actions.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Networking</span>
+            <h3>ESP32 Wi-Fi status page</h3>
+            <p>
+              Connect an ESP32 to Wi-Fi and display a simple web page or send a sensor reading to a
+              local server.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Simple sensor kit path</h2>
+
+      <p class="section-intro">
+        A cheap sensor kit is enough to learn a lot. The point is not owning the most expensive kit.
+        The point is making inputs and outputs work.
+      </p>
+
+      <div class="path">
+        <div class="path-row">
+          <div class="level">01</div>
+          <div><strong>LEDs and resistors</strong></div>
+          <div class="tools">Blink, fade, current limiting, polarity, and output pins.</div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">02</div>
+          <div><strong>Buttons and switches</strong></div>
+          <div class="tools">Digital input, pull-ups, debouncing, and control logic.</div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">03</div>
+          <div><strong>Potentiometer</strong></div>
+          <div class="tools">Analog input, mapping values, and controlling LED brightness.</div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">04</div>
+          <div><strong>Temperature/humidity sensor</strong></div>
+          <div class="tools">Sensor libraries, readings, serial output, and basic calibration questions.</div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">05</div>
+          <div><strong>LCD or OLED screen</strong></div>
+          <div class="tools">Display values without needing the Serial Monitor open.</div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">06</div>
+          <div><strong>ESP32 networking</strong></div>
+          <div class="tools">Wi-Fi, MQTT, HTTP, local web servers, and packet captures.</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Example project: potentiometer dims an LED</h2>
+
+      <p class="section-intro">
+        This is a good first analog project because turning the knob creates an immediate visible
+        result.
+      </p>
+
+      <div class="code-card">
+        <pre><code>const int potPin = A0;
+const int ledPin = 9;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  int sensorValue = analogRead(potPin);
+  int brightness = map(sensorValue, 0, 1023, 0, 255);
+
+  analogWrite(ledPin, brightness);
+}</code></pre>
+      </div>
+
+      <div class="guide-note">
+        <strong>What this teaches:</strong> analog input, PWM output, value mapping, and the idea
+        that hardware can become an interface.
+      </div>
+    </section>
+
+    <section>
+      <h2>Example project: thermometer</h2>
+
+      <p class="section-intro">
+        A temperature or temperature/humidity sensor is one of the best early sensor projects because
+        the data is understandable and useful.
+      </p>
+
+      <div class="code-card">
+        <pre><code>Sensor
+  │
+  ▼
+Arduino or ESP32
+  │
+  ├── Print reading to Serial Monitor
+  ├── Show reading on LCD
+  └── Send reading over Wi-Fi later</code></pre>
+      </div>
+
+      <div class="action-item">
+        <strong>Upgrade path:</strong> after the thermometer works over USB, an ESP32 can send the
+        readings over Wi-Fi to a local dashboard, MQTT broker, or web server.
+      </div>
+    </section>
+
+    <section>
+      <h2>Example project: LCD screen and buttons</h2>
+
+      <p class="section-intro">
+        Adding a small screen and buttons makes a project feel like a real device instead of only a
+        lab test.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">LCD screen</span>
+          <h3>Output without a computer</h3>
+          <p>
+            A screen can show temperature, humidity, mode, battery status, network state, or menu
+            options directly on the project.
+          </p>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Buttons</span>
+          <h3>Physical input</h3>
+          <p>
+            Buttons let the user change modes, reset a value, start a test, or interact with the
+            project without typing commands.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>ESP32 makes IoT projects possible</h2>
+
+      <p class="section-intro">
+        The ESP32 is especially important because it brings networking into the same tiny board. That
+        means a sensor can report data without needing a full computer attached.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Wi-Fi</span>
+            <h3>Connect to a local network</h3>
+            <p>
+              The ESP32 can join Wi-Fi, get an IP address, and talk to a local server, MQTT broker,
+              or cloud service.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">MQTT</span>
+            <h3>Publish sensor readings</h3>
+            <p>
+              MQTT is a common lightweight pattern for IoT sensors. The ESP32 publishes readings,
+              and another system subscribes to them.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Web</span>
+            <h3>Serve or send data</h3>
+            <p>
+              An ESP32 can host a tiny web page, call an API, or send data to a Flask app, Raspberry
+              Pi, or local server.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Electronics teaches better debugging</h2>
+
+      <p class="section-intro">
+        Physical projects fail in ways that software-only projects do not. That is exactly why they
+        are useful.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Symptom</th>
+            <th>Possible cause</th>
+            <th>What to check</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong>LED does not blink</strong></td>
+            <td>Wrong pin, wrong polarity, bad upload, no resistor, no ground.</td>
+            <td>Pin number, wiring, board selection, USB cable, and Serial Monitor.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Sensor reads nonsense</strong></td>
+            <td>Wrong voltage, wrong library, bad wiring, bad timing, wrong pin.</td>
+            <td>Datasheet, library example, power rails, and jumper placement.</td>
+          </tr>
+
+          <tr>
+            <td><strong>ESP32 cannot connect</strong></td>
+            <td>Wrong Wi-Fi credentials, weak signal, wrong board, bad code.</td>
+            <td>Serial output, router, signal strength, and test with a simple Wi-Fi sketch.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Project works on USB but not battery</strong></td>
+            <td>Power source cannot supply enough current, voltage drops, wiring too thin.</td>
+            <td>Battery output, regulator, current draw, and multimeter readings.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>When to move from breadboard to enclosure</h2>
+
+      <p class="section-intro">
+        A project should not go straight from idea to sealed box. The better path is prototype,
+        test, solder, mount, and then enclose.
+      </p>
+
+      <div class="flow">
+        <article class="flow-step">
+          <span>01</span>
+          <h3>Breadboard</h3>
+          <p>Test the circuit quickly with jumpers and modules.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>02</span>
+          <h3>Verify</h3>
+          <p>Confirm readings, pin choices, power draw, and code behavior.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>03</span>
+          <h3>Solder</h3>
+          <p>Make stable connections using headers, perfboard, or connectors.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>04</span>
+          <h3>Enclose</h3>
+          <p>Add strain relief, cable glands, mounting, airflow, and service access.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Starter shopping list</h2>
+
+      <p class="section-intro">
+        A beginner does not need every module at once. A small starter setup is enough.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Core</span>
+            <h3>Board and USB cable</h3>
+            <p>
+              Start with an Arduino Nano-class board or an ESP32 board, plus a USB cable that can
+              transfer data, not only charge.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Prototyping</span>
+            <h3>Breadboard and jumpers</h3>
+            <p>
+              A breadboard, jumper wires, resistors, LEDs, buttons, and a potentiometer are enough
+              for many first projects.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Sensors</span>
+            <h3>Basic sensor kit</h3>
+            <p>
+              Temperature/humidity sensors, light sensors, motion sensors, buzzers, displays, and
+              buttons create many useful experiments.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <div class="guide-note">
+        <strong>Budget note:</strong> start cheap. Learn with small modules before buying expensive
+        boards, enclosures, or specialty sensors.
+      </div>
+    </section>
+
+    <section>
+      <h2>Related LaunchShell projects</h2>
+
+      <p class="section-intro">
+        Arduino and ESP32 projects connect directly to other LaunchShell paths.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">IoT</span>
+            <h3>Solar ESP32 MQTT Sensor</h3>
+            <p>
+              A solar-powered ESP32 enclosure that reads temperature and humidity and sends MQTT
+              data back to a local server.
+            </p>
+            <p><a href="../../projects/solar-esp32-mqtt-sensor/">Open the project</a></p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Networking</span>
+            <h3>Wireshark Guide</h3>
+            <p>
+              Capture packets from ESP32 projects and see how device traffic looks on the network.
+            </p>
+            <p><a href="../wireshark/">Open the Wireshark guide</a></p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Linux</span>
+            <h3>Linux Terminal Intro</h3>
+            <p>
+              Use Linux tools for serial monitoring, MQTT testing, local servers, logs, and project
+              organization.
+            </p>
+            <p><a href="../linux-terminal-intro/">Open the Linux guide</a></p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="docs">
+      <h2>Official resources</h2>
+
+      <p class="section-intro">
+        These are the main official pages worth keeping nearby.
+      </p>
+
+      <div class="grid docs-list">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Arduino</span>
+            <h3>Arduino Software</h3>
+            <p>Download the Arduino IDE or use the online editor.</p>
+            <p><a href="https://www.arduino.cc/en/software" rel="noopener">Open Arduino Software</a></p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Cloud</span>
+            <h3>Arduino Cloud Plans</h3>
+            <p>Check current Arduino Cloud and Cloud Editor plan details.</p>
+            <p><a href="https://cloud.arduino.cc/plans" rel="noopener">Open Arduino Cloud plans</a></p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">ESP32</span>
+            <h3>Arduino ESP32 Core</h3>
+            <p>Official Espressif Arduino support for ESP32-family boards.</p>
+            <p><a href="https://github.com/espressif/arduino-esp32" rel="noopener">Open ESP32 Arduino core</a></p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Final idea</h2>
+
+      <div class="callout">
+        <p>
+          <strong>Arduino and ESP32 projects are important because they make computing physical.</strong>
+          A beginner can blink an LED, read a sensor, dim a light with a knob, display data on a small
+          screen, solder a circuit, mount it in an enclosure, and eventually send readings over a
+          network. That path teaches electronics, programming, networking, debugging, and systems
+          thinking in a way screen-only projects cannot.
+        </p>
+      </div>
+    </section>
+  <section class="page-end-nav" aria-label="Page navigation">
+    <a class="button primary" href="#top">Back to top</a>
+  </section>
+
+  </main>
+
+  <footer>
+    <div>&copy; 2026 LaunchShell</div>
+    <div>Student-built project guides for Linux, cloud, electronics, Python, IoT, and cybersecurity.</div>
+  </footer>
+</body>
+</html>

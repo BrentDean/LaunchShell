@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Use Termius to Manage a Cloud Server From Your Phone | LaunchShell</title>
+  <meta name="description" content="A beginner-friendly guide to using Termius to SSH into a cloud server from a phone, safely run updates, use snippets, and understand basic server automation." />
+
+  <link rel="icon" href="../../assets/favicon.png" type="image/png" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+</head>
+
+<body id="top" class="guide-page terminus-page">
+  <header>
+    <a href="../../" aria-label="LaunchShell home">
+      <img src="../../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../../projects/">Projects</a>
+      <a href="../../guides/">Guides</a>
+      <a href="../../resources/">Resources</a>
+      <a href="../../resources/book-recommendations/">Read Books!</a>
+      <a href="../../about/">About</a>
+      <a class="status" href="../../start.html">Start Here</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="guide-hero termius-hero">
+      <div>
+        <p class="eyebrow">MOBILE SSH • CLOUD SERVERS • AUTOMATION</p>
+
+        <h1>Update a cloud server from your phone.</h1>
+
+        <p class="guide-lead">
+          Ever wanted to check on a cloud server, restart a service, or run a safe update
+          from your cell phone? Termius turns your phone into a pocket SSH client for
+          managing Linux servers when you are away from your laptop.
+        </p>
+
+        <div class="guide-actions">
+          <a class="primary-action" href="#setup">Start setup</a>
+          <a class="secondary-action" href="#automation">Jump to automation</a>
+        </div>
+      </div>
+
+      <div class="termius-terminal-card" aria-label="Mobile SSH terminal preview">
+        <div class="phone-shell">
+          <div class="phone-status">
+            <span>Termius</span>
+            <span>SSH</span>
+          </div>
+
+          <div class="phone-terminal">
+            <p><span class="prompt">user@vps:~$</span> ssh server</p>
+            <p><span class="prompt">admin@cloud:~$</span> sudo apt update</p>
+            <p>Hit:1 deb.debian.org bookworm InRelease</p>
+            <p><span class="prompt">admin@cloud:~$</span> sudo systemctl status nginx</p>
+            <p class="ok">active (running)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="guide-intro-grid">
+      <article>
+        <span>Use case</span>
+        <p>
+          Quick server checks, package updates, service restarts, log reviews, and emergency
+          fixes when you only have your phone.
+        </p>
+      </article>
+
+      <article>
+        <span>Best habit</span>
+        <p>
+          Use SSH keys, avoid root login when possible, and save common commands as reusable
+          snippets instead of retyping long commands on a touchscreen.
+        </p>
+      </article>
+
+      <article>
+        <span>Automation angle</span>
+        <p>
+          Termius is not just for typing commands. It can become a launchpad for scripts,
+          aliases, maintenance commands, and repeatable server workflows.
+        </p>
+      </article>
+    </section>
+
+    <section class="guide-section" id="setup">
+      <p class="eyebrow">STEP 1</p>
+      <h2>Install Termius and create a host entry.</h2>
+
+      <p>
+        Termius is an SSH client. SSH is the secure remote login method that lets you connect
+        from your phone to a Linux server over the internet.
+      </p>
+
+      <div class="guide-callout">
+        <strong>Basic idea:</strong>
+        your phone runs Termius, Termius connects to your server, and the server gives you a
+        command-line shell.
+      </div>
+
+      <ol class="guide-steps">
+        <li>Install Termius on your phone.</li>
+        <li>Create a new host.</li>
+        <li>Enter your server IP address or domain name.</li>
+        <li>Enter the SSH username, such as <code>admin</code>, <code>debian</code>, or <code>ubuntu</code>.</li>
+        <li>Set the SSH port. The default is <code>22</code>, but your server may use a custom port.</li>
+        <li>Add your SSH key or choose the credential method you use for that server.</li>
+        <li>Save the host and test the connection.</li>
+      </ol>
+    </section>
+
+    <section class="guide-section">
+      <p class="eyebrow">STEP 2</p>
+      <h2>Use SSH keys instead of typing passwords.</h2>
+
+      <p>
+        Password login works, but SSH keys are better for real server work. A key-based setup
+        avoids typing your server password on a phone keyboard and reduces the risk of weak or
+        reused passwords.
+      </p>
+
+      <div class="command-block">
+        <div class="command-title">On your server, your public key usually goes here:</div>
+        <pre><code>~/.ssh/authorized_keys</code></pre>
+      </div>
+
+      <p>
+        For a student setup, the important point is simple: keep the private key private, put
+        only the public key on the server, and protect the key with a passphrase when possible.
+      </p>
+    </section>
+
+    <section class="guide-section">
+      <p class="eyebrow">STEP 3</p>
+      <h2>Run safe server checks from your phone.</h2>
+
+      <p>
+        Start with read-only checks before running commands that change the system.
+      </p>
+
+      <div class="command-grid">
+        <article>
+          <h3>Check uptime</h3>
+          <pre><code>uptime</code></pre>
+        </article>
+
+        <article>
+          <h3>Check disk space</h3>
+          <pre><code>df -h</code></pre>
+        </article>
+
+        <article>
+          <h3>Check memory</h3>
+          <pre><code>free -h</code></pre>
+        </article>
+
+        <article>
+          <h3>Check listening ports</h3>
+          <pre><code>ss -lntp</code></pre>
+        </article>
+
+        <article>
+          <h3>Check failed logins</h3>
+          <pre><code>sudo journalctl -u ssh --since "1 hour ago"</code></pre>
+        </article>
+
+        <article>
+          <h3>Check web server status</h3>
+          <pre><code>sudo systemctl status nginx --no-pager</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <section class="guide-section">
+      <p class="eyebrow">STEP 4</p>
+      <h2>Update a cloud server carefully.</h2>
+
+      <p>
+        Updating from a phone is useful, but do it carefully. A phone is fine for routine
+        maintenance, not for major risky upgrades.
+      </p>
+
+      <div class="command-block">
+        <div class="command-title">Debian / Ubuntu safe update flow</div>
+        <pre><code>sudo apt update
+apt list --upgradable
+sudo apt upgrade</code></pre>
+      </div>
+
+      <div class="guide-warning">
+        <strong>Avoid doing major distribution upgrades from your phone.</strong>
+        Commands like <code>do-release-upgrade</code> or large database migrations are better
+        done from a laptop with a stable connection and backups ready.
+      </div>
+    </section>
+
+    <section class="guide-section" id="automation">
+      <p class="eyebrow">AUTOMATION</p>
+      <h2>Turn phone SSH into repeatable workflows.</h2>
+
+      <p>
+        The real power is not typing everything manually. The better approach is to create
+        small server-side scripts, aliases, or snippets that run a known sequence safely.
+      </p>
+
+      <div class="automation-flow">
+        <article>
+          <span>1</span>
+          <h3>Save commands as snippets</h3>
+          <p>
+            Store commands you run often, such as service checks, log views, updates, and
+            backup status checks.
+          </p>
+        </article>
+
+        <article>
+          <span>2</span>
+          <h3>Move complex work into scripts</h3>
+          <p>
+            Instead of typing five commands on a phone, write one script on the server and run
+            it when needed.
+          </p>
+        </article>
+
+        <article>
+          <span>3</span>
+          <h3>Schedule routine work</h3>
+          <p>
+            Use systemd timers or cron for recurring jobs so your phone is only used to check
+            status or trigger manual tasks.
+          </p>
+        </article>
+      </div>
+
+      <div class="command-block">
+        <div class="command-title">Example: one command to check a web app</div>
+        <pre><code>sudo systemctl status nginx --no-pager
+sudo systemctl status gunicorn --no-pager
+curl -I https://example.com</code></pre>
+      </div>
+
+      <p>
+        A better version is to put those commands in a script like <code>check-site.sh</code>,
+        then run the script from Termius:
+      </p>
+
+      <div class="command-block">
+        <div class="command-title">Run a saved maintenance script</div>
+        <pre><code>./check-site.sh</code></pre>
+      </div>
+    </section>
+
+    <section class="guide-section">
+      <p class="eyebrow">EXAMPLE SCRIPT</p>
+      <h2>Create a simple server health script.</h2>
+
+      <p>
+        Put this on your server as <code>server-check.sh</code>. It gives you a quick snapshot
+        of uptime, disk, memory, failed SSH messages, and web service status.
+      </p>
+
+      <div class="command-block">
+        <div class="command-title">server-check.sh</div>
+        <pre><code>#!/usr/bin/env bash
+set -euo pipefail
+
+echo "== Host =="
+hostname
+uptime
+
+echo
+echo "== Disk =="
+df -h /
+
+echo
+echo "== Memory =="
+free -h
+
+echo
+echo "== Listening Ports =="
+ss -lntp
+
+echo
+echo "== SSH Logs: Last Hour =="
+sudo journalctl -u ssh --since "1 hour ago" --no-pager | tail -40
+
+echo
+echo "== Web Server =="
+sudo systemctl status nginx --no-pager || true</code></pre>
+      </div>
+
+      <div class="command-block">
+        <div class="command-title">Make it executable</div>
+        <pre><code>chmod +x server-check.sh</code></pre>
+      </div>
+
+      <div class="command-block">
+        <div class="command-title">Run it from Termius</div>
+        <pre><code>./server-check.sh</code></pre>
+      </div>
+    </section>
+
+    <section class="guide-section">
+      <p class="eyebrow">SAFETY RULES</p>
+      <h2>Do not turn convenience into a security problem.</h2>
+
+      <div class="safety-list">
+        <article>
+          <h3>Do not save root passwords</h3>
+          <p>
+            Use a normal user with <code>sudo</code>. Disable root SSH login on public servers
+            when possible.
+          </p>
+        </article>
+
+        <article>
+          <h3>Use SSH keys</h3>
+          <p>
+            Key-based login is cleaner and safer than typing passwords repeatedly on mobile.
+          </p>
+        </article>
+
+        <article>
+          <h3>Protect the phone</h3>
+          <p>
+            Use a strong passcode and biometric lock. If the phone is lost, saved server
+            access becomes a serious risk.
+          </p>
+        </article>
+
+        <article>
+          <h3>Keep dangerous commands out of snippets</h3>
+          <p>
+            Do not save destructive commands like <code>rm -rf</code>, disk formatting, or
+            firewall resets as easy-tap snippets.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="guide-section">
+      <p class="eyebrow">WHAT THIS UNLOCKS</p>
+      <h2>Your phone becomes a small admin console.</h2>
+
+      <p>
+        Once your host entry, SSH keys, and scripts are set up, you can safely do small
+        maintenance tasks from anywhere:
+      </p>
+
+      <ul class="guide-list">
+        <li>Check whether a web app is running.</li>
+        <li>Restart a service after a small config change.</li>
+        <li>Review logs after a failed deployment.</li>
+        <li>Run a server health script.</li>
+        <li>Trigger a backup check.</li>
+        <li>Confirm firewall and port status.</li>
+      </ul>
+
+      <div class="guide-callout">
+        <strong>The goal is not to do everything from a phone.</strong>
+        The goal is to make routine server checks and safe maintenance possible when you are
+        away from your main machine.
+      </div>
+    </section>
+  <section class="page-end-nav" aria-label="Page navigation">
+    <a class="button primary" href="#top">Back to top</a>
+  </section>
+
+  </main>
+
+  <footer>
+    <div>© 2026 LaunchShell</div>
+    <div>Student-built project guides for Linux, cloud, electronics, Python, and cybersecurity.</div>
+  </footer>
+</body>
+</html>

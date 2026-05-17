@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LaunchShell | What Is an API?</title>
+  <meta
+    name="description"
+    content="A LaunchShell guide explaining APIs, JSON, endpoints, API keys, curl, Python requests, OpenAI API, Weather.gov, and TMDB."
+  />
+
+  <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+</head>
+
+<body id="top" class="guide-page api-guide-page">
+  <header>
+    <a href="../../" aria-label="LaunchShell home">
+      <img src="../../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../../projects/">Projects</a>
+      <a href="../../guides/">Guides</a>
+      <a href="../../resources/">Resources</a>
+      <a href="../../resources/book-recommendations/">Read Books!</a>
+      <a href="../../about/">About</a>
+      <a class="status" href="../../start.html">Start Here</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="guide-hero">
+      <div>
+        <div class="eyebrow">APIs • JSON • Web Data • Automation</div>
+
+        <h1>APIs feel like magic once they click.</h1>
+
+        <p>
+          An API is a way for one program to talk to another program. Instead of scraping a web page,
+          copying data by hand, or building everything from scratch, my code can ask another service
+          for structured data and get a useful response back.
+        </p>
+
+        <p>
+          This is where programming starts to feel powerful. A script can ask Weather.gov for a
+          forecast, ask TMDB for movie data, or ask the OpenAI API to generate, classify, summarize,
+          or transform text.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href="#workflow">See the workflow</a>
+          <a class="button" href="#examples">API examples</a>
+        </div>
+
+        <div class="guide-note">
+          <strong>Main idea:</strong> APIs let my code use other systems as building blocks. The
+          important skills are understanding endpoints, requests, responses, JSON, authentication,
+          rate limits, and safe handling of API keys.
+        </div>
+      </div>
+
+      <div class="visual-card">
+        <div class="visual-inner" aria-label="API request and response workflow diagram">
+          <div class="stack">
+            <div class="stack-layer">
+              <strong>My script</strong>
+              <span>Python, JavaScript, curl, Flask, or another program.</span>
+            </div>
+
+            <div class="stack-layer">
+              <strong>API request</strong>
+              <span>Ask a service for data or an action.</span>
+            </div>
+
+            <div class="stack-layer dark">
+              <strong>JSON response</strong>
+              <span>Structured data my program can read.</span>
+            </div>
+
+            <div class="stack-layer">
+              <strong>Useful result</strong>
+              <span>Weather, movie data, AI output, dashboards, alerts, or automation.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="caption">
+          APIs are the bridge between my code and useful external services.
+        </div>
+      </div>
+    </section>
+
+    <section id="what">
+      <h2>What is an API?</h2>
+
+      <p class="section-intro">
+        API stands for Application Programming Interface. That sounds abstract, but the idea is
+        simple: an API is a controlled doorway into another system.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Request</span>
+            <h3>My code asks</h3>
+            <p>
+              A program sends a request to an endpoint, usually with a URL, headers, parameters,
+              and sometimes a body.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Response</span>
+            <h3>The service answers</h3>
+            <p>
+              The API returns structured data, usually JSON, with a status code that says whether
+              the request worked.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Automation</span>
+            <h3>My program uses it</h3>
+            <p>
+              Once the data comes back, my program can display it, save it, filter it, summarize it,
+              or use it to trigger another action.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="why">
+      <h2>Why APIs feel magical</h2>
+
+      <p class="section-intro">
+        APIs are powerful because they let small programs do big things. I do not need to own the
+        weather station, movie database, or AI model. I just need to know how to ask the API correctly.
+      </p>
+
+      <div class="method">
+        <div class="method-step">
+          <span>01</span>
+          <h3>Ask for data</h3>
+          <p>Get forecasts, movie details, alerts, search results, coordinates, prices, or metadata.</p>
+        </div>
+
+        <div class="method-step">
+          <span>02</span>
+          <h3>Parse JSON</h3>
+          <p>Turn the response into variables, lists, dictionaries, tables, or cards.</p>
+        </div>
+
+        <div class="method-step">
+          <span>03</span>
+          <h3>Build something</h3>
+          <p>Use the data in a website, script, CLI tool, dashboard, alert system, or project.</p>
+        </div>
+
+        <div class="method-step">
+          <span>04</span>
+          <h3>Automate it</h3>
+          <p>Run it on a schedule, connect it to a server, or combine it with another API.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="vocabulary">
+      <h2>API vocabulary that matters</h2>
+
+      <p class="section-intro">
+        Most API confusion comes from vocabulary. These are the terms I need first.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Term</th>
+            <th>Meaning</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong>Endpoint</strong></td>
+            <td>A specific API URL that does one job.</td>
+            <td><code>/forecast</code>, <code>/movie/search</code>, <code>/responses</code></td>
+          </tr>
+
+          <tr>
+            <td><strong>Method</strong></td>
+            <td>The action type used in the request.</td>
+            <td><code>GET</code> reads data. <code>POST</code> sends data.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Header</strong></td>
+            <td>Extra request information sent with the API call.</td>
+            <td><code>Authorization</code>, <code>User-Agent</code>, <code>Content-Type</code></td>
+          </tr>
+
+          <tr>
+            <td><strong>Query parameter</strong></td>
+            <td>A value added to the URL to filter or modify the request.</td>
+            <td><code>?query=matrix</code>, <code>?units=us</code>, <code>?page=1</code></td>
+          </tr>
+
+          <tr>
+            <td><strong>JSON</strong></td>
+            <td>A common structured data format used by APIs.</td>
+            <td><code>{ "title": "The Matrix", "year": 1999 }</code></td>
+          </tr>
+
+          <tr>
+            <td><strong>API key</strong></td>
+            <td>A secret token that identifies my app or account.</td>
+            <td>Used by APIs like OpenAI and TMDB.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Status code</strong></td>
+            <td>A number that explains whether the request worked.</td>
+            <td><code>200</code> success, <code>401</code> unauthorized, <code>404</code> not found.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="workflow">
+      <h2>My basic API workflow</h2>
+
+      <p class="section-intro">
+        The workflow is the same whether I am using Weather.gov, TMDB, OpenAI, GitHub, Cloudflare,
+        or another service.
+      </p>
+
+      <div class="flow">
+        <article class="flow-step">
+          <span>01</span>
+          <h3>Read the docs</h3>
+          <p>Find the endpoint, method, authentication rules, parameters, and response format.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>02</span>
+          <h3>Test with curl</h3>
+          <p>Make one simple request in the terminal before writing a full program.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>03</span>
+          <h3>Parse the JSON</h3>
+          <p>Use Python, JavaScript, or another language to extract the fields I need.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>04</span>
+          <h3>Build the feature</h3>
+          <p>Display the result, save it, trigger an alert, or combine it with another system.</p>
+        </article>
+      </div>
+
+      <div class="guide-note">
+        <strong>My rule:</strong> do one successful request manually before building the whole app.
+        If the basic request does not work, the app will not work either.
+      </div>
+    </section>
+
+    <section>
+      <h2>Start with curl</h2>
+
+      <p class="section-intro">
+        <code>curl</code> is one of the best ways to learn APIs because it shows the request and
+        response without hiding the details behind a library.
+      </p>
+
+      <div class="code-card">
+        <pre><code># Basic GET request
+curl https://api.example.com/data
+
+# Show response headers too
+curl -i https://api.example.com/data
+
+# Send a header
+curl -H "Accept: application/json" https://api.example.com/data
+
+# Pretty-print JSON with jq
+curl https://api.example.com/data | jq</code></pre>
+      </div>
+
+      <div class="action-item">
+        <strong>Useful combo:</strong> <code>curl</code> gets the data, and <code>jq</code> makes
+        the JSON readable.
+      </div>
+    </section>
+
+    <section>
+      <h2>JSON is the language of many APIs</h2>
+
+      <p class="section-intro">
+        JSON looks like JavaScript object syntax, but it is used by many languages. Python reads it
+        like dictionaries and lists.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">JSON response</span>
+          <h3>What the API returns</h3>
+
+          <div class="code-card">
+            <pre><code>{
+  "title": "The Matrix",
+  "year": 1999,
+  "genres": ["Action", "Sci-Fi"],
+  "rating": 8.7
+}</code></pre>
+          </div>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Python access</span>
+          <h3>How code reads it</h3>
+
+          <div class="code-card">
+            <pre><code>movie["title"]
+movie["year"]
+movie["genres"][0]
+movie["rating"]</code></pre>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="examples">
+      <h2>Three APIs that make the idea click</h2>
+
+      <p class="section-intro">
+        These are good examples because each one teaches a different API lesson.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Weather.gov</span>
+            <h3>Public data API</h3>
+            <p>
+              Weather.gov is a good first API because it exposes real public weather data and teaches
+              endpoints, JSON, headers, and forecast URLs.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">TMDB</span>
+            <h3>Media database API</h3>
+            <p>
+              TMDB is useful for movie apps because it provides movie, TV, person, image, discovery,
+              and search data through documented endpoints.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">OpenAI API</span>
+            <h3>AI as a service</h3>
+            <p>
+              The OpenAI API lets a program send input to a model and get generated text, structured
+              output, summaries, classifications, or tool-like behavior back.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="weather">
+      <h2>Example 1: Weather.gov</h2>
+
+      <p class="section-intro">
+        Weather.gov is a good API for learning because it returns real forecast data. The usual
+        pattern is: ask for grid metadata using latitude and longitude, then follow the forecast URL
+        returned by the API.
+      </p>
+
+      <div class="code-card">
+        <pre><code># Step 1: get forecast metadata for a latitude/longitude
+curl -H "User-Agent: LaunchShellAPIPractice (you@example.com)" \
+  "https://api.weather.gov/points/40.7128,-74.0060" | jq
+
+# Step 2: use the forecast URL returned in the JSON
+curl -H "User-Agent: LaunchShellAPIPractice (you@example.com)" \
+  "https://api.weather.gov/gridpoints/OKX/33,37/forecast" | jq</code></pre>
+      </div>
+
+      <div class="guide-note">
+        <strong>Important:</strong> Weather.gov expects a <code>User-Agent</code> header that
+        identifies the application. This is not an API key, but it tells the service what app is
+        making the request.
+      </div>
+    </section>
+
+    <section>
+      <h2>Weather.gov with Python</h2>
+
+      <p class="section-intro">
+        Once the curl request works, Python can make the same request and extract fields from the
+        JSON response.
+      </p>
+
+      <div class="code-card">
+        <pre><code>import requests
+
+headers = {
+    "User-Agent": "LaunchShellAPIPractice (you@example.com)"
+}
+
+points_url = "https://api.weather.gov/points/40.7128,-74.0060"
+
+points = requests.get(points_url, headers=headers, timeout=10)
+points.raise_for_status()
+
+data = points.json()
+forecast_url = data["properties"]["forecast"]
+
+forecast = requests.get(forecast_url, headers=headers, timeout=10)
+forecast.raise_for_status()
+
+periods = forecast.json()["properties"]["periods"]
+
+for period in periods[:3]:
+    print(period["name"])
+    print(period["temperature"], period["temperatureUnit"])
+    print(period["shortForecast"])
+    print()</code></pre>
+      </div>
+
+      <div class="action-item">
+        <strong>Project idea:</strong> build a
+        <a class="inline-link" href="../../projects/tiny-terminal-weather/">tiny terminal weather app</a>
+        that prints the next three forecast periods for a saved location.
+      </div>
+    </section>
+
+    <section id="tmdb">
+      <h2>Example 2: TMDB API</h2>
+
+      <p class="section-intro">
+        TMDB is useful for movie projects because it can turn a simple title search into structured
+        movie data: titles, release dates, summaries, ratings, poster paths, genres, and related IDs.
+      </p>
+
+      <div class="code-card">
+        <pre><code># Store the token in an environment variable, not directly in code
+export TMDB_BEARER_TOKEN="paste_token_here"
+
+# Search for a movie
+curl --request GET \
+  --url "https://api.themoviedb.org/3/search/movie?query=The%20Matrix&include_adult=false&language=en-US&page=1" \
+  --header "Authorization: Bearer $TMDB_BEARER_TOKEN" \
+  --header "accept: application/json" | jq</code></pre>
+      </div>
+
+      <div class="warning-note">
+        <strong>API key rule:</strong> never commit API keys, bearer tokens, or secrets to GitHub.
+        Use environment variables or a private <code>.env</code> file that is ignored by Git.
+      </div>
+    </section>
+
+    <section>
+      <h2>TMDB with Python</h2>
+
+      <p class="section-intro">
+        This connects directly to a movie database project. Instead of manually typing every movie
+        field, a script could search TMDB and fill in basic metadata.
+      </p>
+
+      <div class="code-card">
+        <pre><code>import os
+import requests
+
+token = os.environ["TMDB_BEARER_TOKEN"]
+
+headers = {
+    "Authorization": f"Bearer {token}",
+    "accept": "application/json"
+}
+
+params = {
+    "query": "The Matrix",
+    "include_adult": "false",
+    "language": "en-US",
+    "page": 1
+}
+
+response = requests.get(
+    "https://api.themoviedb.org/3/search/movie",
+    headers=headers,
+    params=params,
+    timeout=10
+)
+
+response.raise_for_status()
+
+results = response.json()["results"]
+
+for movie in results[:5]:
+    print(movie["title"], movie.get("release_date", "unknown"))
+    print(movie.get("overview", "")[:160])
+    print()</code></pre>
+      </div>
+
+      <div class="action-item">
+        <strong>LaunchShell connection:</strong> this would pair well with the Java Movie Database
+        <a class="inline-link" href="../../projects/java-movie-cli/">CLI project</a>. A future version
+        could use an API to fetch movie metadata instead of relying only on manual input or a TSV file.
+      </div>
+    </section>
+
+    <section id="openai">
+      <h2>Example 3: OpenAI API</h2>
+
+      <p class="section-intro">
+        The OpenAI API is different from a normal data API. Instead of only returning stored facts,
+        it can generate or transform text based on input. That makes it useful for drafting, sorting,
+        classifying, summarizing, building study tools, and creating helper features inside apps.
+      </p>
+
+      <div class="code-card">
+        <pre><code># Store the key outside the code
+export OPENAI_API_KEY="paste_key_here"
+
+# Example request
+curl https://api.openai.com/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -d '{
+    "model": "gpt-5.5",
+    "input": "Explain APIs in one paragraph for a beginner."
+  }'</code></pre>
+      </div>
+
+      <div class="guide-note">
+        <strong>Good use case:</strong> use the OpenAI API during project creation, admin tooling,
+        summaries, clue generation, study helpers, and content drafting. Do not expose the API key
+        in frontend JavaScript.
+      </div>
+    </section>
+
+    <section>
+      <h2>OpenAI API with Python</h2>
+
+      <p class="section-intro">
+        In Python, the basic pattern is: load the API key from the environment, create a client,
+        send input, and print the model output.
+      </p>
+
+      <div class="code-card">
+        <pre><code>from openai import OpenAI
+
+client = OpenAI()
+
+response = client.responses.create(
+    model="gpt-5.5",
+    input="Give me three beginner project ideas for learning APIs."
+)
+
+print(response.output_text)</code></pre>
+      </div>
+
+      <div class="warning-note">
+        <strong>Security rule:</strong> backend code can safely call the API with a secret key.
+        Static HTML pages should not contain secret keys because anyone can view the page source.
+      </div>
+    </section>
+
+    <section>
+      <h2>API keys and environment variables</h2>
+
+      <p class="section-intro">
+        API keys are like passwords for services. They should not be pasted into public code, static
+        HTML, screenshots, GitHub repos, or browser JavaScript.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">Better</span>
+          <h3>Use environment variables</h3>
+
+          <div class="code-card">
+            <pre><code>export OPENAI_API_KEY="secret"
+export TMDB_BEARER_TOKEN="secret"
+
+python3 app.py</code></pre>
+          </div>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Avoid</span>
+          <h3>Hardcoding secrets</h3>
+
+          <div class="code-card">
+            <pre><code># Bad idea
+api_key = "paste-real-key-here"</code></pre>
+          </div>
+        </article>
+      </div>
+
+      <div class="action-item">
+        <strong>Git rule:</strong> if a project uses a <code>.env</code> file, add
+        <code>.env</code> to <code>.gitignore</code> before committing.
+      </div>
+    </section>
+
+    <section>
+      <h2>GET vs POST</h2>
+
+      <p class="section-intro">
+        Most beginner API work starts with <code>GET</code> and <code>POST</code>.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>What it usually means</th>
+            <th>Example use</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong>GET</strong></td>
+            <td>Read or fetch data.</td>
+            <td>Get a forecast, search for a movie, list records.</td>
+          </tr>
+
+          <tr>
+            <td><strong>POST</strong></td>
+            <td>Send data to create something or ask for processing.</td>
+            <td>Send a prompt, create a record, submit a form, classify text.</td>
+          </tr>
+
+          <tr>
+            <td><strong>PUT/PATCH</strong></td>
+            <td>Update existing data.</td>
+            <td>Modify a saved item or update a setting.</td>
+          </tr>
+
+          <tr>
+            <td><strong>DELETE</strong></td>
+            <td>Remove something.</td>
+            <td>Delete a record through an API.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Status codes I should recognize</h2>
+
+      <p class="section-intro">
+        Status codes are the API's first explanation of what happened.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>Meaning</th>
+            <th>What I check</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong>200</strong></td>
+            <td>Success.</td>
+            <td>The request worked. Now inspect the JSON.</td>
+          </tr>
+
+          <tr>
+            <td><strong>400</strong></td>
+            <td>Bad request.</td>
+            <td>Check parameters, JSON body, or URL formatting.</td>
+          </tr>
+
+          <tr>
+            <td><strong>401</strong></td>
+            <td>Unauthorized.</td>
+            <td>Check API key, token, or authorization header.</td>
+          </tr>
+
+          <tr>
+            <td><strong>403</strong></td>
+            <td>Forbidden.</td>
+            <td>The key may not have permission, or the endpoint may be restricted.</td>
+          </tr>
+
+          <tr>
+            <td><strong>404</strong></td>
+            <td>Not found.</td>
+            <td>Check the endpoint path or requested resource ID.</td>
+          </tr>
+
+          <tr>
+            <td><strong>429</strong></td>
+            <td>Rate limited.</td>
+            <td>Slow down requests, cache results, or check the API's rate-limit rules.</td>
+          </tr>
+
+          <tr>
+            <td><strong>500</strong></td>
+            <td>Server error.</td>
+            <td>The problem may be on the API provider's side.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Beginner mistakes to avoid</h2>
+
+      <p class="section-intro">
+        Most beginner API problems are predictable.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag">Avoid this</span>
+          <h3>Common mistakes</h3>
+          <ul>
+            <li>Committing API keys to GitHub.</li>
+            <li>Calling paid APIs in a loop without limits.</li>
+            <li>Ignoring status codes.</li>
+            <li>Assuming every response has the fields I expected.</li>
+            <li>Putting secret keys inside frontend JavaScript.</li>
+            <li>Not reading the API terms or rate-limit rules.</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <span class="tag green">Do this instead</span>
+          <h3>Better habits</h3>
+          <ul>
+            <li>Use environment variables for secrets.</li>
+            <li>Start with one curl request.</li>
+            <li>Pretty-print JSON with <code>jq</code>.</li>
+            <li>Use <code>response.raise_for_status()</code> in Python.</li>
+            <li>Cache results when possible.</li>
+            <li>Handle missing fields safely.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Good beginner API projects</h2>
+
+      <p class="section-intro">
+        These are practical projects that would fit LaunchShell well.
+      </p>
+
+      <div class="quick-list">
+        <article class="step-card">
+          <span class="step-number">1</span>
+          <h3><a class="inline-link" href="../../projects/tiny-terminal-weather/">Terminal weather app</a></h3>
+          <p>
+            Use Weather.gov to print a short forecast for a saved latitude and longitude.
+          </p>
+        </article>
+
+        <article class="step-card">
+          <span class="step-number">2</span>
+          <h3><a class="inline-link" href="../../projects/java-movie-cli/">Movie lookup tool</a></h3>
+          <p>
+            Use TMDB to search for movies and display title, year, overview, rating, and poster path.
+          </p>
+        </article>
+
+        <article class="step-card">
+          <span class="step-number">3</span>
+          <h3>AI study helper</h3>
+          <p>
+            Use the OpenAI API to summarize notes, generate quiz questions, or explain code.
+          </p>
+        </article>
+
+        <article class="step-card">
+          <span class="step-number">4</span>
+          <h3><a class="inline-link" href="../../projects/json-book-recommendation/">Static site data builder</a></h3>
+          <p>
+            Use an API in a local script to generate JSON files that power a static HTML page.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>How this connects to LaunchShell</h2>
+
+      <p class="section-intro">
+        APIs fit perfectly with the LaunchShell style because they turn small projects into real
+        systems.
+      </p>
+
+      <div class="flow">
+        <article class="flow-step">
+          <span>01</span>
+          <h3>Static site</h3>
+          <p>Use APIs locally to generate JSON, then publish static pages safely.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>02</span>
+          <h3>Python scripts</h3>
+          <p>Build small tools that fetch data, clean it, and save useful output.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>03</span>
+          <h3>Flask apps</h3>
+          <p>Use a backend server to safely call APIs without exposing keys.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>04</span>
+          <h3>Cybersecurity</h3>
+          <p>Learn headers, authentication, tokens, status codes, rate limits, and logs.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>API cheat sheet</h2>
+
+      <p class="section-intro">
+        This is the short version I would keep nearby.
+      </p>
+
+      <div class="code-card">
+        <pre><code># Basic request
+curl https://api.example.com/data
+
+# Include headers
+curl -H "Accept: application/json" https://api.example.com/data
+
+# Include an API bearer token
+curl -H "Authorization: Bearer $API_TOKEN" https://api.example.com/data
+
+# Pretty-print JSON
+curl https://api.example.com/data | jq
+
+# Python requests pattern
+import requests
+
+response = requests.get(url, headers=headers, params=params, timeout=10)
+response.raise_for_status()
+data = response.json()
+
+# Environment variables
+export API_TOKEN="secret"
+
+# Git safety
+echo ".env" >> .gitignore</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>Final idea</h2>
+
+      <div class="callout">
+        <p>
+          <strong>APIs are one of the biggest jumps from writing isolated code to building real
+          tools.</strong> Once I understand requests, responses, JSON, keys, headers, and status
+          codes, my programs can pull weather data, search movie databases, use AI models, power
+          dashboards, generate static site content, and automate work that would be painful to do by
+          hand.
+        </p>
+      </div>
+    </section>
+  <section class="page-end-nav" aria-label="Page navigation">
+    <a class="button primary" href="#top">Back to top</a>
+  </section>
+
+  </main>
+
+  <footer>
+    <div>&copy; 2026 LaunchShell</div>
+    <div>Student-built project guides for Linux, cloud, electronics, Python, Java, APIs, and cybersecurity.</div>
+  </footer>
+</body>
+</html>

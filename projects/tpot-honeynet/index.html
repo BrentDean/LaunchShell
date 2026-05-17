@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LaunchShell | T-Pot Honeynet Project</title>
+  <meta
+    name="description"
+    content="A LaunchShell project page showing how I set up a T-Pot honeynet on a disposable VPS, monitored the dashboards, and summarized the security findings safely."
+  />
+
+  <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+
+  <style>
+    .project-note {
+      margin-top: 22px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: var(--soft);
+      border: 1px solid #cfe0ff;
+      color: var(--muted);
+    }
+
+    .project-note strong,
+    .warning-box strong {
+      color: var(--text);
+    }
+
+    .step-card p,
+    .step-card li {
+      color: var(--muted);
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .warning-box {
+      margin-top: 24px;
+      background: white;
+      border: 1px solid var(--border);
+      border-left: 6px solid #ffb020;
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      color: var(--muted);
+    }
+
+    .docs-list a,
+    .inline-link {
+      color: var(--blue-dark);
+      font-weight: 800;
+    }
+
+    .screenshot-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .screenshot-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: #061226;
+    }
+
+    .screenshot-card figcaption {
+      margin-top: 12px;
+      color: var(--muted);
+    }
+
+    .screenshot-card a {
+      color: var(--blue-dark);
+      font-weight: 800;
+    }
+
+    .image-expand {
+      width: 100%;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: zoom-in;
+      text-align: left;
+    }
+
+    .image-expand:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 4px;
+      border-radius: 14px;
+    }
+
+    .image-hint {
+      display: block;
+      margin-top: 12px;
+      color: var(--blue-dark);
+      font-weight: 800;
+    }
+
+    .image-dialog {
+      width: min(96vw, 1280px);
+      max-height: 94vh;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: white;
+      box-shadow: var(--shadow);
+    }
+
+    .image-dialog::backdrop {
+      background: rgba(6, 18, 38, 0.72);
+    }
+
+    .image-dialog img {
+      width: 100%;
+      height: auto;
+      max-height: 82vh;
+      object-fit: contain;
+      display: block;
+    }
+
+    .image-dialog form {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 12px;
+    }
+
+    @media (max-width: 920px) {
+      .quick-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body id="top" class="resources-page">
+  <header>
+    <a href="../../" aria-label="LaunchShell home">
+      <img src="../../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../">Projects</a>
+      <a href="../../guides/">Guides</a>
+      <a href="../../resources/">Resources</a>
+      <a href="../../resources/book-recommendations/">Read Books!</a>
+      <a href="../../about/">About</a>
+      <a href="../../start.html" class="status">Start Here</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">Advanced • Honeynet • T-Pot • Networking Protocols</div>
+      <h1>T-Pot honeynet project.</h1>
+
+      <p>
+        I did this project to extend what I was learning in Networking Protocols class into a live, controlled lab.
+        It shows how I set up a disposable T-Pot honeynet on a VPS, monitored the dashboards, collected a short evidence set,
+        and shut the lab down cleanly.
+      </p>
+
+      <p>
+        The goal was not to hack anyone back. The goal was to watch what touched the exposed honeypot, learn from the logs,
+        and document the behavior safely.
+      </p>
+
+      <div class="hero-actions">
+        <a class="button primary" href="#steps">Install T-Pot</a>
+        <a class="button" href="#monitor">Monitor dashboards</a>
+        <a class="button" href="#takeaways">Findings summary</a>
+      </div>
+
+      <div class="project-note">
+        <strong>Safety rule:</strong> Use a disposable VPS or isolated lab machine. Restrict management access to your IP.
+        Expect provider alerts, because honeypots intentionally look like exposed services.
+      </div>
+    </section>
+
+    <section>
+      <h2>Before you start</h2>
+      <p class="section-intro">
+        T-Pot is heavier than a normal beginner VPS project. Treat this as a dedicated lab box, not as a server that also hosts your website.
+      </p>
+
+      <div class="quick-list">
+        <article class="step-card">
+          <h3>Use the right machine</h3>
+          <ul>
+            <li>Dedicated VPS or VM only</li>
+            <li>At least 8 GB RAM for a sensor-style install</li>
+            <li>At least 128 GB SSD storage</li>
+            <li>Clean supported Linux install with SSH available</li>
+          </ul>
+        </article>
+
+        <article class="step-card">
+          <h3>Lock down management</h3>
+          <ul>
+            <li>Do not expose management ports to the whole Internet</li>
+            <li>Allow T-Pot SSH only from your IP</li>
+            <li>Allow the web dashboard only from your IP</li>
+            <li>Use strong passwords and save them in a password manager</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="warning-box">
+        <strong>Do not run this on your home network as a first attempt.</strong>
+        A public honeynet attracts scanners, bots, abuse notifications, and noisy traffic. Start with a cloud VPS you can destroy.
+      </div>
+    </section>
+
+    <section id="steps">
+      <h2>Strict install steps</h2>
+      <p class="section-intro">
+        These steps follow the current T-Pot project install flow: start from a clean supported Linux host, install curl if needed,
+        run the installer as a normal user from your home directory, reboot, then use the T-Pot management ports.
+      </p>
+
+      <div class="quick-list">
+        <article class="step-card">
+          <div class="step-number">1</div>
+          <h3>Create the VPS</h3>
+          <p>Use a fresh supported Linux image. Do not install Apache, Nginx, databases, panels, or extra services first.</p>
+          <ul>
+            <li>Pick a server with enough RAM and disk</li>
+            <li>Add your SSH key</li>
+            <li>Record the public IP</li>
+          </ul>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">2</div>
+          <h3>Restrict management ports</h3>
+          <p>Before exposing honeypot traffic, keep T-Pot management access limited to your IP.</p>
+          <ul>
+            <li>SSH management: <code>64295/tcp</code></li>
+            <li>Web landing page: <code>64297/tcp</code></li>
+            <li>Allow those only from your home IP</li>
+          </ul>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">3</div>
+          <h3>SSH into the server</h3>
+          <p>If SSH is still new, read the terminal and SSH guide first.</p>
+          <pre><code>ssh username@YOUR_SERVER_IP</code></pre>
+          <p><a class="inline-link" href="../../guides/linux-terminal-intro/#ssh">Open the SSH beginner guide</a></p>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">4</div>
+          <h3>Install curl if needed</h3>
+          <p>T-Pot uses a remote installer script, so the server needs curl.</p>
+          <pre><code>sudo apt update
+sudo apt install -y curl</code></pre>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">5</div>
+          <h3>Run the T-Pot installer</h3>
+          <p>Run this as your normal user from <code>$HOME</code>, not as root.</p>
+          <pre><code>cd ~
+env bash -c "$(curl -sL https://github.com/telekom-security/tpotce/raw/master/install.sh)"</code></pre>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">6</div>
+          <h3>Read every installer prompt</h3>
+          <p>Do not speed-click through the installer.</p>
+          <ul>
+            <li>Choose the install type intentionally</li>
+            <li>Create the web user when prompted</li>
+            <li>Write down the web username and password</li>
+            <li>Watch for port conflict warnings</li>
+          </ul>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">7</div>
+          <h3>Reboot after install</h3>
+          <p>The official flow expects a reboot after the installer finishes.</p>
+          <pre><code>sudo reboot</code></pre>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">8</div>
+          <h3>Log in through T-Pot SSH</h3>
+          <p>After reboot, T-Pot uses its management SSH port.</p>
+          <pre><code>ssh -l username -p 64295 YOUR_SERVER_IP</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <section id="monitor">
+      <h2>Monitor the dashboards</h2>
+      <p class="section-intro">
+        Once T-Pot is running, use the web landing page to reach Kibana, the Attack Map, and other tools.
+      </p>
+
+      <div class="path">
+        <div class="path-row">
+          <div class="level">Open</div>
+          <div><strong>T-Pot landing page</strong></div>
+          <div class="tools"><code>https://YOUR_SERVER_IP:64297</code></div>
+        </div>
+        <div class="path-row">
+          <div class="level">Watch</div>
+          <div><strong>Attack Map</strong></div>
+          <div class="tools">Look for source countries, bursts, and repeated scanners.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">Review</div>
+          <div><strong>Kibana dashboards</strong></div>
+          <div class="tools">Check Cowrie, Suricata, ports, usernames, passwords, and commands.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">Record</div>
+          <div><strong>Evidence notes</strong></div>
+          <div class="tools">Capture screenshots, top ports, top credentials, and one short interpretation.</div>
+        </div>
+      </div>
+
+      <div class="warning-box">
+        <strong>Keep the evidence sanitized.</strong>
+        Do not publish raw logs, full VPS IPs, attacker IPs, keys, provider account data, or customer identifiers.
+      </div>
+    </section>
+
+    <section>
+      <h2>Dashboard screenshots</h2>
+
+      <div class="quick-list">
+        <figure class="screenshot-card">
+          <button class="image-expand" type="button" data-full-image="../../assets/dash2.png" data-full-alt="T-Pot dashboard overview showing protocol activity and honeypot performance charts">
+            <img src="../../assets/dash2.png" alt="T-Pot dashboard overview showing protocol activity and honeypot performance charts" />
+            <span class="image-hint">Click to expand</span>
+          </button>
+          <figcaption>
+            Dashboard view showing protocol mix, attack timing, honeypot performance, and heatmap-style activity.
+          </figcaption>
+        </figure>
+
+        <figure class="screenshot-card">
+          <button class="image-expand" type="button" data-full-image="../../assets/tpot-live-feed-sanitized.png" data-full-alt="Sanitized T-Pot live feed showing honeypot, protocol, port, country, and reputation fields">
+            <img src="../../assets/tpot-live-feed-sanitized.png" alt="Sanitized T-Pot live feed showing honeypot, protocol, port, country, and reputation fields" />
+            <span class="image-hint">Click to expand</span>
+          </button>
+          <figcaption>
+            Sanitized live feed view. The source IP column is redacted for public sharing, but the protocol, port,
+            honeypot, country, and reputation fields still show the monitoring workflow.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section>
+      <h2>Clean shutdown</h2>
+      <p class="section-intro">
+        A honeynet lab is not complete until it is stopped, exported, or destroyed.
+      </p>
+
+      <div class="quick-list">
+        <article class="step-card">
+          <h3>Stop T-Pot</h3>
+          <pre><code>sudo systemctl stop tpot
+sudo systemctl disable tpot</code></pre>
+        </article>
+
+        <article class="step-card">
+          <h3>Verify containers stopped</h3>
+          <pre><code>docker ps</code></pre>
+        </article>
+
+        <article class="step-card">
+          <h3>Archive data if needed</h3>
+          <pre><code>tar -czf tpot-logs.tar.gz ~/tpotce/data</code></pre>
+        </article>
+
+        <article class="step-card">
+          <h3>Destroy the VPS</h3>
+          <p>Terminate the instance and check for leftover volumes, snapshots, public IPs, or firewall rules.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="takeaways">
+      <h2>What this advanced project demonstrated</h2>
+      <p class="section-intro">
+        This page keeps the detailed results private, but the high-level pattern was worth documenting:
+        exposed services attract automated attention quickly, including traffic that appears financially motivated.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag">Advanced</span>
+          <h3>Protocols become visible</h3>
+          <p>
+            T-Pot turns abstract networking topics into visible events: ports, protocols, sessions, source traffic,
+            IDS alerts, and dashboard timelines.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Crypto targeting</span>
+          <h3>Crypto thieves are out there</h3>
+          <p>
+            One sanitized finding was a visible crypto-themed SSH credential pattern. The lesson is simple:
+            attackers and bots are actively looking for weakly secured systems tied to valuable infrastructure.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Documentation</span>
+          <h3>Evidence handling matters</h3>
+          <p>
+            The project required careful notes, screenshots, log handling, redaction, shutdown steps,
+            and a clear separation between private analysis and public summary.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Official references</h2>
+      <div class="grid docs-list">
+        <article class="card">
+          <span class="tag">Official</span>
+          <h3>T-Pot README</h3>
+          <p>The current install commands, requirements, ports, first-start notes, dashboards, and maintenance details.</p>
+          <p><a href="https://github.com/telekom-security/tpotce" rel="noopener">Open T-Pot on GitHub</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Next Step</span>
+          <h3>AWS VPS setup</h3>
+          <p>Use this first if you still need help creating a disposable Linux server.</p>
+          <p><a href="../../guides/aws-free-vps/">Open AWS VPS guide</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Beginner</span>
+          <h3>Terminal and SSH intro</h3>
+          <p>Use this first if the commands, SSH tunnel, or headless-server workflow are still unfamiliar.</p>
+          <p><a href="../../guides/linux-terminal-intro/">Open terminal guide</a></p>
+        </article>
+      </div>
+    </section>
+    <section class="page-end-nav" aria-label="Page navigation">
+      <a class="button primary" href="#top">Back to top</a>
+    </section>
+  </main>
+
+  <footer>
+    <div>© 2026 LaunchShell</div>
+    <div>Student-built project guides for Linux, cloud, electronics, and cybersecurity.</div>
+  </footer>
+
+  <dialog class="image-dialog" id="image-dialog" aria-label="Expanded dashboard screenshot">
+    <form method="dialog">
+      <button class="button" type="submit">Close</button>
+    </form>
+    <img src="" alt="" />
+  </dialog>
+
+  <script>
+    const imageDialog = document.getElementById("image-dialog");
+    const imageDialogImg = imageDialog.querySelector("img");
+
+    document.querySelectorAll(".image-expand").forEach((button) => {
+      button.addEventListener("click", () => {
+        imageDialogImg.src = button.dataset.fullImage;
+        imageDialogImg.alt = button.dataset.fullAlt;
+        imageDialog.showModal();
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LaunchShell | 8-Bit Computer Project</title>
+  <meta name="description"
+    content="A LaunchShell project page for a from-scratch 8-bit CPU, Python assembler, ROM image tooling, and Arduino Nano EEPROM programmer." />
+
+  <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+
+<style>
+  .project-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(420px, 1fr);
+    gap: 34px;
+    align-items: center;
+    padding: 56px 0 54px;
+  }
+
+  .project-hero h1 {
+    max-width: 760px;
+    font-size: clamp(3.4rem, 6vw, 5.3rem);
+    line-height: 0.98;
+  }
+
+  .project-hero p {
+    max-width: 700px;
+  }
+
+  .project-visual {
+    max-width: 720px;
+    justify-self: end;
+    border-radius: 28px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: white;
+    box-shadow: var(--shadow);
+  }
+
+  .project-visual img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: contain;
+    display: block;
+    background: white;
+  }
+
+  .project-visual .caption {
+    padding: 16px 18px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-top: 28px;
+  }
+
+  .stat {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 12px 34px rgba(6, 18, 38, 0.06);
+  }
+
+  .stat strong {
+    display: block;
+    font-size: 1.4rem;
+    line-height: 1;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .stat span {
+    color: var(--muted);
+    font-size: 0.92rem;
+    font-weight: 700;
+  }
+
+  .split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.8fr);
+    gap: 20px;
+    align-items: start;
+  }
+
+  .diagram {
+    background: var(--dark);
+    color: white;
+    border-radius: 22px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+  }
+
+  .diagram pre {
+    margin: 0;
+    white-space: pre-wrap;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    color: #d8e6ff;
+    line-height: 1.55;
+    font-size: 0.94rem;
+  }
+
+  .flow {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+  }
+
+  .flow-step {
+    position: relative;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 12px 34px rgba(6, 18, 38, 0.06);
+    min-height: 170px;
+  }
+
+  .flow-step h3 {
+    margin: 0 0 8px;
+    font-size: 1.05rem;
+  }
+
+  .instruction-table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 18px;
+    background: white;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+  }
+
+  .instruction-table th,
+  .instruction-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .instruction-table th {
+    background: var(--soft);
+    color: var(--text);
+  }
+
+  .instruction-table td {
+    color: var(--muted);
+  }
+
+  .instruction-table tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .instruction-table code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    color: var(--text);
+    font-weight: 900;
+  }
+
+  .status-list {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .status-list li {
+    margin: 0;
+    padding: 13px 15px;
+    border-radius: 14px;
+    background: var(--soft);
+    color: var(--muted);
+    border: 1px solid #cfe0ff;
+  }
+
+  .status-list strong {
+    color: var(--text);
+  }
+
+  .resource-card a {
+    color: var(--blue-dark);
+    font-weight: 900;
+  }
+
+  @media (max-width: 1020px) {
+    .project-hero,
+    .split {
+      grid-template-columns: 1fr;
+    }
+
+    .project-visual {
+      max-width: 100%;
+      justify-self: stretch;
+    }
+
+    .project-visual img {
+      height: auto;
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .flow {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .instruction-table,
+    .instruction-table thead,
+    .instruction-table tbody,
+    .instruction-table th,
+    .instruction-table td,
+    .instruction-table tr {
+      display: block;
+    }
+
+    .instruction-table thead {
+      display: none;
+    }
+
+    .instruction-table tr {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .instruction-table tr:last-child {
+      border-bottom: 0;
+    }
+
+    .instruction-table td {
+      border-bottom: 0;
+      padding: 12px 16px;
+    }
+
+    .instruction-table td:first-child::before {
+      content: "Mnemonic";
+      display: block;
+      font-weight: 900;
+      color: var(--text);
+    }
+
+    .instruction-table td:last-child::before {
+      content: "Meaning";
+      display: block;
+      font-weight: 900;
+      color: var(--text);
+    }
+  }
+</style>
+</head>
+
+<body id="top" class="project-page eight-bit-page">
+  <header>
+    <a href="../../" aria-label="LaunchShell home">
+      <img src="../../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../">Projects</a>
+      <a href="../../guides/">Guides</a>
+      <a href="../../resources/">Resources</a>
+      <a href="../../resources/book-recommendations/">Read Books!</a>
+      <a href="../../about/">About</a>
+      <a href="#status" class="status">Project Status</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="project-hero">
+      <div>
+        <div class="eyebrow">Hardware • Python • EEPROMs • Microcode</div>
+        <h1>8-Bit Computer + ROM Tooling</h1>
+
+        <p>
+          This project connects software to real hardware: a from-scratch 8-bit CPU on a custom PCB,
+          plus Python tools that turn a tiny assembly language into EEPROM contents.
+        </p>
+
+        <p>
+          The point is not just to simulate a CPU. The point is to write instructions, generate ROM images,
+          burn them into real chips, move the EEPROM to the board, and watch the hardware execute.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href="#workflow">See the workflow</a>
+          <a class="button" href="#isa">View the ISA</a>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat">
+            <strong>8-bit</strong>
+            <span>Data bus</span>
+          </div>
+          <div class="stat">
+            <strong>28C64</strong>
+            <span>EEPROM</span>
+          </div>
+          <div class="stat">
+            <strong>Python</strong>
+            <span>Assembler tooling</span>
+          </div>
+          <div class="stat">
+            <strong>Arduino</strong>
+            <span>ROM programmer</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-visual">
+        <img src="../../assets/card-8bit.png" alt="8-bit CPU project graphic" />
+        <div class="caption">
+          A hardware/software project for learning CPU architecture, buses, registers, microcode, ROMs, and the real
+          path from source code to electrical behavior.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>What this project is</h2>
+      <p class="section-intro">
+        This is a custom educational CPU project. The design starts from the classic Ben Eater-style 8-bit computer,
+        then moves toward a single-PCB build with Python-generated ROM images and an Arduino-based EEPROM programmer.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag">Project Goal</span>
+          <h3>Build the computer and the toolchain</h3>
+          <p>
+            The CPU is only half the project. The other half is the software pipeline that lets me write simple
+            assembly,
+            encode it into bytes, generate a ROM image, and program an EEPROM that the hardware can actually run.
+          </p>
+
+          <div class="tech-list">
+            <span class="tech-pill">8-bit CPU</span>
+            <span class="tech-pill">Custom PCB</span>
+            <span class="tech-pill">KiCad</span>
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill">Assembly</span>
+            <span class="tech-pill">Microcode</span>
+            <span class="tech-pill">28C64 EEPROM</span>
+            <span class="tech-pill">Arduino Nano</span>
+            <span class="tech-pill">74HC595</span>
+            <span class="tech-pill">ZIF Socket</span>
+          </div>
+        </article>
+
+        <article class="diagram">
+          <pre>Assembly source
+      ↓
+Python assembler
+      ↓
+ROM image / byte array
+      ↓
+Arduino Nano programmer
+      ↓
+AT28C64 EEPROM
+      ↓
+8-bit CPU board
+      ↓
+LEDs / output register</pre>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>What I am learning</h2>
+      <p class="section-intro">
+        This project sits between computer science, electrical engineering, and embedded systems.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag">CPU Architecture</span>
+          <h3>Datapath and control</h3>
+          <p>
+            Registers, buses, ALU behavior, flags, instruction fetch, program counter movement, and how control signals
+            make the datapath do work.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Digital Logic</span>
+          <h3>Real chips, real timing</h3>
+          <p>
+            Glue logic, tri-state buses, latches, edge-triggered registers, clock sequencing, control lines, decoupling,
+            and electrical debugging.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Tooling</span>
+          <h3>Assembler and ROM generation</h3>
+          <p>
+            A small Python toolchain parses assembly, encodes instructions, creates a byte listing, and outputs data
+            suitable for EEPROM programming.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="workflow">
+      <h2>Python → Arduino → EEPROM workflow</h2>
+      <p class="section-intro">
+        The workflow is intentionally practical. I want to change code, regenerate bytes, burn the ROM, and test it on
+        the board.
+      </p>
+
+      <div class="flow">
+        <article class="flow-step">
+          <span>01</span>
+          <h3>Write assembly</h3>
+          <p>Edit a tiny source file like <code>program.asm</code>.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>02</span>
+          <h3>Assemble it</h3>
+          <p>Run the Python assembler to turn mnemonics and operands into bytes.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>03</span>
+          <h3>Send bytes</h3>
+          <p>Send the generated ROM image over serial to the Arduino Nano.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>04</span>
+          <h3>Program EEPROM</h3>
+          <p>The Nano drives shift registers, address lines, data lines, and write control.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>05</span>
+          <h3>Run on hardware</h3>
+          <p>Move the EEPROM to the CPU board and observe the output register or LEDs.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="isa">
+      <h2>Instruction set starting point</h2>
+      <p class="section-intro">
+        The ISA is intentionally small. The goal is to make each instruction easy to understand and easy to trace
+        through the hardware.
+      </p>
+
+      <table class="instruction-table">
+        <thead>
+          <tr>
+            <th>Mnemonic</th>
+            <th>Meaning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>LDA</code></td>
+            <td>Load accumulator from memory.</td>
+          </tr>
+          <tr>
+            <td><code>ADD</code></td>
+            <td>Add memory value to accumulator.</td>
+          </tr>
+          <tr>
+            <td><code>SUB</code></td>
+            <td>Subtract memory value from accumulator.</td>
+          </tr>
+          <tr>
+            <td><code>STA</code></td>
+            <td>Store accumulator to memory.</td>
+          </tr>
+          <tr>
+            <td><code>LDI</code></td>
+            <td>Load an immediate value into the accumulator.</td>
+          </tr>
+          <tr>
+            <td><code>JMP</code></td>
+            <td>Jump to another address.</td>
+          </tr>
+          <tr>
+            <td><code>JC</code></td>
+            <td>Jump if the carry flag is set.</td>
+          </tr>
+          <tr>
+            <td><code>JZ</code></td>
+            <td>Jump if the zero flag is set.</td>
+          </tr>
+          <tr>
+            <td><code>OUT</code></td>
+            <td>Copy the accumulator to the output register.</td>
+          </tr>
+          <tr>
+            <td><code>HLT</code></td>
+            <td>Halt the CPU.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Tiny sample program</h2>
+      <p class="section-intro">
+        This is the kind of tiny assembly program the Python tooling is meant to parse and encode.
+      </p>
+
+      <div class="code-card">
+        <pre><code>; Example: load a value, store it, read it back, and output
+LDI 0x0
+STA 0xF
+LDA 0xF
+OUT
+HLT</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>Microcode idea</h2>
+      <p class="section-intro">
+        The control unit is microcoded. Each instruction runs as a sequence of smaller control steps.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag">Control ROM</span>
+          <h3>Opcode + step + flags → control word</h3>
+          <p>
+            The control word is a bitfield. Each bit drives something on the CPU: register load lines,
+            output enable lines, ALU operation selection, memory read/write, program counter increment/load,
+            and the output register.
+          </p>
+          <p>
+            Long term, the same Python tooling can generate not only instruction ROM images, but also the microcode ROM
+            image.
+          </p>
+        </article>
+
+        <article class="diagram">
+          <pre>(opcode, microstep, flags)
+          ↓
+      control_word
+          ↓
+Register load / enable
+ALU operation select
+Memory read / write
+Program counter control
+Output register enable</pre>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>EEPROM programmer</h2>
+      <p class="section-intro">
+        To avoid manually entering bytes, I built a simple ROM loader around an Arduino Nano.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag green">What it writes</span>
+          <h3>AT28C64 EEPROM</h3>
+          <p>
+            The programmer writes bytes to specific EEPROM addresses and can read them back for verification.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">How it expands I/O</span>
+          <h3>74HC595 shift registers</h3>
+          <p>
+            The Nano does not have enough GPIO for everything, so shift registers fan out address, data, and control
+            signals.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Why it matters</span>
+          <h3>Fast experiment loop</h3>
+          <p>
+            Once the programmer works, I can change the assembler or microcode and burn new EEPROM contents quickly.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="status">
+      <h2>Current status</h2>
+      <p class="section-intro">
+        This project is still active. The point of the page is to show the build honestly: completed work, testing work,
+        and next steps.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">Done</span>
+          <h3>Completed so far</h3>
+          <ul class="status-list">
+            <li><strong>CPU schematic and PCB routed</strong> in KiCad.</li>
+            <li><strong>Required components sourced</strong> and received.</li>
+            <li><strong>Switched to 28C64 EEPROMs</strong> with unused address lines tied low for now.</li>
+            <li><strong>EEPROM loader proof of concept</strong> completed on breadboard.</li>
+            <li><strong>Basic Python assembler and ROM generator</strong> started.</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Next</span>
+          <h3>Work in progress</h3>
+          <ul class="status-list">
+            <li><strong>PCB assembly and bring-up</strong>: power rails, clock, reset, continuity, and first tests.</li>
+            <li><strong>Initial ISA experiments</strong> with small test programs.</li>
+            <li><strong>Control word format</strong> and microcode ROM generation.</li>
+            <li><strong>Cleaner Arduino Nano EEPROM programmer</strong> in C.</li>
+            <li><strong>More documentation</strong>: photos, block diagrams, and build notes.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Why this belongs on LaunchShell</h2>
+      <p class="section-intro">
+        This is exactly the kind of project LaunchShell is meant to document: a real build that connects theory,
+        tools, mistakes, debugging, and practical systems thinking.
+      </p>
+
+      <div class="method">
+        <div class="method-step">
+          <span>01</span>
+          <h3>Build it</h3>
+          <p>Design the CPU, route the PCB, source parts, assemble the board, and build the ROM loader.</p>
+        </div>
+
+        <div class="method-step">
+          <span>02</span>
+          <h3>Back it up</h3>
+          <p>Keep KiCad files, assembler code, ROM images, notes, and test programs in version control.</p>
+        </div>
+
+        <div class="method-step">
+          <span>03</span>
+          <h3>Break it</h3>
+          <p>Expect wiring issues, timing problems, bad assumptions, incorrect control bits, and failed test programs.
+          </p>
+        </div>
+
+        <div class="method-step">
+          <span>04</span>
+          <h3>Learn why</h3>
+          <p>Use the failure points to understand how real machines execute instructions at the signal level.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Related resources</h2>
+      <p class="section-intro">
+        These are useful starting points for readers who want to understand the background.
+      </p>
+
+      <div class="grid">
+        <article class="card resource-card">
+          <span class="tag">Inspiration</span>
+          <h3>Ben Eater 8-bit computer</h3>
+          <p>
+            The original educational breadboard computer series that inspired the starting architecture.
+          </p>
+          <p><a href="https://eater.net/8bit" rel="noopener">Visit Ben Eater’s 8-bit computer page</a></p>
+        </article>
+
+        <article class="card resource-card">
+          <span class="tag green">EEPROM</span>
+          <h3>Arduino EEPROM programmer video</h3>
+          <p>
+            A practical reference for building an Arduino-based EEPROM programmer.
+          </p>
+          <p><a href="https://www.youtube.com/watch?v=K88pgWhEb1M" rel="noopener">Watch the EEPROM programmer video</a>
+          </p>
+        </article>
+
+        <article class="card resource-card">
+          <span class="tag">PCB Reference</span>
+          <h3>The-Invent0r PCB project</h3>
+          <p>
+            A related single-board 8-bit computer project that influenced the PCB direction.
+          </p>
+          <p><a href="https://github.com/The-Invent0r/" rel="noopener">View The-Invent0r on GitHub</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Project summary</h2>
+      <div class="callout">
+        <p>
+          This project is a bridge between code and hardware. Python generates the bytes, an Arduino writes them to ROM,
+          and the CPU board turns those bytes into visible behavior. That makes every layer observable: source code,
+          opcodes, memory addresses, control signals, and physical output.
+        </p>
+      </div>
+    </section>
+    <section class="page-end-nav" aria-label="Page navigation">
+      <a class="button primary" href="#top">Back to top</a>
+    </section>
+  </main>
+
+  <footer>
+    <div>© 2026 LaunchShell</div>
+    <div>Student-built project guides for Linux, cloud, electronics, and cybersecurity.</div>
+  </footer>
+</body>
+
+</html>

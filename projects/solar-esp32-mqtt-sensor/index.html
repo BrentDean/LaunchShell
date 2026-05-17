@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LaunchShell | Solar ESP32 MQTT Sensor</title>
+  <meta name="description"
+    content="A LaunchShell project page for a solar-powered ESP32 temperature and humidity sensor enclosure that sends MQTT data back to a local web server." />
+
+  <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+</head>
+
+<body id="top" class="project-page solar-esp32-mqtt-page">
+  <header>
+    <a href="../../" aria-label="LaunchShell home">
+      <img src="../../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../../projects/">Projects</a>
+      <a href="../../guides/">Guides</a>
+      <a href="../../resources/">Resources</a>
+      <a href="../../resources/book-recommendations/">Read Books!</a>
+      <a class="status" href="../../start.html">Start Here</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="project-hero">
+      <div>
+        <div class="eyebrow">ESP32 • Solar Power • MQTT • Sensors • Electronics Path</div>
+
+        <h1>Solar ESP32 MQTT Sensor</h1>
+
+        <p>
+          This project is a solar-powered outdoor sensor node built around an ESP32, a temperature
+          and humidity sensor, a 5V USB solar panel, a DFRobot solar charger board, and a large
+          lithium-ion battery pack inside a weather-resistant enclosure.
+        </p>
+
+        <p>
+          The goal was to build a self-contained box that could sit outside, power itself from solar,
+          measure temperature and humidity, connect over Wi-Fi, and transmit readings by MQTT back
+          to a local web server.
+        </p>
+
+        <p>
+          What made this project especially useful was that it was not only software. It was a
+          physical electronics build with soldered connections, cable glands, strain relief, power
+          routing, enclosure planning, and a real sensor-to-server data path.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href="#build">See the build</a>
+          <a class="button" href="../../guides/arduino-esp32-overview/">What the heck is an ESP32?</a>
+          <a class="button" href="#electronics-path">Electronics path</a>
+          <a class="button" href="#mqtt">MQTT workflow</a>
+        </div>
+
+        <div class="guide-note">
+          <strong>Project context:</strong> this is one of the projects that connects electronics,
+          soldering, physical enclosure design, networking, Linux servers, sensors, power management,
+          and web dashboards into one practical system.
+        </div>
+      </div>
+
+      <div class="visual-card">
+        <div class="visual-inner" aria-label="Solar ESP32 MQTT sensor project diagram">
+          <div class="stack">
+            <div class="stack-layer">
+              <strong>Solar panel</strong>
+              <span>5V USB solar input feeds the charge board.</span>
+            </div>
+
+            <div class="stack-layer">
+              <strong>Battery + charger</strong>
+              <span>20,000 mAh Li-ion pack powers the enclosure.</span>
+            </div>
+
+            <div class="stack-layer dark">
+              <strong>ESP32 + sensor</strong>
+              <span>Reads temperature and humidity, then connects over Wi-Fi.</span>
+            </div>
+
+            <div class="stack-layer">
+              <strong>MQTT → local server</strong>
+              <span>Sensor readings are published back to a local web dashboard.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="caption">
+          The finished box is a small outdoor IoT node: solar power in, sensor data out.
+        </div>
+      </div>
+    </section>
+
+    <section id="what">
+      <h2>What I built</h2>
+
+      <p class="section-intro">
+        I wired together a weather-resistant enclosure that powers an ESP32 from a solar-charged
+        battery system. The ESP32 reads temperature and humidity, connects to Wi-Fi, and publishes
+        readings over MQTT to a local server.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Power</span>
+            <h3>Solar battery system</h3>
+            <p>
+              A 5V USB solar panel charges a 20,000 mAh lithium-ion battery through a DFRobot solar
+              charger board, giving the enclosure portable off-grid power.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Sensor</span>
+            <h3>Temperature and humidity</h3>
+            <p>
+              The ESP32 reads environmental data from a temperature and humidity sensor mounted with
+              the outdoor enclosure in mind.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Network</span>
+            <h3>MQTT data path</h3>
+            <p>
+              The sensor node publishes readings over Wi-Fi to an MQTT broker, where a local web
+              server can display, store, or graph the data.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="why">
+      <h2>Why this project matters</h2>
+
+      <p class="section-intro">
+        This is not just a sensor demo. It is a complete small IoT system: outdoor enclosure,
+        power source, battery storage, microcontroller, network transport, and local server.
+      </p>
+
+      <div class="method">
+        <div class="method-step">
+          <span>01</span>
+          <h3>Measure</h3>
+          <p>The temperature and humidity sensor collects environmental readings.</p>
+        </div>
+
+        <div class="method-step">
+          <span>02</span>
+          <h3>Transmit</h3>
+          <p>The ESP32 sends the readings over Wi-Fi using MQTT.</p>
+        </div>
+
+        <div class="method-step">
+          <span>03</span>
+          <h3>Receive</h3>
+          <p>A local MQTT broker receives the messages on the home lab network.</p>
+        </div>
+
+        <div class="method-step">
+          <span>04</span>
+          <h3>Display</h3>
+          <p>A local web server can turn the messages into a dashboard, log, or graph.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="electronics-path">
+      <h2>Why this belongs on the electronics path</h2>
+
+      <p class="section-intro">
+        This project is a good electronics-path project because it is not only code. It is a physical
+        product: a box with power input, battery storage, soldered connections, cable glands, strain
+        relief, a microcontroller, a sensor, and a network data path.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Soldering</span>
+            <h3>Physical connections matter</h3>
+            <p>
+              Unlike pure software, every connection is visible. Wires need to be stripped, soldered,
+              insulated, routed, and checked. A bad joint or loose wire can break the whole system.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Enclosure design</span>
+            <h3>The box is part of the system</h3>
+            <p>
+              The enclosure protects the electronics, but it also affects serviceability, airflow,
+              cable entry, sensor accuracy, heat, moisture, and mounting.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Systems thinking</span>
+            <h3>Everything connects</h3>
+            <p>
+              Solar power, battery charging, voltage output, ESP32 power draw, Wi-Fi signal, MQTT
+              messages, and server logging all depend on each other.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <div class="callout">
+        <p>
+          <strong>This is why electronics projects are different from screen-only projects.</strong>
+          I can see the physical system: where power enters, where wires connect, where the sensor
+          sits, where the enclosure seals, and how the data leaves the box. That makes the project
+          a practical lesson in both electronics and systems design.
+        </p>
+      </div>
+    </section>
+
+    <section id="parts">
+      <h2>Parts used</h2>
+
+      <p class="section-intro">
+        The project combines basic IoT hardware with a solar power system and a weather-resistant
+        physical enclosure.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Part</th>
+            <th>What I used it for</th>
+            <th>Why it mattered</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong>Weatherproof enclosure</strong></td>
+            <td>Houses the electronics outdoors.</td>
+            <td>Protects the ESP32, wiring, charger board, and battery from casual exposure.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Cable glands</strong></td>
+            <td>Allows wires to enter the enclosure cleanly.</td>
+            <td>Improves weather resistance and reduces messy open holes in the box.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Strain relief</strong></td>
+            <td>Protects solder joints and board connectors.</td>
+            <td>Prevents cable movement from pulling directly on small electrical connections.</td>
+          </tr>
+
+          <tr>
+            <td><strong>ESP32 Wi-Fi board</strong></td>
+            <td>Reads the sensor and publishes MQTT messages.</td>
+            <td>Combines microcontroller logic with built-in Wi-Fi.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Temperature/humidity sensor</strong></td>
+            <td>Measures environmental conditions.</td>
+            <td>Provides useful real-world data for the local dashboard.</td>
+          </tr>
+
+          <tr>
+            <td><strong>DFRobot 5V solar charger board</strong></td>
+            <td>Manages solar charging and battery-powered output.</td>
+            <td>Makes the enclosure practical as a solar-powered sensor node.</td>
+          </tr>
+
+          <tr>
+            <td><strong>5V USB solar panel</strong></td>
+            <td>Provides solar input power.</td>
+            <td>Lets the box recharge during daylight instead of relying only on manual charging.</td>
+          </tr>
+
+          <tr>
+            <td><strong>20,000 mAh Li-ion battery</strong></td>
+            <td>Stores energy for overnight and cloudy operation.</td>
+            <td>Gives the ESP32 a much larger runtime buffer than a small cell.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="build">
+      <h2>Build overview</h2>
+
+      <p class="section-intro">
+        The build is easiest to understand as five layers: enclosure, power, sensor, microcontroller,
+        and server.
+      </p>
+
+      <div class="flow">
+        <article class="flow-step">
+          <span>01</span>
+          <h3>Enclosure layer</h3>
+          <p>The weather-resistant box, glands, and strain relief turn modules into a field device.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>02</span>
+          <h3>Power layer</h3>
+          <p>The 5V USB solar panel feeds the DFRobot solar charger board.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>03</span>
+          <h3>Battery layer</h3>
+          <p>The 20,000 mAh Li-ion battery stores power and supplies the ESP32 system.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>04</span>
+          <h3>Network layer</h3>
+          <p>The ESP32 publishes the reading to an MQTT topic on the local network.</p>
+        </article>
+      </div>
+
+      <div class="guide-note">
+        <strong>Main idea:</strong> the enclosure is not just a box. It is a small field sensor:
+        power comes from the sun, data leaves over Wi-Fi, and the server receives it automatically.
+      </div>
+    </section>
+
+    <section>
+      <h2>Power layout</h2>
+
+      <p class="section-intro">
+        The power side is what makes this project feel more like a real deployment than a breadboard
+        demo. The ESP32 is not just plugged into a laptop. It has its own solar and battery setup.
+      </p>
+
+      <div class="code-card">
+        <pre><code>5V USB solar panel
+        │
+        ▼
+DFRobot 5V solar charger board
+        │
+        ├── 20,000 mAh Li-ion battery
+        │
+        ▼
+5V output to ESP32 sensor system</code></pre>
+      </div>
+
+      <div class="warning-note">
+        <strong>Battery safety note:</strong> lithium batteries need proper charging, protection,
+        strain relief, insulation, and enclosure planning. I would not leave an early prototype
+        unattended until the wiring, charging behavior, heat, and weather protection are tested.
+      </div>
+    </section>
+
+    <section>
+      <h2>Sensor and ESP32 layout</h2>
+
+      <p class="section-intro">
+        The ESP32 handles the local logic. It reads the temperature/humidity sensor, formats the data,
+        connects to Wi-Fi, and publishes a message to MQTT.
+      </p>
+
+      <div class="code-card">
+        <pre><code>Temperature / humidity sensor
+        │
+        ▼
+ESP32 GPIO input
+        │
+        ▼
+Format reading as JSON
+        │
+        ▼
+Publish to MQTT topic</code></pre>
+      </div>
+
+      <div class="guide-note">
+        <strong>Good project habit:</strong> test the sensor indoors from USB power first. Then test
+        Wi-Fi and MQTT. Then move to battery. Then move to the solar enclosure.
+      </div>
+    </section>
+
+    <section id="mqtt">
+      <h2>MQTT workflow</h2>
+
+      <p class="section-intro">
+        MQTT is a good fit for small IoT devices because the sensor does not need to run a full web
+        server or serve pages directly. The ESP32 only needs to connect to Wi-Fi, publish a small
+        message, and let the local broker handle distribution.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">ESP32 publishes</span>
+          <h3>Sensor node</h3>
+          <p>
+            The ESP32 connects to Wi-Fi and publishes readings to a topic such as
+            <code>launchshell/sensors/outdoor1</code>. The device does not need to know which
+            dashboard, database, or script will eventually use the data.
+          </p>
+
+          <div class="code-card">
+            <pre><code>{
+  "device": "outdoor1",
+  "temperature_f": 72.4,
+  "humidity": 56.1,
+  "battery": "ok"
+}</code></pre>
+          </div>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Server subscribes</span>
+          <h3>Local receiver</h3>
+          <p>
+            A local server, dashboard, or script subscribes to the topic, receives the readings, and
+            can display, log, or graph the data. This keeps the ESP32 simple and moves the heavier
+            work to the server.
+          </p>
+
+          <div class="code-card">
+            <pre><code>mosquitto_sub -h 192.168.1.50 \
+  -t "launchshell/sensors/outdoor1"</code></pre>
+          </div>
+        </article>
+      </div>
+
+      <div class="guide-note">
+        <strong>Networking class connection:</strong> MQTT is an application-layer protocol. In a
+        normal Wi-Fi setup, the message still travels through the stack: ESP32 application code →
+        MQTT → TCP → IP → Wi-Fi. MQTT gives the project a lightweight publish/subscribe pattern,
+        while TCP underneath handles reliable transport.
+      </div>
+    </section>
+
+    <section>
+      <h2>Why MQTT instead of a heavier web protocol?</h2>
+
+      <p class="section-intro">
+        This project connects directly to networking class ideas. The question is not just “does the
+        data arrive?” It is also “how much overhead does the device need, how much power does it use,
+        how far can it communicate, and how expensive would each sensor node be?”
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Protocol idea</th>
+            <th>How it applies here</th>
+            <th>Why it matters</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong>MQTT</strong></td>
+            <td>Small publish/subscribe messages from the ESP32 to a broker.</td>
+            <td>Good for low-power IoT sensors that only need to report readings.</td>
+          </tr>
+
+          <tr>
+            <td><strong>TCP</strong></td>
+            <td>Reliable transport underneath MQTT.</td>
+            <td>Provides ordering, acknowledgments, retransmission, flow control, and checksum-based error detection.
+            </td>
+          </tr>
+
+          <tr>
+            <td><strong>HTTP</strong></td>
+            <td>Useful for web pages and APIs, but heavier for tiny repeated sensor updates.</td>
+            <td>Better for dashboards and user interfaces than for tiny sensor publish events.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Wi-Fi</strong></td>
+            <td>The ESP32 uses Wi-Fi to reach the local network.</td>
+            <td>Convenient and cheap, but range and power draw matter outdoors.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <p>
+          <strong>The important distinction:</strong> MQTT is not replacing TCP. MQTT usually rides
+          on top of TCP. The reason MQTT is considered lightweight is that the application-layer
+          messages and publish/subscribe model are much smaller and simpler than having every sensor
+          act like a web server or repeatedly perform heavier HTTP-style exchanges.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Error checking and reliability</h2>
+
+      <p class="section-intro">
+        A sensor project still needs reliability, but it does not need the same kind of heavy
+        application behavior as a full website. MQTT gives the ESP32 a simple way to report data,
+        and TCP underneath handles much of the transport reliability.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">TCP layer</span>
+            <h3>Reliable transport</h3>
+            <p>
+              TCP handles ordered delivery, acknowledgments, retransmission of missing data, flow
+              control, and checksum-based error detection. That means MQTT messages are not just
+              thrown blindly onto the network.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">MQTT layer</span>
+            <h3>Delivery options</h3>
+            <p>
+              MQTT can use different Quality of Service levels. For a simple temperature sensor,
+              basic delivery may be enough. For more important messages, MQTT can request stronger
+              delivery confirmation.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Application layer</span>
+            <h3>Good enough data</h3>
+            <p>
+              Temperature and humidity readings are repeated over time. If one reading is missed,
+              the next reading usually replaces it. That is different from sending a file, payment,
+              login, or command where every message may be critical.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <div class="guide-note">
+        <strong>Design choice:</strong> for this kind of sensor, it is usually acceptable to
+        prioritize low power, low cost, and simple repeated updates over heavy protocol overhead.
+        If a packet is lost, the next reading can correct the dashboard a few minutes later.
+      </div>
+    </section>
+
+    <section>
+      <h2>Example MQTT topic design</h2>
+
+      <p class="section-intro">
+        A clean topic structure makes the project easier to expand later if I add more sensors.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Topic</th>
+            <th>Purpose</th>
+            <th>Example payload</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong><code>launchshell/sensors/outdoor1/state</code></strong></td>
+            <td>Main sensor readings.</td>
+            <td><code>{"temp_f":72.4,"humidity":56.1}</code></td>
+          </tr>
+
+          <tr>
+            <td><strong><code>launchshell/sensors/outdoor1/status</code></strong></td>
+            <td>Device status or heartbeat.</td>
+            <td><code>{"wifi":-62,"uptime":3600}</code></td>
+          </tr>
+
+          <tr>
+            <td><strong><code>launchshell/sensors/outdoor1/power</code></strong></td>
+            <td>Battery or power state if monitored.</td>
+            <td><code>{"battery":"ok","solar":"charging"}</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Local server idea</h2>
+
+      <p class="section-intro">
+        The local server can stay simple. It only needs to receive or subscribe to MQTT data, save
+        readings, and display the latest values.
+      </p>
+
+      <div class="flow">
+        <article class="flow-step">
+          <span>01</span>
+          <h3>MQTT broker</h3>
+          <p>A broker such as Mosquitto receives messages from the ESP32.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>02</span>
+          <h3>Subscriber script</h3>
+          <p>A Python script listens for readings and writes them to a file or database.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>03</span>
+          <h3>Storage</h3>
+          <p>Readings can be saved to JSON, SQLite, CSV, or another lightweight format.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>04</span>
+          <h3>Web dashboard</h3>
+          <p>A local web page displays latest temperature, humidity, and sensor status.</p>
+        </article>
+      </div>
+
+      <div class="code-card">
+        <pre><code>ESP32 sensor
+    │
+    ▼
+MQTT broker on local network
+    │
+    ▼
+Python subscriber or web app
+    │
+    ▼
+Local dashboard / log / graph</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>Example Mosquitto test commands</h2>
+
+      <p class="section-intro">
+        Before trusting the full system, I would test the MQTT path from the terminal.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">Subscribe</span>
+          <h3>Listen for sensor data</h3>
+
+          <div class="code-card">
+            <pre><code>mosquitto_sub -h localhost \
+  -t "launchshell/sensors/outdoor1/#" \
+  -v</code></pre>
+          </div>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Publish</span>
+          <h3>Send a fake reading</h3>
+
+          <div class="code-card">
+            <pre><code>mosquitto_pub -h localhost \
+  -t "launchshell/sensors/outdoor1/state" \
+  -m '{"temp_f":72.4,"humidity":56.1}'</code></pre>
+          </div>
+        </article>
+      </div>
+      <div class="action-item">
+        <strong>Want to see MQTT in action?</strong> Capture the sensor traffic with Wireshark and watch
+        the publish/subscribe flow on the network. This is a good way to connect the physical ESP32 build
+        to real packet analysis, TCP/IP, and application-layer protocols.
+        <a href="../../guides/wireshark/">Wireshark guide</a>.
+      </div>
+      <div class="guide-note">
+        <strong>Testing rule:</strong> test the broker with fake messages first. Then connect the
+        ESP32. That separates server problems from sensor firmware problems.
+      </div>
+
+    </section>
+
+
+    <section>
+      <h2>Distance, power, and unit cost</h2>
+
+      <p class="section-intro">
+        Building a physical IoT device forces tradeoffs that do not show up in a normal coding
+        project. Range, battery life, enclosure cost, board cost, solar input, and server design all
+        affect whether the project is practical.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Distance</span>
+            <h3>Wi-Fi range affects reliability</h3>
+            <p>
+              The farther the box is from the access point, the harder the ESP32 has to work to stay
+              connected. Weak signal can cause reconnects, failed publishes, higher latency, and
+              higher power use.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Power</span>
+            <h3>Every reconnect costs energy</h3>
+            <p>
+              Wi-Fi is convenient, but it is not free from a battery perspective. Waking the ESP32,
+              connecting to Wi-Fi, publishing MQTT, and going back to sleep is usually better than
+              leaving Wi-Fi active all the time.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Cost</span>
+            <h3>Unit cost matters</h3>
+            <p>
+              One sensor box is a project. Five or ten sensor boxes become a system. The cost of
+              each ESP32, sensor, charger board, solar panel, battery, enclosure, glands, connectors,
+              and mounting hardware starts to matter.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <div class="guide-note">
+        <strong>Protocol tradeoff:</strong> if the sensor needed longer range than Wi-Fi, I would
+        start comparing other options such as LoRa, cellular, or wired Ethernet. Each option changes
+        distance, power draw, cost, complexity, and where the server or gateway needs to live.
+      </div>
+    </section>
+
+    <section>
+      <h2>What made the enclosure challenging</h2>
+
+      <p class="section-intro">
+        The hardest part of an outdoor sensor is not only the code. It is turning loose parts into a
+        reliable physical system. The enclosure needs to protect the electronics while still allowing
+        power, sensor readings, and maintenance access.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Cable glands</span>
+            <h3>Clean cable entry</h3>
+            <p>
+              The enclosure uses proper cable glands so wires can enter the box without leaving open
+              holes. That makes the build cleaner, safer, and more weather resistant.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Strain relief</span>
+            <h3>Protect the solder joints</h3>
+            <p>
+              Strain relief matters because outdoor cables get pulled, moved, bumped, and bent. The
+              goal is to keep mechanical force off the solder joints and small board connectors.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Weather sealing</span>
+            <h3>Outdoor is different</h3>
+            <p>
+              A weather-resistant box still needs careful sealing, cable routing, condensation
+              awareness, and sensor placement so the readings stay useful.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">Physical build</span>
+          <h3>Why the wiring matters</h3>
+          <p>
+            With a physical enclosure, the wiring is part of the design. The wires cannot just work
+            electrically; they also need to be routed cleanly, protected from strain, kept away from
+            sharp edges, and arranged so the box can still be opened and serviced.
+          </p>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Product thinking</span>
+          <h3>It starts to feel like a real device</h3>
+          <p>
+            Once the electronics are mounted inside a weatherproof box with proper cable entry and
+            stress relief, the project stops feeling like a breadboard demo and starts feeling like
+            a small field-deployable product.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Firmware shape</h2>
+
+      <p class="section-intro">
+        The ESP32 firmware can stay simple. It should connect, read, publish, and sleep.
+      </p>
+
+      <div class="code-card">
+        <pre><code>Start ESP32
+    │
+    ├── Connect to Wi-Fi
+    ├── Connect to MQTT broker
+    ├── Read temperature and humidity
+    ├── Publish JSON payload
+    ├── Optional: publish battery/status data
+    └── Sleep before next reading</code></pre>
+      </div>
+
+      <div class="action-item">
+        <strong>Best upgrade:</strong> use deep sleep and publish less often. A sensor that wakes
+        every few minutes will usually last much longer than one that keeps Wi-Fi active constantly.
+      </div>
+    </section>
+
+    <section>
+      <h2>Simple project file plan</h2>
+
+      <p class="section-intro">
+        If I turned this into a clean repo, I would split the hardware, firmware, and server notes.
+      </p>
+
+      <div class="code-card">
+        <pre><code>solar-esp32-mqtt-sensor/
+├── README.md
+├── firmware/
+│   └── esp32_mqtt_sensor.ino
+├── server/
+│   ├── mqtt_subscriber.py
+│   └── dashboard_notes.md
+├── docs/
+│   ├── wiring-notes.md
+│   ├── power-notes.md
+│   └── enclosure-notes.md
+└── photos/
+    └── build-photos-go-here.txt</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>What I learned</h2>
+
+      <p class="section-intro">
+        This project taught more than just sensor wiring. It connected hardware and software into
+        one working system.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Electronics</span>
+            <h3>Power design matters</h3>
+            <p>
+              A solar project needs more planning than a USB-powered breadboard. Charging, battery
+              size, voltage output, soldering, wiring, strain relief, and enclosure layout all matter.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Networking</span>
+            <h3>MQTT is clean for IoT</h3>
+            <p>
+              MQTT makes the sensor node simple. The ESP32 publishes readings, TCP handles reliable
+              transport, and the server handles storage, dashboards, or automation.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Systems</span>
+            <h3>Real projects cross layers</h3>
+            <p>
+              The finished system includes weatherproofing, solar input, battery storage, firmware,
+              Wi-Fi, MQTT, TCP/IP, and a local server.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Future improvements</h2>
+
+      <p class="section-intro">
+        This project is a strong base for more advanced outdoor monitoring.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">Hardware upgrades</span>
+          <h3>Make the node more reliable</h3>
+          <ul>
+            <li>Add a vent or sensor shield for better humidity and temperature readings.</li>
+            <li>Add a voltage divider or fuel gauge to monitor battery level.</li>
+            <li>Add a physical power switch for maintenance.</li>
+            <li>Mount the solar panel at a better sun angle.</li>
+            <li>Document final wiring, glands, strain relief, and enclosure photos.</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Software upgrades</span>
+          <h3>Make the data more useful</h3>
+          <ul>
+            <li>Add deep sleep between readings.</li>
+            <li>Publish battery status and Wi-Fi RSSI.</li>
+            <li>Store readings in SQLite or InfluxDB.</li>
+            <li>Add a local web dashboard with graphs.</li>
+            <li>Add alerts for high humidity, freezing temperatures, or low battery.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Related LaunchShell paths</h2>
+
+      <p class="section-intro">
+        This project sits at the intersection of electronics, networking, Linux, and web apps. It is
+        a good example of how a physical build can become a complete technical system.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Electronics path</span>
+            <h3>Soldering and enclosure work</h3>
+            <p>
+              Learn how to move from loose modules on a bench to a mounted enclosure with soldered
+              connections, proper glands, strain relief, and serviceable wiring.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Networking path</span>
+            <h3>MQTT and TCP/IP</h3>
+            <p>
+              Connect networking class concepts to a real device: Wi-Fi, IP addressing, MQTT topics,
+              TCP reliability, local brokers, and server-side subscribers.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Linux/server path</span>
+            <h3>Local dashboard</h3>
+            <p>
+              A Raspberry Pi or Linux machine can run the MQTT broker, subscriber script, database,
+              and local dashboard that receives the sensor data.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Final idea</h2>
+
+      <div class="callout">
+        <p>
+          <strong>This project is a complete outdoor IoT loop.</strong> A solar panel and battery
+          power the enclosure, the ESP32 reads temperature and humidity, MQTT carries the data over
+          Wi-Fi, and a local server receives it for display or logging. It is a practical example of
+          how electronics projects become real networked systems.
+        </p>
+      </div>
+    </section>
+    <section class="page-end-nav" aria-label="Page navigation">
+      <a class="button primary" href="#top">Back to top</a>
+    </section>
+  </main>
+
+  <footer>
+    <div>&copy; 2026 LaunchShell</div>
+    <div>Student-built project guides for Linux, cloud, electronics, Python, IoT, and cybersecurity.</div>
+  </footer>
+</body>
+
+</html>

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>IT and Cybersecurity Certifications | LaunchShell</title>
+  <meta
+    name="description"
+    content="A beginner-friendly LaunchShell guide to practical IT, networking, cloud, Linux, and cybersecurity certifications."
+  />
+
+  <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+
+  <style>
+    .cert-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 18px;
+      background: white;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .cert-table th,
+    .cert-table td {
+      padding: 15px 16px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .cert-table th {
+      background: var(--soft);
+      color: var(--text);
+      font-size: 0.92rem;
+    }
+
+    .cert-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .cert-table td {
+      color: var(--muted);
+    }
+
+    .cert-table strong {
+      color: var(--text);
+    }
+
+    .cert-table a,
+    .docs-list a {
+      color: var(--blue-dark);
+      font-weight: 800;
+    }
+
+    .difficulty {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 0.78rem;
+      font-weight: 900;
+      background: var(--soft);
+      color: var(--blue-dark);
+      border: 1px solid #cfe0ff;
+      white-space: nowrap;
+    }
+
+    .difficulty.green {
+      background: var(--green-soft);
+      color: #08795d;
+      border-color: #c5f2e5;
+    }
+
+    .difficulty.dark {
+      background: var(--dark);
+      color: white;
+      border-color: var(--dark);
+    }
+
+    .track-card,
+    .pick-box {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      min-height: 100%;
+    }
+
+    .track-card h3,
+    .pick-box h3 {
+      margin: 0 0 8px;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .track-card p,
+    .pick-box p {
+      margin: 0 0 14px;
+      color: var(--muted);
+    }
+
+    .track-card ol {
+      margin: 0;
+      padding-left: 22px;
+      color: var(--muted);
+    }
+
+    .track-card li {
+      margin-bottom: 8px;
+    }
+
+    .pick-box + .pick-box {
+      margin-top: 16px;
+    }
+
+    @media (max-width: 920px) {
+      .cert-table,
+      .cert-table thead,
+      .cert-table tbody,
+      .cert-table th,
+      .cert-table td,
+      .cert-table tr {
+        display: block;
+      }
+
+      .cert-table thead {
+        display: none;
+      }
+
+      .cert-table tr {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .cert-table tr:last-child {
+        border-bottom: 0;
+      }
+
+      .cert-table td {
+        border-bottom: 0;
+        padding: 12px 16px;
+      }
+
+      .cert-table td::before {
+        display: block;
+        font-weight: 900;
+        color: var(--text);
+        margin-bottom: 3px;
+      }
+
+      .cert-table td:nth-child(1)::before {
+        content: "Certification";
+      }
+
+      .cert-table td:nth-child(2)::before {
+        content: "Best for";
+      }
+
+      .cert-table td:nth-child(3)::before {
+        content: "Why it matters";
+      }
+
+      .cert-table td:nth-child(4)::before {
+        content: "Difficulty";
+      }
+    }
+  </style>
+</head>
+
+<body id="top" class="resources-page">
+  <header>
+    <a href="../../" aria-label="LaunchShell home">
+      <img src="../../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../../projects/">Projects</a>
+      <a href="../">Guides</a>
+      <a href="../../resources/">Resources</a>
+      <a href="../../resources/book-recommendations/">Read Books!</a>
+      <a href="../../about/">About</a>
+      <a href="../../start.html" class="status">Start Here</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">Certifications - Networking - Linux - Cloud - Cybersecurity</div>
+      <h1>Which tech certifications are actually useful?</h1>
+      <p>
+        Certifications can help, but they are not magic. The goal is to pick certs that match real skills:
+        networking, Linux, cloud, security, troubleshooting, and hands-on labs.
+      </p>
+      <p>
+        This is the student-friendly version: what each certification is good for, when I would take it,
+        and which ones make sense for cybersecurity, networking, cloud, and server projects.
+      </p>
+
+      <div class="hero-actions">
+        <a class="button primary" href="#cert-list">See the list</a>
+        <a class="button" href="#paths">Pick a path</a>
+        <a class="button" href="#docs">Official links</a>
+      </div>
+
+      <div class="guide-note">
+        <strong>Simple rule:</strong> I would not collect random certifications. I would build projects first,
+        then use certifications to prove the skills I am already practicing.
+      </div>
+    </section>
+
+    <section>
+      <h2>The short list first</h2>
+      <p class="section-intro">
+        These are the certifications I would actually look at as a student interested in Linux,
+        networking, cloud servers, and cybersecurity.
+      </p>
+
+      <div class="path">
+        <div class="path-row">
+          <div class="level">Start here</div>
+          <div><strong>CompTIA A+ or ISC2 Certified in Cybersecurity</strong></div>
+          <div class="tools">Only if I am new to IT support or basic cybersecurity language.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">Core</div>
+          <div><strong>CompTIA Network+</strong></div>
+          <div class="tools">A good networking foundation before deeper cybersecurity work.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">Core</div>
+          <div><strong>CompTIA Security+</strong></div>
+          <div class="tools">The common baseline cybersecurity certification.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">Networking</div>
+          <div><strong>Cisco CCNA</strong></div>
+          <div class="tools">Harder than Network+, but much stronger for real networking skill.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">Linux</div>
+          <div><strong>CompTIA Linux+</strong></div>
+          <div class="tools">Useful for servers, cloud, automation, SOC work, and cybersecurity labs.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">Cloud</div>
+          <div><strong>AWS Cloud Practitioner or Azure Fundamentals</strong></div>
+          <div class="tools">Good first cloud certs if I am still learning cloud terms.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">Cloud+</div>
+          <div><strong>AWS Solutions Architect Associate</strong></div>
+          <div class="tools">More technical and more useful than a basic cloud vocabulary cert.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">Blue team</div>
+          <div><strong>CompTIA CySA+</strong></div>
+          <div class="tools">Best after Security+ for SOC, detection, logs, and incident response.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">Offensive</div>
+          <div><strong>eJPT or CompTIA PenTest+</strong></div>
+          <div class="tools">Better after I understand networking, Linux, and web basics.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cert-list">
+      <h2>Certification list</h2>
+      <p class="section-intro">
+        This is not every certification. It is the realistic list I would start with for student projects,
+        cloud servers, cybersecurity labs, and networking practice.
+      </p>
+
+      <table class="cert-table">
+        <thead>
+          <tr>
+            <th>Certification</th>
+            <th>Best for</th>
+            <th>Why it matters</th>
+            <th>Difficulty</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>CompTIA A+</strong><br><a href="https://www.comptia.org/en/certifications/a/" rel="noopener">Official page</a></td>
+            <td>Help desk, hardware, troubleshooting, basic IT</td>
+            <td>A+ is useful if I am new to IT. If I already build computers, use Linux, and troubleshoot systems, I may be able to skip it.</td>
+            <td><span class="difficulty green">Beginner</span></td>
+          </tr>
+          <tr>
+            <td><strong>ISC2 Certified in Cybersecurity</strong><br><a href="https://www.isc2.org/certifications/cc" rel="noopener">Official page</a></td>
+            <td>Cybersecurity vocabulary and basic security concepts</td>
+            <td>Good for a very early cybersecurity credential. I would check the current training and exam details before planning around it.</td>
+            <td><span class="difficulty green">Beginner</span></td>
+          </tr>
+          <tr>
+            <td><strong>CompTIA Network+</strong><br><a href="https://www.comptia.org/en/certifications/network/" rel="noopener">Official page</a></td>
+            <td>Networking fundamentals</td>
+            <td>Good for understanding switches, routers, IP addressing, VLANs, wireless, troubleshooting, and network security basics.</td>
+            <td><span class="difficulty">Beginner / Medium</span></td>
+          </tr>
+          <tr>
+            <td><strong>CompTIA Security+</strong><br><a href="https://www.comptia.org/en/certifications/security/" rel="noopener">Official page</a></td>
+            <td>Baseline cybersecurity</td>
+            <td>A common checkpoint cert for security roles. It covers the broad security language I need before specializing.</td>
+            <td><span class="difficulty">Medium</span></td>
+          </tr>
+          <tr>
+            <td><strong>Cisco CCNA</strong><br><a href="https://www.cisco.com/site/us/en/learn/training-certifications/exams/ccna.html" rel="noopener">Official page</a></td>
+            <td>Real networking skill</td>
+            <td>More specific and more technical than Network+. Strong if I like routers, switches, VLANs, routing, IP services, and troubleshooting.</td>
+            <td><span class="difficulty dark">Medium / Hard</span></td>
+          </tr>
+          <tr>
+            <td><strong>CompTIA Linux+</strong><br><a href="https://www.comptia.org/en/certifications/linux/" rel="noopener">Official page</a></td>
+            <td>Linux servers, shell, services, permissions, automation</td>
+            <td>Useful for VPS projects, cloud servers, logs, systemd, Bash, package management, users, permissions, and security basics.</td>
+            <td><span class="difficulty">Medium</span></td>
+          </tr>
+          <tr>
+            <td><strong>AWS Certified Cloud Practitioner</strong><br><a href="https://aws.amazon.com/certification/certified-cloud-practitioner/" rel="noopener">Official page</a></td>
+            <td>AWS vocabulary and basic cloud literacy</td>
+            <td>Good if AWS feels confusing. It teaches the language around AWS services, cloud concepts, billing, and shared responsibility.</td>
+            <td><span class="difficulty green">Beginner</span></td>
+          </tr>
+          <tr>
+            <td><strong>Microsoft Azure Fundamentals AZ-900</strong><br><a href="https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/" rel="noopener">Official page</a></td>
+            <td>Azure basics</td>
+            <td>Good if my school, internship, or workplace uses Microsoft cloud. It is a cloud vocabulary and platform basics cert.</td>
+            <td><span class="difficulty green">Beginner</span></td>
+          </tr>
+          <tr>
+            <td><strong>AWS Solutions Architect Associate</strong><br><a href="https://aws.amazon.com/certification/certified-solutions-architect-associate/" rel="noopener">Official page</a></td>
+            <td>Practical AWS architecture</td>
+            <td>More technical than Cloud Practitioner. Better when I want real AWS design work with compute, storage, networking, IAM, and cost awareness.</td>
+            <td><span class="difficulty dark">Medium / Hard</span></td>
+          </tr>
+          <tr>
+            <td><strong>CompTIA CySA+</strong><br><a href="https://www.comptia.org/en/certifications/cybersecurity-analyst/" rel="noopener">Official page</a></td>
+            <td>SOC, blue team, detection, vulnerability management</td>
+            <td>Good after Security+ if I want to analyze logs, alerts, vulnerabilities, incidents, and defensive security operations.</td>
+            <td><span class="difficulty dark">Medium / Hard</span></td>
+          </tr>
+          <tr>
+            <td><strong>CompTIA PenTest+</strong><br><a href="https://www.comptia.org/en-us/certifications/pentest/" rel="noopener">Official page</a></td>
+            <td>Pen testing concepts and reporting</td>
+            <td>Useful after networking, Linux, and Security+. It fits recon, vulnerability discovery, attacks, and reporting.</td>
+            <td><span class="difficulty dark">Medium / Hard</span></td>
+          </tr>
+          <tr>
+            <td><strong>INE eJPT</strong><br><a href="https://ine.com/security/certifications/ejpt-certification" rel="noopener">Official page</a></td>
+            <td>Hands-on beginner penetration testing</td>
+            <td>Good if I want a more practical offensive security exam instead of only multiple-choice theory.</td>
+            <td><span class="difficulty">Medium</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="paths">
+      <h2>Pick a path</h2>
+      <p class="section-intro">
+        The best certification depends on what kind of work I want to do. I would not take all of these.
+      </p>
+
+      <div class="grid">
+        <article class="track-card">
+          <span class="tag">Networking Path</span>
+          <h3>If I like networks</h3>
+          <p>This path is for routers, switches, VLANs, VPNs, packet captures, firewalls, and network troubleshooting.</p>
+          <ol>
+            <li>Network+ or go straight to CCNA</li>
+            <li>CCNA</li>
+            <li>Security+</li>
+            <li>Linux+ or AWS Solutions Architect Associate</li>
+          </ol>
+        </article>
+
+        <article class="track-card">
+          <span class="tag green">Cybersecurity Path</span>
+          <h3>If I want security</h3>
+          <p>This path is for security fundamentals, defensive work, labs, incident response, and practical investigation.</p>
+          <ol>
+            <li>Network+ or CCNA</li>
+            <li>Security+</li>
+            <li>Linux+</li>
+            <li>CySA+ for blue team or eJPT for offensive basics</li>
+          </ol>
+        </article>
+
+        <article class="track-card">
+          <span class="tag">Cloud Path</span>
+          <h3>If I want cloud/server work</h3>
+          <p>This path is for VPS projects, AWS, Azure, Linux services, DNS, HTTPS, backups, and deployment.</p>
+          <ol>
+            <li>Linux terminal basics</li>
+            <li>AWS Cloud Practitioner or Azure Fundamentals</li>
+            <li>AWS Solutions Architect Associate</li>
+            <li>Security+ or Linux+</li>
+          </ol>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>What I would actually choose</h2>
+      <p class="section-intro">
+        If I had limited money, I would be selective.
+      </p>
+
+      <div class="pick-box">
+        <h3>Best general student combo</h3>
+        <p><strong>Network+ or CCNA + Security+ + Linux projects.</strong> This gives a strong base for cybersecurity, cloud, and server work.</p>
+      </div>
+
+      <div class="pick-box">
+        <h3>Best networking-heavy combo</h3>
+        <p><strong>CCNA + Security+ + Linux.</strong> If networking is the main interest, CCNA is worth the effort because it goes deeper than Network+.</p>
+      </div>
+
+      <div class="pick-box">
+        <h3>Best cloud/server combo</h3>
+        <p><strong>AWS Cloud Practitioner or AZ-900 first, then AWS Solutions Architect Associate.</strong> The beginner cloud cert helps with vocabulary. The associate-level cert is more useful for real architecture.</p>
+      </div>
+
+      <div class="pick-box">
+        <h3>Best blue-team combo</h3>
+        <p><strong>Security+ + CySA+ + Linux + packet/log projects.</strong> This fits SOC, detection, incident response, vulnerability management, and defensive security.</p>
+      </div>
+
+      <div class="pick-box">
+        <h3>Best offensive-security beginner combo</h3>
+        <p><strong>Security+ + eJPT + legal labs.</strong> Add PenTest+ later if I want a more formal vendor-neutral penetration testing credential.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Certifications are not the whole resume</h2>
+      <p class="section-intro">
+        A certification gets stronger when it is backed by a project.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag">Instead of only Network+</span>
+          <h3>Build a network lab</h3>
+          <p>Use VLANs, subnets, packet captures, DNS, DHCP, firewall rules, and diagrams.</p>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Instead of only Security+</span>
+          <h3>Document security labs</h3>
+          <p>Show hardening, SSH keys, logs, UFW, fail2ban, backups, and safe test environments.</p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Instead of only AWS</span>
+          <h3>Deploy something real</h3>
+          <p>Build a small app, put it behind HTTPS, manage it with systemd, and document the architecture.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="docs">
+      <h2>Official certification links</h2>
+      <p class="section-intro">
+        Always check the official page before buying a voucher. Exam numbers, prices, objectives,
+        discounts, and retirement dates can change.
+      </p>
+
+      <div class="grid docs-list">
+        <article class="card">
+          <span class="tag green">Beginner / Core</span>
+          <h3>CompTIA and ISC2</h3>
+          <ul>
+            <li><a href="https://www.comptia.org/en/certifications/a/" rel="noopener">CompTIA A+</a></li>
+            <li><a href="https://www.comptia.org/en/certifications/network/" rel="noopener">CompTIA Network+</a></li>
+            <li><a href="https://www.comptia.org/en/certifications/security/" rel="noopener">CompTIA Security+</a></li>
+            <li><a href="https://www.isc2.org/certifications/cc" rel="noopener">ISC2 Certified in Cybersecurity</a></li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag">Networking / Linux</span>
+          <h3>Infrastructure skills</h3>
+          <ul>
+            <li><a href="https://www.cisco.com/site/us/en/learn/training-certifications/exams/ccna.html" rel="noopener">Cisco CCNA</a></li>
+            <li><a href="https://www.comptia.org/en/certifications/linux/" rel="noopener">CompTIA Linux+</a></li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag">Cloud</span>
+          <h3>AWS and Azure</h3>
+          <ul>
+            <li><a href="https://aws.amazon.com/certification/certified-cloud-practitioner/" rel="noopener">AWS Certified Cloud Practitioner</a></li>
+            <li><a href="https://aws.amazon.com/certification/certified-solutions-architect-associate/" rel="noopener">AWS Solutions Architect Associate</a></li>
+            <li><a href="https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/" rel="noopener">Microsoft Azure Fundamentals AZ-900</a></li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Cybersecurity</span>
+          <h3>Blue and red team</h3>
+          <ul>
+            <li><a href="https://www.comptia.org/en/certifications/cybersecurity-analyst/" rel="noopener">CompTIA CySA+</a></li>
+            <li><a href="https://www.comptia.org/en-us/certifications/pentest/" rel="noopener">CompTIA PenTest+</a></li>
+            <li><a href="https://ine.com/security/certifications/ejpt-certification" rel="noopener">INE eJPT</a></li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag">Practice</span>
+          <h3>Training before vouchers</h3>
+          <ul>
+            <li><a href="https://academy.hackthebox.com/" rel="noopener">Hack The Box Academy</a></li>
+            <li><a href="https://tryhackme.com/" rel="noopener">TryHackMe</a></li>
+            <li><a href="https://www.netacad.com/" rel="noopener">Cisco Networking Academy</a></li>
+            <li><a href="https://skillbuilder.aws/" rel="noopener">AWS Skill Builder</a></li>
+            <li><a href="https://learn.microsoft.com/en-us/training/" rel="noopener">Microsoft Learn</a></li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag">My rule</span>
+          <h3>Spend carefully</h3>
+          <p>Study with free or low-cost resources first. Buy an exam voucher only when practice tests, labs, and project work show I am close.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Final recommendation</h2>
+      <div class="callout">
+        <p>
+          For most students interested in cybersecurity and networking, the strongest path is simple:
+          learn Linux, build small projects, study networking, then use Security+ or CCNA as proof.
+          After that, specialize into cloud, blue team, or offensive security.
+        </p>
+      </div>
+    </section>
+  <section class="page-end-nav" aria-label="Page navigation">
+    <a class="button primary" href="#top">Back to top</a>
+  </section>
+
+  </main>
+
+  <footer>
+    <div>&copy; 2026 LaunchShell</div>
+    <div>Student-built project guides for Linux, cloud, electronics, and cybersecurity.</div>
+  </footer>
+</body>
+</html>
