@@ -260,6 +260,19 @@
     "featured": true
   },
   {
+    "id": "vintage-lionel-electronics",
+    "title": "Vintage Lionel Electronics",
+    "type": "Project",
+    "level": "Intermediate",
+    "time": "Long-term build",
+    "category": "Electronics",
+    "summary": "Repair and modernize post-war Lionel train hardware with low-voltage power, distributed wiring, LED conversions, activation buttons, KiCad, and soldering.",
+    "url": "projects/vintage-lionel-electronics/",
+    "image": "assets/card-lionel.png",
+    "homeSection": "none",
+    "featured": true
+  },
+  {
     "id": "python-projects",
     "title": "Small Python Projects",
     "type": "Project",
@@ -425,8 +438,8 @@
     "summary": "Codespaces gives students a Linux-based browser coding environment without needing a perfect local setup first.",
     "url": "guides/github-codespace/",
     "image": "assets/card-github-codespace-logo.png",
-    "homeSection": "none",
-    "featured": false
+    "homeSection": "resources-preview",
+    "featured": true
   },
   {
     "id": "github-copilot-student",
@@ -451,8 +464,8 @@
     "summary": "VS Code is practical, common, extensible, and works well with Git, SSH, Python, web development, Markdown, and class projects.",
     "url": "guides/vs-code/",
     "image": "assets/card-vscode-logo.png",
-    "homeSection": "none",
-    "featured": false
+    "homeSection": "resources-preview",
+    "featured": true
   },
   {
     "id": "cloudflare-resource",

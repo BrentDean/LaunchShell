@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Vintage Lionel Electronics | LaunchShell Project</title>
+    <meta name="description"
+        content="A LaunchShell electronics project about repairing and modernizing old electronics through post-war Lionel train hardware, distributed low-voltage power, AC/DC wiring, LED conversions, activation buttons, KiCad PCB design, soldering, and systems troubleshooting." />
+
+    <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
+    <link rel="stylesheet" href="../../assets/site.css" />
+</head>
+
+<body class="project-page vintage-lionel-electronics-page">
+    <header>
+        <a href="../../" aria-label="LaunchShell home">
+            <img src="../../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+        </a>
+
+        <nav aria-label="Main navigation">
+            <a href="../../projects/">Projects</a>
+            <a href="../../guides/">Guides</a>
+            <a href="../../resources/">Resources</a>
+            <a href="../../resources/book-recommendations/">Read Books!</a>
+            <a href="../../about/">About</a>
+            <a class="status" href="../../start.html">Start Here</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="project-hero">
+            <div>
+                <div class="eyebrow">Electronics • Restoration • AC/DC Power • Distributed Wiring</div>
+                <h1>Vintage Lionel Electronics Repair and Infrastructure</h1>
+
+                <p>
+                    I use post-war Lionel train hardware and a full model train layout as examples of a broader skill:
+                    repairing, powering, and modernizing old electronics. The same troubleshooting habits apply to
+                    old video game consoles, stereos, speakers, radios, boomboxes, thrift-store electronics,
+                    yard-sale gear, battery-powered toys, and other low-voltage hardware.
+                </p>
+
+                <p>
+                    This project includes rewiring vintage train accessories, building distributed power rails,
+                    converting older incandescent accessories to DC LEDs, wiring remote activation buttons,
+                    designing small KiCad PCBs, soldering components, and documenting the system clearly enough
+                    that someone else can understand how the infrastructure works.
+                </p>
+
+                <!-- <div class="hero-actions">
+                    <a class="button primary" href="#layout-infrastructure">Layout infrastructure</a>
+                    <a class="button" href="#horn-board">Horn conversion board</a>
+                    <a class="button" href="#student-version">Build your own version</a>
+                </div> -->
+
+                <div class="tech-list">
+                    <span class="tech-pill">Low-voltage AC</span>
+                    <span class="tech-pill">DC power rails</span>
+                    <span class="tech-pill">Bus bars</span>
+                    <span class="tech-pill">Wiring</span>
+                    <span class="tech-pill">LED conversion</span>
+                    <span class="tech-pill">Remote Control</span>
+                    <span class="tech-pill">KiCad</span>
+                    <span class="tech-pill">PCB design</span>
+                    <span class="tech-pill">Legacy hardware</span>
+                </div>
+            </div>
+
+            <div class="visual-card">
+                <div class="visual-inner">
+                    <div class="stack">
+                        <div class="stack-layer dark">
+                            <strong>Old electronics</strong>
+                            <span>Trains, accessories, switches, horns, lamps, motors, and yard-sale
+                                hardware</span>
+                        </div>
+
+                        <div class="stack-layer">
+                            <strong>Distributed power</strong>
+                            <span>Upcycled computer PSU for DC rails, vintage AC transformers, bus bars, and long wire
+                                runs</span>
+                        </div>
+
+                        <div class="stack-layer">
+                            <strong>Remote controls</strong>
+                            <span>Flush-mounted activation buttons connected to accessories across the table</span>
+                        </div>
+
+                        <div class="stack-layer">
+                            <strong>Documented repair</strong>
+                            <span>Photos, diagrams, test notes, wiring maps, failures, fixes, and final results</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="caption">
+                    The train layout becomes a small infrastructure system: multiple power sources,
+                    distributed wiring, remote controls, old accessories, modern LEDs, and documented repairs.
+                </div>
+            </div>
+        </section>
+
+        <section id="overview">
+            <h2>Project overview</h2>
+            <p class="section-intro">
+                You may not care about model trains at first, but you can probably understand the idea of
+                finding old electronics and making them work again. A broken stereo, old game console,
+                thrift-store speaker, yard-sale radio, vintage controller, or battery-damaged toy can all
+                become practical electronics labs.
+            </p>
+
+            <p class="section-intro">
+                The Lionel layout is the case study here because it combines many real hardware problems
+                in one system: variable AC power, DC lighting, motors, switches, incandescent bulbs,
+                LEDs, dirty contacts, corrosion, old wiring, long wire runs, mechanical wear, and
+                accessories that were designed decades before modern hobby electronics.
+            </p>
+
+            <div class="grid">
+                <article class="card">
+                    <div class="card-body">
+                        <span class="tag">Old electronics</span>
+                        <h3>Start with something real</h3>
+                        <p>
+                            A train, stereo, game console, speaker, radio, or yard-sale gadget gives you
+                            a physical system you can open, inspect, test, clean, repair, and document.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-body">
+                        <span class="tag green">Infrastructure</span>
+                        <h3>Power the whole system</h3>
+                        <p>
+                            A large layout needs more than one repair. It needs organized power distribution,
+                            correct wire gauge, labeled wiring, bus bars, connectors, and controls that people
+                            can use safely.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-body">
+                        <span class="tag">Documentation</span>
+                        <h3>Turn the repair into proof</h3>
+                        <p>
+                            Photos, diagrams, part choices, voltage readings, wiring maps, failed tests, and
+                            final results show real technical thinking beyond simply saying “I fixed it.”
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="layout-infrastructure">
+            <h2>Full layout power and control infrastructure</h2>
+            <p class="section-intro">
+                The largest part of this project was not repairing a single train car. It was building the electrical
+                infrastructure underneath the layout so dozens of houses, accessories, switches, lights,
+                horns, and remote activation buttons could work reliably across the table.
+            </p>
+
+            <div class="split">
+                <article class="panel">
+                    <span class="tag green">Power design</span>
+                    <h3>Separate AC and DC systems</h3>
+                    <p>
+                        The layout uses a computer power supply as the DC source for LED lighting and modernized
+                        accessories. It also uses three vintage Lionel AC power stations: one main transformer
+                        for train operation and two smaller transformers for accessories that need different
+                        voltage ranges.
+                    </p>
+                    <p>
+                        Accessories without motors usually need less voltage than locomotives. Older AC accessories
+                        often used incandescent bulbs, which draw more power and get hot. Converting some of those
+                        older plastic houses to DC LEDs made them cooler, more efficient, and easier to power from
+                        the DC rail.
+                    </p>
+                </article>
+
+                <article class="panel">
+                    <span class="tag">Wiring discipline</span>
+                    <h3>Distributed bus bars</h3>
+                    <p>
+                        I ran power infrastructure to each area of the table using distributed bus bars. Each wire
+                        was chosen by gauge, color coded by purpose, and finished with a heat-shrink connector so
+                        it could be connected cleanly to the correct power rail.
+                    </p>
+                    <p>
+                        That made the layout easier to troubleshoot. Instead of random wires disappearing under the
+                        table, each section had a more organized path back to power and control.
+                    </p>
+                </article>
+            </div>
+
+            <div class="code-card">
+                <pre><code>Layout power structure
+
+Computer PSU
+    |
+    +-- DC power rail
+    |     |
+    |     +-- LED houses
+    |     +-- converted accessories
+    |     +-- low-voltage DC lighting
+    |
+Vintage Lionel AC transformer 1
+    |
+    +-- train track power
+
+Vintage Lionel AC transformer 2
+    |
+    +-- lower-voltage AC accessories
+
+Vintage Lionel AC transformer 3
+    |
+    +-- separate accessory rail
+
+Distributed bus bars
+    |
+    +-- color-coded branch wires
+    +-- heat-shrink connectors
+    +-- remote activation buttons
+    +-- lights, horns, switches, and accessories</code></pre>
+            </div>
+
+            <div class="action-item">
+                <strong>Portfolio proof:</strong> this shows more than soldering. It shows power planning,
+                wire management, load separation, voltage selection, distributed controls, connector discipline,
+                and infrastructure built to support old systems reliably.
+            </div>
+        </section>
+
+        <section id="interactive-controls">
+            <h2>Remote activation buttons and physical interaction</h2>
+            <p class="section-intro">
+                The layout was designed so people could physically interact with it. Instead of every accessory
+                being controlled from one hidden panel, I installed flush-mounted activation buttons around the
+                table so onlookers could trigger horns, lights, switches, and vintage actions from different
+                locations.
+            </p>
+
+            <div class="flow">
+                <article class="flow-step">
+                    <span>01</span>
+                    <h3>Place the control near the scene</h3>
+                    <p>
+                        A button near a house, station, horn, or accessory makes the layout feel interactive
+                        instead of passive.
+                    </p>
+                </article>
+
+                <article class="flow-step">
+                    <span>02</span>
+                    <h3>Run the signal back cleanly</h3>
+                    <p>
+                        Each button needs a clear wiring path back to the accessory, relay, board, or power rail
+                        it controls.
+                    </p>
+                </article>
+
+                <article class="flow-step">
+                    <span>03</span>
+                    <h3>Use color and gauge intentionally</h3>
+                    <p>
+                        Wire color, gauge, and connector style help prevent mistakes when the system gets larger
+                        and more complex.
+                    </p>
+                </article>
+
+                <article class="flow-step">
+                    <span>04</span>
+                    <h3>Make it serviceable</h3>
+                    <p>
+                        Heat-shrink ends, bus bars, and organized branch wiring make it possible to repair or
+                        modify one section without guessing.
+                    </p>
+                </article>
+            </div>
+
+            <div class="guide-note">
+                <strong>Transferable idea:</strong> this is similar to wiring arcade buttons, museum displays,
+                interactive art, escape-room props, Halloween props, classroom demos, or physical computing
+                projects where users press real buttons and something happens somewhere else.
+            </div>
+        </section>
+
+        <section id="collaboration">
+            <h2>Collaboration and system boundaries</h2>
+            <p class="section-intro">
+                The scenic parts of the layout were handled by artist friends: landscaping, painting,
+                backgrounds, and visual detail. My role was the reliable infrastructure underneath the
+                display: power distribution, wiring, buttons, controls, lighting conversions, and repairs
+                that made the old systems work.
+            </p>
+
+            <div class="grid">
+                <article class="card">
+                    <div class="card-body">
+                        <span class="tag green">Artists</span>
+                        <h3>Visual environment</h3>
+                        <p>
+                            Landscape, paint, buildings, background scenery, and visual storytelling made the
+                            layout look alive.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-body">
+                        <span class="tag">Infrastructure</span>
+                        <h3>Power and controls</h3>
+                        <p>
+                            I built the electrical layer that supported the layout: rails, bus bars, wires,
+                            buttons, connectors, lighting, accessories, and repair work.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-body">
+                        <span class="tag green">Result</span>
+                        <h3>Ancient systems made reliable</h3>
+                        <p>
+                            The goal was not to erase the old hardware. The goal was to support it with a cleaner,
+                            more reliable infrastructure.
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="systems-thinking">
+            <h2>Why this belongs on LaunchShell</h2>
+            <p class="section-intro">
+                This project is not really about 75 year old train sets. It is about legacy electronics and distributed
+                systems: old systems that still work, half-work, or almost work. The same thinking applies
+                when you repair a Nintendo console, an old stereo receiver, a cassette deck, powered speakers,
+                a guitar pedal, a vintage controller, or random electronics from a yard sale.
+            </p>
+
+            <div class="split">
+                <article class="panel">
+                    <span class="tag green">What it teaches</span>
+                    <h3>Old hardware exposes real electrical behavior</h3>
+                    <p>
+                        Old electronics are useful because the failures are visible and understandable.
+                        Corrosion, loose wires, noisy power, dirty switches, worn contacts, overloaded bulbs,
+                        and cracked solder joints are physical problems you can inspect and test.
+                    </p>
+                    <p>
+                        That makes the work different from only writing code. You have to slow down,
+                        trace the system, understand the power path, separate loads, and verify the repair.
+                    </p>
+                </article>
+
+                <article class="panel">
+                    <span class="tag">Why it matters</span>
+                    <h3>Modern systems often depend on old systems</h3>
+                    <p>
+                        Real technical work often means connecting new tools to older systems. That could
+                        be a modern display added to old hardware, a new sensor connected to an existing
+                        machine, or a small control board installed in equipment that was never designed
+                        for it.
+                    </p>
+                    <p>
+                        The important habit is the same: understand the original system first, then make
+                        the smallest reliable change that solves the problem.
+                    </p>
+                </article>
+            </div>
+
+            <div class="callout">
+                <p>
+                    <strong>The train is just the example.</strong> The real project is learning how to
+                    open an old system, understand how it works, repair the weak point, add a careful
+                    modern improvement, and explain the result clearly.
+                </p>
+            </div>
+        </section>
+
+        <section id="relatable-examples">
+            <h2>What this relates to</h2>
+            <p class="section-intro">
+                The same repair mindset applies to many devices you might already have at home,
+                find at a yard sale, or pick up cheaply from a thrift store.
+            </p>
+
+            <table class="simple-table">
+                <thead>
+                    <tr>
+                        <th>Old device</th>
+                        <th>Common failure</th>
+                        <th>What it teaches</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Old game console</strong></td>
+                        <td>Dirty cartridge slot, weak power supply, bad capacitors, loose AV jack</td>
+                        <td>Connectors, power regulation, signal paths, solder joints, cleaning, and testing</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Stereo receiver</strong></td>
+                        <td>Scratchy knobs, bad switches, weak channels, blown lamps, aging capacitors</td>
+                        <td>Analog controls, contact cleaner, audio signals, power rails, and careful diagnosis</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Powered speaker</strong></td>
+                        <td>Loose input jack, noisy power, failed amplifier board, bad cable</td>
+                        <td>Input/output paths, grounding, amplification, DC power, and mechanical strain</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Boombox or radio</strong></td>
+                        <td>Corroded battery compartment, broken antenna, dirty volume knob</td>
+                        <td>Battery contacts, switches, antennas, audio output, and low-voltage repair</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Interactive display</strong></td>
+                        <td>Long wire runs, weak connections, unclear controls, overloaded lighting</td>
+                        <td>Distributed power, switches, bus bars, wiring maps, connectors, and serviceability</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Post-war Lionel layout</strong></td>
+                        <td>Dirty track, intermittent pickup, old wiring, battery corrosion, hot bulbs, failing
+                            accessories</td>
+                        <td>Variable AC, DC rails, rectification, motors, switches, lighting, capacitors, and
+                            infrastructure</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="sound-controller">
+            <h2>Real Project example: vintage switch controller audio board</h2>
+            <p class="section-intro">
+                In one build, I reused a vintage Lionel switch controller with six physical buttons.
+                Instead of controlling track switches, I wired the buttons to a modern circuit board
+                with flash memory so each button could trigger a different NYC transit-style audio
+                announcement.
+            </p>
+
+            <div class="flow">
+                <article class="flow-step">
+                    <span>01</span>
+                    <h3>Reuse the original controls</h3>
+                    <p>
+                        I kept the physical six-button controller because the buttons, case, and feel are
+                        part of the original hardware experience.
+                    </p>
+                </article>
+
+                <article class="flow-step">
+                    <span>02</span>
+                    <h3>Map buttons to inputs</h3>
+                    <p>
+                        I wired each button to a modern audio playback board so every press became a clean
+                        electrical input.
+                    </p>
+                </article>
+
+                <article class="flow-step">
+                    <span>03</span>
+                    <h3>Store audio in flash</h3>
+                    <p>
+                        The playback board stores the audio so each button can trigger a specific recorded
+                        phrase.
+                    </p>
+                </article>
+
+                <article class="flow-step">
+                    <span>04</span>
+                    <h3>Document the interface</h3>
+                    <p>
+                        The useful part is documenting what each button does, how the board is powered, and
+                        how the old controller connects to the new circuit.
+                    </p>
+                </article>
+            </div>
+
+            <div class="guide-note">
+                <strong>Transferable idea:</strong> this is the same pattern you can use when connecting
+                an old controller, keypad, arcade button panel, or thrift-store device to a modern board.
+                The old hardware becomes the input interface.
+            </div>
+
+        </section>
+
+        <section id="horn-board">
+            <h2>Real project example: D-cell horn replacement board</h2>
+            <p class="section-intro">
+                In another repair, I converted a 1950s Lionel horn system away from its original battery
+                setup. The original design used a D battery, which often leaked, corroded the compartment,
+                and made the horn unreliable. The replacement board lets the horn run from the train’s
+                normal variable AC track power.
+            </p>
+
+            <div class="split">
+                <article class="panel">
+                    <span class="tag">Original problem</span>
+                    <h3>The battery system was the weak point</h3>
+                    <p>
+                        A battery compartment inside a metal train car is a common failure point. Old batteries
+                        leak, corrosion spreads, contacts stop conducting, and the accessory becomes unreliable
+                        even when the rest of the train still works.
+                    </p>
+                    <p>
+                        My goal was to remove the need for the D battery while keeping the original horn
+                        behavior and fitting the new circuit inside the existing battery space.
+                    </p>
+                </article>
+
+                <article class="panel">
+                    <span class="tag green">Modern fix</span>
+                    <h3>Use track power instead</h3>
+                    <p>
+                        The train already has variable low-voltage AC available from the track. I designed a
+                        small PCB to rectify that AC into DC, smooth it with a capacitor, and provide stored
+                        energy when wheel contact or track pickup becomes intermittent.
+                    </p>
+                    <p>
+                        The result is a cleaner repair that hides inside the original D-cell compartment.
+                    </p>
+                </article>
+            </div>
+
+            <div class="code-card">
+                <pre><code>Variable track power
+8-18V AC
+    |
+    v
+Bridge rectifier
+AC converted to DC
+    |
+    v
+Smoothing / storage capacitor
+buffers intermittent pickup
+    |
+    v
+Original horn circuit
+runs without a D battery</code></pre>
+            </div>
+
+            <!-- <div class="action-item">
+        <strong>Project proof:</strong> include photos of the original battery compartment, the KiCad
+        schematic, the small PCB, the soldered components, and the final board installed where the
+        battery used to sit.
+      </div> -->
+        </section>
+
+        <section id="hardware-process">
+            <h2>Hardware workflow</h2>
+            <p class="section-intro">
+                You can follow the same repair process on many old electronics projects: inspect the
+                original system, identify the failure, design the smallest useful circuit, build it,
+                test it, and document what changed.
+            </p>
+
+            <div class="quick-list">
+                <article class="step-card">
+                    <span class="step-number">1</span>
+                    <h3>Inspect and photograph</h3>
+                    <p>
+                        Start by documenting the device before changing anything. Photograph the wiring,
+                        contacts, corrosion, switches, motors, lamps, boards, labels, and battery compartments.
+                    </p>
+                    <p>
+                        <strong>This is very important! Document everything.</strong>
+                    </p>
+                </article>
+
+                <article class="step-card">
+                    <span class="step-number">2</span>
+                    <h3>Trace the circuit</h3>
+                    <p>
+                        Identify where power enters, where it is switched, what the load is, and what parts
+                        are original versus modified.
+                    </p>
+                </article>
+
+                <article class="step-card">
+                    <span class="step-number">3</span>
+                    <h3>Find the weak point</h3>
+                    <p>
+                        Look for the real failure: dirty contacts, cracked solder, broken wire, corrosion,
+                        failed capacitor, loose connector, overloaded bulb, or unstable power.
+                    </p>
+                </article>
+
+                <article class="step-card">
+                    <span class="step-number">4</span>
+                    <h3>Plan the power path</h3>
+                    <p>
+                        Decide whether the device needs AC, DC, lower voltage, higher current, a separate rail,
+                        a switch, or a small helper board.
+                    </p>
+                </article>
+
+                <article class="step-card">
+                    <span class="step-number">5</span>
+                    <h3>Build clean connections</h3>
+                    <p>
+                        Use appropriate wire gauge, consistent colors, clean connectors, heat shrink, labels,
+                        and organized routing.
+                    </p>
+                </article>
+
+                <article class="step-card">
+                    <span class="step-number">6</span>
+                    <h3>Test under real conditions</h3>
+                    <p>
+                        Test the repair the way the device will actually be used, not only under perfect bench
+                        conditions.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section id="electrical-concepts">
+            <h2>Electrical concepts this project teaches</h2>
+            <p class="section-intro">
+                The value of the project is that the concepts are not abstract. Each one solves a real
+                problem in old hardware or in the larger layout infrastructure.
+            </p>
+
+            <table class="simple-table">
+                <thead>
+                    <tr>
+                        <th>Concept</th>
+                        <th>Where it appears</th>
+                        <th>Why it matters</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Variable AC</strong></td>
+                        <td>Track power changes as the transformer throttle changes.</td>
+                        <td>Accessories must tolerate a range of input voltage instead of one fixed supply.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Separate power rails</strong></td>
+                        <td>The layout uses AC for vintage train systems and DC for converted LED accessories.</td>
+                        <td>Different loads need different power sources, voltages, and wiring choices.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Rectification</strong></td>
+                        <td>A bridge rectifier converts track AC into DC.</td>
+                        <td>Modern boards, LEDs, audio modules, and many small circuits need DC power.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Capacitor buffering</strong></td>
+                        <td>A capacitor smooths the rectified output and stores short bursts of energy.</td>
+                        <td>Old track and wheels can lose contact for a moment, so the circuit needs a buffer.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Load differences</strong></td>
+                        <td>Motors, incandescent bulbs, LEDs, horns, and accessories do not draw power the same way.
+                        </td>
+                        <td>Good power design separates loads instead of assuming everything can share one supply.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Contact resistance</strong></td>
+                        <td>Old rollers, wheels, switches, battery terminals, and connectors may conduct poorly.</td>
+                        <td>Mechanical condition affects electrical behavior.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Bus bars</strong></td>
+                        <td>Power is distributed to different areas of the table through organized connection points.
+                        </td>
+                        <td>Bus bars make a large system easier to expand, troubleshoot, and service.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Wire gauge and color</strong></td>
+                        <td>Different runs use intentional wire gauge and color coding.</td>
+                        <td>Wire organization prevents mistakes and makes future repairs easier.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>PCB layout</strong></td>
+                        <td>A tiny KiCad board replaces loose point-to-point wiring.</td>
+                        <td>A PCB makes the repair cleaner, repeatable, and easier to explain.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- <section id="documentation-plan">
+            <h2>What to document</h2>
+            <div class="grid">
+                <article class="card">
+                    <div class="card-body">
+                        <span class="tag">Before</span>
+                        <h3>Original condition</h3>
+                        <p>
+                            Show the original device, wiring, battery compartment, corrosion, switches,
+                            connectors, failed contacts, hot bulbs, and unreliable accessories.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-body">
+                        <span class="tag green">During</span>
+                        <h3>Infrastructure build</h3>
+                        <p>
+                            Include bus bars, wire colors, power rails, activation buttons, transformer layout,
+                            PSU wiring, KiCad files, soldered boards, and connector choices.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-body">
+                        <span class="tag">After</span>
+                        <h3>Installed and tested</h3>
+                        <p>
+                            Show the layout operating under real use: buttons triggering accessories, LEDs powered
+                            from the DC rail, and vintage AC systems running from the correct transformers.
+                        </p>
+                    </div>
+                </article>
+            </div>
+
+            <div class="guide-note">
+                <strong>Good portfolio evidence:</strong> photos, schematic, wiring map, power diagram, BOM,
+                PCB screenshots, test notes, failure notes, voltage readings, and a short explanation of what
+                you would improve in the next revision.
+            </div>
+        </section> -->
+
+        <section id="student-version">
+            <h2>How you can fix something too</h2>
+            <p class="section-intro">
+                You do not need a rare Lionel train to learn the same ideas. A beginner version can use a
+                low-voltage DC supply, a small terminal strip or bus bar, LEDs, buttons, resistors, and one
+                old thrift-store device or toy that you repair and document.
+            </p>
+
+            <div class="split">
+                <article class="panel">
+                    <span class="tag green">Beginner lab</span>
+                    <h3>Build a small power rail first</h3>
+                    <p>
+                        Start with low-voltage DC only. Create a positive and negative rail, connect one LED
+                        circuit, add a button, label the wires, and document the power path.
+                    </p>
+                </article>
+
+                <article class="panel">
+                    <span class="tag">Next step</span>
+                    <h3>Add a real device</h3>
+                    <p>
+                        Find an old battery-powered toy, speaker, controller, or lighted object. Inspect it,
+                        clean it, repair one failure, and explain how power moves through the system.
+                    </p>
+                </article>
+            </div>
+
+            <div class="warning-note">
+                <strong>Safety boundary:</strong> keep your projects low-voltage for now. Do not connect breadboards,
+                student-made PCBs, exposed circuits, or improvised wiring directly to mains power.
+                Wall-outlet mains voltage can cause severe shock, burns, fire, or death. Use batteries,
+                a proper transformer, a bench power supply, or a UL listed isolated low-voltage power
+                supply. If a project requires work on mains wiring, stop and get help from a qualified
+                person. FYI - mains power is just another term for 110-120v wall outlet electricy. Our projects are typically < 12V.
+            </div>
+        </section>
+
+        <section id="project-variants">
+            <h2>Project variations you can try</h2>
+            <p class="section-intro">
+                You can adjust the same LaunchShell project idea for different interests and skill levels.
+            </p>
+
+            <div class="grid">
+                <article class="card">
+                    <div class="card-body">
+                        <span class="tag green">Beginner</span>
+                        <h3>Repair a battery compartment</h3>
+                        <p>
+                            Clean corrosion, replace damaged wires, test continuity, and document how battery
+                            power reaches the circuit.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-body">
+                        <span class="tag">Beginner+</span>
+                        <h3>Add LEDs to old hardware</h3>
+                        <p>
+                            Replace or supplement old bulbs with LEDs, choose resistors, check polarity, and
+                            explain the difference between old lighting and modern LEDs.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-body">
+                        <span class="tag green">Intermediate</span>
+                        <h3>Build a small power bus</h3>
+                        <p>
+                            Create a clean low-voltage power distribution point with labeled rails, color-coded
+                            wires, buttons, and multiple loads.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-body">
+                        <span class="tag">Intermediate</span>
+                        <h3>Make a custom controller</h3>
+                        <p>
+                            Reuse an old switch box, game controller, or button panel as inputs for a modern
+                            board or audio module.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-body">
+                        <span class="tag green">Intermediate+</span>
+                        <h3>Design a KiCad PCB</h3>
+                        <p>
+                            Move a tested breadboard circuit into a schematic, lay out a small PCB, order it,
+                            solder it, and test the finished board.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-body">
+                        <span class="tag">Portfolio</span>
+                        <h3>Write the repair report</h3>
+                        <p>
+                            Turn the project into a page with photos, a diagram, test notes, failed attempts,
+                            final results, and what the next revision would improve.
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- <section id="next-steps">
+            <h2>Next improvements</h2>
+            <p class="section-intro">
+                I can keep expanding this project as I repair more train cars, switches, accessories,
+                lighting circuits, control boards, and power distribution sections.
+            </p>
+
+            <div class="flow">
+                <article class="flow-step">
+                    <span>01</span>
+                    <h3>Add measurements</h3>
+                    <p>
+                        Record AC input ranges, DC rail voltage, accessory voltage needs, current draw, and
+                        how the system behaves under load.
+                    </p>
+                </article>
+
+                <article class="flow-step">
+                    <span>02</span>
+                    <h3>Publish the power map</h3>
+                    <p>
+                        Add a clean diagram showing the computer PSU, AC transformers, bus bars, button runs,
+                        LED sections, and accessory rails.
+                    </p>
+                </article>
+
+                <article class="flow-step">
+                    <span>03</span>
+                    <h3>Document the PCB</h3>
+                    <p>
+                        Show the KiCad board layout, component placement, solder joints, and final installed
+                        board.
+                    </p>
+                </article>
+
+                <article class="flow-step">
+                    <span>04</span>
+                    <h3>Make it repeatable</h3>
+                    <p>
+                        Turn the repair into a reusable pattern for other vintage accessories, displays,
+                        classroom demos, and interactive electronics projects.
+                    </p>
+                </article>
+            </div>
+
+            <div class="callout">
+                <p>
+                    <strong>LaunchShell angle:</strong> old electronics are still real systems. When you repair
+                    them, power them correctly, modernize them carefully, and explain the work, the project
+                    becomes proof of electrical thinking, troubleshooting, infrastructure design, documentation,
+                    and practical engineering judgment.
+                </p>
+            </div>
+        </section> -->
+
+        <section class="page-end-nav" aria-label="Page navigation">
+            <a class="button primary" href="#top">Back to top</a>
+        </section>
+    </main>
+
+    <footer>
+        <div>© 2026 LaunchShell</div>
+        <div>Student-built project guides for Linux, cloud, electronics, Python, and cybersecurity.</div>
+    </footer>
+</body>
+
+</html>

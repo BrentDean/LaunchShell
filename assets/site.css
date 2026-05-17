@@ -267,6 +267,10 @@ main > section:first-child {
   margin-top: 0;
 }
 
+.hero + section {
+  margin-top: 36px;
+}
+
 h2 {
   margin: 0 0 12px;
   font-size: clamp(1.85rem, 3vw, 2.8rem);
@@ -1539,6 +1543,10 @@ pre {
     padding-top: 24px;
   }
 
+  .hero + section {
+    margin-top: 28px;
+  }
+
   .home-page .hero {
     grid-template-columns: 1fr;
   }
@@ -2116,4 +2124,17 @@ pre {
 .home-page .index-upgrade-note + .grid,
 .index-page .index-upgrade-note + .grid {
   margin-top: 34px;
+}
+
+
+/* Reduce excessive gap after project and guide hero sections */
+
+.project-page .project-hero,
+.guide-page .guide-hero {
+  padding-bottom: 28px;
+}
+
+.project-hero + section,
+.guide-hero + section {
+  margin-top: 28px;
 }
