@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LaunchShell | Guides</title>
+  <meta name="description"
+    content="Beginner-friendly LaunchShell guides for Linux, Git, GitHub, cloud servers, VS Code, APIs, networking, packet analysis, electronics, and safe cybersecurity learning." />
+
+  <link rel="icon" href="../assets/launchshell-logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="../assets/site.css" />
+</head>
+
+<body class="index-page guides-index-page">
+  <header>
+    <a href="../" aria-label="LaunchShell home">
+      <img src="../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../projects/">Projects</a>
+      <a href="../guides/">Guides</a>
+      <a href="../resources/">Resources</a>
+      <a href="../resources/book-recommendations/">Read Books!</a>
+      <a href="../about/">About</a>
+      <a href="../start.html" class="status">Start Here</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">Guides • Practical steps • Beginner-friendly explanations</div>
+      <h1>Guides</h1>
+      <p>
+        LaunchShell guides explain the tools and concepts behind real technical projects:
+        Linux, Git, GitHub, cloud servers, virtual machines, networking, packet analysis,
+        APIs, electronics, and safe cybersecurity practice.
+      </p>
+
+      <div class="hero-actions">
+        <a class="button primary" href="../start.html">Start the path</a>
+        <a class="button" href="#guide-index">Browse guides</a>
+        <a class="button" href="../projects/">View projects</a>
+      </div>
+    </section>
+    <section>
+      <h2>How to use these guides</h2>
+      <p class="section-intro">
+        The best order depends on what you are trying to build.
+      </p>
+
+      <div class="method">
+        <div class="method-step">
+          <span>01</span>
+          <h3>Start with tools</h3>
+          <p>Linux, Git, GitHub, VS Code, and Codespaces make the rest of the site easier to follow.</p>
+        </div>
+
+        <div class="method-step">
+          <span>02</span>
+          <h3>Build context</h3>
+          <p>Cloud servers, VMs, APIs, and networking guides explain how modern systems connect.</p>
+        </div>
+
+        <div class="method-step">
+          <span>03</span>
+          <h3>Practice safely</h3>
+          <p>Cybersecurity guides should be used with your own labs, school labs, or clearly authorized environments.</p>
+        </div>
+
+        <div class="method-step">
+          <span>04</span>
+          <h3>Turn it into projects</h3>
+          <p>Use the project pages to turn guide knowledge into portfolio-ready builds.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="guide-index">
+      <h2>All guides</h2>
+      <p class="section-intro">
+        These guides are pulled from <code>data/site-index.json</code>, so new guide cards can be added
+        by updating one structured index instead of rewriting this page.
+      </p>
+
+      <div class="grid" data-index-type="Guide"></div>
+    </section>
+
+
+  </main>
+
+  <footer>
+    <div>© 2026 LaunchShell</div>
+    <div>Student-built project guides for Linux, cloud, electronics, Python, and cybersecurity.</div>
+  </footer>
+
+  <script src="../assets/index-cards.js" data-json="../data/site-index.json" data-base-path="../"></script>
+</body>
+
+</html>

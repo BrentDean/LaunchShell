@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LaunchShell | Projects</title>
+  <meta name="description"
+    content="LaunchShell portfolio projects for web apps, Python tools, Java CLI programs, electronics, networking, packet capture, honeynets, and static site building." />
+
+  <link rel="icon" href="../assets/launchshell-logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="../assets/site.css" />
+</head>
+
+<body class="index-page projects-page">
+  <header>
+    <a href="../" aria-label="LaunchShell home">
+      <img src="../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../projects/">Projects</a>
+      <a href="../guides/">Guides</a>
+      <a href="../resources/">Resources</a>
+      <a href="../resources/book-recommendations/">Read Books!</a>
+      <a href="../about/">About</a>
+      <a href="../start.html" class="status">Start Here</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">Projects • Builds • Portfolio evidence</div>
+      <h1>Projects</h1>
+      <p>
+        These projects show practical technical work: small Python tools, Java command-line programs,
+        static site design, Flask deployment, electronics, networking, Wi-Fi packet capture, and safe
+        cybersecurity labs.
+      </p>
+
+      <div class="hero-actions">
+        <a class="button primary" href="#project-index">Browse projects</a>
+        <a class="button" href="../guides/">Read guides</a>
+        <a class="button" href="../projects/build-this-site/">How this site was built</a>
+      </div>
+    </section>
+    <section>
+      <h2>What makes a project useful</h2>
+      <p class="section-intro">
+        A project does not need to be huge to be valuable. It needs to show real technical decision-making.
+      </p>
+
+      <div class="method">
+        <div class="method-step">
+          <span>01</span>
+          <h3>It solves something</h3>
+          <p>A script, app, lab, circuit, or guide should do something concrete and explain why it matters.</p>
+        </div>
+
+        <div class="method-step">
+          <span>02</span>
+          <h3>It shows process</h3>
+          <p>The project should show setup, tools, design choices, mistakes, fixes, and tradeoffs.</p>
+        </div>
+
+        <div class="method-step">
+          <span>03</span>
+          <h3>It is documented</h3>
+          <p>Clear notes, screenshots, commands, JSON, code, and deployment steps make the work understandable.</p>
+        </div>
+
+        <div class="method-step">
+          <span>04</span>
+          <h3>It can grow</h3>
+          <p>A small project can become a better project when it is versioned, tested, improved, and explained.</p>
+        </div>
+      </div>
+    </section>
+    <section id="project-index">
+      <h2>All projects</h2>
+      <p class="section-intro">
+        These cards are rendered from <code>data/site-index.json</code>. The project pages stay separate,
+        but their card titles, summaries, images, categories, skill levels, and time estimates are managed
+        from one place. <a href="../projects/build-this-site/#json-index">Why I upgrade to a JSON site index</a>.
+      </p>
+
+      <div class="grid" data-index-type="Project"></div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div>© 2026 LaunchShell</div>
+    <div>Student-built project guides for Linux, cloud, electronics, Python, and cybersecurity.</div>
+  </footer>
+
+  <script src="../assets/index-cards.js" data-json="../data/site-index.json" data-base-path="../"></script>
+</body>
+
+</html>
