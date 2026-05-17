@@ -12,249 +12,260 @@
   <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
   <link rel="stylesheet" href="../../assets/site.css" />
 
-  <style>
-    .project-hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.82fr);
-      gap: 46px;
-      align-items: center;
-      padding: 56px 0 54px;
-    }
+<style>
+  .project-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(420px, 1fr);
+    gap: 34px;
+    align-items: center;
+    padding: 56px 0 54px;
+  }
 
-    .project-hero h1 {
-      max-width: 900px;
-    }
+  .project-hero h1 {
+    max-width: 760px;
+    font-size: clamp(3.4rem, 6vw, 5.3rem);
+    line-height: 0.98;
+  }
 
-    .project-hero p {
-      max-width: 760px;
+  .project-hero p {
+    max-width: 700px;
+  }
+
+  .project-visual {
+    max-width: 720px;
+    justify-self: end;
+    border-radius: 28px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: white;
+    box-shadow: var(--shadow);
+  }
+
+  .project-visual img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: contain;
+    display: block;
+    background: white;
+  }
+
+  .project-visual .caption {
+    padding: 16px 18px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-top: 28px;
+  }
+
+  .stat {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 12px 34px rgba(6, 18, 38, 0.06);
+  }
+
+  .stat strong {
+    display: block;
+    font-size: 1.4rem;
+    line-height: 1;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .stat span {
+    color: var(--muted);
+    font-size: 0.92rem;
+    font-weight: 700;
+  }
+
+  .split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.8fr);
+    gap: 20px;
+    align-items: start;
+  }
+
+  .diagram {
+    background: var(--dark);
+    color: white;
+    border-radius: 22px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+  }
+
+  .diagram pre {
+    margin: 0;
+    white-space: pre-wrap;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    color: #d8e6ff;
+    line-height: 1.55;
+    font-size: 0.94rem;
+  }
+
+  .flow {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+  }
+
+  .flow-step {
+    position: relative;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 12px 34px rgba(6, 18, 38, 0.06);
+    min-height: 170px;
+  }
+
+  .flow-step h3 {
+    margin: 0 0 8px;
+    font-size: 1.05rem;
+  }
+
+  .instruction-table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 18px;
+    background: white;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+  }
+
+  .instruction-table th,
+  .instruction-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .instruction-table th {
+    background: var(--soft);
+    color: var(--text);
+  }
+
+  .instruction-table td {
+    color: var(--muted);
+  }
+
+  .instruction-table tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .instruction-table code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    color: var(--text);
+    font-weight: 900;
+  }
+
+  .status-list {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .status-list li {
+    margin: 0;
+    padding: 13px 15px;
+    border-radius: 14px;
+    background: var(--soft);
+    color: var(--muted);
+    border: 1px solid #cfe0ff;
+  }
+
+  .status-list strong {
+    color: var(--text);
+  }
+
+  .resource-card a {
+    color: var(--blue-dark);
+    font-weight: 900;
+  }
+
+  @media (max-width: 1020px) {
+    .project-hero,
+    .split {
+      grid-template-columns: 1fr;
     }
 
     .project-visual {
-      border-radius: 28px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: white;
-      box-shadow: var(--shadow);
+      max-width: 100%;
+      justify-self: stretch;
     }
 
     .project-visual img {
-      width: 100%;
-      height: 420px;
-      object-fit: cover;
-      display: block;
-      background: #dfe7f2;
-    }
-
-    .project-visual .caption {
-      padding: 16px 18px;
+      height: auto;
     }
 
     .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      margin-top: 28px;
-    }
-
-    .stat {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 18px;
-      box-shadow: 0 12px 34px rgba(6, 18, 38, 0.06);
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 1.4rem;
-      line-height: 1;
-      color: var(--text);
-      margin-bottom: 6px;
-    }
-
-    .stat span {
-      color: var(--muted);
-      font-size: 0.92rem;
-      font-weight: 700;
-    }
-
-    .split {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.8fr);
-      gap: 20px;
-      align-items: start;
-    }
-
-    .diagram {
-      background: var(--dark);
-      color: white;
-      border-radius: 22px;
-      padding: 24px;
-      box-shadow: var(--shadow);
-    }
-
-    .diagram pre {
-      margin: 0;
-      white-space: pre-wrap;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      color: #d8e6ff;
-      line-height: 1.55;
-      font-size: 0.94rem;
+      grid-template-columns: repeat(2, 1fr);
     }
 
     .flow {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 12px;
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .stats-grid {
+      grid-template-columns: 1fr;
     }
 
-    .flow-step {
-      position: relative;
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 18px;
-      box-shadow: 0 12px 34px rgba(6, 18, 38, 0.06);
-      min-height: 170px;
-    }
-
-    .flow-step h3 {
-      margin: 0 0 8px;
-      font-size: 1.05rem;
-    }
-
-    .instruction-table {
-      width: 100%;
-      border-collapse: collapse;
-      overflow: hidden;
-      border-radius: 18px;
-      background: white;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
-    }
-
+    .instruction-table,
+    .instruction-table thead,
+    .instruction-table tbody,
     .instruction-table th,
-    .instruction-table td {
-      padding: 14px 16px;
+    .instruction-table td,
+    .instruction-table tr {
+      display: block;
+    }
+
+    .instruction-table thead {
+      display: none;
+    }
+
+    .instruction-table tr {
       border-bottom: 1px solid var(--border);
-      text-align: left;
-      vertical-align: top;
     }
 
-    .instruction-table th {
-      background: var(--soft);
-      color: var(--text);
-    }
-
-    .instruction-table td {
-      color: var(--muted);
-    }
-
-    .instruction-table tr:last-child td {
+    .instruction-table tr:last-child {
       border-bottom: 0;
     }
 
-    .instruction-table code {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      color: var(--text);
+    .instruction-table td {
+      border-bottom: 0;
+      padding: 12px 16px;
+    }
+
+    .instruction-table td:first-child::before {
+      content: "Mnemonic";
+      display: block;
       font-weight: 900;
-    }
-
-    .status-list {
-      display: grid;
-      gap: 10px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .status-list li {
-      margin: 0;
-      padding: 13px 15px;
-      border-radius: 14px;
-      background: var(--soft);
-      color: var(--muted);
-      border: 1px solid #cfe0ff;
-    }
-
-    .status-list strong {
       color: var(--text);
     }
 
-    .resource-card a {
-      color: var(--blue-dark);
+    .instruction-table td:last-child::before {
+      content: "Meaning";
+      display: block;
       font-weight: 900;
+      color: var(--text);
     }
-
-    @media (max-width: 1020px) {
-
-      .project-hero,
-      .split {
-        grid-template-columns: 1fr;
-      }
-
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .flow {
-        grid-template-columns: 1fr;
-      }
-
-      .project-visual img {
-        height: 360px;
-      }
-    }
-
-    @media (max-width: 620px) {
-      .stats-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .instruction-table,
-      .instruction-table thead,
-      .instruction-table tbody,
-      .instruction-table th,
-      .instruction-table td,
-      .instruction-table tr {
-        display: block;
-      }
-
-      .instruction-table thead {
-        display: none;
-      }
-
-      .instruction-table tr {
-        border-bottom: 1px solid var(--border);
-      }
-
-      .instruction-table tr:last-child {
-        border-bottom: 0;
-      }
-
-      .instruction-table td {
-        border-bottom: 0;
-        padding: 12px 16px;
-      }
-
-      .instruction-table td:first-child::before {
-        content: "Mnemonic";
-        display: block;
-        font-weight: 900;
-        color: var(--text);
-      }
-
-      .instruction-table td:last-child::before {
-        content: "Meaning";
-        display: block;
-        font-weight: 900;
-        color: var(--text);
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 
-<body class="resources-page">
+<body class="project-page eight-bit-page">
   <header>
     <a href="../../" aria-label="LaunchShell home">
       <img src="../../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
@@ -312,7 +323,7 @@
       </div>
 
       <div class="project-visual">
-        <img src="../../assets/card-eight-bit-cpu.png" alt="8-bit CPU project graphic" />
+        <img src="../../assets/card-8bit.png" alt="8-bit CPU project graphic" />
         <div class="caption">
           A hardware/software project for learning CPU architecture, buses, registers, microcode, ROMs, and the real
           path from source code to electrical behavior.

@@ -190,7 +190,7 @@
     "category": "Electronics",
     "summary": "Learn how microcontroller boards connect code, circuits, sensors, soldering, power, and networking.",
     "url": "guides/arduino-esp32-overview/",
-    "image": "assets/raspberry-pi.svg",
+    "image": "assets/card-solar-esp32.png",
     "homeSection": "none",
     "featured": false
   },
@@ -216,7 +216,7 @@
     "category": "Web / Cloud",
     "summary": "Build and deploy a simple Flask app backed by JSON files on a cheap server with Gunicorn, Apache, systemd, DNS, HTTPS, logs, and backups.",
     "url": "projects/cheap-server-web-app/",
-    "image": "assets/card-cheap-server-web-app.png",
+    "image": "assets/card-aws-free-vps.png",
     "homeSection": "featured-projects",
     "featured": true
   },
@@ -237,12 +237,12 @@
     "id": "eight-bit-cpu",
     "title": "8-Bit CPU",
     "type": "Project",
-    "level": "Advanced",
+    "level": "Expert",
     "time": "Long-term build",
     "category": "Electronics",
     "summary": "Explore a from-scratch 8-bit CPU, Python assembler tooling, ROM image generation, and an Arduino Nano EEPROM programmer workflow.",
     "url": "projects/8-bit/",
-    "image": "assets/card-eight-bit-cpu.png",
+    "image": "assets/card-8bit.png",
     "homeSection": "featured-projects",
     "featured": true
   },
@@ -320,7 +320,7 @@
     "category": "IoT",
     "summary": "Build a solar-powered ESP32 sensor node that reads temperature and humidity, then publishes the data over MQTT to a local server.",
     "url": "projects/solar-esp32-mqtt-sensor/",
-    "image": "assets/raspberry-pi.svg",
+    "image": "assets/card-solar-esp32.png",
     "homeSection": "featured-projects",
     "featured": true
   },
@@ -372,7 +372,7 @@
     "category": "Resources",
     "summary": "A collection of free and low-cost tools students can use to build real projects, learn cloud computing, practice web development, explore cybersecurity, and document technical work.",
     "url": "resources/",
-    "image": "assets/launchshell-logo-square.png",
+    "image": "assets/card-student-resources.png",
     "homeSection": "resources-preview",
     "featured": true
   },
@@ -385,7 +385,7 @@
     "category": "Books",
     "summary": "A curated Top 30 reading list for cybersecurity, Linux, networking, programming, AI, and systems thinking.",
     "url": "resources/book-recommendations/",
-    "image": "assets/card-json-book-recommendations.png",
+    "image": "assets/card-read-books.png",
     "homeSection": "resources-preview",
     "featured": true
   },
@@ -398,7 +398,7 @@
     "category": "Student Tools",
     "summary": "Use student credits, free tiers, developer tools, and outside learning platforms to build, back up, break safely, fix, and document real technical work.",
     "url": "https://education.github.com/pack",
-    "image": "assets/card-git-and-github.png",
+    "image": "assets/card-github-student-dev.png",
     "homeSection": "resources-preview",
     "featured": true
   },
@@ -411,7 +411,7 @@
     "category": "Version Control",
     "summary": "GitHub teaches version control, commits, branches, project history, public documentation, private work-in-progress repos, and portfolio building.",
     "url": "guides/git-and-github/",
-    "image": "assets/card-git-and-github.png",
+    "image": "assets/card-github-logo.png",
     "homeSection": "none",
     "featured": false
   },
@@ -424,7 +424,7 @@
     "category": "Cloud Coding",
     "summary": "Codespaces gives students a Linux-based browser coding environment without needing a perfect local setup first.",
     "url": "guides/github-codespace/",
-    "image": "assets/card-github-codespaces.png",
+    "image": "assets/card-github-codespace-logo.png",
     "homeSection": "none",
     "featured": false
   },
@@ -437,7 +437,7 @@
     "category": "AI Assistant",
     "summary": "Copilot can help explain code, suggest syntax, debug small mistakes, and speed up repetitive coding when students still read, test, and understand the result.",
     "url": "https://education.github.com/pack",
-    "image": "assets/launchshell-logo-square.png",
+    "image": "assets/card-github-copilot-logo.png",
     "homeSection": "none",
     "featured": false
   },
@@ -450,7 +450,7 @@
     "category": "Editor",
     "summary": "VS Code is practical, common, extensible, and works well with Git, SSH, Python, web development, Markdown, and class projects.",
     "url": "guides/vs-code/",
-    "image": "assets/card-vs-code.png",
+    "image": "assets/card-vscode-logo.png",
     "homeSection": "none",
     "featured": false
   },
@@ -463,7 +463,7 @@
     "category": "Hosting / DNS / Security",
     "summary": "Cloudflare is useful for domains, DNS, Pages hosting, proxying, security rules, access control, and edge Workers.",
     "url": "guides/cloudflare/",
-    "image": "assets/card-cloudflare-student-sites.png",
+    "image": "assets/card-cloudflare-logo.png",
     "homeSection": "none",
     "featured": false
   },
@@ -476,7 +476,7 @@
     "category": "Cloud Server",
     "summary": "AWS gives students a real cloud server path for learning public IPs, EC2, SSH, security groups, Linux, budgets, and cloud cost awareness.",
     "url": "guides/aws-free-vps/",
-    "image": "assets/card-aws-free-vps.png",
+    "image": "assets/card-aws-logo.png",
     "homeSection": "none",
     "featured": false
   },
@@ -489,7 +489,7 @@
     "category": "SSH Client",
     "summary": "Termius makes SSH easier to manage across devices and helps students practice remote Linux administration.",
     "url": "guides/terminus-mobile-ssh/",
-    "image": "assets/card-termius-mobile-ssh.png",
+    "image": "assets/card-terminus-logo.png",
     "homeSection": "none",
     "featured": false
   },
@@ -502,7 +502,7 @@
     "category": "Cybersecurity Training",
     "summary": "Hack The Box Academy gives structured cybersecurity lessons and labs for students who want guided practice instead of random hacking videos.",
     "url": "https://academy.hackthebox.com/",
-    "image": "assets/card-what-is-hacking.png",
+    "image": "assets/card-hackthebox-logo.png",
     "homeSection": "none",
     "featured": false
   },
@@ -515,7 +515,7 @@
     "category": "Cloud Platform",
     "summary": "Azure helps students learn cloud services beyond a single server, including app hosting, databases, identity, and monitoring.",
     "url": "https://azure.microsoft.com/free/students/",
-    "image": "assets/vps-server.svg",
+    "image": "assets/card-azure-logo.png",
     "homeSection": "none",
     "featured": false
   },
@@ -528,7 +528,7 @@
     "category": "Networking",
     "summary": "Cisco NetAcad is useful for networking fundamentals, packet tracing, IP addressing, switching, routing, and certification prep.",
     "url": "https://www.netacad.com/",
-    "image": "assets/card-nmap.png",
+    "image": "assets/card-cisco-network-academy-logo.png",
     "homeSection": "none",
     "featured": false
   },
@@ -541,7 +541,7 @@
     "category": "Database",
     "summary": "Hosted databases let students build real app backends without maintaining database infrastructure first.",
     "url": "https://www.mongodb.com/products/platform/atlas-database",
-    "image": "assets/card-seed-app.png",
+    "image": "assets/card-mongodb-logo.png",
     "homeSection": "none",
     "featured": false
   },
@@ -554,7 +554,7 @@
     "category": "IoT",
     "summary": "These tools connect software with real sensors, dashboards, devices, and electronics projects.",
     "url": "guides/arduino-esp32-overview/",
-    "image": "assets/raspberry-pi.svg",
+    "image": "assets/card-arduino-education.png",
     "homeSection": "none",
     "featured": false
   },
@@ -567,7 +567,7 @@
     "category": "Static Hosting",
     "summary": "GitHub Pages hosts static websites directly from a repository as a simple first publishing step.",
     "url": "https://pages.github.com/",
-    "image": "assets/card-git-and-github.png",
+    "image": "assets/card-github-pages-logo.png",
     "homeSection": "none",
     "featured": false
   },
@@ -580,7 +580,7 @@
     "category": "Cloud Server",
     "summary": "A VPS is one of the best ways to learn Linux, SSH, firewalls, web servers, deployment, backups, and server troubleshooting.",
     "url": "https://www.digitalocean.com/",
-    "image": "assets/vps-server.svg",
+    "image": "assets/card-digitalocean-logo.png",
     "homeSection": "none",
     "featured": false
   },
@@ -632,7 +632,7 @@
     "category": "Cybersecurity Training",
     "summary": "TryHackMe gives guided cybersecurity rooms and beginner-friendly labs for students who want structured practice.",
     "url": "https://tryhackme.com/",
-    "image": "assets/card-tpot-honeynet.png",
+    "image": "assets/card-tryhackme-logo.png",
     "homeSection": "none",
     "featured": false
   },
@@ -671,7 +671,7 @@
     "category": "Cloud Lab",
     "summary": "LocalStack lets students emulate AWS-style services locally and learn cloud patterns safely.",
     "url": "https://www.localstack.cloud/",
-    "image": "assets/vps-checklist.png",
+    "image": "assets/card-localstack-logo.png",
     "homeSection": "none",
     "featured": false
   },
@@ -684,7 +684,7 @@
     "category": "Secrets",
     "summary": "Doppler teaches environment variables, API keys, and why secrets should not be hardcoded into projects.",
     "url": "https://www.doppler.com/",
-    "image": "assets/card-cloudflare-student-sites.png",
+    "image": "assets/card-doppler-logo.png",
     "homeSection": "none",
     "featured": false
   },
@@ -697,7 +697,7 @@
     "category": "Start Here",
     "summary": "A beginner-friendly route through Linux, GitHub, SSH, cloud servers, Python tools, and safe cybersecurity labs.",
     "url": "start.html",
-    "image": "assets/start-here-path.png",
+    "image": "assets/card-start-here.png",
     "homeSection": "hero",
     "featured": true
   },

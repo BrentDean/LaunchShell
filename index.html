@@ -43,41 +43,75 @@
   </header>
 
   <main>
-    <section class="hero">
-      <div>
-        <div class="eyebrow">Linux • Cloud • Python • Electronics • Cybersecurity</div>
-        <h1>Build.</h1>
-        <h1>Launch.</h1>
-        <h1>Repeat.</h1>
+<section class="hero">
+  <div>
+    <div class="eyebrow">Linux • Cloud • Python • Electronics • Cybersecurity</div>
+    <h1>Build.</h1>
+    <h1>Launch.</h1>
+    <h1>Repeat.</h1>
 
-        <p>
-          LaunchShell is a student-built project journal and guide site for learning practical technical skills
-          through real builds, simple explanations, and safe experiments.
-        </p>
+    <p>
+      LaunchShell is a student-built project journal and guide site for learning practical technical skills
+      through real builds, simple explanations, and safe experiments.
+    </p>
 
-        <p>
-          Start with the Linux terminal, GitHub, Codespaces, cloud servers, Python scripts, web apps,
-          electronics projects, and beginner-friendly cybersecurity concepts.
-        </p>
+    <p>
+      Start with the Linux terminal, GitHub, Codespaces, cloud servers, Python scripts, web apps,
+      electronics projects, and beginner-friendly cybersecurity concepts.
+    </p>
 
-        <div class="hero-actions">
-          <a class="button primary" href="start.html">Start the path</a>
-          <a class="button" href="#featured-projects">Browse projects</a>
-          <a class="button" href="#paths">Choose a path</a>
+    <div class="hero-actions">
+      <a class="button primary" href="start.html">Start the path</a>
+      <a class="button" href="#featured-projects">Browse projects</a>
+      <a class="button" href="#paths">Choose a path</a>
+    </div>
+  </div>
+
+  <a class="hero-feature-card" href="start.html" aria-label="Start Here: The LaunchShell Path">
+    <img src="assets/card-start-here.png" alt="LaunchShell learning path illustration" />
+
+    <div class="hero-feature-copy">
+      <h2>The LaunchShell Path</h2>
+      <p>
+        A beginner-friendly route through Linux, GitHub, SSH, cloud servers, Python tools,
+        and safe cybersecurity labs.
+      </p>
+    </div>
+  </a>
+</section>
+
+    <section id="method">
+      <h2>The LaunchShell method</h2>
+      <p class="section-intro">
+        The site is built around the way technical skills are actually learned: make something real,
+        back it up, change it, break it safely, restore it, and document what happened.
+      </p>
+
+      <div class="method">
+        <div class="method-step">
+          <span>01</span>
+          <h3>Start small</h3>
+          <p>Use what you have: a Codespace, VM, Raspberry Pi, old laptop, or small cloud server.</p>
+        </div>
+
+        <div class="method-step">
+          <span>02</span>
+          <h3>Build something</h3>
+          <p>Make a real thing first: a web app, server, circuit, script, guide, or lab.</p>
+        </div>
+
+        <div class="method-step">
+          <span>03</span>
+          <h3>Back it up</h3>
+          <p>Use Git, snapshots, exports, copies, and restore points before risky changes.</p>
+        </div>
+
+        <div class="method-step">
+          <span>04</span>
+          <h3>Break and fix</h3>
+          <p>Use logs, errors, configs, commits, and history to understand what actually happened.</p>
         </div>
       </div>
-
-      <a class="hero-feature-card" href="start.html" aria-label="Start Here: The LaunchShell Path">
-        <img src="assets/start-here-path.png" alt="LaunchShell learning path illustration" />
-
-        <div class="hero-feature-copy">
-          <h2>Start Here: The LaunchShell Path</h2>
-          <p>
-            A beginner-friendly route through Linux, GitHub, SSH, cloud servers, Python tools,
-            and safe cybersecurity labs.
-          </p>
-        </div>
-      </a>
     </section>
 
     <section id="start-here">
@@ -158,7 +192,10 @@
         Start with core tools and concepts before moving into larger projects. These guides focus on Linux,
         cloud servers, networking, cybersecurity, and student-friendly workflows.
       </p>
-
+ <div class="guide-note index-upgrade-note">
+        <strong>Project Note:</strong> Learn how these cards are rendered.
+        Read <a href="projects/build-this-site/#json-index">Why I added a JSON site index</a>.
+      </div>
       <div class="grid" data-card-section="featured-guides"></div>
 
       <div class="section-footer">
@@ -176,40 +213,6 @@
 
       <div class="section-footer">
         <a class="button" href="projects/">View all projects</a>
-      </div>
-    </section>
-
-    <section id="method">
-      <h2>The LaunchShell method</h2>
-      <p class="section-intro">
-        The site is built around the way technical skills are actually learned: make something real,
-        back it up, change it, break it safely, restore it, and document what happened.
-      </p>
-
-      <div class="method">
-        <div class="method-step">
-          <span>01</span>
-          <h3>Start small</h3>
-          <p>Use what you have: a Codespace, VM, Raspberry Pi, old laptop, or small cloud server.</p>
-        </div>
-
-        <div class="method-step">
-          <span>02</span>
-          <h3>Build something</h3>
-          <p>Make a real thing first: a web app, server, circuit, script, guide, or lab.</p>
-        </div>
-
-        <div class="method-step">
-          <span>03</span>
-          <h3>Back it up</h3>
-          <p>Use Git, snapshots, exports, copies, and restore points before risky changes.</p>
-        </div>
-
-        <div class="method-step">
-          <span>04</span>
-          <h3>Break and fix</h3>
-          <p>Use logs, errors, configs, commits, and history to understand what actually happened.</p>
-        </div>
       </div>
     </section>
 
