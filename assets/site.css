@@ -2138,3 +2138,47 @@ pre {
 .guide-hero + section {
   margin-top: 28px;
 }
+
+/* Site-wide soft background glow */
+
+body {
+  position: relative;
+}
+
+/* body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(18, 99, 255, 0.055), transparent 30rem),
+    radial-gradient(circle at 88% 24%, rgba(18, 201, 149, 0.050), transparent 28rem),
+    radial-gradient(circle at 18% 78%, rgba(18, 99, 255, 0.040), transparent 34rem),
+    radial-gradient(circle at 92% 84%, rgba(18, 201, 149, 0.045), transparent 32rem);
+} */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(18, 99, 255, 0.075), transparent 30rem),
+    radial-gradient(circle at 82% 26%, rgba(18, 99, 255, 0.060), transparent 32rem),
+    radial-gradient(circle at 88% 24%, rgba(18, 201, 149, 0.038), transparent 28rem),
+    radial-gradient(circle at 18% 78%, rgba(18, 99, 255, 0.060), transparent 34rem),
+    radial-gradient(circle at 92% 84%, rgba(18, 201, 149, 0.035), transparent 32rem),
+    radial-gradient(circle at 58% 64%, rgba(18, 99, 255, 0.035), transparent 36rem);
+}
+body {
+  position: relative;
+}
+
+header,
+main,
+footer {
+  position: relative;
+  z-index: 1;
+}
