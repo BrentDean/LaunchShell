@@ -104,36 +104,64 @@
   </header>
 
   <main>
-    <section class="hero">
-      <div class="eyebrow">Flask • JSON • Gunicorn • Apache • systemd</div>
-      <h1>So now you have a cloud server. What do you put on it?</h1>
+    <section class="hero project-hero">
+      <div>
+        <div class="eyebrow">Flask • JSON • Gunicorn • Apache • systemd</div>
+        <h1>So now you have a cloud server. What do you put on it?</h1>
 
-      <p>
-        A good next project is a simple <strong>____ App</strong>. Replace the blank with something you actually care about:
-        Recipe App, Seed App, Movie App, Music App, Book App, Tool App, or anything else you want to organize.
-      </p>
+        <p>
+          A good next project is a simple <strong>____ App</strong>. Replace the blank with something you actually care about:
+          Recipe App, Seed App, Movie App, Music App, Book App, Tool App, or anything else you want to organize.
+        </p>
 
-      <p>
-        My real example is the Seed App hosted on <a href="https://www.launchshell.com">LaunchShell.com</a>. It started as a practical way to track seeds,
-        trays, grow bags, planting dates, weather, and garden notes.
-      </p>
+        <p>
+          My real example is the Seed App hosted on <a href="https://www.launchshell.com">LaunchShell.com</a>. It started as a practical way to track seeds,
+          trays, grow bags, planting dates, weather, and garden notes.
+        </p>
 
-      <p>
-        This is a medium-hardness project. It is doable on a free-tier server or a cheap VPS around $5 per month.
-        I use Hetzner for this kind of practical Linux VPS work, but the same pattern applies on other providers.
-      </p>
+        <p>
+          This is a medium-hardness project. It is doable on a free-tier server or a cheap VPS around $5 per month.
+          I use Hetzner for this kind of practical Linux VPS work, but the same pattern applies on other providers.
+        </p>
 
-      <div class="difficulty">Difficulty: Medium</div>
+        <div class="difficulty">Difficulty: Medium</div>
 
-      <div class="hero-actions">
-        <a class="button primary" href="#steps">Build the app</a>
-        <a class="button" href="#deploy">Deploy it</a>
-        <a class="button" href="#docs">Official docs</a>
+        <div class="hero-actions">
+          <a class="button primary" href="#steps">Build the app</a>
+          <a class="button" href="#deploy">Deploy it</a>
+          <a class="button" href="#docs">Official docs</a>
+        </div>
+
+        <div class="guide-note">
+          <strong>Prerequisite:</strong> This guide assumes I already have a cheap cloud server with SSH working.
+          New to that part? Start with the <a class="inline-link" href="../../guides/aws-free-vps/">AWS Free Tier Cloud VPS Guide</a>.
+        </div>
       </div>
 
-      <div class="guide-note">
-        <strong>Prerequisite:</strong> This guide assumes I already have a cheap cloud server with SSH working.
-        New to that part? Start with the <a class="inline-link" href="../../guides/aws-free-vps/">AWS Free Tier Cloud VPS Guide</a>.
+      <div class="visual-card">
+        <div class="visual-inner" aria-label="Cheap server web app workflow diagram">
+          <div class="stack">
+            <div class="stack-layer">
+              <strong>Flask app</strong>
+              <span>Routes, templates, forms, and JSON-backed data.</span>
+            </div>
+            <div class="stack-layer">
+              <strong>Linux VPS</strong>
+              <span>SSH into a cheap server and run the app as a service.</span>
+            </div>
+            <div class="stack-layer dark">
+              <strong>Gunicorn + Apache</strong>
+              <span>Serve the app through a real web server.</span>
+            </div>
+            <div class="stack-layer">
+              <strong>DNS + HTTPS</strong>
+              <span>Point a domain at the app and secure it.</span>
+            </div>
+          </div>
+        </div>
+        <div class="caption">
+          A small personal app becomes a real server project when it has deployment, logs, DNS, and backups.
+        </div>
       </div>
     </section>
 

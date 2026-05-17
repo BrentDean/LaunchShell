@@ -56,35 +56,6 @@
     line-height: 1.5;
   }
 
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 14px;
-    margin-top: 28px;
-  }
-
-  .stat {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 18px;
-    box-shadow: 0 12px 34px rgba(6, 18, 38, 0.06);
-  }
-
-  .stat strong {
-    display: block;
-    font-size: 1.4rem;
-    line-height: 1;
-    color: var(--text);
-    margin-bottom: 6px;
-  }
-
-  .stat span {
-    color: var(--muted);
-    font-size: 0.92rem;
-    font-weight: 700;
-  }
-
   .split {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(320px, 0.8fr);
@@ -208,20 +179,12 @@
       height: auto;
     }
 
-    .stats-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
     .flow {
       grid-template-columns: 1fr;
     }
   }
 
   @media (max-width: 620px) {
-    .stats-grid {
-      grid-template-columns: 1fr;
-    }
-
     .instruction-table,
     .instruction-table thead,
     .instruction-table tbody,
@@ -302,24 +265,6 @@
           <a class="button" href="#isa">View the ISA</a>
         </div>
 
-        <div class="stats-grid">
-          <div class="stat">
-            <strong>8-bit</strong>
-            <span>Data bus</span>
-          </div>
-          <div class="stat">
-            <strong>28C64</strong>
-            <span>EEPROM</span>
-          </div>
-          <div class="stat">
-            <strong>Python</strong>
-            <span>Assembler tooling</span>
-          </div>
-          <div class="stat">
-            <strong>Arduino</strong>
-            <span>ROM programmer</span>
-          </div>
-        </div>
       </div>
 
       <div class="project-visual">

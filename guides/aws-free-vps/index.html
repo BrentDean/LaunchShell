@@ -68,25 +68,53 @@
   </header>
 
   <main>
-    <section class="hero">
-      <div class="eyebrow">AWS Free Tier • EC2 • SSH • Public IP</div>
-      <h1>So you want a cloud server?</h1>
+    <section class="hero guide-hero">
+      <div>
+        <div class="eyebrow">AWS Free Tier • EC2 • SSH • Public IP</div>
+        <h1>So you want a cloud server?</h1>
 
-      <p>
-        It is not as hard as it sounds. Here is how I set up a small AWS cloud server for free using student/free-tier resources.
-      </p>
+        <p>
+          It is not as hard as it sounds. Here is how I set up a small AWS cloud server for free using student/free-tier resources.
+        </p>
 
-      <p>
-        The goal was simple: get a disposable Linux VM, give it a public IP address, SSH into it, run a basic web server, and delete it when I was done.
-      </p>
+        <p>
+          The goal was simple: get a disposable Linux VM, give it a public IP address, SSH into it, run a basic web server, and delete it when I was done.
+        </p>
 
-      <div class="hero-actions">
-        <a class="button primary" href="#steps">Start the checklist</a>
-        <a class="button" href="#docs">Official AWS docs</a>
+        <div class="hero-actions">
+          <a class="button primary" href="#steps">Start the checklist</a>
+          <a class="button" href="#docs">Official AWS docs</a>
+        </div>
+
+        <div class="guide-note">
+          <strong>Important:</strong> I treated this as a throwaway learning server. Free does not mean I can ignore billing. I set a budget alert first, used one small VM, avoided extra paid resources, and cleaned everything up when I finished.
+        </div>
       </div>
 
-      <div class="guide-note">
-        <strong>Important:</strong> I treated this as a throwaway learning server. Free does not mean I can ignore billing. I set a budget alert first, used one small VM, avoided extra paid resources, and cleaned everything up when I finished.
+      <div class="visual-card">
+        <div class="visual-inner" aria-label="AWS cloud server setup diagram">
+          <div class="stack">
+            <div class="stack-layer">
+              <strong>Budget alert</strong>
+              <span>Set safety limits before launching resources.</span>
+            </div>
+            <div class="stack-layer">
+              <strong>EC2 instance</strong>
+              <span>Create a small disposable Linux VM.</span>
+            </div>
+            <div class="stack-layer dark">
+              <strong>SSH access</strong>
+              <span>Connect with keys and practice server commands.</span>
+            </div>
+            <div class="stack-layer">
+              <strong>Clean up</strong>
+              <span>Stop or delete resources when the lab is done.</span>
+            </div>
+          </div>
+        </div>
+        <div class="caption">
+          A cloud server is a safe learning lab when billing, access, and cleanup are part of the workflow.
+        </div>
       </div>
     </section>
 

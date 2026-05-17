@@ -156,30 +156,58 @@
   </header>
 
   <main>
-    <section class="hero">
-      <div class="eyebrow">Advanced • Honeynet • T-Pot • Networking Protocols</div>
-      <h1>T-Pot honeynet project.</h1>
+    <section class="hero project-hero">
+      <div>
+        <div class="eyebrow">Advanced • Honeynet • T-Pot • Networking Protocols</div>
+        <h1>T-Pot honeynet project.</h1>
 
-      <p>
-        I did this project to extend what I was learning in Networking Protocols class into a live, controlled lab.
-        It shows how I set up a disposable T-Pot honeynet on a VPS, monitored the dashboards, collected a short evidence set,
-        and shut the lab down cleanly.
-      </p>
+        <p>
+          I did this project to extend what I was learning in Networking Protocols class into a live, controlled lab.
+          It shows how I set up a disposable T-Pot honeynet on a VPS, monitored the dashboards, collected a short evidence set,
+          and shut the lab down cleanly.
+        </p>
 
-      <p>
-        The goal was not to hack anyone back. The goal was to watch what touched the exposed honeypot, learn from the logs,
-        and document the behavior safely.
-      </p>
+        <p>
+          The goal was not to hack anyone back. The goal was to watch what touched the exposed honeypot, learn from the logs,
+          and document the behavior safely.
+        </p>
 
-      <div class="hero-actions">
-        <a class="button primary" href="#steps">Install T-Pot</a>
-        <a class="button" href="#monitor">Monitor dashboards</a>
-        <a class="button" href="#takeaways">Findings summary</a>
+        <div class="hero-actions">
+          <a class="button primary" href="#steps">Install T-Pot</a>
+          <a class="button" href="#monitor">Monitor dashboards</a>
+          <a class="button" href="#takeaways">Findings summary</a>
+        </div>
+
+        <div class="project-note">
+          <strong>Safety rule:</strong> Use a disposable VPS or isolated lab machine. Restrict management access to your IP.
+          Expect provider alerts, because honeypots intentionally look like exposed services.
+        </div>
       </div>
 
-      <div class="project-note">
-        <strong>Safety rule:</strong> Use a disposable VPS or isolated lab machine. Restrict management access to your IP.
-        Expect provider alerts, because honeypots intentionally look like exposed services.
+      <div class="visual-card">
+        <div class="visual-inner" aria-label="T-Pot honeynet workflow diagram">
+          <div class="stack">
+            <div class="stack-layer">
+              <strong>Disposable VPS</strong>
+              <span>Dedicated lab server, not a shared personal machine.</span>
+            </div>
+            <div class="stack-layer">
+              <strong>T-Pot services</strong>
+              <span>Honeypots, Docker containers, and dashboards.</span>
+            </div>
+            <div class="stack-layer dark">
+              <strong>Evidence capture</strong>
+              <span>Cowrie, Suricata, logs, screenshots, and notes.</span>
+            </div>
+            <div class="stack-layer">
+              <strong>Clean shutdown</strong>
+              <span>Document the lab and remove exposed infrastructure.</span>
+            </div>
+          </div>
+        </div>
+        <div class="caption">
+          The project is about safe observation, evidence, and cleanup, not leaving exposed systems online.
+        </div>
       </div>
     </section>
 
