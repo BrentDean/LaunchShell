@@ -1,505 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LaunchShell | Coming Soon</title>
-  <meta name="description" content="LaunchShell is a student-built project journal and tutorial site for learning Linux, cloud computing, web servers, electronics, and safe cybersecurity fundamentals." />
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-  <meta property="og:title" content="LaunchShell | Coming Soon" />
-  <meta property="og:description" content="Build it. Break it. Back it up. Learn why." />
-  <meta property="og:image" content="assets/social-preview.svg" />
-  <style>
-    :root {
-      --bg: #f7f9fc;
-      --text: #061226;
-      --muted: #5f6f82;
-      --blue: #1263ff;
-      --blue-dark: #0747bd;
-      --dark: #061226;
-      --card: #ffffff;
-      --border: #dde5f0;
-      --soft: #eef4ff;
-      --green: #12c995;
-      --shadow: 0 18px 48px rgba(6, 18, 38, 0.08);
-    }
 
-    * { box-sizing: border-box; }
+  <title>LaunchShell | Student-Built Tech Guides and Projects</title>
+  <meta name="description"
+    content="LaunchShell is a student-built project journal and guide site for learning Linux, cloud computing, web servers, electronics, Python, and safe cybersecurity fundamentals through practical builds." />
 
-    html { scroll-behavior: smooth; }
+  <link rel="icon" href="assets/launchshell-logo-icon.png" type="image/png" />
 
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at 20% 0%, rgba(18, 99, 255, 0.12), transparent 34rem),
-        radial-gradient(circle at 90% 20%, rgba(18, 201, 149, 0.10), transparent 30rem),
-        var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.launchshell.org/" />
+  <meta property="og:title" content="LaunchShell | Student-Built Tech Guides and Projects" />
+  <meta property="og:description" content="Build it. Back it up. Break it. Learn why." />
+  <meta property="og:image" content="https://www.launchshell.org/assets/social-preview.png" />
 
-    a { color: inherit; }
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="LaunchShell | Student-Built Tech Guides and Projects" />
+  <meta name="twitter:description"
+    content="Practical student-built guides and projects for Linux, cloud, Python, electronics, and cybersecurity." />
+  <meta name="twitter:image" content="https://www.launchshell.org/assets/social-preview.png" />
 
-    header {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 28px 22px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 24px;
-    }
-
-    .logo {
-      height: 52px;
-      width: auto;
-      display: block;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      color: var(--muted);
-      font-size: 0.95rem;
-      font-weight: 700;
-    }
-
-    nav a {
-      text-decoration: none;
-    }
-
-    nav a:hover { color: var(--blue); }
-
-    .status {
-      color: var(--blue-dark);
-      background: var(--soft);
-      border: 1px solid #cfe0ff;
-      padding: 8px 14px;
-      border-radius: 999px;
-      font-weight: 900;
-      white-space: nowrap;
-    }
-
-    main {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 36px 22px 86px;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.88fr);
-      gap: 46px;
-      align-items: center;
-      padding: 56px 0 74px;
-    }
-
-    .eyebrow {
-      color: var(--blue);
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 0.85rem;
-      margin-bottom: 16px;
-    }
-
-    h1 {
-      margin: 0 0 24px;
-      font-size: clamp(2.7rem, 6vw, 5.4rem);
-      line-height: 0.98;
-      letter-spacing: -0.065em;
-      max-width: 780px;
-    }
-
-    .hero p {
-      max-width: 710px;
-      color: var(--muted);
-      font-size: 1.18rem;
-      margin: 0 0 20px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 28px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 12px 18px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 900;
-      border: 1px solid var(--border);
-      background: white;
-      color: var(--text);
-    }
-
-    .button.primary {
-      background: var(--blue);
-      color: white;
-      border-color: var(--blue);
-    }
-
-    .hero-card {
-      border-radius: 28px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: white;
-      box-shadow: var(--shadow);
-    }
-
-    .hero-card img {
-      width: 100%;
-      height: 430px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .caption {
-      padding: 16px 18px;
-      color: var(--muted);
-      font-size: 0.95rem;
-      border-top: 1px solid var(--border);
-      background: white;
-    }
-
-    section { margin-top: 64px; }
-
-    h2 {
-      margin: 0 0 12px;
-      font-size: clamp(1.85rem, 3vw, 2.8rem);
-      line-height: 1.1;
-      letter-spacing: -0.04em;
-    }
-
-    .section-intro {
-      max-width: 790px;
-      color: var(--muted);
-      margin: 0 0 28px;
-      font-size: 1.05rem;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-
-    .card img {
-      width: 100%;
-      height: 210px;
-      object-fit: cover;
-      display: block;
-      background: #dfe7f2;
-    }
-
-    .card-body { padding: 22px; }
-
-    .card h3 {
-      margin: 0 0 8px;
-      font-size: 1.25rem;
-      letter-spacing: -0.02em;
-    }
-
-    .card p { margin: 0; color: var(--muted); }
-
-    .method {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-    }
-
-    .method-step {
-      background: var(--dark);
-      color: white;
-      border-radius: 18px;
-      padding: 22px;
-      min-height: 190px;
-    }
-
-    .method-step span {
-      display: block;
-      color: #8fb7ff;
-      font-weight: 900;
-      margin-bottom: 8px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    }
-
-    .method-step h3 {
-      margin: 0 0 8px;
-      font-size: 1.12rem;
-    }
-
-    .method-step p {
-      margin: 0;
-      color: #c9d6e7;
-      font-size: 0.95rem;
-    }
-
-    .coming {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 30px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 26px;
-      align-items: start;
-      box-shadow: var(--shadow);
-    }
-
-    .coming h3 { margin-top: 0; }
-
-    .coming ul {
-      margin: 0;
-      padding-left: 22px;
-      color: var(--muted);
-    }
-
-    .coming li { margin-bottom: 8px; }
-
-    footer {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 32px 22px;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 0.95rem;
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    @media (max-width: 920px) {
-      header {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      nav { flex-wrap: wrap; }
-
-      .hero {
-        grid-template-columns: 1fr;
-        padding-top: 24px;
-      }
-
-      .grid { grid-template-columns: 1fr; }
-
-      .method { grid-template-columns: 1fr; }
-
-      .coming { grid-template-columns: 1fr; }
-
-      .hero-card img { height: 310px; }
-    }
-  </style>
+  <link rel="stylesheet" href="assets/site.css" />
 </head>
 
-<body>
+<body class="home-page">
   <header>
-    <img src="assets/launchshell-logo-horizontal.svg" alt="LaunchShell logo" class="logo" />
+    <a href="./" aria-label="LaunchShell home">
+      <img src="assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
 
     <nav aria-label="Main navigation">
-      <a href="#projects">Projects</a>
-      <a href="#method">Method</a>
-      <a href="#tools">Tools</a>
-      <a href="#coming-soon" class="status">Coming Soon</a>
+      <a href="projects/">Projects</a>
+      <a href="guides/">Guides</a>
+      <a href="resources/">Resources</a>
+      <a href="resources/book-recommendations/">Read Books!</a>
+      <a href="about/">About</a>
+      <a href="start.html" class="status">Start Here</a>
     </nav>
   </header>
 
   <main>
-    <section class="hero">
-      <div>
-        <div class="eyebrow">Linux • Cloud • Electronics • Cybersecurity</div>
-        <h1>Build it. Break it. Back it up. Learn why.</h1>
+<section class="hero">
+  <div>
+    <div class="eyebrow">Linux • Cloud • Python • Electronics • Cybersecurity</div>
+    <h1>Build.</h1>
+    <h1>Launch.</h1>
+    <h1>Repeat.</h1>
 
-        <p>
-          LaunchShell is a student-built project journal and tutorial site for learning
-          real technical skills through practical builds.
-        </p>
+    <p>
+      LaunchShell is a student-built project journal and guide site for learning practical technical skills
+      through real builds, simple explanations, and safe experiments.
+    </p>
 
-        <p>
-          The first guides will document projects like Seed App, an 8-bit CPU, VPS web
-          servers, Raspberry Pi labs, GitHub Codespaces workflows, backups, snapshots,
-          and safe beginner cybersecurity habits.
-        </p>
+    <p>
+      Start with the Linux terminal, GitHub, Codespaces, cloud servers, Python scripts, web apps,
+      electronics projects, and beginner-friendly cybersecurity concepts.
+    </p>
 
-        <div class="hero-actions">
-          <a class="button primary" href="#projects">Preview the projects</a>
-          <a class="button" href="#method">See the method</a>
-        </div>
-      </div>
+    <div class="hero-actions">
+      <a class="button primary" href="start.html">Start the path</a>
+      <a class="button" href="#featured-projects">Browse projects</a>
+      <a class="button" href="#paths">Choose a path</a>
+    </div>
+  </div>
 
-      <div class="hero-card">
-        <img src="assets/seed-app.svg" alt="Seed App project preview" />
-        <div class="caption">First guides: real projects, clean notes, repeatable steps, and lessons learned.</div>
-      </div>
-    </section>
+  <a class="hero-feature-card" href="start.html" aria-label="Start Here: The LaunchShell Path">
+    <img src="assets/card-start-here.png" alt="LaunchShell learning path illustration" />
 
-    <section id="projects">
-      <h2>Projects being documented first</h2>
-      <p class="section-intro">
-        These are not fake portfolio pieces. They are practical projects built to teach how systems work,
-        how mistakes happen, and how to recover when something breaks.
+    <div class="hero-feature-copy">
+      <h2>The LaunchShell Path</h2>
+      <p>
+        A beginner-friendly route through Linux, GitHub, SSH, cloud servers, Python tools,
+        and safe cybersecurity labs.
       </p>
-
-      <div class="grid">
-        <article class="card">
-          <img src="assets/seed-app.svg" alt="Seed App project graphic" />
-          <div class="card-body">
-            <h3>Seed App</h3>
-            <p>
-              A Flask web app project for learning routes, templates, JSON data, Git,
-              deployment, Nginx, Gunicorn, systemd, and server troubleshooting.
-            </p>
-          </div>
-        </article>
-
-        <article class="card">
-          <img src="assets/eight-bit-cpu.svg" alt="8-bit CPU project graphic" />
-          <div class="card-body">
-            <h3>8-Bit CPU</h3>
-            <p>
-              A hardware learning project for understanding binary, logic gates, registers,
-              clock signals, control lines, debugging, and how computers actually compute.
-            </p>
-          </div>
-        </article>
-
-        <article class="card">
-          <img src="assets/this-site.svg" alt="LaunchShell site build graphic" />
-          <div class="card-body">
-            <h3>How This Site Was Built</h3>
-            <p>
-              A meta-project showing how LaunchShell itself was created, versioned, deployed,
-              backed up, broken, fixed, and improved over time.
-            </p>
-          </div>
-        </article>
-      </div>
-    </section>
+    </div>
+  </a>
+</section>
 
     <section id="method">
       <h2>The LaunchShell method</h2>
       <p class="section-intro">
         The site is built around the way technical skills are actually learned: make something real,
-        change it, break it safely, restore it, and document what happened.
+        back it up, change it, break it safely, restore it, and document what happened.
       </p>
 
       <div class="method">
         <div class="method-step">
           <span>01</span>
           <h3>Start small</h3>
-          <p>Use what you have: a Raspberry Pi, Codespace, VM, old laptop, or small VPS.</p>
+          <p>Use what you have: a Codespace, VM, Raspberry Pi, old laptop, or small cloud server.</p>
         </div>
 
         <div class="method-step">
           <span>02</span>
           <h3>Build something</h3>
-          <p>Make a real thing first: a web app, server, circuit, script, or lab.</p>
+          <p>Make a real thing first: a web app, server, circuit, script, guide, or lab.</p>
         </div>
 
         <div class="method-step">
           <span>03</span>
-          <h3>Snapshot it</h3>
-          <p>Back up before risky changes. Learn Git, exports, images, and restore points.</p>
+          <h3>Back it up</h3>
+          <p>Use Git, snapshots, exports, copies, and restore points before risky changes.</p>
         </div>
 
         <div class="method-step">
           <span>04</span>
           <h3>Break and fix</h3>
-          <p>Use logs, errors, configs, and history to understand what actually happened.</p>
+          <p>Use logs, errors, configs, commits, and history to understand what actually happened.</p>
         </div>
       </div>
     </section>
 
-    <section id="tools">
-      <h2>Tools students can actually use</h2>
+    <section id="start-here">
+      <h2>Start here</h2>
       <p class="section-intro">
-        You do not need a perfect lab or expensive equipment. The first tutorials focus on practical setups
-        that are realistic for students.
+        These guides are the best first steps if you are new to Linux, GitHub, cloud servers, or technical projects.
       </p>
 
-      <div class="grid">
-        <article class="card">
-          <img src="assets/raspberry-pi.svg" alt="Raspberry Pi learning setup graphic" />
-          <div class="card-body">
-            <h3>Raspberry Pi</h3>
-            <p>
-              Small Linux machines are useful for learning SSH, services, networking,
-              automation, sensors, and home lab basics.
-            </p>
-          </div>
-        </article>
+      <div class="grid" data-card-section="start-here"></div>
+    </section>
 
-        <article class="card">
-          <img src="assets/codespaces.svg" alt="GitHub Codespaces environment graphic" />
-          <div class="card-body">
-            <h3>GitHub Codespaces</h3>
-            <p>
-              A browser-based coding environment for learning Git, Linux commands,
-              project structure, web development, and repeatable workflows.
-            </p>
-          </div>
-        </article>
+    <section id="paths">
+      <h2>Suggested learning paths</h2>
+      <p class="section-intro">
+        These paths connect guides and projects in a practical order. Use them when the full site feels too large
+        and you want a clear starting route.
+      </p>
 
-        <article class="card">
-          <img src="assets/vps-server.svg" alt="VPS web server graphic" />
-          <div class="card-body">
-            <h3>VPS Web Servers</h3>
-            <p>
-              A small cloud server can teach Linux administration, DNS, firewalls,
-              HTTPS, logs, backups, and deployment.
-            </p>
+      <div class="path">
+        <div class="path-row">
+          <div class="level">Path 1</div>
+          <div><strong>New to Linux and cloud servers</strong></div>
+          <div class="tools">
+            <a href="guides/linux-terminal-intro/">Linux Terminal Intro</a> →
+            <a href="guides/aws-free-vps/">AWS Free VPS Setup</a> →
+            <a href="projects/cheap-server-web-app/">Flask JSON App</a>
           </div>
-        </article>
+        </div>
+
+        <div class="path-row">
+          <div class="level">Path 2</div>
+          <div><strong>New to coding workflows</strong></div>
+          <div class="tools">
+            <a href="guides/git-and-github/">Git and GitHub</a> →
+            <a href="guides/github-codespace/">GitHub Codespaces</a> →
+            <a href="projects/python/">Small Python Projects</a>
+          </div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">Path 3</div>
+          <div><strong>Interested in web and infrastructure</strong></div>
+          <div class="tools">
+            <a href="projects/build-this-site/">How I Built LaunchShell.org</a> →
+            <a href="guides/vs-code/">VS Code</a> →
+            <a href="guides/cloudflare/">Cloudflare Guide</a> →
+            <a href="resources/">Student Resources</a>
+          </div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">Path 4</div>
+          <div><strong>Interested in cybersecurity</strong></div>
+          <div class="tools">
+            <a href="guides/what-is-hacking/">What Is Hacking?</a> →
+            <a href="guides/what-is-a-vm/">What Is a VM?</a> →
+            <a href="guides/nmap/">Nmap Recon Guide</a> →
+            <a href="guides/wireshark/">Wireshark Packet Analysis</a>
+          </div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">Path 5</div>
+          <div><strong>Interested in electronics and physical computing</strong></div>
+          <div class="tools">
+            <a href="guides/arduino-esp32-overview/">Arduino and ESP32 Overview</a> →
+            <a href="projects/vintage-lionel-electronics/">Vintage Lionel Electronics</a> →
+            <a href="projects/8-bit/">8-Bit CPU</a> →
+            <a href="projects/raspi-wifi-sniffer/">Raspberry Pi + Alfa Wi-Fi Sniffer</a> →
+            <a href="projects/solar-esp32-mqtt-sensor/">Solar ESP32 MQTT Sensor</a>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section id="coming-soon">
-      <h2>Coming soon</h2>
+    <section id="featured-guides">
+      <h2>Featured guides</h2>
+      <p class="section-intro">
+        Start with core tools and concepts before moving into larger projects. These guides focus on Linux,
+        cloud servers, networking, cybersecurity, and student-friendly workflows.
+      </p>
+ <div class="guide-note index-upgrade-note">
+        <strong>Project Note:</strong> Learn how these cards are rendered.
+        <a href="projects/build-this-site/#json-index">Why I added a JSON site index</a>.
+      </div>
+      <div class="grid" data-card-section="featured-guides"></div>
 
-      <div class="coming">
-        <div>
-          <h3>LaunchShell is being built in public.</h3>
-          <p class="section-intro">
-            The first release is intentionally simple: a homepage, project previews,
-            and then step-by-step pages as the tutorials are written.
-          </p>
-        </div>
+      <div class="section-footer">
+        <a class="button" href="guides/">View all guides</a>
+      </div>
+    </section>
 
-        <ul>
-          <li>Step-by-step Seed App build guide</li>
-          <li>8-bit CPU project notes and lessons learned</li>
-          <li>How to build and deploy this site</li>
-          <li>Raspberry Pi beginner project path</li>
-          <li>GitHub Codespaces setup for students</li>
-          <li>VPS web server setup from scratch</li>
-          <li>Free and low-cost student resources</li>
-          <li>Backup, snapshot, and restore workflows</li>
-        </ul>
+    <section id="featured-projects">
+      <h2>Featured projects</h2>
+      <p class="section-intro">
+        Practical builds that show how systems work, how mistakes happen, and how to recover when something breaks.
+      </p>
+
+      <div class="grid" data-card-section="featured-projects"></div>
+
+      <div class="section-footer">
+        <a class="button" href="projects/">View all projects</a>
+      </div>
+    </section>
+
+    <section id="resources-preview">
+      <h2>Free and low-cost student resources</h2>
+      <p class="section-intro">
+        The resources page collects tools that students can use to build real projects, not just collect free accounts.
+      </p>
+
+      <div class="grid" data-card-section="resources-preview"></div>
+
+      <div class="section-footer">
+        <a class="button" href="resources/">View all resources</a>
       </div>
     </section>
   </main>
 
   <footer>
     <div>© 2026 LaunchShell</div>
-    <div>Student-built project guides for Linux, cloud, electronics, and cybersecurity.</div>
+    <div>Student-built project guides for Linux, cloud, electronics, Python, and cybersecurity.</div>
   </footer>
+
+  <script src="assets/home-cards.js"></script>
 </body>
+
 </html>
