@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LaunchShell | GitHub Codespaces Guide</title>
+  <meta
+    name="description"
+    content="A beginner-friendly LaunchShell guide explaining GitHub Codespaces for students: free cloud coding environments, Linux terminal practice, Python, C++, Java, databases, venvs, files, Vim, and class repositories."
+  />
+
+  <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+
+  <style>
+    .guide-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.85fr);
+      gap: 46px;
+      align-items: center;
+      padding: 56px 0 54px;
+    }
+
+    .guide-visual {
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: white;
+      box-shadow: var(--shadow);
+    }
+
+    .terminal-window {
+      background: var(--dark);
+      min-height: 430px;
+      padding: 20px;
+      color: #d8e6ff;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .terminal-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: #8fb7ff;
+      opacity: 0.8;
+    }
+
+    .terminal-line {
+      margin: 0 0 10px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+
+    .prompt { color: #12c995; font-weight: 900; }
+    .comment { color: #8fb7ff; }
+
+    .action-item a, .docs-list a { color: var(--blue-dark); font-weight: 900; }
+
+    .flow-step {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 12px 34px rgba(6, 18, 38, 0.06);
+      min-height: 185px;
+    }
+
+    .code-card pre {
+      margin: 0;
+      color: #d8e6ff;
+      line-height: 1.55;
+      font-size: 0.95rem;
+      white-space: pre-wrap;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      color: var(--text);
+      font-weight: 900;
+    }
+
+    .track-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      min-height: 100%;
+    }
+
+    .track-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .track-card p {
+      margin: 0 0 14px;
+      color: var(--muted);
+    }
+
+    .track-card ul {
+      margin-top: 10px;
+    }
+
+    .resource-warning {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      color: #7c2d12;
+      border-radius: 18px;
+      padding: 18px 20px;
+      margin-top: 20px;
+    }
+
+    .resource-warning strong { color: #431407; }
+
+    @media (max-width: 1020px) {
+      .guide-hero,
+      .split {
+        grid-template-columns: 1fr;
+      }
+
+      .flow {
+        grid-template-columns: 1fr;
+      }
+
+      .terminal-window {
+        min-height: 340px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .simple-table,
+      .simple-table thead,
+      .simple-table tbody,
+      .simple-table th,
+      .simple-table td,
+      .simple-table tr {
+        display: block;
+      }
+
+      .simple-table thead { display: none; }
+
+      .simple-table tr {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .simple-table tr:last-child { border-bottom: 0; }
+
+      .simple-table td {
+        border-bottom: 0;
+        padding: 12px 16px;
+      }
+
+      .simple-table td:nth-child(1)::before,
+      .simple-table td:nth-child(2)::before,
+      .simple-table td:nth-child(3)::before {
+        display: block;
+        font-weight: 900;
+        color: var(--text);
+        margin-bottom: 3px;
+      }
+
+      .simple-table td:nth-child(1)::before { content: "Class / use case"; }
+      .simple-table td:nth-child(2)::before { content: "What Codespaces gives you"; }
+      .simple-table td:nth-child(3)::before { content: "Example command"; }
+    }
+  </style>
+</head>
+
+<body id="top" class="resources-page">
+  <header>
+    <a href="../../" aria-label="LaunchShell home">
+      <img src="../../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../../projects/">Projects</a>
+      <a href="../">Guides</a>
+      <a href="../../resources/">Resources</a>
+      <a href="../../resources/book-recommendations/">Read Books!</a>
+      <a href="../../about/">About</a>
+      <a href="#first-lab" class="status">First Codespace</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="guide-hero">
+      <div>
+        <div class="eyebrow">GitHub • Codespaces • Linux • Student Tools</div>
+        <h1>GitHub Codespaces might be the easiest place to start coding.</h1>
+
+        <p>
+          GitHub Codespaces gives you a real VS Code environment in your browser. You just click the link and you have
+          a reusable workspace. You can open a repo, get a Linux terminal, make files, run code, install tools,
+          practice Git, and work from any computer.
+        </p>
+
+        <p>
+          For students, this is huge: no fighting with local compiler setup during class. Your Python, Java,
+          C++, database, or web project can live in a repo and run inside a repeatable cloud environment.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href="#first-lab">Start the first lab</a>
+          <a class="button" href="#class-workflow">Use it for class</a>
+        </div>
+
+        <div class="guide-note">
+          <strong>Simple version:</strong> a Codespace is a temporary Linux coding computer attached to a GitHub repo. It is one of the easiest ways to practice terminal commands and run class code without installing a full toolchain locally.
+        </div>
+      </div>
+
+      <div class="guide-visual">
+        <div class="terminal-window" aria-label="Codespaces terminal example">
+          <div class="terminal-bar">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+          <p class="terminal-line"><span class="prompt">@github/codespace</span> $ mkdir python-class</p>
+          <p class="terminal-line"><span class="prompt">@github/codespace</span> $ cd python-class</p>
+          <p class="terminal-line"><span class="prompt">@github/codespace</span> $ python3 -m venv .venv</p>
+          <p class="terminal-line"><span class="prompt">@github/codespace</span> $ source .venv/bin/activate</p>
+          <p class="terminal-line"><span class="prompt">(.venv)</span> $ touch notes.py</p>
+          <p class="terminal-line"><span class="prompt">(.venv)</span> $ vim notes.py</p>
+          <p class="terminal-line comment"># make files, move files, run code, commit work</p>
+          <p class="terminal-line"><span class="prompt">(.venv)</span> $ git add . && git commit -m "Add class notes"</p>
+        </div>
+        <div class="caption">
+          A Codespace gives you a Linux terminal, editor, repo, and development environment from the browser.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>What Codespaces is</h2>
+      <p class="section-intro">
+        Codespaces is a cloud development environment connected to a GitHub repository.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag">Plain English</span>
+          <h3>A coding computer in the cloud</h3>
+          <p>
+            Instead of installing every compiler, database tool, Python package, and editor extension on your laptop,
+            you open a repo in GitHub and run the project inside a cloud-based development environment.
+          </p>
+          <p>
+            The editor looks like VS Code. The terminal is Linux. The files live in your repo. When you are done,
+            you commit and push like a normal Git project.
+          </p>
+        </article>
+
+        <article class="panel">
+          <span class="tag green">Why it matters</span>
+          <h3>It removes setup friction</h3>
+          <p>
+            For a student, setup problems can waste a whole class period. Codespaces makes it easier to open the same
+            environment every time, especially for classes that provide starter code.
+          </p>
+          <ul>
+            <li>No local Python setup required</li>
+            <li>No local C++ compiler setup required</li>
+            <li>No local Java IDE requirement</li>
+            <li>No database client panic on day one</li>
+            <li>No “it works on my machine” problem when the repo has a dev container</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Why this is useful for students</h2>
+      <p class="section-intro">
+        I use this like a class workspace. If a class gives code files, I make a repo and use a Codespace for it.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag green">Class repos</span>
+          <h3>One repo per coding class</h3>
+          <p>
+            Make a GitHub repo for Java, Python, C++, databases, or web development. Store notes, starter files, homework experiments, and test programs in one place.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">During class</span>
+          <h3>Interact with code live</h3>
+          <p>
+            When the professor shows a code example, open the repo, create a file, run it, change it, break it, and commit the working version.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">No local compiler</span>
+          <h3>Use the cloud environment</h3>
+          <p>
+            You still use compilers and interpreters, but they run inside the Codespace. Your local computer only needs a browser.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="class-workflow">
+      <h2>Class workflow examples</h2>
+      <p class="section-intro">
+        Codespaces can emulate different class environments because each repo can have its own tools and setup.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Class / use case</th>
+            <th>What Codespaces gives you</th>
+            <th>Example command</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Python</strong></td>
+            <td>Linux terminal, Python, virtual environments, pip packages, Flask scripts, notebooks or simple files.</td>
+            <td><code>python3 main.py</code></td>
+          </tr>
+          <tr>
+            <td><strong>C++</strong></td>
+            <td>A place to compile and run small programs without configuring a local compiler first.</td>
+            <td><code>g++ main.cpp -o main && ./main</code></td>
+          </tr>
+          <tr>
+            <td><strong>Java</strong></td>
+            <td>A repo for class files, examples, test harnesses, and command-line compilation.</td>
+            <td><code>javac Main.java && java Main</code></td>
+          </tr>
+          <tr>
+            <td><strong>Database</strong></td>
+            <td>A place to save SQL files, run SQLite, connect to hosted databases, or use a dev container with database tools.</td>
+            <td><code>sqlite3 class.db &lt; schema.sql</code></td>
+          </tr>
+          <tr>
+            <td><strong>Web apps</strong></td>
+            <td>A Linux environment for HTML, CSS, JavaScript, Flask, Node, Git, ports, and quick browser previews.</td>
+            <td><code>python3 -m flask run</code></td>
+          </tr>
+          <tr>
+            <td><strong>Linux practice</strong></td>
+            <td>A safe terminal for files, directories, Vim, package installs, permissions, Git, and shell commands.</td>
+            <td><code>mkdir notes && mv *.txt notes/</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Terminal practice without fear</h2>
+      <p class="section-intro">
+        A Codespace is Linux-based, so it is a low-friction place to learn terminal basics.
+      </p>
+
+      <div class="flow">
+        <article class="flow-step">
+          <span>01</span>
+          <h3>Make files</h3>
+          <p>Use <code>touch</code>, <code>nano</code>, <code>vim</code>, or the editor sidebar.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>02</span>
+          <h3>Move around</h3>
+          <p>Use <code>pwd</code>, <code>ls</code>, <code>cd</code>, <code>mkdir</code>, <code>cp</code>, and <code>mv</code>.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>03</span>
+          <h3>Install tools</h3>
+          <p>Use <code>apt</code>, <code>pip</code>, language tools, or a dev container.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>04</span>
+          <h3>Practice Git</h3>
+          <p>Use <code>git status</code>, <code>git add</code>, <code>git commit</code>, and <code>git push</code>.</p>
+        </article>
+      </div>
+
+      <div class="action-item">
+        <strong>New to Linux?</strong> Start with the
+        <a href="../linux-terminal-intro/">Linux Terminal Intro Guide</a>
+        and use Codespaces as your practice terminal.
+      </div>
+    </section>
+
+    <section>
+      <h2>Yes, you can use apt install</h2>
+      <p class="section-intro">
+        One of the best parts is that you can learn real Linux package management in a temporary environment.
+      </p>
+
+      <div class="code-card">
+<pre><code># update package lists
+sudo apt update
+
+# install useful command-line tools
+sudo apt install tree htop ripgrep sqlite3 jq unzip
+
+# inspect the project tree
+tree -L 2
+
+# search files quickly
+rg "TODO"
+
+# work with JSON
+cat data.json | jq</code></pre>
+      </div>
+
+      <div class="resource-warning">
+        <strong>Rule:</strong> install what you need for the project, but do not treat Codespaces like permanent storage. Commit your files to GitHub and delete old Codespaces when you are done.
+      </div>
+    </section>
+
+    <section>
+      <h2>Python venv example</h2>
+      <p class="section-intro">
+        Codespaces is a good place to practice the normal Python project pattern: repo, virtual environment, packages, run, commit.
+      </p>
+
+      <div class="code-card">
+<pre><code># create a virtual environment
+python3 -m venv .venv
+
+# activate it
+source .venv/bin/activate
+
+# install packages
+pip install flask requests
+
+# save package list
+pip freeze > requirements.txt
+
+# run a Python file
+python3 app.py</code></pre>
+      </div>
+    </section>
+
+    <section id="first-lab">
+      <h2>First Codespaces lab</h2>
+      <p class="section-intro">
+        This is the fastest way to understand why Codespaces is useful.
+      </p>
+
+      <div class="path">
+        <div class="path-row">
+          <div class="level">01</div>
+          <div><strong>Create a GitHub repo.</strong></div>
+          <div class="tools">Name it something like <code>python-class-lab</code> or <code>cpp-class-lab</code>.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">02</div>
+          <div><strong>Open it in Codespaces.</strong></div>
+          <div class="tools">Use GitHub’s green Code button, then choose Codespaces.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">03</div>
+          <div><strong>Create a file.</strong></div>
+          <div class="tools">Use the editor or the terminal: <code>touch hello.py</code>.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">04</div>
+          <div><strong>Run code.</strong></div>
+          <div class="tools">Try <code>python3 hello.py</code>, <code>javac Main.java</code>, or <code>g++ main.cpp -o main</code>.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">05</div>
+          <div><strong>Commit the work.</strong></div>
+          <div class="tools">Use <code>git add .</code>, <code>git commit</code>, and <code>git push</code>.</div>
+        </div>
+        <div class="path-row">
+          <div class="level">06</div>
+          <div><strong>Stop or delete the Codespace.</strong></div>
+          <div class="tools">Keep the repo. Do not leave unused Codespaces hanging around forever.</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Useful mini projects</h2>
+      <p class="section-intro">
+        These make the terminal feel useful instead of abstract.
+      </p>
+
+      <div class="grid">
+        <article class="track-card">
+          <span class="tag green">Files</span>
+          <h3>Rename a folder of files</h3>
+          <p>Practice loops, quotes, and file handling.</p>
+          <div class="code-card"><pre><code>for f in *.mp3; do
+  mv "$f" "clean-$f"
+done</code></pre></div>
+        </article>
+
+        <article class="track-card">
+          <span class="tag">Search</span>
+          <h3>Find text across a project</h3>
+          <p>Useful for debugging class code.</p>
+          <div class="code-card"><pre><code>rg "main" .
+rg "TODO" .</code></pre></div>
+        </article>
+
+        <article class="track-card">
+          <span class="tag">Database</span>
+          <h3>Run a tiny SQLite database</h3>
+          <p>Good for database classes and SQL practice.</p>
+          <div class="code-card"><pre><code>sqlite3 school.db
+.tables
+.schema</code></pre></div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Dev containers: the real power move</h2>
+      <p class="section-intro">
+        A dev container lets a repo describe its own environment. That means a Python repo, C++ repo,
+        database repo, or web app repo can open with the right tools already prepared.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag">What it does</span>
+          <h3>Environment as project setup</h3>
+          <p>
+            A <code>.devcontainer/devcontainer.json</code> file can tell Codespaces what image, features,
+            packages, editor extensions, and setup commands the project needs.
+          </p>
+          <p>
+            This is how a class or project can become repeatable. Open the repo, start the Codespace,
+            and everyone gets a similar environment.
+          </p>
+        </article>
+
+        <article class="panel">
+          <span class="tag green">Examples</span>
+          <h3>Different repos, different environments</h3>
+          <ul>
+            <li>Python repo with Flask and pytest</li>
+            <li>C++ repo with compiler and debugger tools</li>
+            <li>Java repo with a JDK and Maven</li>
+            <li>Database repo with SQLite, PostgreSQL tools, or MySQL tools</li>
+            <li>Web repo with Node.js or static site tooling</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Student cost notes</h2>
+      <p class="section-intro">
+        Codespaces can be free or included, but usage still matters.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag green">Students</span>
+          <h3>Verified students get more included usage</h3>
+          <p>
+            GitHub Education currently advertises GitHub Pro for verified students, including 180 Codespaces hours per month and 20 GB of Codespaces storage.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Personal accounts</span>
+          <h3>Free personal accounts also include quota</h3>
+          <p>
+            GitHub personal accounts include a monthly quota of free Codespaces compute time and storage. Check the current billing page before relying on exact numbers.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Cleanup</span>
+          <h3>Delete old Codespaces</h3>
+          <p>
+            Stopped Codespaces can still use storage. Commit your work, then delete Codespaces you no longer need.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>How I would use it for school</h2>
+      <p class="section-intro">
+        This is the practical student workflow I recommend.
+      </p>
+
+      <div class="method">
+        <div class="method-step">
+          <span>01</span>
+          <h3>Create one repo per class</h3>
+          <p>Java, Python, C++, database, networking scripts, web apps, or any class that provides code files.</p>
+        </div>
+
+        <div class="method-step">
+          <span>02</span>
+          <h3>Use it during class</h3>
+          <p>Run examples live instead of only watching them. Change values, test edge cases, and save notes.</p>
+        </div>
+
+        <div class="method-step">
+          <span>03</span>
+          <h3>Commit working checkpoints</h3>
+          <p>Use Git history as a class notebook and a backup trail.</p>
+        </div>
+
+        <div class="method-step">
+          <span>04</span>
+          <h3>Build a portfolio</h3>
+          <p>Clean up selected repos later and turn them into public examples of what you learned.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="docs">
+      <h2>Friendly official resources</h2>
+      <p class="section-intro">
+        These are the main pages worth keeping open.
+      </p>
+
+      <div class="grid docs-list">
+        <article class="card">
+          <span class="tag green">Start here</span>
+          <h3>GitHub Codespaces docs</h3>
+          <p>Official overview, quickstart, and usage docs.</p>
+          <p><a href="https://docs.github.com/en/codespaces" rel="noopener">Open Codespaces documentation</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Overview</span>
+          <h3>What are Codespaces?</h3>
+          <p>GitHub’s explanation of the default Linux environment and how Codespaces works.</p>
+          <p><a href="https://docs.github.com/en/codespaces/about-codespaces/what-are-codespaces" rel="noopener">Open Codespaces overview</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Students</span>
+          <h3>GitHub Education</h3>
+          <p>Student benefits, GitHub Pro for verified learners, and included Codespaces usage.</p>
+          <p><a href="https://github.com/education/students" rel="noopener">Open GitHub Education for students</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Billing</span>
+          <h3>Codespaces billing</h3>
+          <p>Free quota, storage, compute time, and how usage is counted.</p>
+          <p><a href="https://docs.github.com/billing/managing-billing-for-github-codespaces/about-billing-for-github-codespaces" rel="noopener">Open Codespaces billing docs</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Containers</span>
+          <h3>Dev containers</h3>
+          <p>How a repo can define its own coding environment.</p>
+          <p><a href="https://docs.github.com/codespaces/setting-up-your-project-for-codespaces/introduction-to-dev-containers" rel="noopener">Open dev containers intro</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Python</span>
+          <h3>Python in Codespaces</h3>
+          <p>Official GitHub guide for setting up a Python project in Codespaces.</p>
+          <p><a href="https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/setting-up-your-python-project-for-codespaces" rel="noopener">Open Python setup guide</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Related LaunchShell guides</h2>
+      <p class="section-intro">
+        Codespaces fits nicely with the rest of the beginner path.
+      </p>
+
+      <div class="grid docs-list">
+        <article class="card">
+          <span class="tag green">Terminal</span>
+          <h3>Linux Terminal Intro</h3>
+          <p>Learn the commands that make Codespaces useful.</p>
+          <p><a href="../linux-terminal-intro/">Open the Linux Terminal Intro Guide</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">VMs</span>
+          <h3>What Is a VM?</h3>
+          <p>Understand the bigger idea behind cloud development environments and virtual machines.</p>
+          <p><a href="../what-is-a-vm/">Open the VM guide</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Cloud</span>
+          <h3>AWS Free VPS Setup</h3>
+          <p>Move from a coding environment to a real public cloud server.</p>
+          <p><a href="../aws-free-vps/">Open the AWS VPS guide</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Final idea</h2>
+      <div class="callout">
+        <p>
+          Codespaces is one of the best beginner tools because it turns GitHub into a working Linux lab. You can code, run, install, test, break, fix, and commit from the browser. For students, that means less setup pain and more time actually interacting with code.
+        </p>
+      </div>
+    </section>
+  <section class="page-end-nav" aria-label="Page navigation">
+    <a class="button primary" href="#top">Back to top</a>
+  </section>
+
+  </main>
+
+  <footer>
+    <div>© 2026 LaunchShell</div>
+    <div>Student-built project guides for Linux, cloud, electronics, and cybersecurity.</div>
+  </footer>
+</body>
+</html>

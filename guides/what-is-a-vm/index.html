@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LaunchShell | What Is a VM?</title>
+  <meta
+    name="description"
+    content="A beginner-friendly LaunchShell guide explaining virtual machines, hypervisors, snapshots, VM networking, and why VMs are useful for students learning Linux, cloud, networking, and cybersecurity."
+  />
+
+  <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+
+  <style>
+    .guide-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.85fr);
+      gap: 46px;
+      align-items: center;
+      padding: 56px 0 54px;
+    }
+
+    .guide-visual {
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: white;
+      box-shadow: var(--shadow);
+    }
+
+    .guide-visual-inner {
+      min-height: 420px;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+      background:
+        radial-gradient(circle at 20% 15%, rgba(18, 99, 255, 0.16), transparent 18rem),
+        radial-gradient(circle at 80% 70%, rgba(18, 201, 149, 0.14), transparent 18rem),
+        #ffffff;
+    }
+
+    .vm-stack {
+      width: min(100%, 420px);
+      display: grid;
+      gap: 12px;
+    }
+
+    .vm-layer {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: white;
+      padding: 16px 18px;
+      box-shadow: 0 14px 34px rgba(6, 18, 38, 0.08);
+    }
+
+    .vm-layer.dark {
+      background: var(--dark);
+      color: white;
+      border-color: var(--dark);
+    }
+
+    .vm-layer strong {
+      display: block;
+      font-size: 1.02rem;
+      margin-bottom: 3px;
+    }
+
+    .vm-layer span {
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .vm-layer.dark span {
+      color: #c9d6e7;
+    }
+
+    .action-item a,
+    .docs-list a {
+      color: var(--blue-dark);
+      font-weight: 900;
+    }
+
+    .term-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .term-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      min-height: 100%;
+    }
+
+    .term-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.18rem;
+    }
+
+    .term-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .lab-box {
+      background: var(--dark);
+      color: white;
+      border-radius: 22px;
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .lab-box p {
+      color: #c9d6e7;
+    }
+
+    .lab-box ol {
+      color: #c9d6e7;
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    .lab-box li {
+      margin-bottom: 8px;
+    }
+
+    .lab-box code {
+      color: #d8e6ff;
+    }
+
+    @media (max-width: 1020px) {
+      .guide-hero,
+      .split {
+        grid-template-columns: 1fr;
+      }
+
+      .flow,
+      .term-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .guide-visual-inner {
+        min-height: 320px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .simple-table,
+      .simple-table thead,
+      .simple-table tbody,
+      .simple-table th,
+      .simple-table td,
+      .simple-table tr {
+        display: block;
+      }
+
+      .simple-table thead {
+        display: none;
+      }
+
+      .simple-table tr {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .simple-table tr:last-child {
+        border-bottom: 0;
+      }
+
+      .simple-table td {
+        border-bottom: 0;
+        padding: 12px 16px;
+      }
+
+      .simple-table td:nth-child(1)::before {
+        content: "Concept";
+        display: block;
+        font-weight: 900;
+        color: var(--text);
+        margin-bottom: 3px;
+      }
+
+      .simple-table td:nth-child(2)::before {
+        content: "Plain English";
+        display: block;
+        font-weight: 900;
+        color: var(--text);
+        margin-bottom: 3px;
+      }
+
+      .simple-table td:nth-child(3)::before {
+        content: "Why it matters";
+        display: block;
+        font-weight: 900;
+        color: var(--text);
+        margin-bottom: 3px;
+      }
+    }
+  </style>
+</head>
+
+<body id="top" class="resources-page">
+  <header>
+    <a href="../../" aria-label="LaunchShell home">
+      <img src="../../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../../projects/">Projects</a>
+      <a href="../../guides/">Guides</a>
+      <a href="../../resources/">Resources</a>
+      <a href="../../resources/book-recommendations/">Read Books!</a>
+      <a href="../../about/">About</a>
+      <a href="#first-lab" class="status">First VM Lab</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="guide-hero">
+      <div>
+        <div class="eyebrow">Virtual Machines • Linux • Labs • Snapshots</div>
+        <h1>What is a VM?</h1>
+
+        <p>
+          A VM, or virtual machine, is a computer inside your computer. It acts like a separate machine,
+          but it runs as software on your real hardware.
+        </p>
+
+        <p>
+          That means you can install Linux, test commands, break things, take snapshots, restore them,
+          and learn without risking your main computer.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href="#how-it-works">How it works</a>
+          <a class="button" href="#first-lab">Try a first lab</a>
+        </div>
+
+        <div class="guide-note">
+          <strong>Simple version:</strong> a VM is a safe practice computer. It is one of the best tools for learning Linux, servers, networking, cybersecurity, and cloud computing.
+        </div>
+      </div>
+
+      <div class="guide-visual">
+        <div class="guide-visual-inner" aria-label="Virtual machine stack diagram">
+          <div class="vm-stack">
+            <div class="vm-layer">
+              <strong>Guest OS</strong>
+              <span>Ubuntu, Debian, Windows, Kali, pfSense, etc.</span>
+            </div>
+            <div class="vm-layer">
+              <strong>Virtual hardware</strong>
+              <span>Virtual CPU, RAM, disk, network card</span>
+            </div>
+            <div class="vm-layer dark">
+              <strong>Hypervisor</strong>
+              <span>VirtualBox, VMware, KVM, Hyper-V, Proxmox</span>
+            </div>
+            <div class="vm-layer">
+              <strong>Host computer</strong>
+              <span>Your real laptop, desktop, server, or cloud machine</span>
+            </div>
+          </div>
+        </div>
+        <div class="caption">
+          The VM sees virtual hardware. The hypervisor maps that virtual hardware onto the real machine underneath.
+        </div>
+      </div>
+    </section>
+
+    <section id="how-it-works">
+      <h2>How a VM works</h2>
+      <p class="section-intro">
+        A VM has the same basic parts as a normal computer, but they are simulated or managed by software.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Concept</th>
+            <th>Plain English</th>
+            <th>Why it matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Host</strong></td>
+            <td>The real computer running the VM software.</td>
+            <td>Your laptop, desktop, or server provides the actual CPU, RAM, disk, and network connection.</td>
+          </tr>
+          <tr>
+            <td><strong>Guest</strong></td>
+            <td>The operating system inside the VM.</td>
+            <td>This can be Ubuntu, Debian, Windows, Kali, pfSense, or another OS you want to test.</td>
+          </tr>
+          <tr>
+            <td><strong>Hypervisor</strong></td>
+            <td>The software that runs and controls VMs.</td>
+            <td>Examples include VirtualBox, VMware, KVM, Hyper-V, and Proxmox.</td>
+          </tr>
+          <tr>
+            <td><strong>Virtual disk</strong></td>
+            <td>A file that acts like a hard drive.</td>
+            <td>You can install an OS into it, copy it, back it up, or delete it.</td>
+          </tr>
+          <tr>
+            <td><strong>Snapshot</strong></td>
+            <td>A restore point for the VM.</td>
+            <td>Take a snapshot before risky changes. If something breaks, roll back.</td>
+          </tr>
+          <tr>
+            <td><strong>ISO file</strong></td>
+            <td>A virtual installer disc.</td>
+            <td>You use ISO files to install operating systems into a VM.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Why VMs are useful</h2>
+      <p class="section-intro">
+        VMs make learning less scary because they give you a reset button.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag">Linux practice</span>
+          <h3>Install Linux without replacing your computer</h3>
+          <p>
+            Try Ubuntu, Debian, Fedora, Kali, or other Linux systems without wiping your main operating system.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Safe mistakes</span>
+          <h3>Break things and roll back</h3>
+          <p>
+            Before editing configs, changing services, or testing firewall rules, take a snapshot and restore if needed.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Real labs</span>
+          <h3>Build small networks</h3>
+          <p>
+            Run multiple VMs to practice servers, clients, DNS, SSH, web apps, firewalls, packet captures, and routing.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Local VM vs cloud VM</h2>
+      <p class="section-intro">
+        Both are useful. They just solve different problems.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag">Local VM</span>
+          <h3>Runs on your own computer</h3>
+          <p>
+            Best for private labs, Linux practice, snapshots, testing, and learning without paying for cloud time.
+          </p>
+          <ul>
+            <li>Good for offline learning</li>
+            <li>Easy to snapshot and reset</li>
+            <li>No public internet exposure by default</li>
+            <li>Limited by your own CPU, RAM, and disk</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <span class="tag green">Cloud VM</span>
+          <h3>Runs on someone else’s server</h3>
+          <p>
+            Best when you need a public IP, a real internet-facing server, or a VPS for web apps and remote access.
+          </p>
+          <ul>
+            <li>Good for hosting small web projects</li>
+            <li>Can get a public IP address</li>
+            <li>Teaches billing, DNS, firewalls, and cloud security</li>
+            <li>Must be cleaned up to avoid charges</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="action-item">
+        <strong>Next step:</strong> Want a public cloud VM instead? Read the
+        <a href="../../guides/aws-free-vps/">AWS Free VPS Setup Guide</a>.
+      </div>
+    </section>
+
+    <section>
+      <h2>VM networking modes</h2>
+      <p class="section-intro">
+        Networking is where VMs become really useful. The network mode controls who can talk to the VM.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Mode</th>
+            <th>Plain English</th>
+            <th>Use it for</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>NAT</strong></td>
+            <td>The VM can reach the internet through the host, but outside machines usually cannot reach the VM directly.</td>
+            <td>Beginner Linux practice, updates, package installs, general safe testing.</td>
+          </tr>
+          <tr>
+            <td><strong>Bridged</strong></td>
+            <td>The VM appears like another device on your real network.</td>
+            <td>Server testing, SSH from another machine, LAN services, realistic networking practice.</td>
+          </tr>
+          <tr>
+            <td><strong>Host-only</strong></td>
+            <td>The VM can talk to the host and maybe other lab VMs, but not the outside network.</td>
+            <td>Private labs, safe experiments, isolated networking practice.</td>
+          </tr>
+          <tr>
+            <td><strong>Internal network</strong></td>
+            <td>VMs can talk to each other, but not the host or internet unless you build a router VM.</td>
+            <td>Advanced lab networks, firewall practice, segmented cybersecurity labs.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Common VM software</h2>
+      <p class="section-intro">
+        These are common tools students use to run VMs. Start simple, then move to more advanced tools when needed.
+      </p>
+
+      <div class="term-grid">
+        <article class="term-card">
+          <span class="tag green">Beginner</span>
+          <h3>VirtualBox</h3>
+          <p>
+            Free, common, and beginner-friendly. Good for first Linux VMs and simple labs.
+          </p>
+        </article>
+
+        <article class="term-card">
+          <span class="tag">Desktop</span>
+          <h3>VMware Workstation</h3>
+          <p>
+            Popular desktop virtualization software. Good for labs, snapshots, and running multiple systems.
+          </p>
+        </article>
+
+        <article class="term-card">
+          <span class="tag">Linux native</span>
+          <h3>KVM / virt-manager</h3>
+          <p>
+            Strong Linux-native virtualization. Good if your main system is Linux and you want better performance.
+          </p>
+        </article>
+
+        <article class="term-card">
+          <span class="tag">Windows</span>
+          <h3>Hyper-V</h3>
+          <p>
+            Microsoft’s virtualization platform for Windows systems that support it.
+          </p>
+        </article>
+
+        <article class="term-card">
+          <span class="tag">Home lab</span>
+          <h3>Proxmox</h3>
+          <p>
+            A server-focused virtualization platform for running VMs and containers on dedicated hardware.
+          </p>
+        </article>
+
+        <article class="term-card">
+          <span class="tag">Cloud</span>
+          <h3>EC2 / VPS</h3>
+          <p>
+            Cloud VMs run on a provider’s hardware and can have public IPs for real hosting practice.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="first-lab">
+      <h2>First VM lab</h2>
+      <p class="section-intro">
+        This is a simple first project that teaches the basic VM workflow.
+      </p>
+
+      <div class="lab-box">
+        <p><strong>Goal:</strong> install Ubuntu in a VM, update it, install a web server, take a snapshot, then safely break and restore it.</p>
+        <ol>
+          <li>Install VirtualBox, VMware, KVM, Hyper-V, or another VM tool.</li>
+          <li>Download an Ubuntu Server or Ubuntu Desktop ISO.</li>
+          <li>Create a VM with 2 CPU cores, 2–4 GB RAM, and a 20 GB virtual disk.</li>
+          <li>Install Ubuntu into the VM.</li>
+          <li>Update the system with <code>sudo apt update && sudo apt upgrade</code>.</li>
+          <li>Install a web server with <code>sudo apt install nginx</code>.</li>
+          <li>Check the service with <code>systemctl status nginx</code>.</li>
+          <li>Take a snapshot called <code>clean-nginx-install</code>.</li>
+          <li>Change something, break something, then restore the snapshot.</li>
+        </ol>
+      </div>
+
+      <div class="action-item">
+        <strong>New to Linux?</strong> Start with the
+        <a href="../../guides/linux-terminal-intro/">Linux Terminal Intro Guide</a>
+        before running commands inside the VM.
+      </div>
+    </section>
+
+    <section>
+      <h2>Good beginner VM projects</h2>
+      <p class="section-intro">
+        Once the first VM works, these are realistic next projects.
+      </p>
+
+      <div class="flow">
+        <article class="flow-step">
+          <span>01</span>
+          <h3>Linux sandbox</h3>
+          <p>Practice files, users, permissions, packages, services, and logs.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>02</span>
+          <h3>Web server</h3>
+          <p>Install Nginx or Apache and serve a basic page from the VM.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>03</span>
+          <h3>Two-VM network</h3>
+          <p>Use one VM as a client and one VM as a server. Practice SSH, ping, and ports.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>04</span>
+          <h3>Firewall lab</h3>
+          <p>Use UFW or a router/firewall VM to allow, block, and log traffic.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Safety rules</h2>
+      <p class="section-intro">
+        VMs are safer than working on your main machine, but they are not magic force fields.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag">Snapshots</span>
+          <h3>Snapshot before risky changes</h3>
+          <p>
+            Take snapshots before major updates, firewall changes, malware analysis labs, or config edits.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Isolation</span>
+          <h3>Use isolated networks for risky labs</h3>
+          <p>
+            Do not connect dangerous experiments to your normal home network or the public internet.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Secrets</span>
+          <h3>Do not store real secrets in test VMs</h3>
+          <p>
+            Avoid putting real passwords, SSH keys, tokens, browser sessions, or personal files into throwaway lab machines.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="docs">
+      <h2>Friendly resources</h2>
+      <p class="section-intro">
+        These are useful references that do not assume you already know everything.
+      </p>
+
+      <div class="grid docs-list">
+        <article class="card">
+          <span class="tag green">Beginner</span>
+          <h3>VirtualBox manual</h3>
+          <p>
+            Useful for understanding snapshots, storage, network modes, and VM settings.
+          </p>
+          <p><a href="https://www.virtualbox.org/manual/" rel="noopener">Open VirtualBox documentation</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Linux native</span>
+          <h3>Ubuntu virtualization docs</h3>
+          <p>
+            Good reference if you want to use KVM, QEMU, or virt-manager on a Linux host.
+          </p>
+          <p><a href="https://documentation.ubuntu.com/server/how-to/virtualisation/" rel="noopener">Open Ubuntu virtualization docs</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Cloud</span>
+          <h3>AWS EC2 getting started</h3>
+          <p>
+            Good next step if you want a VM with a public IP address on the internet.
+          </p>
+          <p><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html" rel="noopener">Open AWS EC2 getting started</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Home lab</span>
+          <h3>Proxmox documentation</h3>
+          <p>
+            Useful when you want to run multiple VMs on a dedicated home lab server.
+          </p>
+          <p><a href="https://pve.proxmox.com/pve-docs/" rel="noopener">Open Proxmox docs</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Practice</span>
+          <h3>Linux Journey</h3>
+          <p>
+            Beginner-friendly Linux lessons that pair well with a first Linux VM.
+          </p>
+          <p><a href="https://linuxjourney.com/" rel="noopener">Open Linux Journey</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Command line</span>
+          <h3>Missing Semester</h3>
+          <p>
+            A practical course on shell tools, editors, Git, debugging, and command-line habits.
+          </p>
+          <p><a href="https://missing.csail.mit.edu/" rel="noopener">Open Missing Semester</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Final idea</h2>
+      <div class="callout">
+        <p>
+          A VM is one of the best beginner tools because it gives you a real computer to practice on without making the project permanent. Install Linux, take snapshots, try commands, build small servers, break things, restore them, and learn how systems actually work.
+        </p>
+      </div>
+    </section>
+  <section class="page-end-nav" aria-label="Page navigation">
+    <a class="button primary" href="#top">Back to top</a>
+  </section>
+
+  </main>
+
+  <footer>
+    <div>© 2026 LaunchShell</div>
+    <div>Student-built project guides for Linux, cloud, electronics, and cybersecurity.</div>
+  </footer>
+</body>
+</html>
