@@ -39,7 +39,7 @@
 
         <p>
           This project turns a Raspberry Pi and an Alfa Wi-Fi adapter into a portable packet-capture
-          sensor for my private lab. The Pi handles the capture, the Alfa adapter listens to Wi-Fi
+          sensor. The Pi handles the capture, the Alfa adapter listens to Wi-Fi
           traffic, and Wireshark on my desktop lets me analyze the saved PCAP files afterward.
         </p>
 
@@ -52,6 +52,7 @@
         <div class="hero-actions">
           <a class="button primary" href="#build">Build the sensor</a>
           <a class="button" href="#capture">Capture packets</a>
+          <a class="button" href="../../guides/wireshark/index.html">Learn Wireshark</a>
         </div>
 
         <div class="warning-note">
@@ -97,7 +98,7 @@
 
       <p class="section-intro">
         This is a small portable lab tool. I can place the Raspberry Pi near my test access point,
-        capture wireless traffic from my own lab, save the capture as a PCAP file, and analyze it
+        capture wireless traffic, save the capture as a PCAP file, and analyze it
         later on my main computer.
       </p>
 
@@ -355,7 +356,7 @@ sudo tcpdump -i wlan0 -w ~/captures/normal-network-test.pcap</code></pre>
 
       <p class="section-intro">
         Monitor mode lets the adapter listen to wireless frames on a channel. I use this only inside
-        my private lab and only to understand my own wireless environment.
+        my lab and only to understand my own wireless environment.
       </p>
 
       <div class="code-card">
@@ -776,7 +777,7 @@ sudo ip link set wlan1 up</code></pre>
       <div class="callout">
         <p>
           <strong>This project turns Wi-Fi from something invisible into something I can study.</strong>
-          The Raspberry Pi captures, the Alfa adapter listens in my private lab, and Wireshark lets
+          The Raspberry Pi captures, the Alfa adapter listens, and Wireshark lets
           me analyze the evidence afterward. It is a practical bridge between Linux, wireless
           networking, packet analysis, and safe cybersecurity learning.
         </p>

@@ -422,9 +422,9 @@
     "level": "Beginner",
     "time": "Reference",
     "category": "Version Control",
-    "summary": "GitHub teaches version control, commits, branches, project history, public documentation, private work-in-progress repos, and portfolio building.",
+    "summary": "Git teaches version control, commits, branches, project history, public documentation, private work-in-progress repos, and portfolio building.",
     "url": "guides/git-and-github/",
-    "image": "assets/card-github-logo.png",
+    "image": "assets/card-git-logo.png",
     "homeSection": "none",
     "featured": false
   },

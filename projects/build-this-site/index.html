@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>LaunchShell | How This Site Was Built</title>
-  <meta
-    name="description"
-    content="A LaunchShell project page explaining how LaunchShell.org was built with HTML, CSS, Git, GitHub, JSON, Cloudflare Pages, Cloudflare DNS, and AI-assisted learning."
-  />
+  <meta name="description"
+    content="A LaunchShell project page explaining how LaunchShell.org was built with HTML, CSS, Git, GitHub, JSON, Cloudflare Pages, Cloudflare DNS, and AI-assisted learning." />
 
   <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
   <link rel="stylesheet" href="../../assets/site.css" />
@@ -26,7 +25,7 @@
       <a href="../../resources/">Resources</a>
       <a href="../../resources/book-recommendations/">Read Books!</a>
       <a href="../../about/">About</a>
-      <a href="#cloudflare" class="status">Cloudflare Pages</a>
+      <a class="status" href="../../start.html">Start Here</a>
     </nav>
   </header>
 
@@ -66,7 +65,7 @@
           <div class="stack">
             <div class="stack-layer">
               <strong>Content</strong>
-              <span>Guides, resources, projects, notes, screenshots, JSON index</span>
+              <span>Guides, resources, projects, notes, screenshots, JSON</span>
             </div>
             <div class="stack-layer">
               <strong>Frontend</strong>
@@ -77,8 +76,8 @@
               <span>Git, GitHub, Codespaces, AI-assisted review</span>
             </div>
             <div class="stack-layer">
-              <strong>Deployment</strong>
-              <span>Cloudflare Pages serving the static site</span>
+              <strong>Serverless Deployment</strong>
+              <span>A static, serverless deployment on Cloudflare Pages.</span>
             </div>
           </div>
         </div>
@@ -91,74 +90,89 @@
     <section id="story">
       <h2>How it actually came together</h2>
       <p class="section-intro">
-        LaunchShell did not start as a finished website plan. It started as a small homepage and became more organized as the project grew.
+        LaunchShell did not start as a finished website plan. It started as a small homepage and became more organized
+        as the project grew.
       </p>
 
       <div class="path">
         <div class="path-row">
           <div class="level">01</div>
           <div>Started with a simple static homepage</div>
-          <div class="tools">The first version was a basic HTML/CSS page with a logo, short description, and project preview sections.</div>
+          <div class="tools">The first version was a basic HTML/CSS page with a logo, short description, and project
+            preview sections.</div>
         </div>
 
         <div class="path-row">
           <div class="level">02</div>
           <div>Added cards for real projects</div>
-          <div class="tools">Instead of making fake portfolio pieces, I used actual builds: cloud servers, Flask apps, the 8-bit computer, Raspberry Pi ideas, and electronics projects.</div>
+          <div class="tools">Instead of making fake portfolio pieces, I used actual builds: cloud servers, Flask apps,
+            the 8-bit computer, Raspberry Pi ideas, and electronics projects.</div>
         </div>
 
         <div class="path-row">
           <div class="level">03</div>
           <div>Separated projects, guides, and resources</div>
-          <div class="tools">The site needed structure. Projects became things I built. Guides became how-to lessons. Resources became outside tools, free offers, and learning platforms.</div>
+          <div class="tools">The site needed structure. Projects became things I built. Guides became how-to lessons.
+            Resources became outside tools, free offers, and learning platforms.</div>
         </div>
 
         <div class="path-row">
           <div class="level">04</div>
           <div>Built beginner guides from real problems</div>
-          <div class="tools">The first guides came from practical needs: setting up an AWS VPS, learning the Linux terminal, understanding VMs, using GitHub Codespaces, and explaining Git.</div>
+          <div class="tools">The first guides came from practical needs: setting up an AWS VPS, learning the Linux
+            terminal, understanding VMs, using GitHub Codespaces, and explaining Git.</div>
         </div>
 
         <div class="path-row">
           <div class="level">05</div>
           <div>Turned project notes into project pages</div>
-          <div class="tools">README files and rough notes became cleaner project pages that explain what was built, what tools were used, and what the project teaches.</div>
+          <div class="tools">README files and rough notes became cleaner project pages that explain what was built, what
+            tools were used, and what the project teaches.</div>
         </div>
 
         <div class="path-row">
           <div class="level">06</div>
           <div>Cleaned up the folder structure</div>
-          <div class="tools">Pages moved into folders like <code>guides/</code>, <code>projects/</code>, and <code>resources/</code>, which made URLs and navigation easier to understand.</div>
+          <div class="tools">Pages moved into folders like <code>guides/</code>, <code>projects/</code>, and
+            <code>resources/</code>, which made URLs and navigation easier to understand.</div>
         </div>
 
         <div class="path-row">
           <div class="level">07</div>
           <div>Moved repeated styling into one CSS file</div>
-          <div class="tools">As the site grew, repeated styles needed to live in <code>assets/site.css</code> instead of being copied into every page.</div>
+          <div class="tools">As the site grew, repeated styles needed to live in <code>assets/site.css</code> instead of
+            being copied into every page.</div>
         </div>
-
+        
         <div class="path-row">
           <div class="level">08</div>
-          <div>Deployed it through Cloudflare Pages</div>
-          <div class="tools">The site became public through a GitHub-to-Cloudflare workflow: commit changes, push to GitHub, let Cloudflare deploy, then verify the live site.</div>
+          <div><strong>Deployed it through Cloudflare Pages</strong></div>
+          <div class="tools">
+            LaunchShell is deployed as a static, serverless site through a GitHub-to-Cloudflare workflow:
+            commit changes, push to GitHub, let Cloudflare Pages publish the update, then verify the live site.
+          </div>
         </div>
 
         <div class="path-row">
           <div class="level">09</div>
           <div>Added a public book recommendations resource</div>
-          <div class="tools">A cleaned JSON file now powers a Top 30 book list, with a related Libby guide explaining how students can borrow ebooks and audiobooks through public libraries.</div>
+          <div class="tools">A cleaned JSON file now powers a Top 30 book list, with a related Libby guide explaining
+            how students can borrow ebooks and audiobooks through public libraries.</div>
         </div>
 
         <div class="path-row">
           <div class="level">10</div>
           <div>Added a JSON site index for homepage cards</div>
-          <div class="tools">Once the site reached more than 25 card assets and many separate guide, project, and resource pages, I needed a more organized way to manage titles, summaries, links, images, categories, skill levels, and time estimates.</div>
+          <div class="tools">Once the site reached more than 25 card assets and many separate guide, project, and
+            resource pages, I needed a more organized way to manage titles, summaries, links, images, categories, skill
+            levels, and time estimates.</div>
         </div>
 
         <div class="path-row">
           <div class="level">11</div>
           <div>Kept improving it as a real project</div>
-          <div class="tools">The site is not just a finished page. It is a growing project notebook for guides, builds, experiments, and lessons learned.</div>
+          <div class="tools">The site is not just a finished page. It is a growing project notebook for guides, builds,
+            experiments, and lessons learned.</div>
         </div>
       </div>
     </section>
@@ -191,7 +205,8 @@
           <tr>
             <td><strong>Structured content</strong></td>
             <td>JSON</td>
-            <td>JSON keeps repeated card information and book data organized without turning the site into a full web app.</td>
+            <td>JSON keeps repeated card information and book data organized without turning the site into a full web
+              app.</td>
           </tr>
           <tr>
             <td><strong>Assets</strong></td>
@@ -206,7 +221,8 @@
           <tr>
             <td><strong>Code hosting</strong></td>
             <td>GitHub</td>
-            <td>GitHub stores the repo, supports private work-in-progress, and helps turn finished projects into a portfolio.</td>
+            <td>GitHub stores the repo, supports private work-in-progress, and helps turn finished projects into a
+              portfolio.</td>
           </tr>
           <tr>
             <td><strong>Cloud coding</strong></td>
@@ -221,17 +237,20 @@
           <tr>
             <td><strong>Hosting</strong></td>
             <td>Cloudflare Pages</td>
-            <td>Cloudflare Pages deploys the static site from the GitHub repo and serves it on Cloudflare’s network.</td>
+            <td>Cloudflare Pages deploys the static site from the GitHub repo and serves it on Cloudflare’s network.
+            </td>
           </tr>
           <tr>
             <td><strong>Proxying and security</strong></td>
             <td>Cloudflare proxy, security rules, and access features</td>
-            <td>Cloudflare gives the site room to grow into real web security topics like proxying, WAF rules, access control, and protected admin areas.</td>
+            <td>Cloudflare gives the site room to grow into real web security topics like proxying, WAF rules, access
+              control, and protected admin areas.</td>
           </tr>
           <tr>
             <td><strong>Edge experiments</strong></td>
             <td>Cloudflare Workers</td>
-            <td>Workers make it possible to run small pieces of code at the edge without managing a traditional server.</td>
+            <td>Workers make it possible to run small pieces of code at the edge without managing a traditional server.
+            </td>
           </tr>
           <tr>
             <td><strong>Learning assistant</strong></td>
@@ -245,7 +264,8 @@
     <section id="cloudflare">
       <h2>Why Cloudflare deserves its own shoutout</h2>
       <p class="section-intro">
-        Cloudflare made this project feel realistic without making it complicated. I use it for more than simple hosting:
+        Cloudflare made this project feel realistic without making it complicated. I use it for more than simple
+        hosting:
         Pages, DNS, proxying, security features, access control, and edge Workers all fit into the same learning path.
       </p>
 
@@ -328,7 +348,7 @@
       </p>
 
       <div class="code-card">
-<pre><code>.
+        <pre><code>.
 ├── index.html
 ├── data/
 │   └── site-index.json
@@ -441,7 +461,7 @@
       </div>
 
       <div class="code-card">
-<pre><code>{
+        <pre><code>{
   "id": "linux-terminal-intro",
   "title": "Linux Terminal Intro",
   "type": "Guide",
@@ -530,7 +550,8 @@
         <article class="flow-step">
           <span>04</span>
           <h3>Card organization</h3>
-          <p>Once the site had many cards and assets, repeated homepage card HTML needed to move toward structured data.</p>
+          <p>Once the site had many cards and assets, repeated homepage card HTML needed to move toward structured data.
+          </p>
         </article>
       </div>
     </section>
@@ -563,7 +584,8 @@
           <span class="tag">Review</span>
           <h3>Checking for sensitive or unsafe content</h3>
           <p>
-            AI helped review pages, code, and repo content for secrets, hardcoded values, confusing wording, and risky publishing mistakes.
+            AI helped review pages, code, and repo content for secrets, hardcoded values, confusing wording, and risky
+            publishing mistakes.
           </p>
         </article>
       </div>
@@ -618,7 +640,8 @@
           <span class="tag">Verify</span>
           <h3>Test everything</h3>
           <p>
-            AI can produce confident wrong answers. I still had to run the code, open the page, check the links, and inspect the result.
+            AI can produce confident wrong answers. I still had to run the code, open the page, check the links, and
+            inspect the result.
           </p>
         </article>
 
@@ -662,7 +685,8 @@
         <article class="flow-step">
           <span>03</span>
           <h3>AI-assisted learning</h3>
-          <p>Using AI to ask better questions, organize ideas, review work, and learn faster without giving up ownership.</p>
+          <p>Using AI to ask better questions, organize ideas, review work, and learn faster without giving up
+            ownership.</p>
         </article>
       </div>
     </section>
@@ -671,8 +695,10 @@
       <h2>Final lesson</h2>
       <div class="callout">
         <p>
-          LaunchShell.org was built to prove a simple idea: students can learn real technical skills by building real things.
-          Git makes the work safer, Cloudflare makes the site real, JSON keeps repeated content organized, and AI can help
+          LaunchShell.org was built to prove a simple idea: students can learn real technical skills by building real
+          things.
+          Git makes the work safer, Cloudflare makes the site real, JSON keeps repeated content organized, and AI can
+          help
           turn curiosity into progress when the student stays in control.
         </p>
       </div>
@@ -687,4 +713,5 @@
     <div>Student-built project guides for Linux, cloud, electronics, and cybersecurity.</div>
   </footer>
 </body>
+
 </html>

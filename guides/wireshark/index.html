@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>LaunchShell | Wireshark Packet Analysis Guide</title>
-  <meta
-    name="description"
-    content="A first-person LaunchShell guide to Wireshark for packet analysis, network troubleshooting, home labs, CTFs, and safe cybersecurity learning."
-  />
+  <meta name="description"
+    content="A first-person LaunchShell guide to Wireshark for packet analysis, network troubleshooting, home labs, CTFs, and safe cybersecurity learning." />
 
   <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
   <link rel="stylesheet" href="../../assets/site.css" />
@@ -57,7 +56,13 @@
           <strong>Important:</strong> packet captures can expose private data. I only capture traffic
           on my own devices, my own lab network, or environments where I have clear permission.
         </div>
+                <div class="action-item">
+          <strong>Related Project:</strong>
+          Building a portable wireless capture setup?<br>
+          Check out my <a href="../../projects/raspi-wifi-sniffer/index.html">Alfa Wi-Fi sniffer project</a>.
+        </div>
       </div>
+      
 
       <div class="visual-card">
         <div class="visual-inner" aria-label="Wireshark packet analysis workflow diagram">
@@ -814,21 +819,32 @@ tshark -r capture.pcap -q -z conv,tcp</code></pre>
     </section>
 
     <section>
+      <h2>Next step</h2>
+
+      <div class="action-item">
+        <strong>Ready for more?</strong> If you feel comfortable with the basics in this guide,
+        move on to the <a href="../advanced-wireshark/">Advanced Wireshark guide</a>. That guide
+        goes deeper into filters, packet evidence, cleaner captures, and troubleshooting workflows.
+      </div>
+    </section>
+
+    <section>
       <h2>Final idea</h2>
 
       <div class="callout">
         <p>
           <strong>Wireshark is one of the best tools for learning networking because it shows the
-          evidence.</strong> Instead of guessing what happened, I can capture packets, filter the
+            evidence.</strong> Instead of guessing what happened, I can capture packets, filter the
           noise, inspect the conversation, and understand how devices actually communicate. Used
           safely, it is useful for troubleshooting, home labs, CTFs, packet analysis, server work,
           and cybersecurity fundamentals.
         </p>
       </div>
     </section>
-  <section class="page-end-nav" aria-label="Page navigation">
-    <a class="button primary" href="#top">Back to top</a>
-  </section>
+
+    <section class="page-end-nav" aria-label="Page navigation">
+      <a class="button primary" href="#top">Back to top</a>
+    </section>
 
   </main>
 
@@ -837,4 +853,5 @@ tshark -r capture.pcap -q -z conv,tcp</code></pre>
     <div>Student-built project guides for Linux, cloud, electronics, Python, and cybersecurity.</div>
   </footer>
 </body>
+
 </html>

@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>LaunchShell | Advanced Wireshark Guide</title>
-  <meta
-    name="description"
-    content="An advanced first-person LaunchShell guide to Wireshark for deeper packet analysis, PCAP review, TCP troubleshooting, DNS investigation, TLS metadata, wireless captures, and safe private lab workflows."
-  />
+  <meta name="description"
+    content="An advanced first-person LaunchShell guide to Wireshark for deeper packet analysis, PCAP review, TCP troubleshooting, DNS investigation, TLS metadata, wireless captures, and safe private lab workflows." />
 
   <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
   <link rel="stylesheet" href="../../assets/site.css" />
@@ -39,19 +38,27 @@
 
         <p>
           Basic Wireshark teaches me how to capture packets and use simple filters. Advanced
-          Wireshark is where I start asking better questions: what failed, who talked to who,
+          Wireshark is where I start asking better questions: what failed, who talked to whom,
           which service responded, how long it took, and what the packet evidence actually proves.
         </p>
 
         <p>
-          This is the version I would use for deeper troubleshooting, CTF packet captures, honeynet
-          review, server debugging, home lab analysis, and private wireless lab captures from a
-          Raspberry Pi and Alfa adapter.
+          This guide moves from looking at traffic to investigating it. The goal is to use packet
+          captures for deeper troubleshooting, CTF analysis, honeynet review, server debugging,
+          home lab testing, and private wireless captures using a Raspberry Pi and Alfa adapter.
         </p>
+
+
 
         <div class="hero-actions">
           <a class="button primary" href="#workflow">See the workflow</a>
           <a class="button" href="#filters">Advanced filters</a>
+        </div>
+
+        <div class="action-item">
+          <strong>Related Project:</strong>
+          Building a portable wireless capture setup?<br>
+          Check out my <a href="../../projects/raspi-wifi-sniffer/index.html">Alfa Wi-Fi sniffer project</a>.
         </div>
 
         <div class="guide-note">
@@ -698,4 +705,5 @@ tshark -r capture.pcap -q -z endpoints,ip</code></pre>
     <div>Student-built project guides for Linux, cloud, electronics, Python, and cybersecurity.</div>
   </footer>
 </body>
+
 </html>
