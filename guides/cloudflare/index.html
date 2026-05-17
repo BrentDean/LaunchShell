@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LaunchShell | Cloudflare Pages Guide</title>
+  <meta
+    name="description"
+    content="A beginner-friendly LaunchShell guide to Cloudflare Pages, Cloudflare DNS, domains, GitHub deployment, and why Cloudflare is useful for student websites."
+  />
+
+  <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+
+</head>
+
+<body class="resources-page" id="top">
+  <header>
+    <a href="../../index.html" aria-label="LaunchShell home">
+      <img src="../../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../../projects/">Projects</a>
+      <a href="../../guides/">Guides</a>
+      <a href="../../resources/">Resources</a>
+      <a href="../../resources/book-recommendations/">Read Books!</a>
+      <a href="../../about/">About</a>
+      <a href="#first-deploy" class="status">First Deploy</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="guide-hero">
+      <div>
+        <div class="eyebrow">Cloudflare Pages • DNS • Domains • Static Sites</div>
+        <h1>Why Cloudflare Pages is great for student sites</h1>
+
+        <p>
+          Cloudflare Pages is a simple way to publish a static website from a GitHub repo.
+          For a student project, it gives you a real deployment workflow without needing to run your own web server.
+        </p>
+
+        <p>
+          I use Cloudflare Pages for LaunchShell because it fits the way the site is built:
+          simple HTML, shared CSS, local assets, GitHub commits, and automatic deployment.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href="#first-deploy">First deploy checklist</a>
+          <a class="button" href="#docs">Official docs</a>
+        </div>
+
+        <div class="guide-note">
+          <strong>Simple version:</strong> GitHub stores the code. Cloudflare Pages publishes it. Cloudflare DNS points the domain to the site.
+        </div>
+      </div>
+
+      <div class="visual-card">
+        <div class="visual-inner" aria-label="Cloudflare Pages deployment diagram">
+          <div class="stack">
+            <div class="stack-layer">
+              <strong>Write files</strong>
+              <span>HTML, CSS, images, guides, projects</span>
+            </div>
+            <div class="stack-layer">
+              <strong>Push to GitHub</strong>
+              <span>Commit and push the repo</span>
+            </div>
+            <div class="stack-layer dark">
+              <strong>Cloudflare Pages</strong>
+              <span>Builds/deploys the static site</span>
+            </div>
+            <div class="stack-layer">
+              <strong>Public domain</strong>
+              <span>Visitors open the live website</span>
+            </div>
+          </div>
+        </div>
+        <div class="caption">
+          This is a clean first deployment workflow for students learning real web publishing.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>What Cloudflare does in this setup</h2>
+      <p class="section-intro">
+        Cloudflare can sound complicated because it offers a lot of tools. For a beginner static site,
+        only a few pieces matter at first.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Part</th>
+            <th>What it does</th>
+            <th>Why it matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Cloudflare Registrar</strong></td>
+            <td>Lets you register and renew domains.</td>
+            <td>Good for getting a real domain without inflated renewal prices.</td>
+          </tr>
+          <tr>
+            <td><strong>Cloudflare DNS</strong></td>
+            <td>Controls where your domain points.</td>
+            <td>This connects a name like <code>launchshell.org</code> to the site.</td>
+          </tr>
+          <tr>
+            <td><strong>Cloudflare Pages</strong></td>
+            <td>Hosts and deploys static websites.</td>
+            <td>Perfect for HTML/CSS project sites, portfolios, docs, and guide pages.</td>
+          </tr>
+          <tr>
+            <td><strong>Git integration</strong></td>
+            <td>Connects Cloudflare Pages to GitHub or GitLab.</td>
+            <td>Every push can trigger a new deployment.</td>
+          </tr>
+          <tr>
+            <td><strong>HTTPS</strong></td>
+            <td>Serves the site securely.</td>
+            <td>A real site should use HTTPS, even if it is static.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Why I like it for students</h2>
+      <p class="section-intro">
+        It teaches real web concepts without forcing you to manage a server on day one.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag green">Simple hosting</span>
+          <h3>No server admin required</h3>
+          <p>
+            You can publish a static site without configuring Apache, Nginx, systemd, firewalls, or Linux services.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Git workflow</span>
+          <h3>Push to deploy</h3>
+          <p>
+            It rewards good Git habits because the live site is connected to the repo.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Real domain</span>
+          <h3>Feels like a real project</h3>
+          <p>
+            A real domain makes a student portfolio feel serious and easier to share.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="first-deploy">
+      <h2>First deploy checklist</h2>
+      <p class="section-intro">
+        This is the basic path for a simple static site.
+      </p>
+
+      <div class="flow">
+        <article class="flow-step">
+          <span>01</span>
+          <h3>Create a repo</h3>
+          <p>Put <code>index.html</code>, <code>assets/site.css</code>, and images in a GitHub repo.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>02</span>
+          <h3>Create Pages app</h3>
+          <p>In Cloudflare, create a Pages project and connect the GitHub repository.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>03</span>
+          <h3>Deploy</h3>
+          <p>For a plain static site, the build command can usually be blank and the output directory can be the repo root.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>04</span>
+          <h3>Add domain</h3>
+          <p>Add a custom domain and check that DNS points to the Pages project.</p>
+        </article>
+      </div>
+
+      <div class="action-item">
+        <strong>Related project:</strong> See how this was used on the
+        <a href="../../projects/build-this-site/">How LaunchShell.org Was Built</a> project page.
+      </div>
+    </section>
+
+    <section>
+      <h2>Beginner mistakes to watch for</h2>
+      <p class="section-intro">
+        Most first static-site problems are not Cloudflare problems. They are usually file path or repo structure problems.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag">Paths</span>
+          <h3>Wrong asset paths</h3>
+          <p>
+            Pages inside folders need paths like <code>../../assets/site.css</code>, not always <code>assets/site.css</code>.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Index files</span>
+          <h3>Folder URLs need index.html</h3>
+          <p>
+            A URL like <code>/guides/cloudflare/</code> works cleanly when the folder contains <code>index.html</code>.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Cache</span>
+          <h3>Old files can appear cached</h3>
+          <p>
+            If a change does not appear immediately, check the deploy log, hard refresh the browser, and verify the file path.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Why Cloudflare gets a special mention</h2>
+      <p class="section-intro">
+        For LaunchShell, Cloudflare made the site feel like a real public project quickly.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">Domain</span>
+          <h3>Affordable domain ownership</h3>
+          <p>
+            I was able to get a real domain for about $10 per year. Domain prices vary by TLD,
+            but Cloudflare Registrar is built around at-cost registration and renewal.
+          </p>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Deployment</span>
+          <h3>Static hosting that fits Git</h3>
+          <p>
+            Cloudflare Pages connects directly to the repo, deploys the static site, and lets me keep the site workflow simple.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="docs">
+      <h2>Official docs</h2>
+      <p class="section-intro">
+        These are the pages I would keep open while setting up a student website.
+      </p>
+
+      <div class="grid docs-list">
+        <article class="card">
+          <span class="tag green">Pages</span>
+          <h3>Cloudflare Pages overview</h3>
+          <p>Official starting point for Cloudflare Pages.</p>
+          <p><a href="https://developers.cloudflare.com/pages/" rel="noopener">Open Pages docs</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Git</span>
+          <h3>Git integration</h3>
+          <p>Connect a Pages project to GitHub or GitLab and deploy on push.</p>
+          <p><a href="https://developers.cloudflare.com/pages/configuration/git-integration/" rel="noopener">Open Git integration docs</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Static HTML</span>
+          <h3>Deploy a static site</h3>
+          <p>Cloudflare’s static HTML deployment guide.</p>
+          <p><a href="https://developers.cloudflare.com/pages/framework-guides/deploy-anything/" rel="noopener">Open static site guide</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Domains</span>
+          <h3>Cloudflare Registrar</h3>
+          <p>Official page for domain registration and renewals.</p>
+          <p><a href="https://www.cloudflare.com/products/registrar/" rel="noopener">Open Registrar page</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">DNS</span>
+          <h3>Cloudflare DNS docs</h3>
+          <p>Useful once you need to point a domain or subdomain to a project.</p>
+          <p><a href="https://developers.cloudflare.com/dns/" rel="noopener">Open DNS docs</a></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Direct Upload</span>
+          <h3>Upload without Git</h3>
+          <p>Useful if you want to upload prebuilt static assets directly.</p>
+          <p><a href="https://developers.cloudflare.com/pages/get-started/direct-upload/" rel="noopener">Open Direct Upload docs</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Final idea</h2>
+      <div class="callout">
+        <p>
+          Cloudflare Pages is one of the easiest ways to make a student project feel real.
+          You learn Git, repos, deployment, domains, DNS, HTTPS, and public web publishing without needing to run a server first.
+        </p>
+      </div>
+    </section>
+  <section class="page-end-nav" aria-label="Page navigation">
+    <a class="button primary" href="#top">Back to top</a>
+  </section>
+
+  </main>
+
+  <footer>
+    <div>© 2026 LaunchShell</div>
+    <div>Student-built project guides for Linux, cloud, electronics, and cybersecurity.</div>
+  </footer>
+</body>
+</html>

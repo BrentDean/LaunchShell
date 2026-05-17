@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Python Projects | LaunchShell</title>
+  <meta
+    name="description"
+    content="Small practical Python projects for students, including a Diceware passphrase generator, file tools, log parsers, and simple automation scripts."
+  />
+
+  <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+</head>
+
+<body class="resources-page" id="top">
+  <header>
+    <a href="../../index.html" aria-label="LaunchShell home">
+      <img src="../../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../../projects/">Projects</a>
+      <a href="../../guides/">Guides</a>
+      <a href="../../resources/">Resources</a>
+      <a href="../../resources/book-recommendations/">Read Books!</a>
+      <a href="../../about/">About</a>
+      <a href="#diceware" class="status">Diceware</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="project-hero">
+      <div>
+        <div class="eyebrow">Python • Automation • Security • Practical Tools</div>
+                <h1>Small Python projects that solve real problems.</h1>
+
+        <p>
+          Python is growing fast because it is used heavily in AI, automation, data work,
+          cybersecurity, web tools, and scripting. But you do not need to start by building
+          an AI model. The best first step is learning how to make the computer do useful
+          things with small programs.
+        </p>
+
+        <p>
+          These projects are not just coding exercises. They are practical tools for files,
+          passwords, logs, secuity, automation, and everyday technical tasks. Each one connects simple
+          Python code to a real problem.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href="#diceware">Start with Diceware</a>
+          <a class="button" href="#project-list">Project list</a>
+          <a class="button" href="#what-this-teaches">What this teaches</a>
+        </div>
+
+        <div class="guide-note">
+          <strong>Beginner idea:</strong> A useful Python project does not need to be huge. A small script that saves time,
+          teaches a real concept, and can be improved later is a good project.
+        </div>
+      </div>
+
+      <div class="visual-card">
+        <div class="visual-inner" aria-label="Python project stack diagram">
+          <div class="stack">
+            <div class="stack-layer">
+              <strong>Input</strong>
+              <span>Text files, user prompts, folders, logs, word lists</span>
+            </div>
+            <div class="stack-layer dark">
+              <strong>Python script</strong>
+              <span>Read, parse, choose, rename, calculate, organize</span>
+            </div>
+            <div class="stack-layer">
+              <strong>Output</strong>
+              <span>Passphrases, reports, renamed files, summaries</span>
+            </div>
+            <div class="stack-layer">
+              <strong>Lesson</strong>
+              <span>Small code connected to real-world use</span>
+            </div>
+          </div>
+        </div>
+        <div class="caption">
+          The best first Python projects are small tools that make the computer do something useful.
+        </div>
+      </div>
+    </section>
+
+    <section id="diceware">
+      <h2>Featured beginner project: Diceware passphrase generator</h2>
+      <p class="section-intro">
+        Why leave your password up to memory, habits, or reused tricks? Let fair dice do the choosing.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">First project</span>
+          <h3>What it does</h3>
+          <p>
+            This Python program creates a random passphrase by choosing words from a Diceware word list.
+            Each word is selected using five virtual dice rolls.
+          </p>
+          <p>
+            Instead of trying to invent a “clever” password, the program uses randomness to choose words
+            from a known list. More words means more possible combinations.
+          </p>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Why it matters</span>
+          <h3>Security lesson</h3>
+          <p>
+            This project teaches why password length and randomness matter. It also introduces hashing,
+            salts, password cracking, entropy, and why password managers are important.
+          </p>
+          <p>
+            It is a practical security project that students can actually use and understand.
+          </p>
+        </article>
+      </div>
+
+      <div class="action-item">
+        <strong>Simple explanation:</strong> Diceware turns random dice rolls into random words.
+        A passphrase like several unrelated words (HorseCarsFlyingDaisyBrain) is often easier to remember than a messy password,
+        while still being much harder to guess when enough words are used.
+      </div>
+    </section>
+
+    <section>
+      <h2>How Diceware works</h2>
+      <p class="section-intro">
+        Diceware is simple because the word list is built around dice.
+      </p>
+
+      <div class="flow">
+        <article class="flow-step">
+          <span>01</span>
+          <h3>Roll five dice</h3>
+          <p>
+            Five dice rolls create a lookup number like <code>43644</code>.
+          </p>
+        </article>
+
+        <article class="flow-step">
+          <span>02</span>
+          <h3>Find the word</h3>
+          <p>
+            The program searches the word list for that dice key and returns the matching word.
+          </p>
+        </article>
+
+        <article class="flow-step">
+          <span>03</span>
+          <h3>Repeat</h3>
+          <p>
+            Repeating the process creates a passphrase made from multiple random words.
+          </p>
+        </article>
+
+        <article class="flow-step">
+          <span>04</span>
+          <h3>Use enough words</h3>
+          <p>
+            More words create more possible passphrases, which makes guessing and cracking harder.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>What the Python program teaches</h2>
+      <p class="section-intro">
+        This is a small script, but it touches several real programming ideas.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag green">Files</span>
+          <h3>Reading a word list</h3>
+          <p>
+            The program opens a text file, reads each line, and separates the dice key from the word.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Dictionaries</span>
+          <h3>Fast lookup</h3>
+          <p>
+            Dice keys become dictionary keys, and words become dictionary values.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Randomness</span>
+          <h3>Secure random choice</h3>
+          <p>
+            The program uses Python’s <code>secrets</code> module instead of regular random numbers.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Functions</span>
+          <h3>Breaking work into pieces</h3>
+          <p>
+            Loading the word list, rolling dice, generating words, and printing results are separate functions.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Input</span>
+          <h3>Interactive prompts</h3>
+          <p>
+            A beginner-friendly version can ask how many words to generate instead of requiring command-line flags.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Security</span>
+          <h3>Entropy and cracking time</h3>
+          <p>
+            The project connects programming to password strength, hashing, salts, and why longer passphrases matter.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Example beginner run</h2>
+      <p class="section-intro">
+        A student should be able to run the program without memorizing command-line options first.
+      </p>
+
+      <div class="code-card">
+<pre><code>python3 diceware.py</code></pre>
+      </div>
+
+      <div class="code-card">
+<pre><code>Diceware Passphrase Generator
+-----------------------------
+Why leave your password up to memory, habits, or reused tricks?
+Let fair dice do the choosing.
+
+Each word uses 5 virtual dice rolls.
+More words = more possible passphrases = harder to crack.
+
+How many words do you want? [6]:</code></pre>
+      </div>
+
+      <div class="guide-note">
+        <strong>Note:</strong> Ask for the number of words, not the number of rolls.
+        In Diceware, one word uses five dice rolls. So 6 words = 30 virtual dice rolls.
+      </div>
+    </section>
+
+    <section>
+      <h2>Security concepts this project explains</h2>
+      <p class="section-intro">
+        Diceware is a simple project, but it opens the door to important cybersecurity topics.
+      </p>
+
+      <div class="path">
+        <div class="path-row">
+          <div class="level">Concept</div>
+          <div>Password complexity</div>
+          <div class="tools">Why adding length and randomness creates many more possible guesses.</div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">Concept</div>
+          <div>Entropy</div>
+          <div class="tools">A way to estimate how much uncertainty or search space a password has.</div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">Concept</div>
+          <div>Hashing</div>
+          <div class="tools">Websites should not store your real password. They should store a one-way password hash.</div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">Concept</div>
+          <div>Salt</div>
+          <div class="tools">A salt is extra random data added before hashing so identical passwords do not produce identical stored hashes.</div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">Concept</div>
+          <div>Password cracking</div>
+          <div class="tools">Attackers guess passwords, hash the guesses, and compare them to stolen password hashes.</div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">Concept</div>
+          <div>Random number trust</div>
+          <div class="tools">Security depends on good randomness. This can lead into discussions about weak or manipulated random number generators.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="project-list">
+      <h2>More small Python projects to try next</h2>
+      <p class="section-intro">
+         Add a collection of practical beginner Python projects you actually use to your portfolio.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag green">Security</span>
+          <h3>Diceware passphrase generator</h3>
+          <p>
+            Generate secure random passphrases from a Diceware word list.
+          </p>
+          <span class="mini-title">Teaches</span>
+          <ul>
+            <li>File reading</li>
+            <li>Dictionaries</li>
+            <li>Secure randomness</li>
+            <li>Password security</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag">Files</span>
+          <h3>MP3 file renamer</h3>
+          <p>
+            Rename a folder full of messy <code>.mp3</code> files with one simple Python script.
+          </p>
+          <span class="mini-title">Teaches</span>
+          <ul>
+            <li>Working with folders</li>
+            <li>String cleanup</li>
+            <li>Safe file renaming</li>
+            <li>Dry-run mode</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag">Storage</span>
+          <h3>Movie backup planner</h3>
+          <p>
+            Scan a movie folder, list file sizes, and help decide what fits on a backup drive.
+          </p>
+          <span class="mini-title">Teaches</span>
+          <ul>
+            <li>Directory walking</li>
+            <li>File sizes</li>
+            <li>HTML report output</li>
+            <li>Backup planning</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag">Logs</span>
+          <h3>Simple log analyzer</h3>
+          <p>
+            Read a log file and count IP addresses, errors, status codes, or suspicious patterns.
+          </p>
+          <span class="mini-title">Teaches</span>
+          <ul>
+            <li>Parsing text</li>
+            <li>Counting with dictionaries</li>
+            <li>Sorting results</li>
+            <li>Cybersecurity basics</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag">Automation</span>
+          <h3>Config backup script</h3>
+          <p>
+            Copy important configuration files into a timestamped backup folder.
+          </p>
+          <span class="mini-title">Teaches</span>
+          <ul>
+            <li>Paths</li>
+            <li>Timestamps</li>
+            <li>Copying files</li>
+            <li>Basic system administration</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag">Security</span>
+          <h3>Hash checker</h3>
+          <p>
+            Calculate a file hash and compare it against a known expected hash.
+          </p>
+          <span class="mini-title">Teaches</span>
+          <ul>
+            <li>Hash functions</li>
+            <li>File integrity</li>
+            <li>Downloads and verification</li>
+            <li>Trust but verify</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="what-this-teaches">
+      <h2>Why learn this?</h2>
+      <p class="section-intro">
+        This is exactly the kind of project that helps you solve problems.
+      </p>
+
+      <div class="method">
+        <div class="method-step">
+          <span>01</span>
+          <h3>Build it</h3>
+          <p>Write a small Python script that solves a real problem.</p>
+        </div>
+
+        <div class="method-step">
+          <span>02</span>
+          <h3>Back it up</h3>
+          <p>Commit the working version to Git before adding more features.</p>
+        </div>
+
+        <div class="method-step">
+          <span>03</span>
+          <h3>Break it safely</h3>
+          <p>Test bad input, missing files, weird separators, and edge cases.</p>
+        </div>
+
+        <div class="method-step">
+          <span>04</span>
+          <h3>Learn why</h3>
+          <p>Connect the code to security concepts like randomness, entropy, hashing, and salts.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <section>
+      <h2>Final lesson</h2>
+      <div class="callout">
+        <p>
+          Python becomes interesting when it stops being abstract. A small script that generates passphrases,
+          renames files, checks hashes, parses logs, or creates a report is not just homework.
+          It is a real tool.
+        </p>
+      </div>
+    </section>
+    <section class="page-end-nav" aria-label="Page navigation">
+      <a class="button primary" href="#top">Back to top</a>
+    </section>
+  </main>
+
+  <footer>
+    <div>© 2026 LaunchShell</div>
+    <div>Small practical Python projects for students.</div>
+  </footer>
+</body>
+</html>

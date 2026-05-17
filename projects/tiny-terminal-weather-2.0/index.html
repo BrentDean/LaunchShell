@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LaunchShell | Tiny Terminal Weather App</title>
+  <meta name="description"
+    content="A LaunchShell project page for an interactive Python terminal weather app that uses Weather.gov, saved settings, ZIP codes, coordinates, JSON, and command-line menus." />
+
+  <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+</head>
+
+<body id="top" class="project-page tiny-terminal-weather-page">
+  <header>
+    <a href="../../" aria-label="LaunchShell home">
+      <img src="../../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../../projects/">Projects</a>
+      <a href="../../guides/">Guides</a>
+      <a href="../../resources/">Resources</a>
+      <a href="../../resources/book-recommendations/">Read Books!</a>
+      <a href="../../about/">About</a>
+      <a class="status" href="../../start.html">Start Here</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="project-hero">
+      <div>
+        <div class="eyebrow">Python • APIs • Weather.gov • CLI Menus</div>
+
+        <h1>Tiny Terminal Weather App v2.0</h1>
+
+        <p>
+          This project turns the weather logic from my larger Flask seed tracking app into a
+          standalone Python terminal tool. The app can get a forecast from Weather.gov, print the
+          next few forecast periods, save a default location, and run from an interactive menu.
+        </p>
+
+        <p>
+          The <a href="../tiny-terminal-weather/">Tiny Terminal Weather App</a> was the first version:
+          a simple command-line script. Tiny Terminal Weather App v2.0 is more advanced: it works like
+          a small terminal application with menu options, saved settings, one-time lookups, direct
+          command-line mode, and better input validation.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href="#workflow">How it works</a>
+          <a class="button" href="../tiny-terminal-weather/">See Version 1.0</a>
+        </div>
+
+        <div class="guide-note">
+          <strong>Project context:</strong> this is a small API project, but it connects several
+          real skills: Python scripting, public APIs, JSON parsing, command-line arguments,
+          environment variables, saved settings, and turning a one-off script into a reusable tool.
+        </div>
+      </div>
+
+      <div class="visual-card">
+        <div class="visual-inner" aria-label="Tiny terminal weather app workflow diagram">
+          <div class="stack">
+            <div class="stack-layer">
+              <strong>Interactive menu</strong>
+              <span>Choose saved location, ZIP lookup, coordinates, or settings.</span>
+            </div>
+
+            <div class="stack-layer">
+              <strong>Weather.gov API</strong>
+              <span>Use /points to find the correct forecast endpoint.</span>
+            </div>
+
+            <div class="stack-layer dark">
+              <strong>JSON forecast periods</strong>
+              <span>Read temperature, wind, summary, and details.</span>
+            </div>
+
+            <div class="stack-layer">
+              <strong>Terminal output</strong>
+              <span>Print a clean forecast from a small Python app.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="caption">
+          The project starts as an API script, then grows into a reusable terminal app.
+        </div>
+      </div>
+    </section>
+
+    <section id="what">
+      <h2>What I built</h2>
+
+      <p class="section-intro">
+        I built a Python program called <code>weather.py</code>. It can be used two ways: as an
+        interactive menu app or as a direct command-line tool.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Interactive</span>
+            <h3>Menu mode</h3>
+            <p>
+              Running <code>python3 weather.py</code> opens a menu where I can save a location,
+              fetch the forecast, change the number of periods, or run one-time lookups.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">CLI</span>
+            <h3>Direct mode</h3>
+            <p>
+              Running the script with <code>--zip</code> or <code>--coords</code> skips the menu
+              and prints the forecast immediately.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Settings</span>
+            <h3>Saved location</h3>
+            <p>
+              The app saves a location and forecast-period count in <code>weather_settings.json</code>,
+              making it feel more like a real terminal utility.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="why">
+      <h2>Why this version is more advanced</h2>
+
+      <p class="section-intro">
+        The first version proved that the API request worked. This version adds application behavior
+        around that working core.
+      </p>
+
+      <div class="method">
+        <div class="method-step">
+          <span>01</span>
+          <h3>Stores settings</h3>
+          <p>The app can remember a saved location instead of requiring a ZIP code every time.</p>
+        </div>
+
+        <div class="method-step">
+          <span>02</span>
+          <h3>Supports two workflows</h3>
+          <p>It works both as an interactive menu app and as a direct command-line tool.</p>
+        </div>
+
+        <div class="method-step">
+          <span>03</span>
+          <h3>Validates input</h3>
+          <p>The script checks ZIP codes, coordinate ranges, and forecast-period counts.</p>
+        </div>
+
+        <div class="method-step">
+          <span>04</span>
+          <h3>Handles errors</h3>
+          <p>HTTP errors, network errors, missing data, and bad input are caught and printed cleanly.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="connection">
+      <h2>How it connects to my seed app</h2>
+
+      <p class="section-intro">
+        This project is not random. It came from a real feature in my larger Flask seed tracking app.
+        The larger app uses weather data for garden planning. This project pulls out the core weather
+        API pattern and turns it into a smaller standalone learning project.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Seed app pattern</th>
+            <th>Tiny terminal version</th>
+            <th>Why it matters</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong><code>fetch_json()</code></strong></td>
+            <td>Reusable helper for API requests.</td>
+            <td>Keeps headers, timeout, and JSON parsing in one place.</td>
+          </tr>
+
+          <tr>
+            <td><strong><code>User-Agent</code></strong></td>
+            <td>Set by <code>WEATHER_USER_AGENT</code> or a default string.</td>
+            <td>Identifies the app when making Weather.gov requests.</td>
+          </tr>
+
+          <tr>
+            <td><strong>ZIP lookup</strong></td>
+            <td>Uses a ZIP code to find latitude and longitude.</td>
+            <td>Makes the app easier to run without manually entering coordinates.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Weather.gov <code>/points</code></strong></td>
+            <td>Finds the correct forecast URL for a location.</td>
+            <td>The first API call gives the app the next API endpoint to follow.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Forecast periods</strong></td>
+            <td>Prints the next few periods in the terminal.</td>
+            <td>Turns nested JSON into useful readable output.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="workflow">
+      <h2>How the app works</h2>
+
+      <p class="section-intro">
+        The app follows a clean request chain. This is the important part of the project.
+      </p>
+
+      <div class="flow">
+        <article class="flow-step">
+          <span>01</span>
+          <h3>Get location</h3>
+          <p>The user enters a ZIP code, coordinates, or uses a saved location.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>02</span>
+          <h3>Resolve coordinates</h3>
+          <p>If a ZIP code is used, the script turns it into latitude and longitude.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>03</span>
+          <h3>Ask Weather.gov</h3>
+          <p>The script calls Weather.gov <code>/points</code> to find the forecast URL.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>04</span>
+          <h3>Print forecast</h3>
+          <p>The script fetches forecast periods and prints them in a readable format.</p>
+        </article>
+      </div>
+
+      <div class="guide-note">
+        <strong>Main API lesson:</strong> some APIs return links to other endpoints. The first
+        request may not contain the final data. It may tell the program where to request the final
+        data next.
+      </div>
+    </section>
+
+    <section id="menu">
+      <h2>The interactive menu</h2>
+
+      <p class="section-intro">
+        The menu version is the big upgrade. It makes the app feel more like my Movie Magic Java
+        project: run it, choose an option, perform an action, and return to the menu.
+      </p>
+
+      <div class="code-card">
+        <pre><code>=====================================
+------ Tiny Terminal Weather --------
+=====================================
+
+Menu:
+Saved location: Brooklyn, NY
+Forecast periods: 3
+
+1.) Show forecast for saved location
+2.) Set saved location by ZIP code
+3.) Set saved location by coordinates
+4.) One-time ZIP code forecast
+5.) One-time coordinate forecast
+6.) Change number of forecast periods
+7.) Show settings file path
+Q.) Quit
+
+Select Option &gt;</code></pre>
+      </div>
+
+      <div class="action-item">
+        <strong>Why this is useful:</strong> the app can be used repeatedly without memorizing every
+        command-line flag. It becomes a small terminal program instead of only a one-shot script.
+      </div>
+    </section>
+
+    <section>
+      <h2>Direct mode still works</h2>
+
+      <p class="section-intro">
+        Even with the menu, the script still works as a normal command-line tool. That matters
+        because direct commands are easier to automate later.
+      </p>
+
+      <div class="code-card">
+        <pre><code># Open the interactive menu
+python3 weather.py
+
+# One-time ZIP code forecast
+python3 weather.py --zip 11234
+
+# One-time coordinate forecast
+python3 weather.py --coords 40.7128 -74.0060
+
+# Print more forecast periods
+python3 weather.py --zip 11234 --count 5</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>Settings file</h2>
+
+      <p class="section-intro">
+        The menu version creates a small JSON settings file so the app can remember the saved
+        location and forecast-period count.
+      </p>
+
+      <div class="code-card">
+        <pre><code>weather_settings.json</code></pre>
+      </div>
+
+      <p class="section-intro">
+        A saved location might look like this:
+      </p>
+
+      <div class="code-card">
+        <pre><code>{
+  "location": {
+    "type": "zip",
+    "zip_code": "11234",
+    "latitude": "40.6215",
+    "longitude": "-73.9349",
+    "label": "Brooklyn, NY"
+  },
+  "count": 3
+}</code></pre>
+      </div>
+
+      <div class="warning-note">
+        <strong>Git note:</strong> if I do not want my saved location committed, I should add
+        <code>weather_settings.json</code> to <code>.gitignore</code>.
+      </div>
+
+      <div class="code-card">
+        <pre><code>echo "weather_settings.json" &gt;&gt; .gitignore</code></pre>
+      </div>
+    </section>
+
+    <section id="ai-assisted">
+      <h2>AI-assisted build note</h2>
+
+      <p class="section-intro">
+        This version was built with AI assistance, but it was not created from nothing. I already had
+        working weather logic in my Flask seed app, including the request helper, Weather.gov flow,
+        ZIP-code idea, and forecast parsing pattern.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">What I provided</span>
+          <h3>Existing code and project goals</h3>
+          <p>
+            I provided the weather logic from my seed app and explained the goal: make a tiny
+            standalone terminal weather project that could run with a ZIP code, coordinates, and an
+            interactive menu.
+          </p>
+        </article>
+
+        <article class="panel">
+          <span class="tag">What AI helped with</span>
+          <h3>Refactoring into a CLI app</h3>
+          <p>
+            AI helped simplify the larger Flask pattern into a smaller script, add the menu,
+            structure the functions, keep direct command-line mode, and make the project easier to
+            explain as a LaunchShell writeup.
+          </p>
+        </article>
+      </div>
+
+      <div class="guide-note">
+        <strong>How I would describe it:</strong> this is an AI-assisted refactor and learning
+        project. I used my existing app logic as the base, used AI to help turn it into a cleaner
+        standalone terminal tool, then ran and tested the result locally.
+      </div>
+    </section>
+
+    <section>
+      <h2>Important code pieces</h2>
+
+      <p class="section-intro">
+        The full script is longer because of the menu and error handling. These are the most
+        important pieces.
+      </p>
+
+      <div class="quick-list">
+        <article class="step-card">
+          <h3>Reusable API helper</h3>
+          <p>
+            This keeps the Weather.gov headers and JSON parsing in one place.
+          </p>
+
+          <div class="code-card">
+            <pre><code>def fetch_json(url):
+    request_headers = {
+        "Accept": "application/geo+json, application/json",
+        "User-Agent": DEFAULT_USER_AGENT,
+    }
+
+    req = urllib.request.Request(url, headers=request_headers)
+
+    with urllib.request.urlopen(req, timeout=15) as response:
+        return json.loads(response.read().decode("utf-8"))</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>Forecast URL lookup</h3>
+          <p>
+            Weather.gov <code>/points</code> returns the correct forecast endpoint for the location.
+          </p>
+
+          <div class="code-card">
+            <pre><code>def fetch_forecast_url(latitude, longitude):
+    points_url = f"https://api.weather.gov/points/{latitude},{longitude}"
+    data = fetch_json(points_url)
+
+    properties = data.get("properties", {})
+    forecast_url = properties.get("forecast")
+
+    if not forecast_url:
+        raise ValueError("Weather.gov did not return a forecast URL.")
+
+    return forecast_url</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>Saved settings</h3>
+          <p>
+            JSON makes the saved location simple and readable.
+          </p>
+
+          <div class="code-card">
+            <pre><code>def load_settings():
+    if not os.path.exists(SETTINGS_PATH):
+        return {}
+
+    with open(SETTINGS_PATH, "r", encoding="utf-8") as file:
+        return json.load(file)
+
+
+def save_settings(settings):
+    with open(SETTINGS_PATH, "w", encoding="utf-8") as file:
+        json.dump(settings, file, indent=2)
+        file.write("\n")</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <h3>Menu loop</h3>
+          <p>
+            The app keeps showing the menu until the user chooses quit.
+          </p>
+
+          <div class="code-card">
+            <pre><code>def interactive_menu():
+    settings = load_settings()
+
+    while True:
+        print_header()
+        print_menu(settings)
+
+        choice = input("Select Option &gt; ").strip().lower()
+
+        if choice == "1":
+            show_forecast_for_location(settings["location"], settings.get("count", 3))
+        elif choice == "q":
+            print("Goodbye.")
+            break</code></pre>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Tested output</h2>
+
+      <p class="section-intro">
+        I tested the script with ZIP code <code>11234</code>. The exact forecast changes over time,
+        but this confirmed the API request chain worked.
+      </p>
+
+      <div class="code-card">
+        <pre><code>python3 weather.py --zip 11234
+
+Weather forecast for New York, NY
+=================================
+
+Overnight
+---------
+Temp: 54°F
+Wind: 5 mph W
+Short: Mostly Clear
+Details: Mostly clear, with a low around 54. West wind around 5 mph.
+
+Saturday
+--------
+Temp: 77°F
+Wind: 3 to 17 mph SW
+Short: Sunny
+Details: Sunny. High near 77, with temperatures falling to around 72 in the afternoon. Southwest wind 3 to 17 mph.
+
+Saturday Night
+--------------
+Temp: 62°F
+Wind: 8 to 17 mph SW
+Short: Partly Cloudy
+Details: Partly cloudy. Low around 62, with temperatures rising to around 65 overnight. Southwest wind 8 to 17 mph.</code></pre>
+      </div>
+
+      <div class="guide-note">
+        <strong>Note:</strong> Weather.gov may return a broader label such as <code>New York, NY</code>
+        even when the ZIP code is inside Brooklyn. The script can prefer the ZIP lookup label if I
+        want the displayed location to be more specific.
+      </div>
+    </section>
+
+    <section>
+      <h2>Project files</h2>
+
+      <p class="section-intro">
+        The finished project is still small.
+      </p>
+
+      <div class="code-card">
+        <pre><code>tiny-terminal-weather/
+├── weather.py
+├── README.md
+├── .gitignore
+└── weather_settings.json   # generated locally, optional/private</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>What I learned</h2>
+
+      <p class="section-intro">
+        This project is useful because it starts with one API request and grows into a real command-line tool.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">APIs</span>
+            <h3>Follow the endpoint chain</h3>
+            <p>
+              The first Weather.gov request gives the app a forecast URL. The app then follows that
+              URL to get the actual forecast periods.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Python</span>
+            <h3>Small scripts can mature</h3>
+            <p>
+              A simple one-shot script can become a menu app with saved settings, validation, error
+              handling, and direct command-line support.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Workflow</span>
+            <h3>AI can help refactor</h3>
+            <p>
+              AI assistance was useful for turning existing working code into a smaller teaching
+              project, but the important part was understanding, testing, and documenting the result.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Future improvements</h2>
+
+      <p class="section-intro">
+        The current version works, but there are natural upgrades that would make it even more useful.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">Simple upgrades</span>
+          <h3>Make it nicer</h3>
+          <ul>
+            <li>Add a compact <code>--short</code> output mode.</li>
+            <li>Add hourly forecast support.</li>
+            <li>Cache the forecast for a short time to avoid repeated requests.</li>
+            <li>Show the saved location at startup with clearer formatting.</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Project upgrades</span>
+          <h3>Connect it to other systems</h3>
+          <ul>
+            <li>Run it on a Raspberry Pi dashboard.</li>
+            <li>Use it in a cron job for daily terminal weather summaries.</li>
+            <li>Generate a static JSON file for a website.</li>
+            <li>Reuse the logic inside a Flask route later.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="action-item">
+        <strong>Related guide:</strong> this project pairs with the
+        <a href="../../guides/apis/">API guide</a>
+        because it turns the idea of APIs into a working terminal tool.
+      </div>
+    </section>
+
+    <section>
+      <h2>Final idea</h2>
+
+      <div class="callout">
+        <p>
+          <strong>This project shows how a small script becomes a real tool.</strong> The first
+          version proved the Weather.gov API worked. The advanced version adds an interactive menu,
+          saved settings, direct command-line mode, input validation, and cleaner error handling.
+          It is still small, but it now feels like a reusable Linux terminal utility.
+        </p>
+      </div>
+    </section>
+
+    <section class="page-end-nav" aria-label="Page navigation">
+      <a class="button primary" href="#top">Back to top</a>
+    </section>
+  </main>
+
+  <footer>
+    <div>&copy; 2026 LaunchShell</div>
+    <div>Student-built project guides for Linux, cloud, electronics, Python, APIs, and cybersecurity.</div>
+  </footer>
+</body>
+
+</html>

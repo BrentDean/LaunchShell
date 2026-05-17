@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LaunchShell | How This Site Was Built</title>
+  <meta
+    name="description"
+    content="A LaunchShell project page explaining how LaunchShell.org was built with HTML, CSS, Git, GitHub, JSON, Cloudflare Pages, Cloudflare DNS, and AI-assisted learning."
+  />
+
+  <link rel="icon" href="../../assets/launchshell-logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+</head>
+
+<body class="resources-page" id="top">
+  <header>
+    <a href="../../index.html" aria-label="LaunchShell home">
+      <img src="../../assets/launchshell-logo-horizontial.png" alt="LaunchShell logo" class="logo" />
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="../../projects/">Projects</a>
+      <a href="../../guides/">Guides</a>
+      <a href="../../resources/">Resources</a>
+      <a href="../../resources/book-recommendations/">Read Books!</a>
+      <a href="../../about/">About</a>
+      <a href="#cloudflare" class="status">Cloudflare Pages</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="project-hero">
+      <div>
+        <div class="eyebrow">HTML • CSS • JSON • GitHub • Cloudflare • AI-Assisted Learning</div>
+        <h1>How LaunchShell.org Was Built</h1>
+
+        <p>
+          LaunchShell.org is a student-built project site for documenting practical technology builds,
+          beginner guides, free student resources, and lessons learned from real projects.
+        </p>
+
+        <p>
+          The site started as a simple static homepage and grew into a structured project archive with
+          separate areas for guides, resources, real builds, reusable card assets, and JSON-backed content.
+          The stack stayed intentionally simple: HTML, shared CSS, local assets, JSON, Git, GitHub,
+          Cloudflare Pages, and AI-assisted learning.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href="#story">How it came together</a>
+          <a class="button" href="#stack">See the stack</a>
+          <a class="button" href="#json-index">JSON site index</a>
+          <a class="button" href="#ai">How AI helped</a>
+        </div>
+
+        <div class="guide-note">
+          <strong>Core idea:</strong> AI did not replace the learning process. It helped me ask better questions,
+          organize ideas faster, test different approaches, and understand what I was building.
+        </div>
+      </div>
+
+      <div class="visual-card">
+        <div class="visual-inner" aria-label="LaunchShell build stack diagram">
+          <div class="stack">
+            <div class="stack-layer">
+              <strong>Content</strong>
+              <span>Guides, resources, projects, notes, screenshots, JSON index</span>
+            </div>
+            <div class="stack-layer">
+              <strong>Frontend</strong>
+              <span>HTML pages, shared CSS, local image assets</span>
+            </div>
+            <div class="stack-layer dark">
+              <strong>Workflow</strong>
+              <span>Git, GitHub, Codespaces, AI-assisted review</span>
+            </div>
+            <div class="stack-layer">
+              <strong>Deployment</strong>
+              <span>Cloudflare Pages serving the static site</span>
+            </div>
+          </div>
+        </div>
+        <div class="caption">
+          This site is a practical example of learning by building, backing up, breaking safely, and improving.
+        </div>
+      </div>
+    </section>
+
+    <section id="story">
+      <h2>How it actually came together</h2>
+      <p class="section-intro">
+        LaunchShell did not start as a finished website plan. It started as a small homepage and became more organized as the project grew.
+      </p>
+
+      <div class="path">
+        <div class="path-row">
+          <div class="level">01</div>
+          <div>Started with a simple static homepage</div>
+          <div class="tools">The first version was a basic HTML/CSS page with a logo, short description, and project preview sections.</div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">02</div>
+          <div>Added cards for real projects</div>
+          <div class="tools">Instead of making fake portfolio pieces, I used actual builds: cloud servers, Flask apps, the 8-bit computer, Raspberry Pi ideas, and electronics projects.</div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">03</div>
+          <div>Separated projects, guides, and resources</div>
+          <div class="tools">The site needed structure. Projects became things I built. Guides became how-to lessons. Resources became outside tools, free offers, and learning platforms.</div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">04</div>
+          <div>Built beginner guides from real problems</div>
+          <div class="tools">The first guides came from practical needs: setting up an AWS VPS, learning the Linux terminal, understanding VMs, using GitHub Codespaces, and explaining Git.</div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">05</div>
+          <div>Turned project notes into project pages</div>
+          <div class="tools">README files and rough notes became cleaner project pages that explain what was built, what tools were used, and what the project teaches.</div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">06</div>
+          <div>Cleaned up the folder structure</div>
+          <div class="tools">Pages moved into folders like <code>guides/</code>, <code>projects/</code>, and <code>resources/</code>, which made URLs and navigation easier to understand.</div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">07</div>
+          <div>Moved repeated styling into one CSS file</div>
+          <div class="tools">As the site grew, repeated styles needed to live in <code>assets/site.css</code> instead of being copied into every page.</div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">08</div>
+          <div>Deployed it through Cloudflare Pages</div>
+          <div class="tools">The site became public through a GitHub-to-Cloudflare workflow: commit changes, push to GitHub, let Cloudflare deploy, then verify the live site.</div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">09</div>
+          <div>Added a public book recommendations resource</div>
+          <div class="tools">A cleaned JSON file now powers a Top 30 book list, with a related Libby guide explaining how students can borrow ebooks and audiobooks through public libraries.</div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">10</div>
+          <div>Added a JSON site index for homepage cards</div>
+          <div class="tools">Once the site reached more than 25 card assets and many separate guide, project, and resource pages, I needed a more organized way to manage titles, summaries, links, images, categories, skill levels, and time estimates.</div>
+        </div>
+
+        <div class="path-row">
+          <div class="level">11</div>
+          <div>Kept improving it as a real project</div>
+          <div class="tools">The site is not just a finished page. It is a growing project notebook for guides, builds, experiments, and lessons learned.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="stack">
+      <h2>What I used</h2>
+      <p class="section-intro">
+        The site uses a simple static setup on purpose. No framework, no backend, no build system.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Part</th>
+            <th>What I used</th>
+            <th>Why it mattered</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Pages</strong></td>
+            <td>HTML</td>
+            <td>Each page is easy to inspect, edit, copy, and deploy.</td>
+          </tr>
+          <tr>
+            <td><strong>Design</strong></td>
+            <td>Shared CSS file</td>
+            <td>One stylesheet keeps the site consistent across guides, resources, and projects.</td>
+          </tr>
+          <tr>
+            <td><strong>Structured content</strong></td>
+            <td>JSON</td>
+            <td>JSON keeps repeated card information and book data organized without turning the site into a full web app.</td>
+          </tr>
+          <tr>
+            <td><strong>Assets</strong></td>
+            <td>Local images and logos</td>
+            <td>Keeping assets local makes the site easier to move, back up, and deploy.</td>
+          </tr>
+          <tr>
+            <td><strong>Version control</strong></td>
+            <td>Git</td>
+            <td>Git lets me commit working versions, try changes, and roll back when something breaks.</td>
+          </tr>
+          <tr>
+            <td><strong>Code hosting</strong></td>
+            <td>GitHub</td>
+            <td>GitHub stores the repo, supports private work-in-progress, and helps turn finished projects into a portfolio.</td>
+          </tr>
+          <tr>
+            <td><strong>Cloud coding</strong></td>
+            <td>GitHub Codespaces</td>
+            <td>Codespaces provides a Linux-based browser workspace where I can edit files and use the terminal.</td>
+          </tr>
+          <tr>
+            <td><strong>Domain and DNS</strong></td>
+            <td>Cloudflare Registrar and Cloudflare DNS</td>
+            <td>I used Cloudflare to register the domain, manage DNS, and connect the public site to the domain.</td>
+          </tr>
+          <tr>
+            <td><strong>Hosting</strong></td>
+            <td>Cloudflare Pages</td>
+            <td>Cloudflare Pages deploys the static site from the GitHub repo and serves it on Cloudflare’s network.</td>
+          </tr>
+          <tr>
+            <td><strong>Proxying and security</strong></td>
+            <td>Cloudflare proxy, security rules, and access features</td>
+            <td>Cloudflare gives the site room to grow into real web security topics like proxying, WAF rules, access control, and protected admin areas.</td>
+          </tr>
+          <tr>
+            <td><strong>Edge experiments</strong></td>
+            <td>Cloudflare Workers</td>
+            <td>Workers make it possible to run small pieces of code at the edge without managing a traditional server.</td>
+          </tr>
+          <tr>
+            <td><strong>Learning assistant</strong></td>
+            <td>AI</td>
+            <td>AI helped with planning, drafting, debugging, explaining, reviewing, and organizing.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="cloudflare">
+      <h2>Why Cloudflare deserves its own shoutout</h2>
+      <p class="section-intro">
+        Cloudflare made this project feel realistic without making it complicated. I use it for more than simple hosting:
+        Pages, DNS, proxying, security features, access control, and edge Workers all fit into the same learning path.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">What I use now</span>
+          <h3>Pages, DNS, and proxying</h3>
+          <p>
+            I use Cloudflare Pages to host the static site. The workflow is simple:
+            push changes to GitHub, let Cloudflare deploy them, and then check the live site.
+          </p>
+          <p>
+            I also use Cloudflare DNS and proxying. That means Cloudflare can sit in front of a site,
+            route web traffic through its network, and add caching, protection, and security controls.
+          </p>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Security</span>
+          <h3>Security features and access control</h3>
+          <p>
+            Cloudflare is useful because it lets a student project grow into real security topics:
+            WAF rules, security rules, access policies, identity-aware access, and protected admin pages.
+          </p>
+          <p>
+            That makes it a great bridge between web development, networking, cloud infrastructure,
+            and cybersecurity.
+          </p>
+        </article>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag green">Pages</span>
+          <h3>Static site hosting</h3>
+          <p>Cloudflare Pages hosts the public site directly from the GitHub repo.</p>
+        </article>
+
+        <article class="card">
+          <span class="tag">DNS + proxy</span>
+          <h3>Traffic control</h3>
+          <p>DNS points the domain, and proxied records let Cloudflare protect and handle web traffic.</p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Workers</span>
+          <h3>Code at the edge</h3>
+          <p>Workers can run small serverless functions close to users without managing a traditional server.</p>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Access</span>
+          <h3>Protect private tools</h3>
+          <p>Access control can put login rules in front of internal dashboards, admin pages, and private apps.</p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Security</span>
+          <h3>WAF and rules</h3>
+          <p>Cloudflare security features make it easier to learn what web protection looks like in practice.</p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Domain</span>
+          <h3>Affordable registration</h3>
+          <p>A real domain makes the project feel real, and Cloudflare Registrar keeps the domain workflow simple.</p>
+        </article>
+      </div>
+
+      <div class="action-item">
+        <strong>Related guide:</strong> Cloudflare deserves a dedicated guide.
+        Read the <a href="../../guides/cloudflare/">Cloudflare Pages Guide</a>.
+      </div>
+    </section>
+
+    <section>
+      <h2>Folder structure</h2>
+      <p class="section-intro">
+        The site is organized so each section has a clear purpose.
+      </p>
+
+      <div class="code-card">
+<pre><code>.
+├── index.html
+├── data/
+│   └── site-index.json
+├── assets/
+│   ├── site.css
+│   ├── launchshell-logo-horizontial.png
+│   ├── card-linux-terminal-intro.png
+│   ├── card-aws-free-vps.png
+│   └── ...
+├── guides/
+│   ├── git-and-github/
+│   ├── github-codespace/
+│   ├── libby/
+│   ├── linux-terminal-intro/
+│   └── ...
+├── projects/
+│   ├── build-this-site/
+│   ├── 8-bit/
+│   ├── json-book-recommendation/
+│   └── ...
+└── resources/
+    ├── book-recommendations/
+    │   ├── books_public.json
+    │   └── index.html
+    └── index.html</code></pre>
+      </div>
+
+      <div class="guide-note">
+        <strong>Rule:</strong> Guides are LaunchShell-written how-to pages. Resources are outside tools, free offerings,
+        student discounts, and learning platforms. Projects are real builds and portfolio work.
+      </div>
+    </section>
+
+    <section id="json-index">
+      <h2>Why I added a JSON site index</h2>
+      <p class="section-intro">
+        As LaunchShell grew, the homepage started to become harder to maintain by hand. At first,
+        writing each card directly in HTML was simple. But once the site reached more than 25 card
+        images, guides, projects, resources, and homepage links, I needed a more organized way to
+        manage the same information across the site.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag">Problem</span>
+          <h3>The homepage was becoming a manual card archive</h3>
+          <p>
+            Each card had a title, type, image, summary, link, button, category, and eventually
+            metadata like skill level and time to complete. Updating that directly in
+            <code>index.html</code> meant repeating the same structure over and over.
+          </p>
+          <p>
+            That worked when the site only had a few pages. It became messy once LaunchShell had
+            separate sections for guides, projects, resources, books, Linux, cloud, Python,
+            electronics, networking, and cybersecurity.
+          </p>
+        </article>
+
+        <article class="panel">
+          <span class="tag green">Solution</span>
+          <h3>Move card data into one JSON file</h3>
+          <p>
+            I added a central <code>data/site-index.json</code> file to describe each public page
+            once. The homepage can then read that file and render the correct cards into sections
+            like Start Here, Featured Guides, Featured Projects, and Resources.
+          </p>
+          <p>
+            This keeps the homepage focused on layout and storytelling, while the JSON file becomes
+            the source of truth for card content.
+          </p>
+        </article>
+      </div>
+
+      <div class="flow">
+        <article class="flow-step">
+          <span>01</span>
+          <h3>Card data</h3>
+          <p>
+            Each item gets an ID, title, type, level, time estimate, category, summary, URL, image,
+            and homepage section.
+          </p>
+        </article>
+
+        <article class="flow-step">
+          <span>02</span>
+          <h3>Homepage sections</h3>
+          <p>
+            Instead of hardcoding every card, the homepage uses empty grid containers marked with
+            <code>data-card-section</code>.
+          </p>
+        </article>
+
+        <article class="flow-step">
+          <span>03</span>
+          <h3>JavaScript render</h3>
+          <p>
+            A small script loads the JSON, filters cards by section, escapes the text, and builds
+            consistent card HTML.
+          </p>
+        </article>
+
+        <article class="flow-step">
+          <span>04</span>
+          <h3>Future filters</h3>
+          <p>
+            Because every card now has level, category, type, and time metadata, full project and
+            guide filters can be added later without rewriting everything.
+          </p>
+        </article>
+      </div>
+
+      <div class="code-card">
+<pre><code>{
+  "id": "linux-terminal-intro",
+  "title": "Linux Terminal Intro",
+  "type": "Guide",
+  "level": "Beginner",
+  "time": "30-45 min",
+  "category": "Linux",
+  "summary": "Learn basic commands, files, folders, apt installs, SSH, and why Linux tools are useful.",
+  "url": "guides/linux-terminal-intro/",
+  "image": "assets/card-linux-terminal-intro.png",
+  "homeSection": "start-here",
+  "featured": true
+}</code></pre>
+      </div>
+
+      <div class="guide-note">
+        <strong>Why this matters:</strong> this is a small static-site architecture decision. The site
+        still uses plain HTML, CSS, local assets, JSON, and Cloudflare Pages, but the content is now
+        easier to update because the repeated card information lives in one structured file.
+      </div>
+
+      <div class="action-item">
+        <strong>Result:</strong> adding a new LaunchShell guide or project now means adding the page,
+        adding the card image, and adding one JSON object. The homepage can stay cleaner, while the
+        full project and guide indexes can grow over time.
+      </div>
+    </section>
+
+    <section>
+      <h2>The build process</h2>
+      <p class="section-intro">
+        The workflow follows the same LaunchShell method used across the site.
+      </p>
+
+      <div class="method">
+        <div class="method-step">
+          <span>01</span>
+          <h3>Build it</h3>
+          <p>Create the page, add the structure, write the content, and connect the assets.</p>
+        </div>
+
+        <div class="method-step">
+          <span>02</span>
+          <h3>Back it up</h3>
+          <p>Commit working changes with Git before making risky edits.</p>
+        </div>
+
+        <div class="method-step">
+          <span>03</span>
+          <h3>Break it safely</h3>
+          <p>Try new layouts, move folders, change links, and test what fails.</p>
+        </div>
+
+        <div class="method-step">
+          <span>04</span>
+          <h3>Fix and explain</h3>
+          <p>Use the errors to understand paths, CSS, deployment, browser behavior, and Git history.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Problems I had to solve</h2>
+      <p class="section-intro">
+        A simple static site still teaches real technical lessons.
+      </p>
+
+      <div class="flow">
+        <article class="flow-step">
+          <span>01</span>
+          <h3>Relative paths</h3>
+          <p>Pages inside folders need different asset paths, like <code>../../assets/site.css</code>.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>02</span>
+          <h3>Folder strategy</h3>
+          <p>Guides, resources, and projects needed different meanings so the site stayed organized.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>03</span>
+          <h3>Image cleanup</h3>
+          <p>Logos and graphics needed to look clean on the site, not like copied previews.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>04</span>
+          <h3>Card organization</h3>
+          <p>Once the site had many cards and assets, repeated homepage card HTML needed to move toward structured data.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="ai">
+      <h2>How AI helped</h2>
+      <p class="section-intro">
+        AI was useful because I stayed involved. I asked questions, tested the output, changed the direction,
+        fixed mistakes, and made final decisions.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag green">Planning</span>
+          <h3>Turning rough ideas into structure</h3>
+          <p>
+            AI helped turn rough notes into page outlines, sections, checklists, and beginner-friendly explanations.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Writing</span>
+          <h3>Explaining things more clearly</h3>
+          <p>
+            AI helped rewrite technical ideas in plain English so a new student could understand them.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Review</span>
+          <h3>Checking for sensitive or unsafe content</h3>
+          <p>
+            AI helped review pages, code, and repo content for secrets, hardcoded values, confusing wording, and risky publishing mistakes.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>AI as a data cleanup tool</h2>
+      <p class="section-intro">
+        One of the most practical uses of AI is turning messy human information into structured data.
+      </p>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag green">Real example</span>
+          <h3>Recipe and book JSON files</h3>
+          <p>
+            For the Recipe App, recipes came from index cards, magazine clippings, old notes, text messages,
+            family recipes, and online references. None of those formats matched.
+          </p>
+          <p>
+            AI helped normalize that messy information into consistent JSON records that the app could read,
+            search, display, and organize.
+          </p>
+          <p>
+            The book recommendations page uses the same idea: a private audiobook history became a smaller public
+            <code>books_public.json</code> file that renders a Top 30 list without exposing the full source history.
+          </p>
+        </article>
+
+        <article class="panel">
+          <span class="tag">Important</span>
+          <h3>AI did not remove review</h3>
+          <p>
+            I still had to check ingredients, review steps, fix mistakes, choose the JSON structure,
+            test the data in the app, and make sure the recipe made sense.
+          </p>
+          <p>
+            AI made formatting and cleanup faster, but I was still responsible for the final result.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Safe AI rules for this project</h2>
+      <p class="section-intro">
+        AI is useful, but it has to be used carefully.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag">Verify</span>
+          <h3>Test everything</h3>
+          <p>
+            AI can produce confident wrong answers. I still had to run the code, open the page, check the links, and inspect the result.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag green">Protect</span>
+          <h3>Do not paste secrets</h3>
+          <p>
+            Passwords, API keys, tokens, private files, SSH keys, and sensitive logs do not belong in AI prompts.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Own it</span>
+          <h3>Understand the final result</h3>
+          <p>
+            The final project is my responsibility. AI can help, but I need to explain what was built and why it works.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>What this project demonstrates</h2>
+      <p class="section-intro">
+        This site is more than a homepage. It demonstrates a complete beginner-friendly web workflow.
+      </p>
+
+      <div class="flow three">
+        <article class="flow-step">
+          <span>01</span>
+          <h3>Static web fundamentals</h3>
+          <p>HTML, CSS, assets, pages, links, browser testing, and clean folder structure.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>02</span>
+          <h3>Real deployment</h3>
+          <p>GitHub repository, Cloudflare Pages deployment, domain, DNS, proxying, and HTTPS.</p>
+        </article>
+
+        <article class="flow-step">
+          <span>03</span>
+          <h3>AI-assisted learning</h3>
+          <p>Using AI to ask better questions, organize ideas, review work, and learn faster without giving up ownership.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Final lesson</h2>
+      <div class="callout">
+        <p>
+          LaunchShell.org was built to prove a simple idea: students can learn real technical skills by building real things.
+          Git makes the work safer, Cloudflare makes the site real, JSON keeps repeated content organized, and AI can help
+          turn curiosity into progress when the student stays in control.
+        </p>
+      </div>
+    </section>
+    <section class="page-end-nav" aria-label="Page navigation">
+      <a class="button primary" href="#top">Back to top</a>
+    </section>
+  </main>
+
+  <footer>
+    <div>© 2026 LaunchShell</div>
+    <div>Student-built project guides for Linux, cloud, electronics, and cybersecurity.</div>
+  </footer>
+</body>
+</html>
