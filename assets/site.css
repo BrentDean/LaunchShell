@@ -682,6 +682,21 @@ footer {
   font-weight: 900;
 }
 
+.page-end-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 24px 0 0;
+  border-top: 1px solid var(--border);
+}
+
+.page-end-nav .button {
+  min-height: 40px;
+  padding: 10px 14px;
+  border-radius: 10px;
+}
+
 .split {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr);

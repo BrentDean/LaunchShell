@@ -13,6 +13,19 @@
     "featured": true
   },
   {
+    "id": "build-this-site",
+    "title": "How I Built LaunchShell.org",
+    "type": "Project",
+    "level": "Beginner+",
+    "time": "Ongoing",
+    "category": "Portfolio",
+    "summary": "See how LaunchShell was built with plain HTML, shared CSS, Git, GitHub, JSON, Cloudflare Pages, and simple project documentation.",
+    "url": "projects/build-this-site/",
+    "image": "assets/card-build-this-site.png",
+    "homeSection": "featured-projects",
+    "featured": true
+  },
+  {
     "id": "git-and-github",
     "title": "Git and GitHub",
     "type": "Guide",
@@ -349,19 +362,6 @@
     "image": "assets/card-java-radix-ip-sort.png",
     "homeSection": "none",
     "featured": false
-  },
-  {
-    "id": "build-this-site",
-    "title": "How I Built LaunchShell.org",
-    "type": "Project",
-    "level": "Beginner+",
-    "time": "Ongoing",
-    "category": "Portfolio",
-    "summary": "See how LaunchShell was built with plain HTML, shared CSS, Git, GitHub, JSON, Cloudflare Pages, and simple project documentation.",
-    "url": "projects/build-this-site/",
-    "image": "assets/card-build-this-site.png",
-    "homeSection": "featured-projects",
-    "featured": true
   },
   {
     "id": "student-resources",
